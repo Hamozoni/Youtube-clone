@@ -1,0 +1,56 @@
+
+@import '../../GlibalStyles.scss/Variabls';
+.main-chan-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 5px 0;
+    @media (min-width: 530px) {
+        margin: 0 10px;
+    }
+    .card {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        @media (min-width:530px) {
+            flex-direction: row !important;
+        }
+    }
+    .img-l {
+        min-width: fit-content;
+        .chan-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #f5006b;
+        }
+    }
+    .subsc-title {
+        .name-l {
+            .name {
+                font-size: 13px;
+            }
+        }
+        .subsc {
+            font-size: 12px;
+            color: $blue-color;
+        }
+    }
+    .subscribe {
+        .btn {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: $socnedary-color;
+            color: #fff;
+            text-transform: capitalize;
+            &.subscribed {
+                background-color: #f3f3f3;
+                color: $socnedary-color;
+            }
+        }
+    }
+
+}

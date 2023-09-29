@@ -1,0 +1,16 @@
+
+.p-list-v {
+    max-width: 1170px;
+    margin: 0 auto;
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .video {
+        flex: 2;
+    }
+    .right-videos {
+       flex: 1;
+    }
+}

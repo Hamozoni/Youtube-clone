@@ -1,0 +1,40 @@
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 100px);
+    .circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 15px dotted #f5006b;
+        animation: spin 3s alternate infinite;
+    }
+}
+
+@keyframes spin {
+    20% {
+        transform: rotate(180deg);
+    }
+    40% {
+        transform: rotate(0deg);
+    }
+    50% {
+        width: 60px;
+        height: 60px;
+        border-width: 10px;
+    }
+    60% {
+        transform: rotate(180deg);
+    }
+    80% {
+        transform: rotate(0deg);
+    }
+    100% {
+        width: 80px;
+        height: 80px;
+        border-width: 5px;
+    }
+}

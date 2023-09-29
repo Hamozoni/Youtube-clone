@@ -1,0 +1,123 @@
+@import '../../GlibalStyles.scss/Variabls';
+.short-videos {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .short-v-container {
+        gap: 15px;
+        position: relative;
+        height: calc(100vh - 50px);
+        .short-v-player {
+            width: fit-content;
+            display: flex;
+            gap: 10px;
+            position: relative;
+            @media (min-width: 530px) {
+                margin-top: 15px;
+            }
+            .short-video {
+                position: relative;
+                .short-player {
+                    width: 100vw !important;
+                    height: calc(100vh - 55px) !important;
+                    overflow: hidden;
+                    @media (min-width: 530px) {
+                        width: 315px !important;
+                        height: 560px !important;
+                        border-radius: 10px;
+                    }
+                }
+                h4 {
+                    position: absolute;
+                    font-size: 12px;
+                    bottom: 49px;
+                    left: 53px;
+                    color: #fff;
+                    text-shadow: 2px 2px 2px #000;
+                }
+            }
+            ul{
+                @media (max-width: 530px) {
+                    position: absolute;
+                    right: 20px;
+                    bottom: 10px;
+                    height: 100%;
+                    justify-content: center;
+                    li {
+                        color: #fff !important;
+                        text-shadow: 2px 2px 2px #000;
+                        cursor: pointer;
+                    }
+                }
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                li {
+                    text-align: center;
+                    svg {
+                        background-color:#3683c154;
+                        padding: 10px;
+                        font-size: 45px;
+                        border-radius: 50%;
+                        color: #fff;
+                        @media (min-width: 530px) {
+                            background-color: $blue-color ;
+                        }
+                    }
+                    img {
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+        .arrow-btn {
+            position: absolute;
+            bottom: 40px;
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+
+            &.left {
+               left: 3px;
+               @media (min-width:530px) {
+                   left: -54px;
+               }
+            }
+            
+            &.right {
+                right: 3px;
+             }
+        }
+    }
+    .comments {
+        display: none;
+        &.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            .comm-container {
+                width: 400px;
+                max-width: 100%;
+                border-radius: 10px;
+                .comm-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px;
+                    border-bottom: 1px solid $light-bl-color;
+                }
+                .comm-wrapper {
+                    height: 400px;
+                    overflow-y: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+
+@import '../../GlibalStyles.scss/Variabls';
+.short-card {
+    cursor: pointer;
+    img {
+        border-radius: 6px;
+        max-width: 550px;
+    }
+    .short-desc {
+        .short-title {
+           font-size: 14px;
+           @media (max-width: 530px) {
+                 color: #fff !important;
+             }
+        }
+        .sh-viwes {
+            font-size: 12px;
+        }
+    }
+    @media (max-width: 530px) {
+        .short-title {
+            color: $primary-color;
+         }
+        position: relative;
+        .short-desc {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+    }
+}
