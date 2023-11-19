@@ -1,50 +1,54 @@
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Search from '../Search/Search';
-import { Link } from 'react-router-dom';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
+// import { Link } from 'react-router-dom';
+// import WbSunnyIcon from '@mui/icons-material/WbSunny';
+// import Brightness4Icon from '@mui/icons-material/Brightness4';
 import './Header.scss';
 
 import { isThemeDark } from '../../Contexts/Theme';
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import { Theme } from '../../Utils/Colors';
-import { lang } from '../../Utils/language';
+// import { language } from '../../Utils/language';
+import Logo from '../Logo/Logo';
+import ProfileCreate from './ProfileCreate';
 
-const Header = ()=> {
+const Header = ({ isSideNavbarOpen, setIsSideNavbarOpen})=> {
 
-    const [isLangMenu,setIsLangMenu] = useState(false)
+    // const [isLangMenu,setIsLangMenu] = useState(false)
      
-    const {isDark,setIsDark,isEng,setIsEng} = useContext(isThemeDark);
+    const {isDark} = useContext(isThemeDark);
     return (
-        <header style={{backgroundColor: Theme[isDark].whiteColor}}>
+        <header >
             <div className="container">
-                <div className="logo">
-                    <Link to='/'><span className="icon"><PlayArrowIcon /></span>{lang[isEng].logo}</Link>  
-                </div>
+                <Logo isSideNavbarOpen={isSideNavbarOpen} setIsSideNavbarOpen={setIsSideNavbarOpen} />
                 <div className="left-bar">
-                    <div className="lang">
+                    {/* <div className="lang">
                         <h4 className="lang-t" 
                             onClick={()=>setIsLangMenu(!isLangMenu) }
-                            style={{color: Theme[isDark].primaryColor}}>
-                            {lang[isEng].language}
+                            style={{color: Theme[isDark].primaryColor}}
+                            >
+                            {language[lang].language}
                         </h4>
                         {isLangMenu &&
-                        <div className="langs"  style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}>
+                        <div 
+                            className="langs" 
+                            style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
+                            >
                             <h5 onClick={()=> {
-                                localStorage.setItem('maimed-tube-lang',0);
+                                localStorage.setItem('YMHtube-language',"eng");
                                 setIsLangMenu(false);
-                                setIsEng(+localStorage.getItem('maimed-tube-lang'));
+                                setLang(localStorage.getItem('YMHtube-language'));
                             }}>English</h5>
                             <h5 onClick={()=> {
-                                localStorage.setItem('maimed-tube-lang',1); 
+                                localStorage.setItem('YMHtube-language',"arb"); 
                                 setIsLangMenu(false);
-                                setIsEng(+localStorage.getItem('maimed-tube-lang')) 
+                                setLang(localStorage.getItem('YMHtube-language')) 
                             }}>العربية</h5>
                         </div>
                         } 
-                    </div>
+                    </div> */}
                     <Search />
-                    <div className="theme" onClick={()=>{
+                    {/* <div className="theme" onClick={()=>{
                             if(+localStorage.getItem('maimed-tube-theme') === 0)  {
                                 localStorage.setItem('maimed-tube-theme',1);
                                 setIsDark(Number(localStorage.getItem('maimed-tube-theme')));
@@ -56,8 +60,9 @@ const Header = ()=> {
                     { isDark === 0 ? <Brightness4Icon className='light-icon' />  :
                         <WbSunnyIcon className='dark-icon'  />
                         }
-                    </div>
+                    </div> */}
                 </div>
+                <ProfileCreate />
             </div>
         </header>
     );

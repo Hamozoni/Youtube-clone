@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
+import SideNavbar from './Components/SideNavbar/SideNavbar'
 import Home from './Pages/Home/Home';
 import VideoDetails from './Pages/VideoDetails/VideoDetails';
 import ChanelDetails from './Pages/ChanelDetails/ChanelDetails';
@@ -12,17 +13,20 @@ import { useEffect, useState } from 'react';
 
 const App = ()=> {
   const [isDark, setIsDark] = useState(0);
-  const [isEng, setIsEng] = useState(1);
+  const [lang, setLang] = useState("en");
+  const [shorts, setShorts] = useState([]);
+  const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
 
 
   useEffect(()=>{
-    if(localStorage.getItem('maimed-tube-lang')) {
-      setIsEng(Number(localStorage.getItem('maimed-tube-lang')))   
+
+    if(localStorage.getItem('YMHtube-language')) {
+        setLang(localStorage.getItem('YMHtube-language'))   
     }else {
-      localStorage.setItem('maimed-tube-lang',isEng);
+      localStorage.setItem('YMHtube-language',lang);
     };
 
-    if(isEng === 1) {
+    if(lang === "ar") {
       document.dir = 'rtl';
     }else {
       document.dir = 'ltr';
@@ -42,21 +46,30 @@ const App = ()=> {
     }
     
 
-  },[isDark,isEng])
+  },[isDark,lang,setLang,setIsDark])
 
   return (
-    <isThemeDark.Provider value={{ isDark, setIsDark, isEng, setIsEng}} >
-    < BrowserRouter >
-       <Header />
-       <Routes>
-         <Route path='/' exact element={<Home />} />
-         <Route path='/video/:id' element={<VideoDetails />} />
-         <Route path='/channels/:id' element={<ChanelDetails />} />
-         <Route path='/search/:word' element={<SearchFeed />} />
-         <Route path='/playlist/:id' element={<PlayListVideos />} />
-         <Route path='/short/:id' element={<ShortsVideos />} />
-       </Routes>
-    </BrowserRouter>
+    <isThemeDark.Provider 
+          value={{ isDark, setIsDark, lang, setLang,shorts, setShorts }} >
+      < BrowserRouter >
+        <Header 
+              isSideNavbarOpen={isSideNavbarOpen} 
+              setIsSideNavbarOpen={setIsSideNavbarOpen}
+        />
+        {isSideNavbarOpen && 
+         <SideNavbar 
+            isSideNavbarOpen={isSideNavbarOpen}  
+            setIsSideNavbarOpen={setIsSideNavbarOpen}/>
+          }
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/video/:id' element={<VideoDetails />} />
+          <Route path='/channels/:id' element={<ChanelDetails />} />
+          <Route path='/search/:word' element={<SearchFeed />} />
+          <Route path='/playlist/:id' element={<PlayListVideos />} />
+          <Route path='/short/:id' element={<ShortsVideos />} />
+        </Routes>
+       </BrowserRouter>
     </isThemeDark.Provider>
   );
 }

@@ -1,0 +1,55 @@
+.ch-home-player {
+    max-width: 100%;
+    width: fit-content;
+    padding: 10px 0;
+    overflow: hidden;
+
+    .player {
+      min-width: 370px;
+      max-width: 424px;
+      min-height: 200px;
+      max-height: 238px;
+      border-radius: 10px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .player-desc {
+        .pl-title {
+            margin: 10px 0;
+            a {
+                color: #fff;
+            }
+        }
+        .time-views {
+            span {
+                font-size: 12px;
+                color: #ebb8b8;
+            }
+        }
+        aside {
+            font-size: 12px;
+            word-break: break-all;
+            line-height: 1.8;
+            overflow: hidden;
+            display: none;
+            color: #eccaca;
+        }
+    }
+    @media (min-width: 570px) {
+        display: flex;
+        gap: 20px;
+        min-height: 200px;
+        max-height: 238px;
+        .time-views {
+            margin: 15px 0;
+        }
+        .player-desc {
+            .pl-title {
+                margin: 0;
+            }
+            aside {
+                display: block;
+            }
+        }
+    }
+}

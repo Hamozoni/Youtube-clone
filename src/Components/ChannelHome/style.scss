@@ -1,0 +1,141 @@
+
+.channel-home{
+   .part-container {
+      position: relative; 
+      padding-bottom: 10px;
+      max-width: 100%;
+      &:not(:last-of-type){
+         border-bottom: 1px solid #746f6f;
+      }
+      .part-title {
+         display: flex;
+         gap: 15px;
+         align-items: center;
+          color: #fff;
+          margin: 15px 0;
+          font-size: 20px;
+          span {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            gap: 5px;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 3px 7px;
+            border: 1px solid transparent;
+            svg {
+               padding: 0;
+            }
+            &:hover {
+               border-color: #ffffff57;
+               background-color: #ffffff2c;
+            }
+          }
+          img {
+            width: 30px;
+          }
+         }
+      .sub-title {
+         color:  #eed8d8;
+         margin-bottom: 10px;
+         font-size: 14px;
+         font-weight: normal;
+      }
+      .videos-wraper { 
+         overflow-x: scroll;
+         max-width: 100%;
+         .scroll-next,.scroll-prev {
+            display: none;
+            @media (min-width: 430px) {
+               position: absolute;
+               top: calc(50% + 40px);
+               width: 30px;
+               height: 30px;
+               background-color: #746f6f;
+               border-radius: 50%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               z-index: 99999;
+               &:hover {
+                  background-color: #333333;
+               }
+               svg {
+                  color: #ffffff;
+                  font-size: 22px;
+               }
+            }
+         }
+         .scroll-next {
+            right: -15px;
+         }
+         .scroll-prev {
+            left: -15px;
+         }
+         .short-card {
+            img {
+               width: 210px;
+               min-width: 210px;
+               height: 303px;
+               min-height: 303px !important;
+            }
+         }
+         .videos.channel-home {
+            display: flex;
+            flex-wrap: nowrap;
+            width: fit-content;
+            .video-card, .playlist-img{
+                width: 200px;
+                min-width: 200px;
+            }
+            .short-cards {
+               display: flex;
+               gap: 15px;
+               .short-card  {
+                  min-width: 180px;
+                  width: 180px;
+               }
+            }
+
+         }
+      }
+      .channel_listing {
+         width: 100%;
+         display: flex;
+         gap: 50px;
+         text-align: center;
+         .main-chan-card {
+            flex-direction: column !important;
+            justify-content: center;
+            .card {
+               .img-l  {
+                  width: 90px !important;
+                  height: 90px !important;
+               }
+            }
+            .subscribe  {
+               flex-direction: column;
+               text-align: center;
+               justify-content: center;
+            }
+            .name {
+               text-align: center;
+            }
+         }
+      }
+      .members_listing {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         .member-image {
+             
+            .img {
+               min-width: 60px;
+               min-height: 60px;
+               border-radius: 50%;
+            }
+         }
+      }
+   }
+}

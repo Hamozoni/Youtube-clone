@@ -1,0 +1,92 @@
+.videos {
+    .load-more {
+    width: 100%;
+    text-align: center;
+        button {
+            background-color: transparent;
+            color: #fff;
+            padding: 5px 10px;
+            border: 1px solid #ffffff44;
+            border-radius: 10px;
+            svg {
+                font-size: 26px;
+            }
+        }
+    }
+    .listing {
+        border-bottom: 1px solid #ffffff77 ;
+        border-top: 1px solid #ffffff77 ;
+        margin-bottom: 20px;
+        @media (min-width: 620px) {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        @media (min-width: 920px) {
+            grid-column-end: 4;
+        }
+        h5.listing-title {
+            color: #fff;
+            margin: 15px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            img {
+                width: 30px;
+            }
+        }
+        .shorts-container {
+            display: flex;
+            gap: 15px;
+            overflow: auto;
+            padding: 15px 0;
+            .short-card  {
+                width: 120px;
+                min-width: 120px;
+                img {
+                    height: 214px;
+                    min-height: 214px;
+                }
+                @media (min-width: 430px) {
+                    width: 160px;
+                    min-width: 160px;
+                    img {
+                        height: 284px;
+                        min-height: 284px;
+                    }
+
+                }
+                @media (min-width: 768px) {
+                    width: 180px;
+                    min-width: 180px;
+                    img {
+                        height: 320px;
+                        min-height: 320px;
+                    }
+                }
+            }
+        }
+        .query-container {
+            display: flex;
+            gap: 15px;
+            overflow: auto;
+            width: 100%;
+            max-width: 100%;
+            .query {
+            width: 156px;
+            min-width: 156px;
+            background-color: #131111;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 1px solid #ffffff56;
+            img {
+                min-width: 156px;
+            }
+            h5 {
+                margin: 10px 0;
+                text-align: center;
+            }
+            }
+        }
+    }
+}

@@ -1,21 +1,24 @@
+
+%dflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 header {
     position: sticky;
     top: 0;
     z-index: 9999999;
-    %dflex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    background-color: #010716 !important;
     .container {
         @extend %dflex;
         justify-content: space-between;
-        height: 50px;
+        height: 60px;
         position: relative;
         max-width: 1400px;
         padding: 0 10px;
         .logo {
-
+            width: unset;
             a {
                 @extend %dflex;
                 gap: 5px;
@@ -62,6 +65,25 @@ header {
         }
         .dark-icon {
             color: #fff;
+        }
+    }
+}
+
+.prof-create {
+    @extend %dflex;
+    gap: 15px;
+    .icon {
+        @extend %dflex;
+        padding: 5px;
+        border-radius: 50%;
+        svg {
+            font-size: 28px;
+            color: #fff;
+        }
+    }
+    .user-img  {
+        svg {
+            font-size: 36px;
         }
     }
 }

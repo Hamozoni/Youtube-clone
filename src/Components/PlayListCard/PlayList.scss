@@ -1,14 +1,10 @@
 @import '../../GlibalStyles.scss/Variabls';
 
-   .playlist-card {
+.playlist-card {
     border-radius: 6px;
-    @media (min-width: 530px) {
-        display: flex;
-        margin: 0 10px;
-    }
     .playlist-img {
         position: relative;
-        flex: 1;
+        overflow: hidden;
         a.p-img  {
             img {
                 height: 100%;
@@ -20,18 +16,18 @@
         .count {
             position: absolute;
             display: flex;
-            flex-direction: column;
+            gap: 5px;
             align-items: center;
             justify-content: center;
-            width: 40%;
-            height: 99%;
+            width: 100%;
+            height: 30%;
             right: 0;
-            top: 0;
+            bottom: 0;
             padding: 1px 5px;
             background-color: rgba(0, 0, 0, 0.829);
             color: #ffffff;
             @media (min-width: 530px){
-                border-radius: 0 6px 6px 0;
+                border-radius: 0 0 10px 10px;
             } 
         }
     }
@@ -48,5 +44,30 @@
         color: $light-pr-color;
         text-transform: capitalize;
       }
+   }
+   &.watch, &.search {
+    @media (min-width: 430px) {
+        display: flex;
+        margin-bottom: 20px;
+           .playlist-img {           
+              flex: 1;
+            }
+            .p-t-box {
+                flex: 1.3;
+            }
+
+        }
+   }
+   &.search {
+     @media (min-width:768px) {
+        .p-t-box {
+            flex: 3;
+        }
+     }
+     @media (min-width: 992px) {
+        .p-t-box {
+            flex: 2.5;
+        }
+     }
    }
 } 

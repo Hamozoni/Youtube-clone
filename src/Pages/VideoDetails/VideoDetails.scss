@@ -7,29 +7,19 @@
        gap: 10px;
        padding: 0;
        flex-direction: column;
-       max-width: 1170px;
-       @media (min-width: 768px) {
+       max-width: 1300px;
+       @media (min-width: 992px) {
           flex-direction: row;
-          padding: 0 10px;
+         //  padding: 0 10px;
        }
        .related-video {
-         width: 100%;
-         @media (min-width: 768px) {
-            height: calc(100vh - 53px);
-            overflow-y: auto;
-            flex: 1;
-            padding-top: 10px;
-         }
-         .relate-title {
-            padding: 0 0 10px 10px;
-            text-transform: capitalize;
-            @media (max-width: 529px) {
-               position: sticky;
-               padding-top:5px ;
-               top: 259px;
-               z-index: 9999;
-            }
-
+         max-width: 100%;
+         position: relative;
+          @media (min-width: 992px) {
+            max-width: 30%;
+             flex-basis: 25% !important;
+             padding-top: 10px;
+             width: 100%;
          }
        }
     }

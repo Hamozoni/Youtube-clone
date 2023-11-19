@@ -1,48 +1,68 @@
 @import '../../GlibalStyles.scss/Variabls';
 
 .videos {
-    height: calc(100% - 45px);
-    overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
     gap: 10px;
+
     .video-card {
         border-radius: 6px;
         transition: all 0.5s ease-in-out;
-        &:hover {
-            @media (min-width: 530px){
-                transform: scale(1.05);
-                z-index: 30000;
-            }  
-        }
         .video-img {
             position: relative;
-            flex: 1;
-            width: 100%;
             cursor: pointer;
-            img {
-                min-height: 100%;
-                min-width: 100%;
+            overflow: hidden;
+            @media (min-width: 430px){
+                border-radius: 10px;
+            } 
+            .player {
+                position: absolute;
+                width: 100%;
                 max-width: 100%;
-                @media (min-width: 530px){
-                    border-radius: 6px;
-                } 
+                height: 100%;
+                max-height: 100%;
+                left: 0;
+                top: 0;
+            }
+            span.nav-watch {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                background-color: transparent;
+                z-index: 99999999;
+            }
+            img {
+                width: 100%;
+
             }
             span {
                 position: absolute;
-                right: 5px;
                 bottom: 8px;
-                padding: 1px 5px;
+                padding: 0px 5px 2px;
                 background-color: rgb(0 0 0 / 61%);
                 color: #fff;
                 border-radius: 6px;
                 font-size: 13px;
                 font-weight: 500;
+                &.live {
+                    background-color: red;
+                    padding: 0px 5px;
+                    div{
+                        display: flex;
+                        gap: 3px;
+                        svg {
+                            font-size: 20px;
+                        }
+                    }
+                }
             }
         }
         .content {
             padding: 10px;
             flex: 1;
+            overflow: hidden;
             .wrapper {
                 display: flex;
                 gap: 4px;
@@ -69,6 +89,13 @@
                             font-size: 11px;
                         }
                     }
+                    .video-desc {
+                        display: none;
+                        font-size: 12px;
+                        @media (min-width: 540px) {
+                            display: block;
+                        }
+                    }
                 }
             }
             .stats {
@@ -86,6 +113,68 @@
                 }
 
             }
+        }
+        &.watch, &.search {
+            .content {
+                a.img {
+                    @media (min-width:430px) {
+                        display: none;
+                     }
+                }
+            }
+             @media (min-width:430px) {
+                display: flex;
+                margin-bottom: 10px;
+                gap: 10px;
+                .video-img {
+                    flex: 1;
+                }
+                .content {
+                    padding: 0;
+                    flex: 1.3;
+                }
+             }
+        }
+        &.search{
+            @media (min-width:768px) {
+                .titles {
+                    * {
+                        margin-bottom: 4px;
+                    }
+                }
+                .content {
+                    flex: 3;
+                }
+             }
+             @media (min-width:992px) {
+                .content {
+                    flex: 2.5;
+                }
+             }
+
+        }
+    }
+    &.search {
+        @media (min-width:540px) {
+            display: block;
+            padding: 15px;
+        }
+    }
+    &.channel {
+        @media (min-width:430px) {
+            grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+        }
+    }
+    &.watch {
+        @media (min-width:430px) {
+            padding: 15px;
+            display: block;
+         }
+    }
+    &.home {
+        .video-card {
+            display: flex;
+            flex-direction: column;
         }
     }
 }

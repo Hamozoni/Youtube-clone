@@ -1,53 +1,44 @@
 @import '../../GlibalStyles.scss//Variabls';
 .list-v-card {
-    border-radius: 6px;
-    border: 1px solid #60aec2;
+    border-radius: 10px;
+    width: calc(100% - 20px);
     padding: 10px;
-    margin: 10px 0;
-    position: sticky;
-    top: 255px;
+    margin: 10px;
+    margin-top: 0;
     z-index: 99999;
+    background-color: #151a28;
+    border: 1px solid #ffffff1f;
     &.active {
-        position: fixed;
-        top: 248px;
-        left: 0;
-        width: 100%;
         .pl-v-content {
-        height: calc(100vh - 322px);
+        height: calc(100vh - 300px);
         overflow-y: auto;
         }
     }
     
-    @media (min-width: 530px) {
-        top: 340px;
-        &.active {
-        top: 340px; 
-        }
-    }
     @media (min-width:768px) {
-        position: unset;
-        top: unset;
-
         &.active {
-            position: unset;
-            top: unset;
-       
-         .pl-v-content {
-            height: 300px;
-            overflow-y: auto;
-        }
-    } 
+            .pl-v-content {
+                height: 300px;
+            }
+       } 
     }
+    @media (min-width:992px) {
+        &.active {
+            .pl-v-content {
+                height: 435px;
+            }
+       } 
+     }
     .list-header {
          display: flex;
          align-items: center;
          justify-content: space-between;
         .l-title {
-           font-size: 16px;
+           font-size: 12px;
            margin-bottom: 5px;
         }
         .owner-channel {
-          font-size: 12px;
+          font-size: 10px;
           margin-bottom: 5px;
         }
         .l-toggle-btn {
@@ -56,7 +47,7 @@
         }
     }
     .pl-v-content {
-         cursor: pointer;;
+         cursor: pointer;
          &.hidden {
             display: none;
          }
@@ -70,7 +61,7 @@
             &:hover, &.active {
                 background-color: #2a506e69 !important;
                 position: relative;
-                border: 1px solid $primary-color;
+                border: 1px solid #ffffff1f;
             }
             &.active::after {
                 content: '';
@@ -83,7 +74,10 @@
             }
            .lift-img {
             position: relative;
-            flex: 1;
+            min-width: 150px !important;
+            @media (min-width: 768px) and (max-width: 991px) {
+                min-width: 200px !important;
+            }
             img {
                 max-width: 100%;
                 max-height: 100%;
@@ -102,7 +96,6 @@
             }
            } 
            .right-content {
-            flex: 1.5;
             .l-v-title {
                font-size: 12px;
                margin-bottom: 5px;

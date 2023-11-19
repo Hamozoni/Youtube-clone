@@ -1,42 +1,50 @@
-import YoutubeSearchedForIcon from '@mui/icons-material/YoutubeSearchedFor';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import KeyboardVoiceSharpIcon from '@mui/icons-material/KeyboardVoiceSharp';
+
 import './Search.scss';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Theme } from '../../Utils/Colors';
 import { isThemeDark } from '../../Contexts/Theme';
-import { lang } from '../../Utils/language';
+import { language } from '../../Utils/language';
+
 const Search = ()=> {
 
-      const { isDark, isEng } = useContext(isThemeDark);
+      const { isDark, lang } = useContext(isThemeDark);
       const [isMobSerch,setIsMobSearch] = useState(false);
        
       const navgate = useNavigate()
 
       const [serchTrem,setSearchTerm] = useState('');
+      const searchInput = document.getElementById('search-id')
 
       const handlSearch = (e)=>{
-       
            e.preventDefault();
+           searchInput.focus();
            if(serchTrem.length) {
-              navgate(`/search/${serchTrem}`);   
+              navgate(`/search/${serchTrem}`);  
            }
-           setSearchTerm('');
-           setIsMobSearch(false)
+           if(window.innerWidth < 668){
+             setIsMobSearch(!isMobSerch);
+           }
       };
 
       return (
-        <div className="search">
-            <form className={isMobSerch ? 'active': ''} style={{backgroundColor: Theme[isDark].whiteColor}} >
+        <div className="header-search">
+            <form className={isMobSerch ? 'active': ''}>
                 <input value={serchTrem}
-                      onFocus={()=>  setIsMobSearch(true)}
-                      type="text" className={isDark === 0 ? 'light search-input' :'search-input'} 
-                      placeholder={`${lang[isEng].search}...`} 
+                      id='search-id'
+                      type="search" className={isDark === 0 ? 'light search-input' :'search-input'} 
+                      placeholder={`${language[lang].search}...`} 
                       onChange={(e)=> setSearchTerm(e.currentTarget.value) } 
-                    />
+                  />
                   <button className='search-btn' onClick={ handlSearch } >
-                    <YoutubeSearchedForIcon />
+                    <SearchOutlinedIcon />
                   </button>
             </form>
+            <div className="mike">
+               <KeyboardVoiceSharpIcon />
+            </div>
         </div>
       );
 };

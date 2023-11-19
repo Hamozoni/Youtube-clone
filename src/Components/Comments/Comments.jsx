@@ -5,43 +5,65 @@ import { Theme } from '../../Utils/Colors';
 import { isThemeDark } from '../../Contexts/Theme';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
-import { useContext } from 'react';
-import { lang } from '../../Utils/language';
+import { useContext} from 'react';
+import { language } from '../../Utils/language';
 
-const Comments = ({ comments })=> {
+import moment from 'moment/moment';
 
-    const { isDark, isEng } = useContext(isThemeDark);
+const Comments = ({comment })=> {
+
+    const { isDark, lang } = useContext(isThemeDark);
+    const { authorChannelId,
+            authorThumbnail, 
+            authorText, 
+            publishedAt, 
+            textDisplay, 
+            likesCount, 
+            replyCount } = comment
+
     return (
         <div className="comm-container" > 
-          {comments?.map((comment,i)=>(
-            <div key={i} className="comment-box">
-                <Link to={`/channels/${comment?.authorChannelId}`} >
-                   <img className='auther-img' src={comment?.authorProfileImageUrl[0].url || comment?.authorProfileImageUrl[1].url } alt="img" />
+            <div className="comment-box">
+                <Link to={`/channels/${authorChannelId}`} >
+                   <img 
+                        className='auther-img' 
+                        src={authorThumbnail[0]?.url}
+                        alt="img" 
+                    />
                 </Link>   
                 <div className="auther-desc">
                     <h4 className="auth-name" style={{color: Theme[isDark].blueColor}}>
-                        {comment?.authorDisplayName}
+                        {authorText}
                     </h4>
-                    <span className="time" style={{color: Theme[isDark].lightBlColor}}>
-                        {comment?.publishedTimeText}
+                    <span className="time" 
+                        style={{color: Theme[isDark].lightBlColor}}
+                        >
+                        {moment(publishedAt).fromNow()}
                     </span>
-                    <p className="comment" style={{color: Theme[isDark].lightPrColor}} >
-                        {comment?.textDisplay}
+                    <p className="comment"
+                        style={{color: Theme[isDark].lightPrColor}} 
+                        >
+                        {textDisplay}
                     </p>
-                    <div className="likes">
-                        <button style={{backgroundColor: Theme[isDark].whiteColor,color: Theme[isDark].lightBlColor}} >
+                    <div className="like-dislike-btn">
+                        <button 
+                            style={{color: Theme[isDark].lightBlColor}} 
+                            >
                             <ThumbUpAltOutlinedIcon />
-                            {ternViewsTo(comment?.likesCount)}
+                            {likesCount}
                         </button>
-                        <button style={{backgroundColor: Theme[isDark].whiteColor,color: Theme[isDark].lightBlColor}} >
+                        <button 
+                            style={{color: Theme[isDark].lightBlColor}}
+                            >
                             <ThumbDownOffAltOutlinedIcon />
                         </button>
-                        <span className="replies">{comment?.replyCount}{lang[isEng].replies}</span>
+                        <span className="replies" >
+                            {replyCount} {language[lang].replies}
+                        </span>
                     </div>
     
                 </div>
             </div>
-          ))}
         </div>
 
     )

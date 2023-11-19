@@ -1,31 +1,45 @@
-import './ShortsCard.scss';
-import { useNavigate } from 'react-router-dom';
-import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
-import { useContext } from 'react';
 
-const ShortsCard = ({data})=> {
-     const { isDark } = useContext(isThemeDark)
+import { useEffect, useState } from 'react';
+import {fetchChannelApi } from "../../Utils/FetchApi";
+import Error from '../Error/Error';
+import Loading from '../Loading/Loading';
+import ShortCard from './ShortCard';
 
-    const navgate = useNavigate();
+const ShortsCard = ({id})=> {
+
+    const [data,setData] = useState([]);
+    const [isEror,setIsError] = useState(null);
+    const [isLoading,setLoading] = useState(false);
+
+
+     
+    useEffect(()=>{
+
+            setLoading(true);
+            setIsError(null);
+            fetchChannelApi(`channel/shorts?id=${id}&sortby=lastdateadded`)
+            .then((data)=> {
+                setLoading(false);
+                setData(data?.data);
+                console.log(data?.data);
+            })
+            .catch((error)=> {
+                setLoading(false);
+                setIsError(error);
+            })
+
+    },[id])
 
     return (
-        <>
-        {data?.map((short,i)=> (
-            <div key={i} className="short-card" onClick={()=> navgate(`/short/${short?.videoId}`)}>
-            <img src={short?.thumbnail[0]?.url} alt={'channel'} />
-            <div className="short-desc">
-                <h4 className="short-title" style={{color: Theme[isDark].primaryColor}}>
-                     {short?.title?.length > 30 ? `${short?.title.slice(0,30)}...`: short?.title}
-                </h4>
-                <h6 className="sh-viwes" style={{color: Theme[isDark].lightBlColor}}>
-                  {short?.viewCountText}
-                </h6>
-            </div>
-        </div>
-     
-        ))}
-    </>
+           
+         isEror ? <Error error={isEror} />  :
+        isLoading ? <Loading /> :
+        data?.map((short,_,arr)=> (
+          short?.type === "shorts" ?
+          <ShortCard  key={short?.videoId} short={short} shorts={arr} /> :
+          <h3>this video is not availble</h3>
+        ))
+
     );
 };
 

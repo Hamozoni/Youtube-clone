@@ -1,14 +1,15 @@
 import './PlayListVideos.scss';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchApi } from '../../Utils/FetchApi';
+import { fetchChannelApi} from '../../Utils/FetchApi';
 import  Loading from '../../Components/Loading/Loading';
 import  VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import ListVideosCard from '../../Components/ListVideosCard/ListVideosCard';
-import Videos from '../../Components/Videos/Videos';
 import Error from '../../Components/Error/Error';
+import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 
 const PlayListVideos = ()=> {
+    
     const {id} = useParams();
 
     const [playListDetails,setPlayListDetails] = useState(null);
@@ -22,10 +23,11 @@ const PlayListVideos = ()=> {
 
     useEffect(()=>{
         setIsLoading(true)
-         fetchApi(`playlist?id=${id}`)
+        fetchChannelApi(`playlist?id=${id}`)
          .then((data)=>{
             setPlayListDetails(data?.meta);
             setListVideos(data?.data);
+            console.log(data?.data)
             setIsLoading(false)
          })
          .catch((error)=> {
@@ -36,15 +38,22 @@ const PlayListVideos = ()=> {
     },[id,listVideoId])
 
     useEffect(()=> {
+        setIsLoading(true)
         if (ListVideos) {
-            fetchApi(`related?id=${ListVideos[listVideoId]?.videoId}&order=date`)
+            fetchChannelApi(`related?id=${ListVideos[listVideoId]?.videoId}`)
             .then((data)=>{
                 setVideos(data?.data);
+                console.log(data?.data);
+                setIsLoading(false);
+            })
+            .catch((error)=>{
+                setIsError(true);
+                setError(error);
             })
 
          }
 
-    },[ListVideos])
+    },[ListVideos,listVideoId])
 
     return (
         isError ? <Error error={error} /> :
@@ -54,7 +63,7 @@ const PlayListVideos = ()=> {
             <VideoPlayer id={ListVideos[listVideoId]?.videoId} />
             <div className="right-videos">
                 <ListVideosCard meta={playListDetails} data={ListVideos} setVideoId={setListVideoId} listVideoId={listVideoId} id={id} />
-                <Videos videos={videos} isChannell={false}/>
+                <RelatedVideos elements={videos} renderFrom='watch'/>
             </div>
            </>
          }

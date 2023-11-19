@@ -1,28 +1,37 @@
 @import '../../GlibalStyles.scss/Variabls';
+
 .short-videos {
-    display: flex;
-    justify-content: center;
-    position: relative;
+     scroll-snap-type: y mandatory;
+     height: calc(100vh - 65px);
+     overflow-y: scroll;
+    //  margin-top: -60px;
     .short-v-container {
+        scroll-snap-align: start;
         gap: 15px;
         position: relative;
-        height: calc(100vh - 50px);
+        height: calc(100vh - 65px);
+        margin: 0 auto;
+        width: fit-content;
         .short-v-player {
             width: fit-content;
             display: flex;
+            height: calc(100vh - 65px);
             gap: 10px;
             position: relative;
-            @media (min-width: 530px) {
+            @media (min-width: 430px) {
                 margin-top: 15px;
             }
             .short-video {
                 position: relative;
-                .short-player {
-                    width: 100vw !important;
-                    height: calc(100vh - 55px) !important;
+                 & > .short-player, img {
+                    height: fit-content;
+                    min-height: calc(100vh - 60px);
                     overflow: hidden;
-                    @media (min-width: 530px) {
-                        width: 315px !important;
+                    width: calc( 100vw - 40px);
+                    max-width: calc( 100vw - 40px);
+                    @media (min-width: 430px) {
+                        min-width: 100% !important;
+                        max-width: 330px;
                         height: 560px !important;
                         border-radius: 10px;
                     }

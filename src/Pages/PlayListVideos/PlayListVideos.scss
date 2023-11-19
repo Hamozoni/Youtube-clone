@@ -1,16 +1,23 @@
 
 .p-list-v {
-    max-width: 1170px;
+    max-width: 1310px;
     margin: 0 auto;
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
         display: flex;
         align-items: flex-start;
-        gap: 20px;
-    }
-    .video {
-        flex: 2;
+        gap: 15px;
+        .video {
+            flex: 2;
+        }
+        .right-videos {
+           flex: 1;
+        }
     }
     .right-videos {
-       flex: 1;
+        @media (min-width: 1170px) {
+        
+           flex: 0.9;
+         
+        }
     }
 }

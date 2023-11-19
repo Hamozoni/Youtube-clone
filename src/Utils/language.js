@@ -1,7 +1,7 @@
 
 
-export const lang = [
-    {
+export const language = {
+  en: {
       logo: 'myh',
       videos: 'videos',
       relVideos: 'related videos',
@@ -22,6 +22,8 @@ export const lang = [
       shorts: 'shorts',
       live: 'live',
       playlists: 'playlists',
+      community: 'community',
+      channels: 'channels',
       about: 'about',
       dislike: 'dislike',
       description: 'description',
@@ -29,9 +31,28 @@ export const lang = [
       joined: 'joined',
       retry: 'retry',
       search: 'search',
-      language: 'Language'
+      language: 'Language',
+      clip: 'clip',
+      trending: 'trending',
+      music: 'music',
+      gaming: 'gaming',
+      sports: 'sports',
+      subscribtions: 'subscribtions',
+      labrary: 'labrary',
+      history: 'history',
+      yourVideos: 'your videos',
+      watchLater: 'watch later',
+      likedVideos: 'liked videos',
+      sittings: 'sittings',
+      reportHistory: 'report history',
+      help: 'help',
+      sendFeedback: 'send feedback',
+      latest: 'latest',
+      popular: 'popular',
+      oldest: 'oldest',
+      links: 'links',
     },
-    {
+   ar: {
         logo: 'myh',
         videos: 'الفيديوهات',
         relVideos: 'محتوى مشابه',
@@ -42,9 +63,9 @@ export const lang = [
         download: 'تحميل',
         save: 'حفظ',
         report: 'بلاغ',
-        comments: 'تعليق',
+        comments: 'تعليقا',
         views: 'مشاهدة',
-        replies: 'الرد', 
+        replies: 'رد', 
         subscribe: 'اشتراك' , 
         subscribed: 'مشترك' ,
         subscribers: 'مشترك' ,
@@ -52,6 +73,8 @@ export const lang = [
         shorts: 'shorts',
         live: 'بث مباشر',
         playlists: 'قوائم التشغيل',
+        community: 'الملصقات',
+        channels: 'القنوات',
         about: 'لمحة',
         dislike: 'الغا الإعجاب',
         description: 'الوصف',
@@ -59,6 +82,25 @@ export const lang = [
         joined: 'الإنضمام',
         retry: 'إعادة المحاولة',
         search: 'ابحث',
-        language: 'اللغة'
+        language: 'اللغة',
+        clip: 'قص',
+        trending: 'شايع',
+        music: 'موسيقى',
+        gaming: 'العاب',
+        sports: 'رياضة',
+        subscribtions: 'الإشتراكات',
+        labrary: 'المكتبة',
+        history: 'السجل',
+        yourVideos: 'فيديوهاتك',
+        watchLater: 'شاهد لاحقا',
+        likedVideos: 'فيديوهات اعجبتك',
+        sittings: 'الضبط',
+        reportHistory: 'سجل البلاغات',
+        help: 'المساعدة',
+        sendFeedback: 'ارسل تقرير',
+        latest: 'احدث',
+        popular: "اشهر",
+        oldest: 'اقدم',
+        links: 'روابط',
       }
-]
+  }

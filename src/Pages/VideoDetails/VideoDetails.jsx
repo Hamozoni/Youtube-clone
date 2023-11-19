@@ -1,37 +1,41 @@
 import './VideoDetails.scss';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loading from '../../Components/Loading/Loading';
-import Videos from '../../Components/Videos/Videos';
-import { fetchApi } from '../../Utils/FetchApi';
+import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
+import { fetchChannelApi } from '../../Utils/FetchApi';
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
-import { Theme } from '../../Utils/Colors';
 import { isThemeDark } from '../../Contexts/Theme';
-import { lang } from '../../Utils/language';
-
-
-
 
 const VideoDetails = ()=> {
 
-    const { isDark, isEng } = useContext(isThemeDark);
+    const { lang} = useContext(isThemeDark);
+
 
     const {id} = useParams();
     const [isLoading,setIsLoading] = useState(true);
     const [videos,setVideos] = useState([]);
     const [isError,setIsErroe] = useState(false);
     const [error,setErroe] = useState(null);
-
-
+    const [videoDetail,setVideoDetail] = useState();
+    const [relatedKeywords,setRelatedKeywords] = useState(null);
+    const [keyword,setKeywords] = useState(null);
+    const [iskeyChanged,setKeyChanged] = useState(false);
+    const [continuation,setContinuation] = useState(null);
+    const [isLoadingMore, setIsLoadingMore] = useState(false)
 
     useEffect(()=>{
         setIsErroe(false)
         setIsLoading(true)  
-        fetchApi(`related?id=${id}&order=date`)
+        fetchChannelApi(`video/info?id=${id}&extend=+1&lang=${lang}`)
         .then((data)=>{
-            setVideos(data?.data);
+            setVideos(data?.relatedVideos?.data);
+            setContinuation(data?.relatedVideos?.continuation);
+            setVideoDetail(data);
+            setRelatedKeywords(data?.keywords)
+            console.log(data);
             setIsLoading(false)
         })
         .catch((error)=> {
@@ -39,22 +43,63 @@ const VideoDetails = ()=> {
             setErroe(error)
         })
 
-    },[id])
+    },[id,lang])
+
+    const relatedKeywordsHandler = (key)=>{
+        setKeyChanged(true);
+        setKeywords(key);
+        fetchChannelApi(`search?query=${key}&type=video&lang=${lang}`)
+        .then((data)=>{
+            setVideos(data?.data);
+            setKeyChanged(false);
+            setContinuation(data?.continuation);
+        })
+    };
+
+    const loadMore =()=>{
+        setIsLoadingMore(true);
+        if(continuation?.length > 0){
+            fetchChannelApi(`related?id=${id}&token=${continuation}&lang=${lang}`)
+            .then((data)=>{
+                setVideos( prev => [...prev,...data?.data]);
+                setContinuation(data?.continuation);
+                setIsLoadingMore(false)
+            })
+            .catch(()=>{
+                setIsLoadingMore(false);
+            })
+        }
+    }
 
     return (
-        isError ? <Error error={error} /> :
-        <div className="video-details">
+        isError ? <Error error={error} /> : isLoading ? <Loading /> :
+        <main className="video-details" >
             <div className="container">
-                <VideoPlayer id={id} />
-               <div className="related-video">
-                    <h4 className="relate-title"
-                     style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}} >
-                        {lang[isEng].relVideos}
-                    </h4>
-                   {isLoading ? <Loading />: <Videos videos={videos} isChannell={false}/> } 
-               </div>
+                <VideoPlayer id={id} videoDetail={videoDetail} />
+               <section className="related-video">
+                    {
+                        relatedKeywords?.length > 0 &&
+                        <nav className="related-keywords">
+                            <ul className='taps'>
+                                {
+                                    relatedKeywords?.map((key)=>(
+                                        <li className={key === keyword && 'active'} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
+                                    ))
+                                } 
+                            </ul>
+                        </nav>
+                    }
+                   {isLoading ? <Loading />: <RelatedVideos elements={videos} renderFrom="watch"/> } 
+                   {iskeyChanged && <div className="key-loading"><span>loading...</span></div>}
+                   {
+                    continuation.length > 0 && 
+                    <div className='load-more'> 
+                       <button type="button" disabled={isLoadingMore} onClick={loadMore} >{isLoadingMore ? 'loading...':'load more'}</button>
+                    </div>
+                   }
+               </section>
             </div>
-        </div>
+        </main>
     );
 };
 

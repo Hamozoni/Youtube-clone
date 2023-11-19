@@ -2,125 +2,114 @@ import './ChanelDetails.scss';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchApi, fetchApiB, fetchChannelApi } from '../../Utils/FetchApi';
+import { fetchApi, fetchChannelApi } from '../../Utils/FetchApi';
 import { Theme } from '../../Utils/Colors';
 import { isThemeDark } from '../../Contexts/Theme';
-import { lang } from '../../Utils/language';
-
+import { language } from '../../Utils/language';
 
 import Loading from '../../Components/Loading/Loading';
 import MainChannelCard from '../../Components/MainChannelCard/MainChannelCard';
-import Videos from '../../Components/Videos/Videos';
 import Playlist from '../../Components/PlayListCard/PlayList';
 import ShortsCard from '../../Components/SortsCard/ShortsCard';
 import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
+import ChannelHome from '../../Components/ChannelHome/ChannelHome';
+import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
+import ChannelCommunity from '../../Components/ChannelCommunity/ChannelCommunity';
+import ChannelVideos from '../../Components/ChannelVideos/ChannelVideos';
+import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 
 const ChanelDetails = ()=> {
 
-    const { isDark, isEng } = useContext(isThemeDark);
 
-    const [channelContent,setChannelContent] = useState('videos');
+    // const [playingVideoId, setPlayingVideoId] =useState('');
+
+    const [channelContent,setChannelContent] = useState('home');
 
     const [chanelDetail,setChanelDetail] = useState();
-    const [channelPlayLists,setChannelPlaylists] = useState(null);
-    const [channelLive,setChannelLive] = useState(null);
-    const [channelViveos,setChannelVideos] = useState(null);
-    const [channelShorts,setChannelShorts] = useState(null)
-    const [channelAbout,setChannelAbout] = useState(null)
+    const [channelPlayLists,setChannelPlaylists] = useState([]);
+    // const [channelLive,setChannelLive] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
 
     const { id } = useParams();
+    const {lang} = useContext(isThemeDark);
 
     const [isError,setIsErroe] = useState(false);
     const [error,setErroe] = useState(null);
+    const [isAboutChannelOpen,setIsAboutChannelOpen] = useState(false);
 
     useEffect(()=>{
-        setIsLoading(true)
-        fetchApi(`channel?id=${id}`)
+        setIsLoading(true);
+        fetchChannelApi(`channel/about?id=${id}&lang=${lang}`)
         .then((data)=>{
-            setChanelDetail(data.meta)
-            setChannelVideos(data?.data)
-            setIsLoading(false);
-           
+            setChanelDetail(data);  
+            setIsLoading(false)  ;
+            console.log(data)
+        })
+        fetchChannelApi(`channel/playlists?id=${id}&lang=${lang}&sortby=lastdateadded`)
+        .then((data)=> {
+            setChannelPlaylists(data?.data);
+            setIsLoading(false) 
+            console.log(data)
         })
         .catch((error)=> {
+            setIsLoading(false);
             setIsErroe(true)
             setErroe(error)
         })
-
-        fetchApiB(`channels?part=snippet,statistics&id=${id}`)
-        .then((data)=>{
-            setChannelAbout(data.items[0])
-        })
-
-        fetchChannelApi(`channel/playlists?id=${id}&sortby=lastdateadded`)
-        .then((data)=> {
-            setChannelPlaylists(data?.data)
-        })
-
-        fetchChannelApi(`channel/liveStreams?id=${id}&sortby=lastdateadded`)
-        .then((data)=> {
-            setChannelLive(data?.data)
-        })
-        fetchChannelApi(`channel/shorts?id=${id}&sortby=lastdateadded`)
-        .then((data)=> {
-            setChannelShorts(data?.data)
-        })
         
-    },[id])
+    },[id,lang]);
+
     return (
 
         isError ? <Error error={error} />:
     
         <div className="chanel-details">
+             <SideNavbarSmall homeShort='home-short' />
             <div className="container">
                 <div className="banner">
-                  { chanelDetail?.image.banner &&  <img src={chanelDetail?.image?.banner[1]?.url || chanelDetail?.image?.banner[2]?.url} alt="" />}
+                  { chanelDetail?.banner && 
+                        <img 
+                            src={ chanelDetail?.banner[1]?.url || 
+                                chanelDetail?.banner[2]?.url}
+                            alt="" 
+                        />
+                  }
                 </div>
-                 {isLoading & chanelDetail ? <Loading /> : <MainChannelCard id={id} />}
-                <div className="channel-nav" style={{backgroundColor: Theme[isDark].tranWhiteColor}}>
-                    <ul className="nav" style={{color: Theme[isDark].blueColor}}>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'home'? 'active': ''}
-                            onClick={()=> setChannelContent('home')}> {lang[isEng].home}</li>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'videos' ? 'active': ''}
-                            onClick={()=> setChannelContent('videos')}>{lang[isEng].videos}</li>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'shorts' ? 'active': ''} 
-                            onClick={()=> setChannelContent('shorts')}>{lang[isEng].shorts}</li>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'live' ? 'active': ''} 
-                            onClick={()=> setChannelContent('live')}>{lang[isEng].live}</li>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'playlists' ? 'active': ''}
-                            onClick={()=> setChannelContent('playlists')}>{lang[isEng].playlists}</li>
-                        <li style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            className={channelContent === 'about' ? 'active': ''}
-                            onClick={()=> setChannelContent('about')}>{lang[isEng].about}</li>
-                    </ul>
-                </div>
+                   { isLoading & chanelDetail ? <Loading /> : <MainChannelCard data={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen}  renderFrom="channel"/>}
+                   <ChannelTaps channelContent={channelContent} setChannelContent={setChannelContent} setIsAboutChannelOpen={setIsAboutChannelOpen}  />
                 <div className="channel-content">
+                    {isAboutChannelOpen &&  <ChannelAbout chanelDetail={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen} />}
                     {isLoading ? <Loading />:
                     <>{
                         channelContent === 'videos' ?
-                        <Videos videos={channelViveos}  isChannell={false} />       
+                         <ChannelVideos id={id} type='videos'/>
                         : 
                         channelContent === 'playlists' ?
-                        <div className="playlist-container">
-                            {channelPlayLists.length > 0 ? channelPlayLists?.map((playlist)=>( <Playlist playlist={playlist} /> )) : ''}
-                        </div> 
+                            <div className="playlist-container">
+                                { channelPlayLists?.map((playlist)=>( 
+                                    playlist?.type === "playlist" ?
+                                       <Playlist playlist={playlist} />
+                                   : playlist?.type === "playlist_listing" &&
+                                       playlist?.data?.map((data)=>(
+                                          <Playlist playlist={data} />
+                                      ))
+                                   ))
+                                }
+                            </div> 
                         : 
-                        channelContent === 'live' ? <Videos videos={channelLive}/> :
+                        channelContent === 'live' ? 
+                           <ChannelVideos id={id} type='liveStreams'/>
+                        :
                         channelContent === 'shorts' ?
-                        <div className="channel-shorta">
-                            <ShortsCard data={channelShorts} />
-                        </div>
-                        : channelContent === 'about' && 
-                        <div className="channel-about">
-                            <ChannelAbout about={channelAbout} />
-                        </div>
+                            <div className="channel-shorta">
+                                <ShortsCard id={id} />
+                            </div>
+                        :
+                        channelContent === 'home' ?
+                          <ChannelHome id={id} /> 
+                        : channelContent === 'community' && 
+                         <ChannelCommunity id={id} />
                     }</>
                   }
                

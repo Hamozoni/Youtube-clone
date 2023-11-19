@@ -1,56 +1,147 @@
 
 @import '../../GlibalStyles.scss/Variabls';
-.main-chan-card {
+
+@mixin flex-box ($jf: center){
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: $jf;
+}
+
+.main-chan-card {
+    @include flex-box;
     gap: 10px;
-    padding: 5px 0;
-    @media (min-width: 530px) {
-        margin: 0 10px;
-    }
+    max-width: 992px;
     .card {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        @media (min-width:530px) {
-            flex-direction: row !important;
-        }
-    }
-    .img-l {
-        min-width: fit-content;
-        .chan-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid #f5006b;
-        }
-    }
-    .subsc-title {
-        .name-l {
-            .name {
-                font-size: 13px;
+        @include flex-box;
+        .img-l {
+            width: 46px;
+            height: 46px;
+            .chan-img {
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
             }
-        }
-        .subsc {
-            font-size: 12px;
-            color: $blue-color;
         }
     }
     .subscribe {
-        .btn {
-            padding: 3px 10px;
-            border-radius: 6px;
+        @include flex-box(space-between);
+        flex: 1;
+        gap: 15px;
+        .subsc-title {
+            .name-l {
+                .name {
+                    @include flex-box(flex-start);
+                    gap:5px;
+                    font-size: 13px;
+                    svg {
+                        font-size: 16px
+                    }
+                }
+            }
+            .subsc {
+                font-size: 12px;
+                color: $blue-color;
+                text-transform: capitalize;
+            }
+        }
+        .subsc-btn  {
+           @include flex-box(center);
+            gap: 5px;
+            padding: 7px 10px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
-            background-color: $socnedary-color;
+            background-color: #072137;
             color: #fff;
             text-transform: capitalize;
             &.subscribed {
-                background-color: #f3f3f3;
-                color: $socnedary-color;
+                padding: 3px 10px;
+
             }
         }
     }
-
+    &.home, &.search{
+        align-items: center;
+        flex-direction: row;
+        padding: 0;
+        margin: 20px auto;
+        gap: 15px;
+        .card {       
+            .img-l {
+                width: 90px ;
+                height: 90px;
+            }
+      }
+      .subscribe {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    &.channel {
+        align-items: flex-start; 
+        margin: 10px 0;
+        .name {
+            @media (min-width:530px) {
+                font-size: 33px !important;   
+            }
+        } 
+        .subscribe {
+          display: block;
+          .chan-desc {
+            color: #fff;
+            font-size: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            @media (min-width:530px) {
+                font-size: 18px;   
+            }
+          }
+          }
+        .card {     
+            .img-l {
+                width: 70px ;
+                height: 70px;
+                @media (min-width:530px) {
+                    width: 160px ;
+                    height: 160px;
+                    
+                }
+            }
+      }
+    }
+    &.search {
+        @media (min-width: 430px){
+            gap: 10px;
+            .card {
+                flex: 1;
+                .img-l{
+                    width: 90px;
+                    height: 90px;
+                }
+            }
+            .subscribe {
+                padding: 0;
+                padding-left: 10px;
+                flex: 1.4;
+            }
+        }
+        @media (min-width:768px) {
+            .subscribe  {
+                flex: 3;
+            }
+        }
+        @media (min-width:992px) {
+            .subscribe {
+                flex: 2.5;
+            }
+        }
+    }
+    &.watch {
+       margin-bottom: 15px; 
+       .subscribe {
+        @media (min-width:768px) {
+            justify-content: flex-start;   
+        }
+       }
+    }
 }

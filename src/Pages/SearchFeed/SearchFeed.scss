@@ -1,8 +1,15 @@
 
 .search-feed {
-    max-width: 1170px;
+    max-width:100%;
     margin: 0 auto;
-    h3 {
-        margin-left: 10px ;
+    display: flex;
+    gap: 10px;
+    .container {
+        padding: 0 15px;
+        max-width: 100%;
+        @media (min-width: 790px) {
+            max-width: calc(100% - 75px);
+        }
     }
+
 }
