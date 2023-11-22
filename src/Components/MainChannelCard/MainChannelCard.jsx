@@ -30,7 +30,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                             className='chan-img'
                             src={ renderFrom === 'channel' ? data?.avatar[2]?.url :
                                 renderFrom === 'watch' ? data?.channelThumbnail[1].url :
-                                data?.thumbnail ? data?.thumbnail[1].url : channelImageAlt
+                                renderFrom === 'home-channel' || renderFrom === 'search' ? data?.thumbnail[1].url : channelImageAlt
                             } 
                             alt={data?.title} 
                         />
@@ -49,7 +49,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                 
                                     }
                                     {
-                                        renderFrom === 'watch' && data?.channelBadges[0] === 'Verified' ? <CheckCircleRoundedIcon /> : ""
+                                        renderFrom === 'watch' && data?.channelBadges ? <CheckCircleRoundedIcon /> : ""
                                     }
                                    { renderFrom === 'channel' && data?.isVerified  ?  <CheckCircleRoundedIcon /> :""}
                                 </h4>

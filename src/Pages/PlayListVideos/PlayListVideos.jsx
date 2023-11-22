@@ -1,16 +1,19 @@
 import './PlayListVideos.scss';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { fetchChannelApi} from '../../Utils/FetchApi';
 import  Loading from '../../Components/Loading/Loading';
 import  VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import ListVideosCard from '../../Components/ListVideosCard/ListVideosCard';
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
+import { isThemeDark } from '../../Contexts/Theme';
 
 const PlayListVideos = ()=> {
     
     const {id} = useParams();
+
+    const {lang} = useContext(isThemeDark);
 
     const [playListDetails,setPlayListDetails] = useState(null);
     const [ListVideos,setListVideos] = useState(null);
@@ -19,11 +22,12 @@ const PlayListVideos = ()=> {
     const [error,setError] = useState(null);
     const [videos,setVideos] = useState(null);
 
-    const [listVideoId,setListVideoId] = useState(0)
+    const [listVideoId,setListVideoId] = useState(0);
+    const [videoDetail,setVideoDetail] = useState({});
 
     useEffect(()=>{
         setIsLoading(true)
-        fetchChannelApi(`playlist?id=${id}`)
+        fetchChannelApi(`playlist?id=${id}&lang=${lang}`)
          .then((data)=>{
             setPlayListDetails(data?.meta);
             setListVideos(data?.data);
@@ -38,29 +42,31 @@ const PlayListVideos = ()=> {
     },[id,listVideoId])
 
     useEffect(()=> {
-        setIsLoading(true)
-        if (ListVideos) {
-            fetchChannelApi(`related?id=${ListVideos[listVideoId]?.videoId}`)
-            .then((data)=>{
-                setVideos(data?.data);
-                console.log(data?.data);
-                setIsLoading(false);
-            })
-            .catch((error)=>{
-                setIsError(true);
-                setError(error);
-            })
+        if(ListVideos !== null) {
+            setIsLoading(true)
+                fetchChannelApi(`video/info?id=${ListVideos[listVideoId]?.videoId}&extend=+1&lang=${lang}`)
+                .then((data)=>{
+                    setVideos(data?.relatedVideos?.data);
+                    setVideoDetail(data);
+                    // setRelatedKeywords(data?.keywords);
+                    console.log(data);
+                    setIsLoading(false)
+                })
+                .catch((error)=>{
+                    setIsError(true);
+                    setError(error);
+                })
+        }
 
-         }
+    },[listVideoId,id])
 
-    },[ListVideos,listVideoId])
 
     return (
         isError ? <Error error={error} /> :
         <div className="p-list-v">
           { isLoading ? <Loading /> :
            <>
-            <VideoPlayer id={ListVideos[listVideoId]?.videoId} />
+            <VideoPlayer videoDetail={videoDetail} id={ListVideos[listVideoId]?.videoId}/>
             <div className="right-videos">
                 <ListVideosCard meta={playListDetails} data={ListVideos} setVideoId={setListVideoId} listVideoId={listVideoId} id={id} />
                 <RelatedVideos elements={videos} renderFrom='watch'/>

@@ -37,7 +37,7 @@ const ChannelAbout = ({chanelDetail,setIsAboutChannelOpen})=> {
                                 </div>
                                 <div className="link-title">
                                     <h6>{link?.title}</h6>
-                                    <Link to={link?.link} target='blank' > {link?.link}</Link>
+                                    <Link to={link?.link} target='_blank' > {link?.link}</Link>
                                 </div>
                             </div>
                         )) 
@@ -60,30 +60,3 @@ const ChannelAbout = ({chanelDetail,setIsAboutChannelOpen})=> {
 }
 
 export default ChannelAbout;
-
-{/* <div className="desc-det">
-<h5 style={{color: Theme[isDark].primaryColor}}>
-     {language[lang].description}
-</h5>
-<p style={{color: Theme[isDark].lightPrColor}}>
-    {about?.snippet?.description}
-</p>
-</div>
-<div className="stats">
-<h5 style={{color: Theme[isDark].primaryColor}}>
-    {language[lang].stats}
-</h5>
-<div className="joined" style={{color: Theme[isDark].lightPrColor}}>
-    <span>
-        {language[lang].joined}
-    </span>    
-    {new Date( about?.snippet?.publishedAt).toDateString() }
-</div>
-<div className="views"
-    style={{color: Theme[isDark].lightPrColor}}
-    >
-    {Number(about?.statistics?.viewCount).toLocaleString()}
-    <span>{language[lang].views}</span>   
-</div>
-
-</div> */}

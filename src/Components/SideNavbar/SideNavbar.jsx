@@ -79,23 +79,23 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                     </Link>
                 </div>
                 <div className="explor nav-icons">
-                     <Link to='/'>
+                     <Link to='/search/trending'>
                         <WhatshotOutlinedIcon />
                         <h3>{trending}</h3>
                     </Link>
-                    <Link to='/'>
+                    <Link to='/search/music'>
                         <AudiotrackOutlinedIcon />
                         <h3>{music}</h3>
                     </Link>
-                    <Link to='/'>
+                    <Link to='/search/live'>
                         <SensorsOutlinedIcon />
                         <h3> {live} </h3>
                     </Link>
-                    <Link to='/'>
+                    <Link to='/search/gaming'>
                         <SportsEsportsOutlinedIcon />
                         <h3> {gaming}</h3>
                     </Link>
-                    <Link to='/'>
+                    <Link to='/search/sports'>
                         < EmojiEventsOutlinedIcon />
                         <h3>{ sports} </h3>
                     </Link>
@@ -109,9 +109,9 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                     </Link>
                 </div>
                 <div className="sitting-help nav-icons">
-                    <Link to='/'>
+                    <Link to='/settings'>
                         <SettingsOutlinedIcon />                    
-                        <h3>sittings</h3>  
+                        <h3>settings</h3>  
                     </Link>
                     <Link to='/'>
                         <OutlinedFlagTwoToneIcon />                      
