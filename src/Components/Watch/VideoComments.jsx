@@ -10,6 +10,8 @@ import { language } from '../../Utils/language';
 import { useContext, useEffect, useState } from 'react';
 import { fetchChannelApi } from '../../Utils/FetchApi';
 
+import './VideoComments.scss';
+
 const VideoComments = ({id, videoDetail})=> {
 
     const [comments,setComments] = useState([]);
@@ -62,22 +64,6 @@ const VideoComments = ({id, videoDetail})=> {
                             {isComm ?<ExpandMoreIcon/> : <ClearIcon />}
                         </span>
                     </h5>
-                    <div className="comm-form">
-                        <div className="user-img">
-                            <img src="" alt="" />
-                        </div>
-                        <div className="comm-input">
-                            <input 
-                                className='input'
-                                type="text" 
-                                placeholder='Add a comment...'
-                            />
-                            <div className="input-btn">
-                                <button> cancel </button>
-                                <button> comment </button>
-                            </div>
-                        </div>
-                    </div>
                 </section>
                 <div className={isComm?"wrapper active":"wrapper"}>  
                     {

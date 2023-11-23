@@ -13,11 +13,11 @@ import { useEffect, useState } from 'react';
 import AcountSetting from './Components/AcountSetting/AcountSetting';
 
 const App = ()=> {
-  const [isDark, setIsDark] = useState(0);
+  const [isDark, setIsDark] = useState('dark');
   const [lang, setLang] = useState("en");
   const [shorts, setShorts] = useState([]);
   const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
-  const [isAcountNavOpen, setIsAcountNavOpen] = useState(true);
+  const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
 
 
   useEffect(()=>{
@@ -34,25 +34,41 @@ const App = ()=> {
       document.dir = 'ltr';
     }
     if(localStorage.getItem('maimed-tube-theme')) {
-      setIsDark(Number(localStorage.getItem('maimed-tube-theme')))   
+      setIsDark(localStorage.getItem('maimed-tube-theme'))   
     }else {
       localStorage.setItem('maimed-tube-theme',isDark);
     };
       
     const body =  document.getElementsByTagName('body');
     
-    if(isDark === 1){
+    if(isDark === 'dark'){
       body[0].classList.add('dark-mode');
     }else {
       body[0].classList.remove('dark-mode');
     }
     
 
-  },[isDark,lang,setLang,setIsDark])
+  },[isDark,lang,setLang,setIsDark]);
+
+
+    // const rootEl = document.getElementById('root');
+     
+    // rootEl.onclick = (e)=>{
+    //   console.log(e.target.classList)
+    //    if(e.target.classList.contains('open-menu')){
+    //       console.log("yes")
+
+    //    }else {
+    //     setIsAcountNavOpen(false);
+    //    }
+    // }
+
+
+
 
   return (
     <isThemeDark.Provider 
-          value={{ isDark, setIsDark, lang, setLang,shorts, setShorts }} >
+          value={{ isDark, setIsDark, lang, setLang,shorts, setShorts,setIsAcountNavOpen, isAcountNavOpen }} >
       < BrowserRouter >
         <Header 
               isSideNavbarOpen={isSideNavbarOpen} 

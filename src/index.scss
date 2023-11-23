@@ -93,13 +93,28 @@ body.dark-mode {
 
 .related-keywords {
   position: sticky;
-  padding-bottom: 15px;
+  padding: 10px 0;
   margin-bottom: 15px ;
-  top: 60px;
+  top: 240px;
   max-width: 100%;
   overflow: scroll;
   background-color: #010716;
   z-index: 99999;
+  @media (min-width: 330px) {
+    top: 245px;
+    padding-top: 15px;
+    margin-bottom: 0;
+ }
+  @media (min-width: 360px) {
+    top: 270px;
+ }
+ @media (min-width: 390px) {
+  top: 285px;
+}
+@media (min-width: 430px) {
+  top: 50px;
+}
+
   .taps {
       display: flex;
       gap: 10px;

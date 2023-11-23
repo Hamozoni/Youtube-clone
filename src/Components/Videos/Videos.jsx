@@ -47,7 +47,7 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                     </>
                     : 
                     <span 
-                        style={lang  === "eng" ? { right : "5px"} : {left: "5px"}}
+                        style={lang  === "en" ? { right : "5px"} : {left: "5px"}}
                         className={ video?.lengthText === ""  || video?.lengthText?.toLowerCase() === "live" ? "live" :""}
                         >  
                         { video?.lengthText === ""  || video?.lengthText?.toLowerCase()  === "live"  ?
@@ -76,20 +76,20 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                         }
                         <div className="titles">
                             <Link to={video?.videoId &&`/video/${video?.videoId}`}>
-                                <h4 className="video-title" style={{color: Theme[isDark].primaryColor}}>
+                                <h4 className="video-title" >
                                  {renderFrom ===  "search" ? video?.title :  `  ${video?.title?.length > 53 ? video?.title.slice(0,53) + '...' :  video?.title}`}
                                 </h4>
                             </Link>
                 
                             <Link to={`/channels/${video?.channelId}`}>
                                 {video?.channelTitle?.length ?
-                                    <h5 className="chanel-title" style={{color: Theme[isDark].blueColor}}>
+                                    <h5 className="chanel-title" >
                                        {video?.channelTitle?.length > 20 ?
                                         `${video?.channelTitle?.slice(0,20)}...` :
                                         video?.channelTitle }
                                     </h5>: ''}
                                 </Link> 
-                            <div className="stats" style={{color: Theme[isDark].lightBlColor}}>
+                            <div className="stats" >
                                 <span className="views-count moment">
                                     {ternViewsTo(video?.viewCount)} {language[lang].views}
                                 </span>
@@ -98,7 +98,7 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                                 </h5>
                             </div>
                             { renderFrom === "search" && 
-                                <div className="video-desc" style={{color: Theme[isDark].lightBlColor}}>
+                                <div className="video-desc" >
                                     <p className="desc-content" >
                                         {video?.description}
                                     </p>

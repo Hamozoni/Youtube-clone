@@ -54,7 +54,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                                    { renderFrom === 'channel' && data?.isVerified  ?  <CheckCircleRoundedIcon /> :""}
                                 </h4>
                             </Link>
-                            <h5 className='subsc'style={{color: Theme[isDark].blueColor}}>
+                            <h5 className='subsc' >
                                 {renderFrom === 'channel' && `${data?.channelHandle} . `}
                                 { data?.subscriberCountText} 
                                  

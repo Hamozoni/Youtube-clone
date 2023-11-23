@@ -8,7 +8,7 @@
 header.main-header {
     position: sticky;
     top: 0;
-    z-index: 9999999;
+    z-index: 999999999;
     background-color: #010716 !important;
     .container {
         @extend %dflex;
@@ -17,6 +17,7 @@ header.main-header {
         position: relative;
         max-width: 1400px;
         padding: 0 10px;
+        z-index: 999999999;
         .logo {
             width: unset;
             a {
@@ -82,6 +83,7 @@ header.main-header {
         }
     }
     .user-img  {
+        cursor: pointer;
         svg {
             font-size: 36px;
         }

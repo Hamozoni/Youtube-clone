@@ -31,8 +31,7 @@ const PlayListVideos = ()=> {
          .then((data)=>{
             setPlayListDetails(data?.meta);
             setListVideos(data?.data);
-            console.log(data?.data)
-            setIsLoading(false)
+            console.log(data?.meta)
          })
          .catch((error)=> {
             setIsError(true);
@@ -42,7 +41,7 @@ const PlayListVideos = ()=> {
     },[id,listVideoId])
 
     useEffect(()=> {
-        if(ListVideos !== null) {
+        if(ListVideos?.length) {
             setIsLoading(true)
                 fetchChannelApi(`video/info?id=${ListVideos[listVideoId]?.videoId}&extend=+1&lang=${lang}`)
                 .then((data)=>{

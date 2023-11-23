@@ -1,0 +1,156 @@
+
+@mixin display-flex ($Jf : flex-start) {
+    display: flex;
+    align-items: center;
+    justify-content: $Jf;
+}
+.video-desc {
+   @media (max-width: 429px) {
+      margin-top: 230px; 
+   }
+    .video-title {
+       padding: 10px 10px 0;
+       font-size: 16px;
+    }
+   .left {
+      margin: 15px;
+      @media (min-width: 768px) {
+         @include  display-flex(space-between);
+         gap: 15px;
+         .watch {
+            flex-basis: 60%;
+            margin: 0
+         }
+      }
+      .links-btns {
+         @media (max-width: 767px) {
+            overflow-y: auto;   
+         }
+         .links-btns-container {
+            @include display-flex;
+            width: fit-content;
+            gap: 5px; 
+            .like-dis {
+               @include display-flex(center);
+               padding: 3px 10px;
+               border-radius: 10px;
+               overflow: hidden;
+               gap: 5px;
+
+               .like-btn {
+                  @include display-flex(center);
+                  gap: 5px;
+                  background-color: inherit;
+                  border-right: 1px solid #ffffff42;
+                  padding-right: 5px;
+                  flex: 2
+               }
+               .dis-btn {
+                  flex: 1;
+               }
+            }
+            .box {
+               padding: 3px 10px;
+               border-radius: 10px;
+               overflow: hidden;
+            }
+            .btn {
+               @include display-flex(center);
+               gap: 5px;
+               font-size: 14px;
+               font-weight: 700;
+               text-transform: capitalize;
+               color: inherit;
+               svg {
+                  width: 22px;
+               }
+            }
+            @media (min-width: 768px) {
+               .hide {
+                  display: none;
+               }
+            }
+            @media (min-width: 992px) and (max-width: 1270px){
+               .down-btn {
+                  display: none;
+               }
+            }
+            .more {
+                display: none;
+                position: relative;
+                @media (min-width: 768px ) {
+                  display: block;
+                }
+                .more-btns {
+                  position: absolute;
+                  top: 49px;
+                  right: 0px;
+                  z-index: 999999;
+                  background: #0c3a58;
+                  padding: 15px 10px;
+                  border-radius: 10px;
+                  .down-btn {
+                     display: none;
+                     @media (min-width: 992px) and (max-width: 1270px) {
+                        display: flex;
+                  }
+                  }
+                 .hide {
+                     display: flex;
+                  }
+                  .btn, .box{
+                     background-color: transparent !important;
+                     padding: 0;
+                     &:not(:last-child) {
+                        padding-bottom: 10px;
+                     }
+                  }
+                }
+              .btn {
+                padding: 5px;
+                border-radius: 50%;
+              }
+            }
+         }
+      }
+   }
+   .views-desc {
+      border-radius: 10px;
+      background: rgb(255 255 255 / 8%);
+      padding: 10px;
+      margin: 10px;
+      .desc-head {
+         @include display-flex;
+         z-index: -1;
+         gap: 10px;
+         .views, .time {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+         }
+      }
+      .desc-content {
+         border-radius: 6px;
+         .desc {
+            font-size: 14px;
+            color: #dfecf5;
+            cursor: pointer;
+            div {
+               margin: 5px 0;
+               a {
+
+                  color: #295fd3;
+                  word-break: break-all;
+               }
+            }
+         }
+         .show-more {
+            color: #dbb1d9;
+            justify-self: flex-end;
+            font-size: 12px;
+            cursor: pointer;
+            text-transform: capitalize;
+         }
+      }
+   }
+ }

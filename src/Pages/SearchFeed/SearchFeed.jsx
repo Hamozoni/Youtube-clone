@@ -69,7 +69,7 @@ const SearchFeed = ()=> {
                 const loadingTop = loading.current.offsetTop;
 
                
-                if(scrollPosation >= loadingTop - windowHeight + 38 && isLoadingMoreData){
+                if(scrollPosation >= loadingTop - windowHeight + 20 && isLoadingMoreData){
                     fetchMoreData();
                 }
             }
@@ -79,7 +79,7 @@ const SearchFeed = ()=> {
         window.addEventListener('scroll',moreData);
         return ()=> window.removeEventListener('scroll',moreData);
 
-    },[]);
+    },[continuation]);
 
     return (
         isError ? <Error error={error} /> :

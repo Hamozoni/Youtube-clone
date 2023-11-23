@@ -40,7 +40,7 @@ const VideoPlayer = ({videoDetail,id})=> {
                 playing
             />
            <div className="video-desc" >
-               <h3 className="video-title" style={{color: Theme[isDark].primaryColor}}>
+               <h3 className="video-title" >
                   { videoDetail?.title }
                </h3>
             <div className="left">

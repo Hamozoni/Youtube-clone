@@ -7,7 +7,7 @@ import './Header.scss';
 
 import { isThemeDark } from '../../Contexts/Theme';
 import { useContext} from 'react';
-import { Theme } from '../../Utils/Colors';
+// import { Theme } from '../../Utils/Colors';
 // import { language } from '../../Utils/language';
 import Logo from '../Logo/Logo';
 import ProfileCreate from './ProfileCreate';
@@ -22,21 +22,7 @@ const Header = ({ isSideNavbarOpen, setIsSideNavbarOpen})=> {
             <div className="container">
                 <Logo isSideNavbarOpen={isSideNavbarOpen} setIsSideNavbarOpen={setIsSideNavbarOpen} />
                 <div className="left-bar">
-
                     <Search />
-                    {/* <div className="theme" onClick={()=>{
-                            if(+localStorage.getItem('maimed-tube-theme') === 0)  {
-                                localStorage.setItem('maimed-tube-theme',1);
-                                setIsDark(Number(localStorage.getItem('maimed-tube-theme')));
-                            }else {
-                                localStorage.setItem('maimed-tube-theme',0);
-                                setIsDark(Number(localStorage.getItem('maimed-tube-theme')));
-                            }    
-                        }}>
-                    { isDark === 0 ? <Brightness4Icon className='light-icon' />  :
-                        <WbSunnyIcon className='dark-icon'  />
-                        }
-                    </div> */}
                 </div>
                 <ProfileCreate />
             </div>

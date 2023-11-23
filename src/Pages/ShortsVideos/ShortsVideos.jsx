@@ -1,5 +1,5 @@
 import './ShortsVideos.scss';
-import { useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useContext, useEffect, useState } from 'react';
 
 import {fetchChannelApi} from '../../Utils/FetchApi';
@@ -12,7 +12,7 @@ import { isThemeDark } from '../../Contexts/Theme';
 
 const ShortsVideos = ()=> {
 
-    const {shorts,setShorts} = useContext(isThemeDark);
+    const {shorts} = useContext(isThemeDark);
     console.log(shorts)
 
     const {id} = useParams();

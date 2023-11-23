@@ -1,0 +1,92 @@
+@mixin display-flex ($Jf : flex-start) {
+    display: flex;
+    align-items: center;
+    justify-content: $Jf;
+}
+
+.comments {
+    width: 100%;
+    max-width: 100%;
+    &.active {
+       @media (max-width: 429px) {
+          background-color: #151a28;
+          position: fixed;
+          top: 280px;
+          max-height: calc(100% - 280px);
+          padding-bottom: 10px;
+          left: 0;
+          width: 100%;
+          z-index: 999999;   
+       .wrapper {
+          height: calc(100vh - 350px);
+          overflow-y: auto;
+       }
+       }
+    }
+    .comment-head {
+       padding: 10px;
+       margin-top: 5px;
+       cursor: pointer;
+       margin: 10px;
+       margin-bottom: 0;
+       border-radius: 10px;
+       background-color: #151a28;
+       color: #dfecf5;
+        cursor: pointer;
+        .comm-title {
+          @include display-flex(space-between);
+          gap: 10px;
+           text-transform: capitalize;
+           font-size: 14px;
+           .comm-arrows {
+             justify-self: flex-end;
+             @media (min-width: 992px) {
+                display: none;
+             }
+          }
+       }
+       .comm-form {
+          @include display-flex;
+          gap: 10px;
+          .user-img {
+             img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+             }
+          }
+          .comm-input {
+             flex: 1;
+             .input {
+                width: 100%;
+                background-color: transparent;
+                border-bottom: 1px solid #ffffff42;
+                color: #fff;
+                padding: 5px;
+                &:focus {
+                   outline: none;
+                   border-bottom: 2px solid #ffffff;
+                }
+             }
+             .input-btn {
+                margin-top: 10px;
+               button {
+                padding:5px  10px;
+                border-radius: 10px;
+                color: #fff;
+                background-color: #0c3a58;
+                margin: 0 10px;
+               }
+             }
+          }
+       }
+    }
+    .wrapper {
+     &.active {
+        display: none;
+        @media (min-width: 992px) {
+           display: unset;
+        }
+     }
+    }
+ }

@@ -32,7 +32,6 @@ const WatchButtons = ({like})=>{
             <>
             <button 
                 className={clName} 
-                style={{backgroundColor: Theme[isDark].whiteColor,color: Theme[isDark].lightBlColor}} 
                 onClick={onClickHanlder}
             >
                     {Icon}
@@ -46,7 +45,6 @@ const WatchButtons = ({like})=>{
         return (
             <button 
             className='box down-btn' 
-            style={{backgroundColor: Theme[isDark].whiteColor,color: Theme[isDark].lightBlColor}} 
         >
             <a download 
                 rel='nofolow' href='mai.com' 
@@ -73,7 +71,6 @@ const WatchButtons = ({like})=>{
         <div className="links-btns-container">
             <div 
                 className="like-dis" 
-                style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightBlColor}}
                 >
                 <Btn 
                     text={ like && ternViewsTo(like)} 

@@ -10,9 +10,6 @@ const ListVideosCard = ({meta, data, setVideoId, listVideoId, id})=> {
     const [isListClose,setIsListClose] = useState(false);
     const { isDark } = useContext(isThemeDark);
 
-
-
-
     return (
         <div className={!isListClose ? "list-v-card active" :"list-v-card"}
              style={{backgroundColor: Theme[isDark].whiteColor}}

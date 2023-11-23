@@ -32,28 +32,28 @@ const Comments = ({comment })=> {
                     />
                 </Link>   
                 <div className="auther-desc">
-                    <h4 className="auth-name" style={{color: Theme[isDark].blueColor}}>
+                    <h4 className="auth-name">
                         {authorText}
                     </h4>
                     <span className="time" 
-                        style={{color: Theme[isDark].lightBlColor}}
+                       
                         >
                         {moment(publishedAt).fromNow()}
                     </span>
                     <p className="comment"
-                        style={{color: Theme[isDark].lightPrColor}} 
+                       
                         >
                         {textDisplay}
                     </p>
                     <div className="like-dislike-btn">
                         <button 
-                            style={{color: Theme[isDark].lightBlColor}} 
+                          
                             >
                             <ThumbUpAltOutlinedIcon />
                             {likesCount}
                         </button>
                         <button 
-                            style={{color: Theme[isDark].lightBlColor}}
+                        
                             >
                             <ThumbDownOffAltOutlinedIcon />
                         </button>

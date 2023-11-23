@@ -15,6 +15,8 @@ import KeyboardOutlinedIcon from '@mui/icons-material/KeyboardOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 import { language } from '../../Utils/language';
 import {isThemeDark} from '../../Contexts/Theme'
@@ -22,42 +24,92 @@ import {isThemeDark} from '../../Contexts/Theme'
 
 const AcountSetting = ()=>{
 
-    const [isLangMenu,setIsLangMenu] = useState(false);
-    const {lang,setLang} = useContext(isThemeDark);
+    const [witchOneRenders,setWitchOneRenders] = useState('main');
 
-    const LanguageMenu = () =>{
+    const {lang,setLang,isDark,setIsDark} = useContext(isThemeDark);
+    // onClick={()=>{
+    //     if(localStorage.getItem('maimed-tube-theme') === 'dark')  {
+    //             localStorage.setItem('maimed-tube-theme','light');
+    //                 setIsDark(Number(localStorage.getItem('maimed-tube-theme')));
+    //             }else {
+    //                 localStorage.setItem('maimed-tube-theme','dark');
+    //                 setIsDark(localStorage.getItem('maimed-tube-theme'));
+    //             }    
+    //         }}>
+
+    const ThemeMenu = ()=>{
         return (
-                <div className="lang">
-                        <h4 className="lang-t" 
-                            onClick={()=>setIsLangMenu(!isLangMenu) }
-                            >
-                            {language[lang].language}
-                        </h4>
-                        {isLangMenu &&
-                        <div 
-                            className="langs" 
-                            >
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"eng");
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language'));
-                            }}>English</h5>
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"arb"); 
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language')) 
-                            }}>العربية</h5>
+              <div className="oppt-menu" >
+                    <header className="oppt-header">
+                        <div className="icon" onClick={()=> setWitchOneRenders('main') }>
+                            <KeyboardBackspaceOutlinedIcon />
                         </div>
-                        } 
+                        <h5 className="title">
+                            appearance
+                        </h5>
+                    </header>
+                    <div className="menu-oppt">
+                        <div className="oppt">
+                            <span>{isDark === '' && <CheckOutlinedIcon />}</span>
+                            <h5>auto theme</h5>
+                        </div>
+                        <div className="oppt">
+                            <span>{isDark === '' && <CheckOutlinedIcon />}</span>
+                            <h5>use device theme</h5>
+                        </div>
+                        <div className="oppt">
+                            <span>{isDark === 'dark' && <CheckOutlinedIcon />}</span>
+                            <h5>dark theme</h5>
+                        </div>
+                        <div className="oppt">
+                            <span>{isDark === 'light' && <CheckOutlinedIcon />}</span>
+                            <h5>light theme</h5>
+                        </div>
                     </div>
+                </div> 
         )
     }
 
-    return (
-        <div className="acount-setting">
-            <div className="acount-container">
+    const LanguageMenu = () =>{
+        return (
+                <div className="oppt-menu">
+                        <header className="oppt-header">
+                            <div className="icon" onClick={()=> setWitchOneRenders('main') }>
+                                <KeyboardBackspaceOutlinedIcon />
+                            </div>
+                            <h5 className="title">
+                               Choose your language
+                            </h5>
+                        </header>
+                        <div  className="menu-oppt" >
+                            <div 
+                                className="oppt"
+                                onClick={()=> {
+                                localStorage.setItem('YMHtube-language',"en");
+                                setLang(localStorage.getItem('YMHtube-language'));
+                            }}>
+                                <span>{lang === 'en' && <CheckOutlinedIcon />}</span>
+                                <h5>english</h5>
+                            </div>
+                            <div 
+                                className="oppt"
+                                onClick={()=> {
+                                localStorage.setItem('YMHtube-language',"ar"); 
+                                setLang(localStorage.getItem('YMHtube-language')) 
+                            }}>
+                                <span>{lang === 'ar' && <CheckOutlinedIcon />}</span>
+                                <h5>العربية</h5>
+                            </div>
+                        </div> 
+                 </div>
+        )
+    };
+
+    const AcountContainer = ()=>{
+        return (
+            <div className="acount-container open-menu">
                 <header className="acount-header">
-                    <div className="user-info">
+                    <div className="user-info open-menu">
                         <div className="user-image">
                             <img src="" alt="" />
                         </div>
@@ -70,6 +122,7 @@ const AcountSetting = ()=>{
                 </header>
                 <div className="acount-body">
                     <div className="acou-body-cont">
+
                         <ul className="google-aco">
                             <li> <GoogleIcon /> google acount</li>
                             <li> <ContactsOutlinedIcon /> switch acount </li>
@@ -77,8 +130,8 @@ const AcountSetting = ()=>{
                         </ul>
                         <ul className="google-aco">
                             <li> <PermIdentityRoundedIcon /> your data in myhtube</li>
-                            <li> <DarkModeOutlinedIcon /> appearance: dark </li>
-                            <li> <TranslateOutlinedIcon/>{language[lang].language}: english</li>
+                            <li onClick={()=> setWitchOneRenders('theme')}> <DarkModeOutlinedIcon /> appearance: {isDark} </li>
+                            <li onClick={()=> setWitchOneRenders('lang')}> <TranslateOutlinedIcon/>{language[lang].language}: english</li>
                             <li> <AdminPanelSettingsOutlinedIcon/> restricted mode: off </li>
                             <li> <PublicOutlinedIcon/> location: Saudi arbia </li>
                             <li> <KeyboardOutlinedIcon/> keyboard shortcuts</li>
@@ -92,35 +145,19 @@ const AcountSetting = ()=>{
                     </div>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <div className="acount-setting open-menu">
+            {
+                witchOneRenders === 'main' ? <AcountContainer /> :
+                witchOneRenders === 'lang' ? <LanguageMenu /> :
+                witchOneRenders === 'theme' && <ThemeMenu />
+            }
 
         </div>
     )
 };
 
 export default AcountSetting;
-
-                    {/* <div className="lang">
-                        <h4 className="lang-t" 
-                            onClick={()=>setIsLangMenu(!isLangMenu) }
-                            style={{color: Theme[isDark].primaryColor}}
-                            >
-                            {language[lang].language}
-                        </h4>
-                        {isLangMenu &&
-                        <div 
-                            className="langs" 
-                            style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            >
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"eng");
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language'));
-                            }}>English</h5>
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"arb"); 
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language')) 
-                            }}>العربية</h5>
-                        </div>
-                        } 
-                    </div> */}

@@ -6,6 +6,8 @@ import { ternViewsTo } from "../../Utils/Constans";
 
 import { Link } from 'react-router-dom';
 
+import "./VideoDescribtion.scss"
+
 import moment from "moment";
 
 
@@ -25,7 +27,7 @@ const VideoDescribtion = ({videoDetail})=>{
     return (
         <div className="views-desc">
             <section className="desc-content">
-                <header className="desc-head" style={{color: Theme[isDark].blueColor}}>
+                <header className="desc-head" >
                     <p className="views">
                         {ternViewsTo(viewCount) } {views}
                     </p>
