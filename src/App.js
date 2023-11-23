@@ -10,12 +10,14 @@ import ShortsVideos from './Pages/ShortsVideos/ShortsVideos';
 
 import { isThemeDark } from './Contexts/Theme';
 import { useEffect, useState } from 'react';
+import AcountSetting from './Components/AcountSetting/AcountSetting';
 
 const App = ()=> {
   const [isDark, setIsDark] = useState(0);
   const [lang, setLang] = useState("en");
   const [shorts, setShorts] = useState([]);
   const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
+  const [isAcountNavOpen, setIsAcountNavOpen] = useState(true);
 
 
   useEffect(()=>{
@@ -60,6 +62,11 @@ const App = ()=> {
          <SideNavbar 
             isSideNavbarOpen={isSideNavbarOpen}  
             setIsSideNavbarOpen={setIsSideNavbarOpen}/>
+          }
+          {
+            isAcountNavOpen && 
+            <AcountSetting />
+
           }
         <Routes>
           <Route path='/' exact element={<Home />} />

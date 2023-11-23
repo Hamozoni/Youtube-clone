@@ -1,0 +1,61 @@
+.acount-setting {
+    position: fixed;
+    width: 370px;
+    height: 100vh;
+    top: 45px;
+    right: 70px;
+    z-index: 999999999;
+    .acount-container {
+        background-color: rgb(10, 10, 37);
+        border-radius: 10px;
+        padding: 15px;
+        .acount-header {
+            .user-info {
+                display: flex;
+                gap: 15px;
+                align-items: flex-start;
+                padding-bottom: 10px;
+                .user-image {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    background-color: aliceblue;
+                }
+                .user-name {
+                    .name,.channel-handle {
+                        color: #fff;
+                    }
+                    a {
+                        color: rgb(75, 75, 247);
+                    }
+                }
+            }
+            }
+            
+        .acount-body {
+            max-height: calc(100vh - 150px);
+            overflow-y: scroll;
+            .acou-body-cont {
+                height: fit-content;
+                .google-aco {
+                    border-top: 1px solid #423d3d;
+                    padding: 5px 0;
+                    li {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        color: #fff;
+                        margin-top: 5px;
+                        cursor: pointer;
+                        padding: 10px;
+                        border-radius: 5px;
+                        text-transform: capitalize;
+                        &:hover {
+                            background-color: rgb(23, 22, 24);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

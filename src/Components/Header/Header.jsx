@@ -14,39 +14,15 @@ import ProfileCreate from './ProfileCreate';
 
 const Header = ({ isSideNavbarOpen, setIsSideNavbarOpen})=> {
 
-    // const [isLangMenu,setIsLangMenu] = useState(false)
+
      
     const {isDark} = useContext(isThemeDark);
     return (
-        <header >
+        <header className='main-header' >
             <div className="container">
                 <Logo isSideNavbarOpen={isSideNavbarOpen} setIsSideNavbarOpen={setIsSideNavbarOpen} />
                 <div className="left-bar">
-                    {/* <div className="lang">
-                        <h4 className="lang-t" 
-                            onClick={()=>setIsLangMenu(!isLangMenu) }
-                            style={{color: Theme[isDark].primaryColor}}
-                            >
-                            {language[lang].language}
-                        </h4>
-                        {isLangMenu &&
-                        <div 
-                            className="langs" 
-                            style={{backgroundColor: Theme[isDark].whiteColor, color: Theme[isDark].lightPrColor}}
-                            >
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"eng");
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language'));
-                            }}>English</h5>
-                            <h5 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"arb"); 
-                                setIsLangMenu(false);
-                                setLang(localStorage.getItem('YMHtube-language')) 
-                            }}>العربية</h5>
-                        </div>
-                        } 
-                    </div> */}
+
                     <Search />
                     {/* <div className="theme" onClick={()=>{
                             if(+localStorage.getItem('maimed-tube-theme') === 0)  {
