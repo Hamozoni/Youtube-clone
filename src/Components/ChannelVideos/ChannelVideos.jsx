@@ -4,13 +4,13 @@ import Videos from "../Videos/Videos";
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import { language } from "../../Utils/language";
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 
 import './ChannelVideos.scss';
 
 const ChannelVideos = ({id,type})=>{
 
-    const {lang} = useContext(isThemeDark);
+    const {lang, theme} = useContext(statesContext);
 
     const {latest, popular, oldest} = language[lang];
 
@@ -38,7 +38,7 @@ const ChannelVideos = ({id,type})=>{
             setIsLoading(false);
             setIsloadingMoreData('error');
           })
-     },[id,type,sortBy]);
+     },[id,type,sortBy,lang]);
 
     const sortByHandler = (arg)=>{
         setSortBy(arg)
@@ -68,7 +68,7 @@ const ChannelVideos = ({id,type})=>{
                 const loaderTop = loadingIcon.current.offsetTop;
                 const windowHeight = window.innerHeight;
 
-                if(scrollPosation >= loaderTop - windowHeight + 56 && isLoadingMoreData){
+                if(scrollPosation >= loaderTop - windowHeight && isLoadingMoreData){
                     fetchMoreData();
                 }
 
@@ -81,8 +81,8 @@ const ChannelVideos = ({id,type})=>{
 
 
     return (
-        <div className="channel-videos" > 
-             <nav className="sort-by">
+        <div className={`${theme} channel-videos`} > 
+             <nav className={`${theme} sort-by`}>
                 <ul>
                     <li 
                         className={sortBy === 'newest' && 'active'}
@@ -104,7 +104,7 @@ const ChannelVideos = ({id,type})=>{
                     </li>
                 </ul>
              </nav>
-             <div className="videos channel" > 
+             <div className={`${theme} videos channel`}> 
              {  isError ? <Error error={isError} /> : isLoading ? <Loading /> :
                  channelViveos?.map((video)=>(
                     <Videos 
@@ -118,7 +118,7 @@ const ChannelVideos = ({id,type})=>{
         </div>
         {
            isLoadingMoreData != 'error' && continuation ?
-           <div ref={loadingIcon} className="load-more">
+           <div ref={loadingIcon} className={`${theme} load-more`}>
                loading...
             </div> : ''
         }

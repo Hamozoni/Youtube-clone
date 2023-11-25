@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 import { Theme } from "../../Utils/Colors";
 import { ternViewsTo } from "../../Utils/Constans";
@@ -13,7 +13,7 @@ import moment from "moment";
 
 const VideoDescribtion = ({videoDetail})=>{
 
-    const { isDark, lang } = useContext(isThemeDark);
+    const { theme, lang } = useContext(statesContext);
 
     const [isDesc,setDesc] = useState(true);
 
@@ -25,17 +25,17 @@ const VideoDescribtion = ({videoDetail})=>{
 
 
     return (
-        <div className="views-desc">
-            <section className="desc-content">
-                <header className="desc-head" >
-                    <p className="views">
+        <div className={`${theme} views-desc`}>
+            <section className={`${theme} desc-content`}>
+                <header className={`${theme} desc-head`} >
+                    <p className={`${theme} views`}>
                         {ternViewsTo(viewCount) } {views}
                     </p>
-                    <span className='time'>
+                    <span className={`${theme} time`}>
                         {moment(publishDate).fromNow()}
                     </span>
                </header>
-              <div className="desc" >
+              <div className={`${theme} desc`} >
                 
                 {
                     isDesc && description?.length > 180 ? 
@@ -43,7 +43,7 @@ const VideoDescribtion = ({videoDetail})=>{
                         description?.split(/(.\s|-|:\s)/)?.map((desc)=>(
                             urlTest?.test(desc) ? 
                                 ( <div >
-                                    <Link to={desc} target='blank'>
+                                    <Link to={urlTest?.test(desc) ? desc :''} target='_blank'>
                                         {desc}
                                     </Link>
                                 </div>
@@ -51,12 +51,12 @@ const VideoDescribtion = ({videoDetail})=>{
                       
                     ))
                 }
-            <h4 className='show-more' onClick={()=> setDesc(!isDesc)}>
-                { isDesc ?
-                    showMore :
-                    showLess
-                }
-            </h4>
+                <h4 className={`${theme} show-more`} onClick={()=> setDesc(!isDesc)}>
+                    { isDesc ?
+                        showMore :
+                        showLess
+                    }
+                </h4>
             </div> 
             
         </section>

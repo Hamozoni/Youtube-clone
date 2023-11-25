@@ -11,17 +11,14 @@ import ContentCutOutlinedIcon from '@mui/icons-material/ContentCutOutlined';
 
 import { ternViewsTo } from '../../Utils/Constans';
 
-
-import { Theme } from '../../Utils/Colors';
-
 import { language } from '../../Utils/language';
 import { useContext, useState } from 'react';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 
 
 const WatchButtons = ({like})=>{
 
-    const { isDark,lang } = useContext(isThemeDark);
+    const { theme,lang } = useContext(statesContext);
 
     const [isMoreBtn,setIsMoreBtn] = useState(false)
 
@@ -32,7 +29,7 @@ const WatchButtons = ({like})=>{
             <>
             <button 
                 className={clName} 
-                onClick={onClickHanlder}
+                onClick={`${onClickHanlder} ${theme} `}
             >
                     {Icon}
                     {text && text}
@@ -43,16 +40,14 @@ const WatchButtons = ({like})=>{
 
     const DownloadBtn = ()=>{
         return (
-            <button 
-            className='box down-btn' 
-        >
-            <a download 
-                rel='nofolow' href='mai.com' 
-                className='btn' 
-                >
-                <FileDownloadOutlinedIcon /> 
-                {download}
-            </a>
+            <button className={`${theme} box down-btn`}>
+                <a download 
+                    rel='nofolow' href='mai.com' 
+                    className={`${theme} btn`} 
+                    >
+                    <FileDownloadOutlinedIcon /> 
+                    {download}
+                </a>
         </button>
         )
     }
@@ -68,14 +63,12 @@ const WatchButtons = ({like})=>{
     };
 
     return (
-        <div className="links-btns-container">
-            <div 
-                className="like-dis" 
-                >
+        <div className={`${theme} links-btns-container`}>
+            <div className={`${theme} like-dis`} >
                 <Btn 
                     text={ like && ternViewsTo(like)} 
                     Icon={<ThumbUpOutlinedIcon />}
-                    clName='like-btn btn' 
+                    clName='like-btn btn'
                 />
                 <Btn Icon={<ThumbDownOffAltOutlinedIcon />} clName='dis-btn btn' />
             </div>
@@ -83,7 +76,7 @@ const WatchButtons = ({like})=>{
             <DownloadBtn />
             <MoreBtn />
             <div
-                className="more"
+                className={`${theme} more`}
                >
                 <Btn 
                     Icon={<MoreHorizOutlinedIcon />} 
@@ -92,7 +85,7 @@ const WatchButtons = ({like})=>{
                     />
                 {
                     isMoreBtn && 
-                 <div className="more-btns">
+                 <div className={`${theme} more-btns`}>
                     <DownloadBtn />
                     <MoreBtn />
                  </div>

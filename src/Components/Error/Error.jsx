@@ -1,12 +1,12 @@
 import './Error.scss';
 import { language } from '../../Utils/language';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import { useContext } from 'react';
 const Error = ({error})=>{
 
-    const { lang } = useContext(isThemeDark)
+    const { lang, theme } = useContext(statesContext)
     return (
-        <div className="error">
+        <div className={`${theme} error`}>
             <h3>
                 oops {error?.message}
             </h3>

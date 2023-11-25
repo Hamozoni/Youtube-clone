@@ -8,16 +8,19 @@ import SearchFeed from './Pages/SearchFeed/SearchFeed';
 import PlayListVideos from './Pages/PlayListVideos/PlayListVideos';
 import ShortsVideos from './Pages/ShortsVideos/ShortsVideos';
 
-import { isThemeDark } from './Contexts/Theme';
-import { useEffect, useState } from 'react';
+// import StatesContextComponent from './Contexts/statesContext';
+import {statesContext} from './Contexts/statesContext';
+import { useContext, useEffect } from 'react';
 import AcountSetting from './Components/AcountSetting/AcountSetting';
 
 const App = ()=> {
-  const [isDark, setIsDark] = useState('dark');
-  const [lang, setLang] = useState("en");
-  const [shorts, setShorts] = useState([]);
-  const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
-  const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
+
+  const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen } = useContext(statesContext);
+  // const [Theme, setTheme] = useState('dark');
+  // const [lang, setLang] = useState("en");
+  // const [shorts, setShorts] = useState([]);
+  // const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
+  // const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
 
 
   useEffect(()=>{
@@ -32,23 +35,24 @@ const App = ()=> {
       document.dir = 'rtl';
     }else {
       document.dir = 'ltr';
-    }
+    };
+
     if(localStorage.getItem('maimed-tube-theme')) {
-      setIsDark(localStorage.getItem('maimed-tube-theme'))   
+      setTheme(localStorage.getItem('maimed-tube-theme'))   
     }else {
-      localStorage.setItem('maimed-tube-theme',isDark);
+      localStorage.setItem('maimed-tube-theme',theme);
     };
       
     const body =  document.getElementsByTagName('body');
     
-    if(isDark === 'dark'){
+    if(theme === 'dark'){
       body[0].classList.add('dark-mode');
     }else {
       body[0].classList.remove('dark-mode');
     }
     
 
-  },[isDark,lang,setLang,setIsDark]);
+  },[theme,lang,setLang,setTheme]);
 
 
     // const rootEl = document.getElementById('root');
@@ -67,17 +71,10 @@ const App = ()=> {
 
 
   return (
-    <isThemeDark.Provider 
-          value={{ isDark, setIsDark, lang, setLang,shorts, setShorts,setIsAcountNavOpen, isAcountNavOpen }} >
       < BrowserRouter >
-        <Header 
-              isSideNavbarOpen={isSideNavbarOpen} 
-              setIsSideNavbarOpen={setIsSideNavbarOpen}
-        />
+        <Header />
         {isSideNavbarOpen && 
-         <SideNavbar 
-            isSideNavbarOpen={isSideNavbarOpen}  
-            setIsSideNavbarOpen={setIsSideNavbarOpen}/>
+         <SideNavbar />
           }
           {
             isAcountNavOpen && 
@@ -93,7 +90,6 @@ const App = ()=> {
           <Route path='/short/:id' element={<ShortsVideos />} />
         </Routes>
        </BrowserRouter>
-    </isThemeDark.Provider>
   );
 }
 

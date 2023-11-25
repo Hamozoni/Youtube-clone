@@ -6,13 +6,13 @@ import {fetchChannelApi} from '../../Utils/FetchApi';
 import Loading from '../../Components/Loading/Loading';
 import PlayShortCard from './ShortPageComponents/PlayShortCard';
 import Error from '../../Components/Error/Error';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 
 
 
 const ShortsVideos = ()=> {
 
-    const {shorts} = useContext(isThemeDark);
+    const {shorts, lang, theme} = useContext(statesContext);
     console.log(shorts)
 
     const {id} = useParams();
@@ -22,7 +22,7 @@ const ShortsVideos = ()=> {
     const [activeSectionId,setActiveSectionId] = useState(id);
    
     useEffect(()=>{
-        fetchChannelApi(`shorts/info?id=${activeSectionId}`)
+        fetchChannelApi(`shorts/info?id=${activeSectionId}&lang=${lang}`)
         .then((data)=> {
             setShortInfo(data)
             setIsLoading(false)
@@ -43,7 +43,7 @@ const ShortsVideos = ()=> {
             // })
         
 
-},[activeSectionId]);
+},[activeSectionId,lang]);
 
 
 const handleScrollIntoView = (scrollPosition)=> {
@@ -60,7 +60,7 @@ const handleScrollIntoView = (scrollPosition)=> {
     return (
         
        <main 
-            className="short-videos" 
+            className={`${theme} short-videos`} 
             onScroll={(e)=> handleScrollIntoView(e.target)}>
             { isError ? <Error error={isError}/>  :  isLoading ? <Loading /> :
             <>
@@ -75,22 +75,6 @@ const handleScrollIntoView = (scrollPosition)=> {
                ))}
             </> 
             }
-            {/* <div className={isCommets ?"comments active" :"comments"}>
-                <div className="comm-container" 
-                    style={{backgroundColor: Theme[isDark].whiteColor}}
-                    >
-                    <header className="comm-head" 
-                        style={{color: Theme[isDark].lightPrColor}}
-                        >
-                        <h5> {shortVideo?.commentCount} {language[lang].comments} </h5>
-                        <ClearIcon onClick={()=> setIsComments(false) } />
-                    </header>
-                    <div className="comm-wrapper" >
-                         {isComLoading ? <Loading /> :
-                          <Comments comments={commets} /> }
-                    </div>
-                </div>
-            </div>    */}
        </main>
     );
 };

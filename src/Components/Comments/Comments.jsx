@@ -2,7 +2,7 @@ import './Comments.scss';
 import { ternViewsTo } from '../../Utils/Constans';
 import { Link } from 'react-router-dom';
 import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
 import { useContext} from 'react';
@@ -12,7 +12,7 @@ import moment from 'moment/moment';
 
 const Comments = ({comment })=> {
 
-    const { isDark, lang } = useContext(isThemeDark);
+    const { theme, lang } = useContext(statesContext);
     const { authorChannelId,
             authorThumbnail, 
             authorText, 
@@ -22,8 +22,8 @@ const Comments = ({comment })=> {
             replyCount } = comment
 
     return (
-        <div className="comm-container" > 
-            <div className="comment-box">
+        <div className={`${theme} comm-container`} > 
+            <div className={`${theme} comment-box`}>
                 <Link to={`/channels/${authorChannelId}`} >
                    <img 
                         className='auther-img' 
@@ -31,21 +31,21 @@ const Comments = ({comment })=> {
                         alt="img" 
                     />
                 </Link>   
-                <div className="auther-desc">
-                    <h4 className="auth-name">
+                <div className={`${theme} auther-desc`}>
+                    <h4 className={`${theme} auth-name`}>
                         {authorText}
                     </h4>
-                    <span className="time" 
+                    <span className={`${theme} time`}
                        
                         >
                         {moment(publishedAt).fromNow()}
                     </span>
-                    <p className="comment"
+                    <p className={`${theme} comment`}
                        
                         >
                         {textDisplay}
                     </p>
-                    <div className="like-dislike-btn">
+                    <div className={`${theme} like-dislike-btn`}>
                         <button 
                           
                             >
@@ -57,7 +57,7 @@ const Comments = ({comment })=> {
                             >
                             <ThumbDownOffAltOutlinedIcon />
                         </button>
-                        <span className="replies" >
+                        <span className={`${theme} replies`} >
                             {replyCount} {language[lang].replies}
                         </span>
                     </div>

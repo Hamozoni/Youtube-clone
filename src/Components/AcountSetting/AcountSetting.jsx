@@ -19,50 +19,47 @@ import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspace
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 import { language } from '../../Utils/language';
-import {isThemeDark} from '../../Contexts/Theme'
+import {statesContext} from '../../Contexts/statesContext'
 
 
 const AcountSetting = ()=>{
 
     const [witchOneRenders,setWitchOneRenders] = useState('main');
 
-    const {lang,setLang,isDark,setIsDark} = useContext(isThemeDark);
-    // onClick={()=>{
-    //     if(localStorage.getItem('maimed-tube-theme') === 'dark')  {
-    //             localStorage.setItem('maimed-tube-theme','light');
-    //                 setIsDark(Number(localStorage.getItem('maimed-tube-theme')));
-    //             }else {
-    //                 localStorage.setItem('maimed-tube-theme','dark');
-    //                 setIsDark(localStorage.getItem('maimed-tube-theme'));
-    //             }    
-    //         }}>
+    const {lang,setLang, theme,setTheme} = useContext(statesContext);
 
     const ThemeMenu = ()=>{
         return (
-              <div className="oppt-menu" >
-                    <header className="oppt-header">
-                        <div className="icon" onClick={()=> setWitchOneRenders('main') }>
+              <div className={`${theme} oppt-menu`} >
+                    <header className={`${theme} oppt-header`}>
+                        <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
                             <KeyboardBackspaceOutlinedIcon />
                         </div>
                         <h5 className="title">
                             appearance
                         </h5>
                     </header>
-                    <div className="menu-oppt">
-                        <div className="oppt">
-                            <span>{isDark === '' && <CheckOutlinedIcon />}</span>
+                    <div className={`${theme} menu-oppt`}>
+                        <div className={`${theme} oppt`}>
+                            <span>{theme === '' && <CheckOutlinedIcon />}</span>
                             <h5>auto theme</h5>
                         </div>
-                        <div className="oppt">
-                            <span>{isDark === '' && <CheckOutlinedIcon />}</span>
+                        <div className={`${theme} oppt`}>
+                            <span>{theme === '' && <CheckOutlinedIcon />}</span>
                             <h5>use device theme</h5>
                         </div>
-                        <div className="oppt">
-                            <span>{isDark === 'dark' && <CheckOutlinedIcon />}</span>
+                        <div className={`${theme} oppt`}onClick={()=>{ 
+                            setTheme('dark');
+                            localStorage.setItem('maimed-tube-theme','dark');
+                            }}>
+                            <span>{theme === 'dark' && <CheckOutlinedIcon />}</span>
                             <h5>dark theme</h5>
                         </div>
-                        <div className="oppt">
-                            <span>{isDark === 'light' && <CheckOutlinedIcon />}</span>
+                        <div className={`${theme} oppt`} onClick={()=> {
+                            setTheme('light');
+                            localStorage.setItem('maimed-tube-theme','light')
+                            } }>
+                            <span>{theme === 'light' && <CheckOutlinedIcon />}</span>
                             <h5>light theme</h5>
                         </div>
                     </div>
@@ -72,18 +69,18 @@ const AcountSetting = ()=>{
 
     const LanguageMenu = () =>{
         return (
-                <div className="oppt-menu">
-                        <header className="oppt-header">
-                            <div className="icon" onClick={()=> setWitchOneRenders('main') }>
+                <div className={`${theme} oppt-menu`}>
+                        <header className={`${theme} oppt-header`}>
+                            <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
                                 <KeyboardBackspaceOutlinedIcon />
                             </div>
                             <h5 className="title">
                                Choose your language
                             </h5>
                         </header>
-                        <div  className="menu-oppt" >
+                        <div  className={`${theme} menu-oppt`}>
                             <div 
-                                className="oppt"
+                                className={`${theme} oppt`}
                                 onClick={()=> {
                                 localStorage.setItem('YMHtube-language',"en");
                                 setLang(localStorage.getItem('YMHtube-language'));
@@ -92,7 +89,7 @@ const AcountSetting = ()=>{
                                 <h5>english</h5>
                             </div>
                             <div 
-                                className="oppt"
+                                className={`${theme} oppt`}
                                 onClick={()=> {
                                 localStorage.setItem('YMHtube-language',"ar"); 
                                 setLang(localStorage.getItem('YMHtube-language')) 
@@ -107,21 +104,21 @@ const AcountSetting = ()=>{
 
     const AcountContainer = ()=>{
         return (
-            <div className="acount-container open-menu">
-                <header className="acount-header">
-                    <div className="user-info open-menu">
+            <div className={`${theme} acount-container open-menu`}>
+                <header className={`${theme} acount-header`}>
+                    <div className={`${theme} user-info open-menu`}>
                         <div className="user-image">
                             <img src="" alt="" />
                         </div>
-                        <section className="user-name">
+                        <section className={`${theme} user-name`}>
                             <h4 className="name">Mohamed Yahia</h4>
                             <h5 className="channel-handle">@mohammedyahia9711</h5>
                             <Link to='/' >View your channel</Link>
                         </section>
                     </div>
                 </header>
-                <div className="acount-body">
-                    <div className="acou-body-cont">
+                <div className={`${theme} acount-body`}>
+                    <div className={`${theme} acou-body-cont`}>
 
                         <ul className="google-aco">
                             <li> <GoogleIcon /> google acount</li>
@@ -130,7 +127,7 @@ const AcountSetting = ()=>{
                         </ul>
                         <ul className="google-aco">
                             <li> <PermIdentityRoundedIcon /> your data in myhtube</li>
-                            <li onClick={()=> setWitchOneRenders('theme')}> <DarkModeOutlinedIcon /> appearance: {isDark} </li>
+                            <li onClick={()=> setWitchOneRenders('theme')}> <DarkModeOutlinedIcon /> appearance: {theme} </li>
                             <li onClick={()=> setWitchOneRenders('lang')}> <TranslateOutlinedIcon/>{language[lang].language}: english</li>
                             <li> <AdminPanelSettingsOutlinedIcon/> restricted mode: off </li>
                             <li> <PublicOutlinedIcon/> location: Saudi arbia </li>
@@ -149,7 +146,7 @@ const AcountSetting = ()=>{
     }
 
     return (
-        <div className="acount-setting open-menu">
+        <div className={`${theme} acount-setting open-menu`}>
             {
                 witchOneRenders === 'main' ? <AcountContainer /> :
                 witchOneRenders === 'lang' ? <LanguageMenu /> :

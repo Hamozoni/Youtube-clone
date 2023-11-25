@@ -7,11 +7,11 @@ import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 
 const VideoDetails = ()=> {
 
-    const { lang} = useContext(isThemeDark);
+    const { lang, theme} = useContext(statesContext);
 
 
     const {id} = useParams();
@@ -73,10 +73,10 @@ const VideoDetails = ()=> {
 
     return (
         isError ? <Error error={error} /> : isLoading ? <Loading /> :
-        <main className="video-details" >
-            <div className="container">
+        <main className={`${theme} video-details`} >
+            <div className={`${theme} container`}>
                 <VideoPlayer id={id} videoDetail={videoDetail} />
-               <section className="related-video">
+               <section className={`${theme} related-video`}>
                     {
                         relatedKeywords?.length > 0 &&
                         <nav className="related-keywords">
@@ -93,7 +93,7 @@ const VideoDetails = ()=> {
                    {iskeyChanged && <div className="key-loading"><span>loading...</span></div>}
                    {
                     continuation.length > 0 && 
-                    <div className='load-more'> 
+                    <div className={`${theme} load-more`}> 
                        <button type="button" disabled={isLoadingMore} onClick={loadMore} >{isLoadingMore ? 'loading...':'load more'}</button>
                     </div>
                    }

@@ -5,12 +5,12 @@ import './Search.scss';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
 
 const Search = ()=> {
 
-      const { isDark, lang } = useContext(isThemeDark);
+      const {theme, lang } = useContext(statesContext);
       const [isMobSerch,setIsMobSearch] = useState(false);
        
       const navgate = useNavigate()
@@ -30,19 +30,19 @@ const Search = ()=> {
       };
 
       return (
-        <div className="header-search">
+        <div className={`${theme} header-search`}>
             <form className={isMobSerch ? 'active': ''}>
                 <input value={serchTrem}
                       id='search-id'
-                      type="search" className={isDark === 0 ? 'light search-input' :'search-input'} 
-                      placeholder={`${language[lang].search}...`} 
+                      type="search" className={theme === 0 ? 'light search-input' :'search-input'} 
+                      placeholder={`${language[lang]?.search}...`} 
                       onChange={(e)=> setSearchTerm(e.currentTarget.value) } 
                   />
-                  <button className='search-btn' onClick={ handlSearch } >
+                  <button className={`${theme} search-btn`} onClick={ handlSearch } >
                     <SearchOutlinedIcon />
                   </button>
             </form>
-            <div className="mike">
+            <div className={`${theme} mike`}>
                <KeyboardVoiceSharpIcon />
             </div>
         </div>

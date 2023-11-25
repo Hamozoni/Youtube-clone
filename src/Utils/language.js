@@ -51,6 +51,7 @@ export const language = {
       popular: 'popular',
       oldest: 'oldest',
       links: 'links',
+      palyAll: 'play all'
     },
    ar: {
         logo: 'myh',
@@ -102,5 +103,6 @@ export const language = {
         popular: "اشهر",
         oldest: 'اقدم',
         links: 'روابط',
+        palyAll: 'تشغيل الكل'
       }
   }

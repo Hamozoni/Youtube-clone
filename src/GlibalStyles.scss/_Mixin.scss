@@ -1,0 +1,8 @@
+@import "./Variabls";
+
+@mixin flex-box($align:flex-start,$justfy: flex-start,$gap: $gap-l) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justfy;
+    gap:$gap
+}

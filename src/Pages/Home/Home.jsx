@@ -6,13 +6,13 @@ import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import { useContext } from 'react';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 
 
 
 
 const Home = ()=> {
-    const {lang} = useContext(isThemeDark);
+    const {lang, theme} = useContext(statesContext);
     
     const [elements,setElements] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
@@ -50,15 +50,15 @@ const Home = ()=> {
     }, [lang]);
 
     return (
-        <main className="main-home">
+        <main className={`${theme} main-home`}>
             <SideNavbarSmall homeShort='home-short' />
-            <div className="container">
+            <div className={`${theme} container`}>
                     { error ? <Error error={error}/>: 
                      isLoading ? <Loading /> :  
                     <> 
                        {
                         filters?.length > 0 &&
-                       <nav className="related-keywords">
+                       <nav className={`${theme} related-keywords`}>
                            <ul className='taps'>
                               {
                                 filters?.map((fil,i)=>(
@@ -88,7 +88,7 @@ const Home = ()=> {
                     } 
                 {
                    filterPending && 
-                   <div className="key-loading"><span>loading...</span></div>
+                   <div className={`${theme} key-loading`}><span>loading...</span></div>
                 }
             </div>
         </main>

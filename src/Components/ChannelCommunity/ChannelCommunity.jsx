@@ -1,11 +1,14 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { fetchChannelApi } from "../../Utils/FetchApi";
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import Community from "./Community";
 import './Community.scss'
+import { statesContext } from "../../Contexts/statesContext";
 
 const ChannelCommunity = ({id})=>{
+
+    const {lang, theme} = useContext(statesContext);
 
     const [community,setCommunity] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
@@ -15,7 +18,7 @@ const ChannelCommunity = ({id})=>{
 
     useEffect(()=>{
         setIsLoading(true)
-    fetchChannelApi(`channel/community?id=${id}`)
+    fetchChannelApi(`channel/community?id=${id}&lang=${lang}`)
     .then((data)=>{
         setCommunity(data?.data);
         setContinuation(data?.continuation);
@@ -29,7 +32,7 @@ const ChannelCommunity = ({id})=>{
         setIsLoadingMore('error');
     })
 
-},[id]);
+},[id,lang]);
 
 const mainElement = useRef(null)
 
@@ -38,7 +41,7 @@ const fetchMoreCommunity = ()=>{
 
         console.log("yes")
        
-        fetchChannelApi(`channel/community?id=${id}&token=${continuation}`)
+        fetchChannelApi(`channel/community?id=${id}&token=${continuation}&lang=${lang}`)
         .then((data)=>{
             setCommunity(prev => [...prev,...data?.data]);
             console.log(data);
@@ -74,7 +77,7 @@ useEffect(()=>{
     return (
         <main 
             ref={mainElement}
-            className="m-community" 
+            className={`${theme} m-community`}
             >
             {
                 isError ?  <Error error={isError} /> : isLoading ? <Loading /> :
@@ -83,7 +86,7 @@ useEffect(()=>{
                 ))
             }
             {  isLoadingMore != 'error' && continuation ?
-            <div className="loading-more">
+            <div className={`${theme} loading-more`}>
                  loading...
             </div> : ''
             }

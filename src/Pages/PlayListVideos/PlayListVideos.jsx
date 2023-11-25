@@ -7,13 +7,13 @@ import  VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import ListVideosCard from '../../Components/ListVideosCard/ListVideosCard';
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 
 const PlayListVideos = ()=> {
     
     const {id} = useParams();
 
-    const {lang} = useContext(isThemeDark);
+    const {lang, theme} = useContext(statesContext);
 
     const [playListDetails,setPlayListDetails] = useState(null);
     const [ListVideos,setListVideos] = useState(null);
@@ -38,7 +38,7 @@ const PlayListVideos = ()=> {
             setError(error);
          })
 
-    },[id,listVideoId])
+    },[id,listVideoId,lang])
 
     useEffect(()=> {
         if(ListVideos?.length) {
@@ -57,16 +57,16 @@ const PlayListVideos = ()=> {
                 })
         }
 
-    },[listVideoId,id])
+    },[listVideoId,id,lang])
 
 
     return (
         isError ? <Error error={error} /> :
-        <div className="p-list-v">
+        <div className={`${theme} p-list-v`}>
           { isLoading ? <Loading /> :
            <>
             <VideoPlayer videoDetail={videoDetail} id={ListVideos[listVideoId]?.videoId}/>
-            <div className="right-videos">
+            <div className={`${theme} right-videos`}>
                 <ListVideosCard meta={playListDetails} data={ListVideos} setVideoId={setListVideoId} listVideoId={listVideoId} id={id} />
                 <RelatedVideos elements={videos} renderFrom='watch'/>
             </div>

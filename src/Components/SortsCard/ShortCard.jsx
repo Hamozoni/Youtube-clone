@@ -1,30 +1,31 @@
 import { useNavigate } from 'react-router-dom';
-import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import { useContext } from 'react';
 
 import './ShortsCard.scss';
 
 const ShortCard = ({short,shorts})=> {
 
-    const { isDark, setShorts } = useContext(isThemeDark)
+    const { theme, setShorts } = useContext(statesContext);
 
     const navgate = useNavigate();
 
-    const clickHandler = ()=>{
+    const clickHandler = ()=> {
+         
         setShorts(shorts.map((short)=>{
           if('thumbnail' in short){
             return short
           } else {
             return;
           }
-        }))
+        }));
+
         navgate(`/short/${short?.videoId}`)
     }
 
     return (
         <div 
-            className="short-card" 
+            className='short-card'
             onClick={clickHandler}
         >
            { short?.thumbnail ?
@@ -34,14 +35,12 @@ const ShortCard = ({short,shorts})=> {
             />: <div></div>}
             <div className="short-desc">
                 <h4 
-                    className="short-title" 
-                    style={{color: Theme[isDark].primaryColor}}
+                    className={`${theme} short-title`} 
                     >
                     { short?.title?.length > 30 ? `${short?.title.slice(0,30)}...`: short?.title }
                 </h4>
                 <h6 
-                    className="sh-viwes" 
-                    style={{color: Theme[isDark].lightBlColor}}
+                    className={`${theme} sh-viwes`} 
                     >
                     {short?.viewCountText}
                 </h6>

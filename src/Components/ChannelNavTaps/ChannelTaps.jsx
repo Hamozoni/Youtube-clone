@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 
 import './ChannelTaps.scss';
@@ -7,11 +7,11 @@ import './ChannelTaps.scss';
 
 const ChannelTaps = ({channelContent,setChannelContent,setIsAboutChannelOpen})=>{
 
-    const {  lang } = useContext(isThemeDark);
+    const {  lang, theme } = useContext(statesContext);
 
     return (
-        <nav className="channel-nav" >
-            <ul className="nav" >
+        <nav className={`${theme} channel-nav`} >
+            <ul className={`${theme} nav`} >
                 <li 
                     className={channelContent === 'home'? 'active': ''}
                     onClick={()=> setChannelContent('home')}

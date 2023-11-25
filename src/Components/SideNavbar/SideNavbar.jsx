@@ -19,14 +19,14 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
 
 import { language } from "../../Utils/language";
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 import { useContext } from "react";
 import SideNavbarSmall from "./SideNavSmall";
 
 
-const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
+const SideNavbar = ()=> {
 
-    const {lang} = useContext(isThemeDark);
+    const { theme, lang, setIsSideNavbarOpen } = useContext(statesContext);
 
     const { 
             labrary, 
@@ -45,13 +45,16 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
         } = language[lang];
 
     return (
-        <nav className="side-navbar" onClick={()=> setIsSideNavbarOpen(false)}>
-            <header className="nav-header">
-                 <Logo isSideNavbarOpen={isSideNavbarOpen} setIsSideNavbarOpen={setIsSideNavbarOpen} /> 
+        <nav 
+            className={`${theme} side-navbar`}
+            onClick={()=> setIsSideNavbarOpen(false)}
+            >
+            <header className={`${theme} nav-header`}>
+                 <Logo  /> 
             </header>
-            <div className="nav-container">
+            <div className={`${theme} nav-container`}>
                 <SideNavbarSmall />
-                <div className="library-history nav-icons">
+                <div className={`${theme} library-history nav-icons`}>
                     <Link to='/'>
                         <VideoLibraryOutlinedIcon />
                         <h3>{labrary}</h3>
@@ -73,12 +76,12 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                         <h3> {likedVideos} </h3>
                     </Link>
                 </div>
-                <div className="subscriptions nav-icons">
+                <div className={`${theme} subscriptions nav-icons`}>
                     <Link to='/'>
                         <h3>{trending}</h3>
                     </Link>
                 </div>
-                <div className="explor nav-icons">
+                <div className={`${theme} explor nav-icons`}>
                      <Link to='/search/trending'>
                         <WhatshotOutlinedIcon />
                         <h3>{trending}</h3>
@@ -100,7 +103,7 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                         <h3>{ sports} </h3>
                     </Link>
                 </div>
-                <div className="more-from-myh nav-icons">
+                <div className={`${theme} more-from-myh nav-icons`}>
                     <Link to='/'>
                         <h3>MYH Music</h3>
                     </Link>
@@ -108,7 +111,7 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                         <h3>Travel Advisor</h3>
                     </Link>
                 </div>
-                <div className="sitting-help nav-icons">
+                <div className={`${theme} sitting-help nav-icons`}>
                     <Link to='/settings'>
                         <SettingsOutlinedIcon />                    
                         <h3>settings</h3>  
@@ -126,7 +129,7 @@ const SideNavbar = ({isSideNavbarOpen,setIsSideNavbarOpen})=> {
                         <h3>{sendFeedback}</h3>  
                     </Link>
                 </div>
-                <footer className="navbar-footer">
+                <footer className={`${theme} navbar-footer`}>
 
                 </footer>
             </div>

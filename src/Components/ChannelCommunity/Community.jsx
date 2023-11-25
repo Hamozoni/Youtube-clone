@@ -6,12 +6,15 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 import Videos from '../Videos/Videos';
+import { statesContext } from "../../Contexts/statesContext";
 
 
 const Community = ({community})=>{
+
+    const {theme} = useContext(statesContext);
     
     const [playingVideoId,setPlayingVideoId] = useState('');
 
@@ -30,10 +33,10 @@ const [isCkecked,setIsCkecked] = useState(null)
 
     const Choices = ()=>{
         return (
-            <div className="choices">
+            <div className={`${theme} choices`}>
                  {
                     attachment?.choices?.map((choice,i)=>(
-                        <div className="choice"
+                        <div className={`${theme} choice`}
                             onClick={()=> {
                                 if(isCkecked === i){
                                     setIsCkecked(null)
@@ -47,14 +50,14 @@ const [isCkecked,setIsCkecked] = useState(null)
                                     isCkecked === i && <CheckCircleIcon/>
                                 }
                             </span>
-                            <div className="choi-box">
-                                <h4 className="name">
+                            <div className={`${theme} choi-box`}>
+                                <h4 className={`${theme} name`}>
                                      { choice}
                                 </h4>
-                                <h4 className="percentage">
+                                <h4 className={`${theme} percentage`}>
 
                                 </h4>
-                                <div className="percentage-progres"></div>
+                                <div className={`${theme} percentage-progres`}></div>
                             </div>
                         </div>
                     ))
@@ -81,13 +84,13 @@ const [isCkecked,setIsCkecked] = useState(null)
     }
 
     return (
-        <div className="community">
-            <div className="auther">
+        <div className={`${theme} community`}>
+            <div className={`${theme} auther`}>
                 <Link to={`channels/${authorChannelId}`} className="auth-img">
                     <img src={authorThumbnail[1]?.url || thumbnail[1]?.url} alt="auther" />
                 </Link>
                 <section>
-                    <div className="auth-n-publish">
+                    <div className={`${theme} auth-n-publish`}>
                         <h4 className="name"> {authorText} </h4>
                         <span>{publishedTimeText}</span>
                     </div>
@@ -97,7 +100,7 @@ const [isCkecked,setIsCkecked] = useState(null)
                 </section>
             </div>
 
-            <div className="attachment">
+            <div className={`${theme} attachment`}>
                {
                 attachment?.type === 'image' ?
                 <div className="images" ref={imgHolder}>
@@ -126,7 +129,7 @@ const [isCkecked,setIsCkecked] = useState(null)
                 attachment?.type === 'poll' ?
                   <Choices /> :
                 attachment?.type === 'video' && 
-                 <div className="videos search">
+                 <div className={`${theme} videos search`}>
                     <Videos
                         data={attachment} 
                         renderFrom={'search'} 
@@ -137,15 +140,15 @@ const [isCkecked,setIsCkecked] = useState(null)
 
                }
             </div>
-            <div className="stistisic">
-                <div className="like">
+            <div className={`${theme} stistisic`}>
+                <div className={`${theme} like`}>
                     <ThumbUpOutlinedIcon />
                     <h5>{voteCountText}</h5>
                 </div>
-                <div className="dislike">
+                <div className={`${theme} dislike`}>
                     <ThumbDownOffAltOutlinedIcon />
                 </div>
-                <div className="comment">
+                <div className={`${theme} comment`}>
                     <CommentOutlinedIcon />
                     <h5>{replyCount}</h5>
                 </div>

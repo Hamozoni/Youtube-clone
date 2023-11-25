@@ -8,7 +8,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import  ReactPlayer from 'react-player';
 
 import { Theme } from '../../../Utils/Colors';
-import { isThemeDark } from '../../../Contexts/Theme';
+import { statesContext } from '../../../Contexts/statesContext';
 import { language } from '../../../Utils/language';
 import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,13 +16,13 @@ import { useNavigate } from 'react-router-dom';
 const PlayShortCard = ({active, short, activeShort=''})=> {
     const navgate = useNavigate()
 
-    const { isDark, lang } = useContext(isThemeDark);
+    const { theme, lang } = useContext(statesContext);
 
    return (
-    <div className="short-v-container" 
+    <div className={`${theme} short-v-container`} 
         id={active? activeShort?.videoId : short?.videoId} >
-        <div className="short-v-player" >
-            <section className="short-video" >
+        <div className={`${theme} short-v-player`} >
+            <section className={`${theme} short-video`}>
                 { active && <h4 className="sh-v-title">
                     {activeShort?.title?.length > 30 ? `${activeShort?.title?.slice(0,30)}...`: activeShort?.title}
                 </h4>}
@@ -36,7 +36,7 @@ const PlayShortCard = ({active, short, activeShort=''})=> {
                 <img src={short?.thumbnail && short?.thumbnail[0]?.url} alt={short?.title} className="short-player" />
                 }
             </section>
-            <ul className="sh-links-comment" style={{color: Theme[isDark].lightPrColor}}>
+            <ul className={`${theme} sh-links-comment`} >
                 <li>
                     <ThumbUpIcon /> 
                     <h5> { active ? activeShort?.likeCountText : language[lang].like} </h5>

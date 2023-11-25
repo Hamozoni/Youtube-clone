@@ -2,10 +2,8 @@ import './ChanelDetails.scss';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchApi, fetchChannelApi } from '../../Utils/FetchApi';
-import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
-import { language } from '../../Utils/language';
+import { fetchChannelApi } from '../../Utils/FetchApi';
+import { statesContext } from '../../Contexts/statesContext';
 
 import Loading from '../../Components/Loading/Loading';
 import MainChannelCard from '../../Components/MainChannelCard/MainChannelCard';
@@ -32,7 +30,7 @@ const ChanelDetails = ()=> {
     const [isLoading,setIsLoading] = useState(true);
 
     const { id } = useParams();
-    const {lang} = useContext(isThemeDark);
+    const {lang,theme} = useContext(statesContext);
 
     const [isError,setIsErroe] = useState(false);
     const [error,setErroe] = useState(null);
@@ -64,10 +62,10 @@ const ChanelDetails = ()=> {
 
         isError ? <Error error={error} />:
     
-        <div className="chanel-details">
+        <div className={`${theme} chanel-details`}>
              <SideNavbarSmall homeShort='home-short' />
-            <div className="container">
-                <div className="banner">
+            <div className={`${theme} container`}>
+                <div className={`${theme} banner`}>
                   { chanelDetail?.banner && 
                         <img 
                             src={ chanelDetail?.banner[1]?.url || 

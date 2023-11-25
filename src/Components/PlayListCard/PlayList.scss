@@ -1,54 +1,83 @@
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
 .playlist-card {
-    border-radius: 6px;
+    cursor: pointer;
+
     .playlist-img {
         position: relative;
         overflow: hidden;
-        a.p-img  {
+        .p-img  {
             img {
                 height: 100%;
                 @media (min-width: 530px){
-                    border-radius: 6px;
+                    border-radius: $border-radius-l;
                 } 
             }
         }
         .count {
+            @include flex-box(center,center,$gap-m);
             position: absolute;
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 30%;
-            right: 0;
-            bottom: 0;
-            padding: 1px 5px;
+            bottom:10px ;
+            padding: 1px $padding-m;
             background-color: rgba(0, 0, 0, 0.829);
-            color: #ffffff;
+            color: $text-color-light-l;
+            border-radius: $border-radius-m; 
+        }
+        .play-all {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.651);
+            color: $text-color-light-l;
+            text-transform: uppercase;
+            font-size: $font-size-m;
+            font-weight: 700;
+            z-index: 9999;
             @media (min-width: 530px){
-                border-radius: 0 0 10px 10px;
+                border-radius: $border-radius-l;
             } 
         }
     }
+    &:hover .play-all {
+        @include flex-box(center,center,$gap-m);
+    }
    .p-t-box {
-    padding: 10px;
-    flex: 1;
+        padding: 0 $padding-l;
+        flex: 1;
       .p-l-title {
-        font-size: 14px;
-        color: $primary-color;
+        font-size: $font-size-l;
+        color: $text-color-dark-l;
+        &.dark {
+            color: $text-color-light-l;
+        }
 
       }
       .type {
-        font-size: 12px;
-        color: $light-pr-color;
+        font-size: $font-size-m;
+        color: $text-color-dark-m;
         text-transform: capitalize;
+        &.dark {
+            color: $text-color-light-m;
+        }
+      }
+      .first-tow-video {
+        margin-top: $margin-l;
+        .details {
+            &:not(:last-of-type) {
+                margin-bottom: $margin-m   
+            }
+            @include flex-box(_,_,3px);
+            color: $text-color-dark-m;
+            font-size: $font-size-m;
+            &.dark {
+                color: $text-color-light-m;
+            }
+        }
       }
    }
    &.watch, &.search {
     @media (min-width: 430px) {
         display: flex;
-        margin-bottom: 20px;
+        margin-bottom: $margin-l * 2;
            .playlist-img {           
               flex: 1;
             }

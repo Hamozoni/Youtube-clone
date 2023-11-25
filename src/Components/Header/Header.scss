@@ -1,91 +1,44 @@
-
-%dflex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+@import "../../GlibalStyles.scss//Variabls";
+@import "../../GlibalStyles.scss//Mixin";
 
 header.main-header {
     position: sticky;
     top: 0;
     z-index: 999999999;
-    background-color: #010716 !important;
+    background-color: $back-gr-color-dark !important;
     .container {
-        @extend %dflex;
-        justify-content: space-between;
+        @include flex-box(center,space-between,0);
         height: 60px;
         position: relative;
-        max-width: 1400px;
-        padding: 0 10px;
+        max-width: $max-container-width;
+        padding: 0 $padding-l;
         z-index: 999999999;
-        .logo {
-            width: unset;
-            a {
-                @extend %dflex;
-                gap: 5px;
-                border-radius: 6px;
-                text-transform: uppercase;
-                font-size: 20px;
-                color: #f31275;
-                font-weight: bold;
-                span {
-                    @extend %dflex;
-                    width: 30px;
-                    height: 20px;
-                    background-color: #fff;
-                    border-radius: 6px;
-                    color: #f5006b;
-                    box-shadow: -1px -1px 10px 1px #e7e7e7;
-                }
-            }
-        }
-        .left-bar {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            .lang {
-                position: relative;
-                .lang-t {
-                   padding: 0 5px;
-                } 
-                .langs {
-                    position: absolute;
-                    left: 0;
-                    bottom: -82px;
-                    background-color: #e7e7e7;
-                    border-radius: 6px;
-                    padding: 10px;
-                    width: 100%;
-                    min-width: fit-content;
-                    h5 {
-                        padding: 3px;
-                    }
-                }
-            }
-        }
-        .dark-icon {
-            color: #fff;
-        }
+    }
+    .logo {
+        width: unset;
     }
 }
 
 .prof-create {
-    @extend %dflex;
-    gap: 15px;
+    @include flex-box(center,center);
     .icon {
-        @extend %dflex;
-        padding: 5px;
+        @include flex-box(center,center,$border-radius-m);
+        background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+        padding: $padding-m;
         border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+        }
         svg {
             font-size: 28px;
-            color: #fff;
+            color: $text-color-light-l;
         }
     }
     .user-img  {
         cursor: pointer;
         svg {
-            font-size: 36px;
+            font-size: 32px;
         }
     }
 }

@@ -1,44 +1,62 @@
 import './PlayList.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
-import { Theme } from '../../Utils/Colors';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import { useContext } from 'react';
 import { language } from '../../Utils/language';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
 const Playlist = ({playlist, shorts, renderFrom})=> {
-     
-    const { isDark, lang } = useContext(isThemeDark);
-    const { playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText} = playlist
+
+    const { theme, lang } = useContext(statesContext);
+    const { playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
+
+    const navgate = useNavigate()
+
+    const handlNavgate = (e)=>{
+        if((e.target.nodeName !== "A")){
+            navgate(`/playlist/${playlistId}`)
+        }
+    }
 
     return (
-        <div className={`${renderFrom} playlist-card`}>
-            <div className="playlist-img">
-                <Link to={{pathname:`/playlist/${playlistId}`, shorts}} className='p-img'>
+        <div className={`${renderFrom} playlist-card`}  onClick={handlNavgate}>
+            <div className='playlist-img' >
+                <div className='p-img'>
                         <img src={thumbnail[1]?.url || thumbnail[0]?.url} alt={channelTitle} /> 
-                </Link>
-                <Link to={`/playlist/${playlistId}`} className='count'>
+                </div>
+                <section className='count' style={lang === 'en'? {right: '10px'} : {left: '10px'}}>
                      <PlaylistPlayIcon />
                     <h5> {videoCount?.replace("videos",'') + " " + language[lang]?.videos} </h5>
-                </Link>
+                </section>
+                 <section className='play-all absolute'>
+                    <PlayArrowRoundedIcon/>
+                    {language[lang]?.palyAll}
+                 </section>
             </div>          
-            <div className="p-t-box">
-                <h4 className="p-l-title"
-                    style={{color: Theme[isDark].primaryColor}}
-                    >
+            <div className='p-t-box' >
+                <h4 className={`${theme} p-l-title`}>
                     {title?.length > 53 ? title.slice(0,53) + '...' :  title}
                 </h4>
                 { publishedTimeText?.length > 3  &&
-                <h5 className="type" style={{color: Theme[isDark].lightBlColor}}>
+                <h5 className={`${theme} type`}>
                     {publishedTimeText}
                 </h5>}
                 {channelTitle &&
-                <h5 className="type" style={{color: Theme[isDark].blueColor}} >
+                <Link to={`/channels/${channelId}`} className={`${theme} type`} >
                     {channelTitle}
-                </h5>}
-                <h5 className="v-count type" style={{color: Theme[isDark].lightPrColor}}>
-                    {videoCount} {language[lang].video}
-                </h5>
+                </Link >}
+                <div className="first-tow-video">
+                    {
+                        videos?.map((video)=>(
+                            <section className={`${theme} details`}>
+                                <h5>{video?.title}</h5>
+                                <h5>. {video?.lengthText}</h5>
+                            </section>
+                        ))
+
+                    }
+                </div>
             </div>
         </div>
     );

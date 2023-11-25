@@ -1,6 +1,6 @@
 import { useContext, useEffect,useState } from "react";
 
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 import { fetchChannelApi } from "../../Utils/FetchApi";
 
 
@@ -22,7 +22,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const ChannelHome = ({id})=> {
 
-    const {lang} = useContext(isThemeDark);
+    const {lang, theme} = useContext(statesContext);
     
     const [playingVideoId,setPlayingVideoId] = useState(" ");
     const [data,setData] = useState([]);
@@ -45,7 +45,7 @@ const ChannelHome = ({id})=> {
     },[id,lang]);
 
 
-    const scrollingVideos = (class_name,type)=>{
+    const scrollingVideos = (class_name,type)=> {
 
         const videosContainer =  document.querySelector(`.${class_name}`);
         const prevIcon = document.querySelector(`.${class_name}-prev`);
@@ -93,14 +93,14 @@ const ChannelHome = ({id})=> {
     return (
         error ? <Error error={error}/> :(
             isLoading ? <Loading /> : 
-            <main className="channel-home">
+            <main className={`${theme} channel-home`}>
                 {data?.map((el,i)=>(
-                    <section key={i} className="part-container"> 
+                    <section key={i} className={`${theme} part-container`}> 
                         { 
                           el?.type !== 'player'  &&
                         <> 
                              <h4 
-                                className="part-title">
+                                className={`${theme} part-title`}>
                                     {  el?.type === 'shorts_listing' && 
                                        
                                        <img src={Shorts} alt='shorts' />
@@ -115,7 +115,7 @@ const ChannelHome = ({id})=> {
                                     }
                             </h4>
                            { el?.subtitle && 
-                            <p className="sub-title">
+                            <p className={`${theme} sub-title`}>
                                 {el?.subtitle?.length > 250 ?`${el?.subtitle.slice(0,200)}...`: el?.subtitle}
                             </p>
                           }
@@ -124,19 +124,19 @@ const ChannelHome = ({id})=> {
                         }
                         <div 
                             onScroll={()=> scrollHandler(`${el?.type }-${i}`)}
-                            className={`${el?.type !== 'player' && `${el?.type }-${i}`} videos-wraper`}>
+                            className={`${el?.type !== 'player' && `${el?.type }-${i}`} ${theme} videos-wraper`}>
                         {
                                 el?.type !== 'player' &&
                                 <>
                                  <div 
-                                    className={`${el?.type}-${i}-prev scroll-prev`}>
+                                    className={`${el?.type}-${i}-prev scroll-prev ${theme}`}>
                                       <ArrowBackIosNewIcon 
                                        onClick={()=> scrollingVideos(`${el?.type }-${i}`,'prev')}
                                       />
                                   </div> 
                                   <div 
 
-                                    className={`${el?.type}-${i}-next scroll-next`}>
+                                    className={`${el?.type}-${i}-next scroll-next ${theme}`}>
                                      <ArrowForwardIosOutlinedIcon 
                                          onClick={()=> scrollingVideos(`${el?.type }-${i}`,'next')}
                                        />
@@ -144,7 +144,7 @@ const ChannelHome = ({id})=> {
   
                               </>        
                         }
-                            <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} videos channel-home`} >
+                            <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} ${theme} videos channel-home`} >
                                {
                                 el?.type === 'player' ?
                                 <Player data={el} />
@@ -166,7 +166,7 @@ const ChannelHome = ({id})=> {
                                 :
                                 el?.type === "members_listing" ?  
                                             el?.data?.map((member,i)=>(
-                                                <div className="member-image"  key={member?.thumbnails[0]?.url + i} >
+                                                <div className={`${theme} member-image`}  key={member?.thumbnails[0]?.url + i} >
                                                     <img 
                                                         className="img"
                                                         src={member?.thumbnails[0]?.url} 

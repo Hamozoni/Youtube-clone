@@ -1,11 +1,14 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {fetchChannelApi } from "../../Utils/FetchApi";
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
 import ShortCard from './ShortCard';
+import { statesContext } from '../../Contexts/statesContext';
 
 const ShortsCard = ({id})=> {
+
+    const {lang} = useContext(statesContext);
 
     const [data,setData] = useState([]);
     const [isEror,setIsError] = useState(null);
@@ -14,10 +17,9 @@ const ShortsCard = ({id})=> {
 
      
     useEffect(()=>{
-
             setLoading(true);
             setIsError(null);
-            fetchChannelApi(`channel/shorts?id=${id}&sortby=lastdateadded`)
+            fetchChannelApi(`channel/shorts?id=${id}&sortby=lastdateadded&lang=${lang}`)
             .then((data)=> {
                 setLoading(false);
                 setData(data?.data);
@@ -28,7 +30,7 @@ const ShortsCard = ({id})=> {
                 setIsError(error);
             })
 
-    },[id])
+    },[id,lang]);
 
     return (
            

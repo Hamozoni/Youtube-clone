@@ -1,43 +1,34 @@
-
-%dflex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-}
+@import "../../GlibalStyles.scss//Variabls";
+@import "../../GlibalStyles.scss//Mixin";
 .logo {
-    @extend %dflex;
-    justify-content: flex-start;
-    gap: 10px;
+    @include flex-box(center);
     width: 100%;
     .menu-icon {
-        @extend %dflex;
-        border-radius: 5px;
-        color: #fff;
-        padding: 5px;
+        @include flex-box(center,center);
+        border-radius: $border-radius-m;
+        color: $text-color-light-l;
+        padding: $padding-m;
         &:hover {
-            background-color: #e7e7e71e
+            background-color: lighten($back-gr-color-dark,10)
         }
         svg {
             font-size: 28px;
         }
     }
     a {
-        @extend %dflex;
-        gap: 5px;
-        border-radius: 6px;
+        @include flex-box(center,center,$gap-m);
+        border-radius: $border-radius-m;
         text-transform: uppercase;
-        font-size: 20px;
-        color: #f31275;
+        font-size: $logo-font-size;
+        color: $logo-color;
         font-weight: bold;
         span {
-            @extend %dflex;
+            @include flex-box(center,center,0);
             width: 30px;
             height: 20px;
-            background-color: #fff;
-            border-radius: 6px;
-            color: #f5006b;
-            box-shadow: -1px -1px 10px 1px #e7e7e7;
+            background-color: $text-color-light-l;
+            border-radius: $border-radius-m;
+            color: $logo-color;
         }
     }
 }

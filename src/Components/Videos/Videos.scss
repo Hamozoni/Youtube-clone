@@ -1,35 +1,21 @@
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
 .videos {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
-    gap: 10px;
-
+    gap: $gap-l;
     .video-card {
-        border-radius: 6px;
+        border-radius: $border-radius-l;
         transition: all 0.5s ease-in-out;
         .video-img {
             position: relative;
             cursor: pointer;
             overflow: hidden;
             @media (min-width: 430px){
-                border-radius: 10px;
+                border-radius: $border-radius-l;
             } 
-            .player {
-                position: absolute;
-                width: 100%;
-                max-width: 100%;
-                height: 100%;
-                max-height: 100%;
-                left: 0;
-                top: 0;
-            }
             span.nav-watch {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
                 background-color: transparent;
                 z-index: 99999999;
             }
@@ -43,15 +29,15 @@
                 padding: 0px 5px 2px;
                 background-color: rgb(0 0 0 / 61%);
                 color: #fff;
-                border-radius: 6px;
-                font-size: 13px;
+                border-radius: $border-radius-m;
+                font-size: $font-size-m;
                 font-weight: 500;
                 &.live {
                     background-color: red;
-                    padding: 0px 5px;
+                    padding: 0px $padding-m;
                     div{
                         display: flex;
-                        gap: 3px;
+                        gap: $gap-m;
                         svg {
                             font-size: 20px;
                         }
@@ -60,14 +46,13 @@
             }
         }
         .content {
-            padding: 10px;
+            padding: 0 $padding-m;
             flex: 1;
             overflow: hidden;
             .wrapper {
-                display: flex;
-                gap: 4px;
+                @include flex-box(flex-start);
                 a.img{
-                        display: flex;
+                        @include flex-box();
                         min-width: fit-content;
                     img {
                         width: 36px;
@@ -78,20 +63,30 @@
                 .titles {
                     a {
                         .chanel-title {
-                            display: flex;
-                            align-items: center;
-                            gap: 5px;
-                            font-size: 10px;
+                            color: $text-color-dark-m;
+                            @include flex-box();
+                            font-size: $font-size-m;
+                            &.dark {
+                                color: $text-color-light-m; 
+                            }
     
                         }
                         .video-title {
+                            color: $text-color-dark-l;
                             padding: 2px 0;
-                            font-size: 11px;
+                            font-size: $font-size-l;
+                            &.dark {
+                                color: $text-color-light-l; 
+                            }
                         }
                     }
                     .video-desc {
                         display: none;
-                        font-size: 12px;
+                        font-size: $font-size-m;
+                        color: $text-color-dark-m;
+                        &.dark {
+                            color: $text-color-light-m; 
+                        }
                         @media (min-width: 540px) {
                             display: block;
                         }
@@ -99,16 +94,17 @@
                 }
             }
             .stats {
-                display: flex;
-                gap: 5px;
+                color: $text-color-dark-m;
+                @include flex-box();
+                &.dark {
+                    color: $text-color-light-m; 
+                }
                 .moment {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    font-size: 10px;
+                    @include flex-box(_,_,$gap-m);
+                    font-size: $font-size-m;
                     font-weight: normal;
                     svg {
-                        width: 17px;
+                        font-size: 17px;
                     }
                 }
 
@@ -123,9 +119,8 @@
                 }
             }
              @media (min-width:430px) {
-                display: flex;
-                margin-bottom: 10px;
-                gap: 10px;
+                @include flex-box();
+                margin-bottom: $margin-l;
                 .video-img {
                     flex: 1;
                 }
@@ -139,7 +134,7 @@
             @media (min-width:768px) {
                 .titles {
                     * {
-                        margin-bottom: 4px;
+                        margin-bottom: $margin-m;
                     }
                 }
                 .content {
@@ -157,7 +152,7 @@
     &.search {
         @media (min-width:540px) {
             display: block;
-            padding: 15px;
+            padding: $padding-l;
         }
     }
     &.channel {
@@ -167,7 +162,7 @@
     }
     &.watch {
         @media (min-width:430px) {
-            padding: 15px;
+            padding: $padding-l;
             display: block;
          }
     }

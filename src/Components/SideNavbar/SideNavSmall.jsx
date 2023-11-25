@@ -1,5 +1,5 @@
 import { language } from "../../Utils/language";
-import { isThemeDark } from "../../Contexts/Theme";
+import { statesContext } from "../../Contexts/statesContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
 
 const SideNavbarSmall = ({homeShort= ''})=> {
     
-    const {lang} = useContext(isThemeDark);
+    const {theme, lang} = useContext(statesContext);
 
     const { 
         home, 
@@ -21,17 +21,17 @@ const SideNavbarSmall = ({homeShort= ''})=> {
     } = language[lang];
 
     return(
-        <div className={`${homeShort} nav-icons`}>
-             <Link className="link" to='/'>
+        <div className={`${homeShort} ${theme} nav-icons`}>
+             <Link className={`${theme} link`} to='/'>
                 <HomeIcon />
                 <h3> {home}</h3>
             </Link>
-            <Link className="link" to='/'>
+            <Link className={`${theme} link`} to='/'>
                 <SmartDisplayOutlinedIcon />
                 <h3>{ shorts }</h3>
                 
             </Link>
-            <Link className="link" to='/'>
+            <Link className={`${theme} link`} to='/'>
                 <SubscriptionsOutlinedIcon />
                 <h3>{ subscribtions }</h3>
             </Link>

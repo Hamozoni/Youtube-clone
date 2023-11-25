@@ -4,7 +4,7 @@ import './Videos.scss';
 import {ternViewsTo} from '../../Utils/Constans';
 import { Theme } from '../../Utils/Colors';
 import { language } from '../../Utils/language';
-import { isThemeDark } from '../../Contexts/Theme';
+import { statesContext } from '../../Contexts/statesContext';
 import { useContext} from 'react';
 import img from "./Images/videos-loader.png"
 
@@ -14,7 +14,7 @@ import ReactPlayer from 'react-player';
 const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=> {
     
     const navgate = useNavigate();
-    const {isDark,lang} = useContext(isThemeDark);
+    const {theme,lang} = useContext(statesContext);
 
     const handleClick = ()=>{
         navgate(video?.videoId && `/video/${video?.videoId}`)
@@ -25,8 +25,8 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                 className={`${renderFrom} video-card`} 
                 onMouseOver={()=> setPlayingVideoId(video.videoId)}
                 onMouseLeave={()=> setPlayingVideoId('')}
-                onTouchStart={()=> setPlayingVideoId(video.videoId)}
-            >
+                onTouchEnd={()=> setPlayingVideoId(video.videoId)}
+                >
                 <div 
                     onClick={handleClick} 
                     className="video-img" >
@@ -36,12 +36,12 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                         url={`hppts://www.youtube.com/watch?v=${video?.videoId}?autoPlay=1`} 
                         playing
                         muted
-                        className='player'
+                        className='player absolute'
                     /> 
 
                     <span
-                      className='nav-watch'
-                      onClick={handleClick}
+                        className="nav-watch absolute"
+                        onClick={handleClick}
                      >
                     </span>
                     </>
@@ -74,32 +74,32 @@ const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=>
                                 <img src={video?.channelThumbnail[0]?.url } alt="" />
                             </Link>: ''
                         }
-                        <div className="titles">
+                        <div className={`${theme} titles`}>
                             <Link to={video?.videoId &&`/video/${video?.videoId}`}>
-                                <h4 className="video-title" >
+                                <h4 className={`${theme} video-title`} >
                                  {renderFrom ===  "search" ? video?.title :  `  ${video?.title?.length > 53 ? video?.title.slice(0,53) + '...' :  video?.title}`}
                                 </h4>
                             </Link>
                 
                             <Link to={`/channels/${video?.channelId}`}>
                                 {video?.channelTitle?.length ?
-                                    <h5 className="chanel-title" >
+                                    <h5 className={`${theme} chanel-title`} >
                                        {video?.channelTitle?.length > 20 ?
                                         `${video?.channelTitle?.slice(0,20)}...` :
                                         video?.channelTitle }
                                     </h5>: ''}
                                 </Link> 
-                            <div className="stats" >
-                                <span className="views-count moment">
+                            <div className={`${theme} stats`} >
+                                <span className={`${theme} views-count moment`}>
                                     {ternViewsTo(video?.viewCount)} {language[lang].views}
                                 </span>
-                                <h5 className='moment'>
+                                <h5 className={`${theme} moment`}>
                                     {video?.publishedTimeText ||  video?.publishedText }
                                 </h5>
                             </div>
                             { renderFrom === "search" && 
-                                <div className="video-desc" >
-                                    <p className="desc-content" >
+                                <div className={`${theme} video-desc`}>
+                                    <p className={`${theme} desc-content`}>
                                         {video?.description}
                                     </p>
                                 </div>

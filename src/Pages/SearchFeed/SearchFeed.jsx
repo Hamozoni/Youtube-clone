@@ -1,5 +1,5 @@
 import './SearchFeed.scss';
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import Loading from '../../Components/Loading/Loading';
@@ -8,8 +8,10 @@ import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import Refinements from '../../Components/Refinements/Refinements';
 
 import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';
+import { statesContext } from '../../Contexts/statesContext';
 
 const SearchFeed = ()=> {
+
     const [videos,setVideos] = useState();
     const [ispending,setIsPending] = useState(true);
     const [isError,setIsError] = useState(false);
@@ -19,12 +21,13 @@ const SearchFeed = ()=> {
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
 
     const { word } = useParams();
+    const {lang, theme} = useContext(statesContext);
 
     useEffect(()=> {
         window.scrollTo(0,0);
         setIsError(false);
         setIsPending(true);
-        fetchChannelApi(`search?query=${word}`)
+        fetchChannelApi(`search?query=${word}&lang=${lang}`)
         .then((data)=> {
             setVideos(data?.data);
             setRefinements(data?.refinements);
@@ -38,11 +41,11 @@ const SearchFeed = ()=> {
             setError(error);
             setIsloadingMoreData('error');
         })
-    },[word]);
+    },[word,lang]);
 
     const fetchMoreData = ()=>{
         setIsloadingMoreData(false);
-        fetchChannelApi(`search?query=${word}&token=${continuation}`)
+        fetchChannelApi(`search?query=${word}&lang=${lang}&token=${continuation}`)
         .then((data)=>{
             console.log(data)
             setVideos(prev => [...prev,...data?.data]);
@@ -83,9 +86,9 @@ const SearchFeed = ()=> {
 
     return (
         isError ? <Error error={error} /> :
-        <main className="search-feed">
+        <main className={`${theme} search-feed`}>
             <SideNavSmall homeShort='home-short' />
-            <div className="container">
+            <div className={`${theme} container`}>
 
                 { Refinements?.length > 0 && <Refinements refinements={refinements} />}
                 {ispending ? <Loading /> :<RelatedVideos elements={videos} renderFrom="search" direction="column"/>}
@@ -93,7 +96,7 @@ const SearchFeed = ()=> {
                 {
                     isLoadingMoreData !== 'error' && continuation ?
                 
-                <div className="load-more" ref={loading}>
+                <div className={`${theme} load-more`} ref={loading}>
                      loading...
                 </div> :''
                }
