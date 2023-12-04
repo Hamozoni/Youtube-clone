@@ -12,7 +12,7 @@ const Refinements = ({refinements})=> {
             <ul className={`${theme} taps`}>
                 {
                     refinements?.map((refine,i)=>(
-                        <li key={refine + i} >
+                        <li key={refine + i} className={theme} >
                             <Link to={`/search/${refine}`}>
                                 {refine}
                             </Link>

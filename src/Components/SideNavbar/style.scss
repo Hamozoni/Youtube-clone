@@ -1,37 +1,63 @@
 
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
 
 nav.side-navbar {
     position: fixed;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.596);
+    background-color: $trans-black;
     z-index: 9999999999;
     width: 100%;
     .nav-header {
-        padding: 10px;
+        padding: $padding-l;
         width: 240px;
-        background-color: #010716 !important;
+        background-color: $back-gr-color-light;
+        &.dark {
+            background-color: $back-gr-color-dark !important;
+        }
     }
     .nav-container {
         width: 240px;
-        background-color: #010716 !important;
-        padding: 10px;
+        padding: $padding-l;
+        padding-top: 0;
         height: 100vh;
         overflow-x: scroll;
+        background-color: $back-gr-color-light;
+        .title {
+            text-transform: capitalize;
+            margin-top: $margin-m;
+            color: $text-color-dark-m;
+            font-size: $font-size-l;
+        }
+        &.dark {
+            background-color: $back-gr-color-dark !important;
+            .title {
+                color: $text-color-light-m;
+            }
+        }
         .nav-icons {
-            padding: 10px 0;
-            border-bottom: 1px solid #807c7c98;
+            padding: $padding-l 0;
+            border-bottom: 1px solid $text-color-light-m;
+            a, h3{
+                color: $text-color-dark-l;
+                font-size: $font-size-l
+            }
             a {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                border-radius: 10px;
-                padding: 10px;
-                color: #fff;
-                font-size: 14px;
-                font-weight: normal;
+                @include flex-box();
+                border-radius: $border-radius-l;
+                padding: $padding-l;
                 text-transform: capitalize;
                 &:hover {
-                    background-color: rgba(170, 172, 172, 0.26);
+                    background-color: darken($color: $back-gr-color-light, $amount: 10);
+                }
+            }
+            &.dark {
+                border-bottom: 1px solid $text-color-dark-m;
+                a, h3{
+                    color: $text-color-light-l;
+                }
+                a:hover {
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
                 }
             }
         }

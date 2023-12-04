@@ -8,15 +8,13 @@ import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutl
 import { useContext} from 'react';
 import { language } from '../../Utils/language';
 
-import moment from 'moment/moment';
-
 const Comments = ({comment })=> {
 
     const { theme, lang } = useContext(statesContext);
     const { authorChannelId,
             authorThumbnail, 
             authorText, 
-            publishedAt, 
+            publishedTimeText, 
             textDisplay, 
             likesCount, 
             replyCount } = comment
@@ -38,28 +36,28 @@ const Comments = ({comment })=> {
                     <span className={`${theme} time`}
                        
                         >
-                        {moment(publishedAt).fromNow()}
+                        {publishedTimeText}
                     </span>
                     <p className={`${theme} comment`}
-                       
                         >
                         {textDisplay}
                     </p>
                     <div className={`${theme} like-dislike-btn`}>
-                        <button 
-                          
+                        <button
                             >
                             <ThumbUpAltOutlinedIcon />
                             {likesCount}
                         </button>
                         <button 
-                        
                             >
                             <ThumbDownOffAltOutlinedIcon />
                         </button>
-                        <span className={`${theme} replies`} >
-                            {replyCount} {language[lang].replies}
-                        </span>
+                        {
+                            replyCount > 0 &&
+                            <span className={`${theme} replies`} >
+                                {replyCount} {language[lang].replies}
+                            </span>
+                        }
                     </div>
     
                 </div>

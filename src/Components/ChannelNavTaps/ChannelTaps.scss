@@ -1,25 +1,31 @@
+@import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
+
 .channel-nav {
     position: sticky;
     top: 60px;
     width: 100%;
     overflow-y: auto;
     z-index: 99999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.493);
-    // background-color: #010716 ;
-    margin-bottom: 15px;
+    border-bottom: 1px solid darken($color: $back-gr-color-light, $amount: 5);
+    background-color: $back-gr-color-light;
+    margin-bottom: $margin-l;
     overflow: auto;
+    &.dark {
+        background-color: $back-gr-color-dark;
+        border-bottom: 1px solid lighten($color: $back-gr-color-dark, $amount: 5);
+    }
     .nav {
-        display: flex;
-        gap: 10px;
-        padding-bottom: 5px;
+        @include flex-box;
+        padding-bottom: $margin-m;
         width: fit-content;
         li {
-            width: fit-content;
-            padding: 5px 10px;
-            font-size: 16px;
+           min-width: fit-content;
+            padding: $padding-m $padding-l;
+            font-size: $font-size-l;
             text-transform: capitalize;
             font-weight: 500;
-            color: #c0b6b6;
+            color: $text-color-dark-m;
             cursor: pointer;
             position: relative;
             &::before {
@@ -27,24 +33,41 @@
                 content: '';
                 left: 0;
                 bottom: -5px;
-                // width: 100%;
                 height: 2px;
-                border-radius: 10px;
+                border-radius: $border-radius-l;
                 transition: all  0.3s ease-in-out;
             }
             &:hover {
                &::before {
                    width: 100%;
-                   background-color: #ffffff8e;
+                   background-color: darken($color: $back-gr-color-light, $amount: 10);
                }
             }
             &.active {
-                color: #ffffff;
+                color: lighten($color: $text-color-dark-m, $amount: 15);
                 &::before {
                     width: 100%;
-                    background-color: #ffffff;
+                    background-color: darken($color: $back-gr-color-light, $amount: 30);
                 }
              }
+        }
+        &.dark {
+            li {
+                color: $text-color-light-l;
+                &:hover {
+                    &::before {
+                        width: 100%;
+                        background-color: lighten($color: $back-gr-color-dark, $amount: 15);
+                    }
+                 }
+                 &.active {
+                    color: lighten($color: $text-color-light-l, $amount: 30);
+                    &::before {
+                        width: 100%;
+                        background-color: lighten($color: $back-gr-color-dark, $amount: 30);
+                    }
+                 }
+            }
         }
     }
  }

@@ -1,35 +1,43 @@
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
 .channel-about {
+    @include flex-box(center,center,0);
      position: fixed;
      top: 0;
      left: 0;
      width: 100vw;
      height: 100vh;
-     background-color: #000000b4;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+     background-color: $trans-black;
      z-index: 9999999;
     .about-container {
         max-width: 550px;
         min-width: 350px;
-        background-color: rgb(24, 19, 22);
-        border-radius: 10px;
-        padding-bottom: 20px;
+        background-color: darken($color: $back-gr-color-light, $amount: 10);
+        border-radius: $border-radius-l;
+        padding-bottom: $padding-l + 5;
         h3 {
-            color: #fff;
+            color: $text-color-dark-l;
             font-weight: 700;
-            margin: 15px 0;
+            margin: $padding-l 0;
             text-transform: capitalize;
         }
+        &.dark {
+            background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+            h3 {
+                color: $text-color-light-l;
+            }
+        }
         .about-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
+            @include flex-box(center,space-between);
+            padding: 0 $padding-l + 10;
             svg {
-                color: #fff;
+                color: $text-color-dark-l;
+            }
+            &.dark {
+                svg {
+                    color: $text-color-light-l;
+                }
             }
         }
         .channel-desc {
@@ -37,33 +45,46 @@
             overflow-y: scroll;
             padding: 0 20px;
             .describtion {
-                color: #fff;
-                font-size: 16px;
-                font-weight: 400;
+                color: $text-color-dark-m;
+                font-size: $font-size-l;
+                font-weight: 700;
+                &.dark {
+                    color: $text-color-light-m;
+                }
             }
             .channel-links {
                 .link {
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
+                    @include flex-box(center);
                     &:not(:last-of-type){
-                        margin-bottom: 15px;
+                        margin-bottom: $margin-l;
                     }
                     .icon {
-
                         img {
                             width: 28px;
                             height: 28px;
-                            background-color: #fff;
+                            background-color: darken($color: $back-gr-color-light, $amount: 10);
                             border-radius: 50%;
+                        }
+                        &.dark {
+                            img {
+                                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                            }
                         }
                     }
                     .link-title {
                         h6 {
-                            color: #fff;
+                            color: $text-color-dark-l;
                         }
                         a {
-                            color: aqua;
+                            color: lighten($color: $text-color-dark-l, $amount: 20);
+                        }
+                        &.dark {
+                            h6 {
+                                color: $text-color-light-l;
+                            }
+                            a {
+                                color: darken($color: $text-color-light-l, $amount: 20);
+                            }  
                         }
                     }
                 }
@@ -71,12 +92,15 @@
             .channel-details {
                 .details {
                     li {
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-                        color: #fff;
+                       @include flex-box(center);
+                        color: $text-color-dark-m;
                         &:not(:last-of-type){
                             margin-bottom: 10px;
+                        }
+                    }
+                    &.dark {
+                        li {
+                            color: $text-color-light-m;
                         }
                     }
                 }

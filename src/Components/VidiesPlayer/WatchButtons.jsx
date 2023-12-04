@@ -15,6 +15,7 @@ import { language } from '../../Utils/language';
 import { useContext, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
+import "./WatchButtons.scss";
 
 const WatchButtons = ({like})=>{
 
@@ -28,8 +29,8 @@ const WatchButtons = ({like})=>{
         return(
             <>
             <button 
-                className={clName} 
-                onClick={`${onClickHanlder} ${theme} `}
+                className={`${clName} ${theme}`} 
+                onClick={onClickHanlder}
             >
                     {Icon}
                     {text && text}
@@ -40,7 +41,7 @@ const WatchButtons = ({like})=>{
 
     const DownloadBtn = ()=>{
         return (
-            <button className={`${theme} box down-btn`}>
+            <button className={`${theme} box down-btn btn`}>
                 <a download 
                     rel='nofolow' href='mai.com' 
                     className={`${theme} btn`} 
@@ -64,7 +65,7 @@ const WatchButtons = ({like})=>{
 
     return (
         <div className={`${theme} links-btns-container`}>
-            <div className={`${theme} like-dis`} >
+            <div className={`${theme} like-dis btn`} >
                 <Btn 
                     text={ like && ternViewsTo(like)} 
                     Icon={<ThumbUpOutlinedIcon />}

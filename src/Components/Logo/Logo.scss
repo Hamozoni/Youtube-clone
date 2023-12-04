@@ -5,14 +5,20 @@
     width: 100%;
     .menu-icon {
         @include flex-box(center,center);
-        border-radius: $border-radius-m;
-        color: $text-color-light-l;
         padding: $padding-m;
+        border-radius: $border-radius-m;
+        color: $text-color-dark-l;
         &:hover {
-            background-color: lighten($back-gr-color-dark,10)
+            background-color: darken($back-gr-color-light,10)
         }
         svg {
             font-size: 28px;
+        }
+        &.dark {
+            color: $text-color-light-l;
+            &:hover {
+                background-color: lighten($back-gr-color-dark,10)
+            }
         }
     }
     a {

@@ -9,9 +9,11 @@ $socnedary-color:#f31275;
 $text-color-dark-l : #5c1432;
 $text-color-dark-m:#703951;
 
-$text-color-light-l : #ffb8d7;
-$text-color-light-m:#d489aa;
-$back-gr-color-dark:#010716;
+$text-color-light-l : #cec9e9;
+$text-color-light-m: darken($text-color-light-l,10);
+$back-gr-color-dark:rgb(11, 1, 12);
+$back-gr-color-light:rgb(235, 235, 235);        
+$trans-black: #010716b7;
 
 $logo-color: #f31275;
 

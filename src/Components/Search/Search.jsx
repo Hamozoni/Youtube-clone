@@ -31,10 +31,10 @@ const Search = ()=> {
 
       return (
         <div className={`${theme} header-search`}>
-            <form className={isMobSerch ? 'active': ''}>
+            <form className={isMobSerch ? `active ${theme}`: theme}>
                 <input value={serchTrem}
                       id='search-id'
-                      type="search" className={theme === 0 ? 'light search-input' :'search-input'} 
+                      type="search" className={`${theme} search-input`} 
                       placeholder={`${language[lang]?.search}...`} 
                       onChange={(e)=> setSearchTerm(e.currentTarget.value) } 
                   />

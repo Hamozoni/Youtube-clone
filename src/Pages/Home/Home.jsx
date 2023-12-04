@@ -7,6 +7,7 @@ import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import { useContext } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
+import Keywords from '../../Components/RelatedKeywords/Keywords';
 
 
 
@@ -19,7 +20,6 @@ const Home = ()=> {
     const [error,setError] = useState(null);
     const [continuation,setContinuation] = useState('');
     const [filters,setFilters] = useState(null);
-    const [currentFilter,setCurrentFilter] = useState('');;
     const [filterPending,setFilterPending] = useState(false);
 
 
@@ -58,30 +58,7 @@ const Home = ()=> {
                     <> 
                        {
                         filters?.length > 0 &&
-                       <nav className={`${theme} related-keywords`}>
-                           <ul className='taps'>
-                              {
-                                filters?.map((fil,i)=>(
-                                    <li 
-                                        className={fil === currentFilter && 'active'}
-                                        onClick={()=> {
-                                           if(currentFilter !== fil){ 
-                                               setCurrentFilter(fil)
-                                               fetch(false,fil?.continuation);
-                                            } 
-                                            if( i === 0) {
-                                                setCurrentFilter(fil)
-                                                fetch(false,continuation);
-                                            }
-                                        }}
-                                        key={fil?.filter}
-                                        > 
-                                            {fil?.filter}
-                                     </li>
-                                ))
-                                }
-                           </ul>
-                       </nav>
+                         <Keywords filters={filters} onClickHandler={fetch} continuation={continuation} />
                        }
                       <RelatedVideos  elements={elements} renderFrom="home"/>
                     </>

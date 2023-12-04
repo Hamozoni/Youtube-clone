@@ -79,11 +79,11 @@ const VideoDetails = ()=> {
                <section className={`${theme} related-video`}>
                     {
                         relatedKeywords?.length > 0 &&
-                        <nav className="related-keywords">
+                        <nav className={`${theme} related-keywords video-pla`}>
                             <ul className='taps'>
                                 {
                                     relatedKeywords?.map((key)=>(
-                                        <li className={key === keyword && 'active'} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
+                                        <li className={key === keyword ? `active ${theme}` : theme} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
                                     ))
                                 } 
                             </ul>

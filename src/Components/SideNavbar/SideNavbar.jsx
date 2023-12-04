@@ -17,6 +17,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import OutlinedFlagTwoToneIcon from '@mui/icons-material/OutlinedFlagTwoTone';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import { language } from "../../Utils/language";
 import { statesContext } from "../../Contexts/statesContext";
@@ -54,6 +55,7 @@ const SideNavbar = ()=> {
             </header>
             <div className={`${theme} nav-container`}>
                 <SideNavbarSmall />
+                <h3 className="title">you</h3>
                 <div className={`${theme} library-history nav-icons`}>
                     <Link to='/'>
                         <VideoLibraryOutlinedIcon />
@@ -76,11 +78,7 @@ const SideNavbar = ()=> {
                         <h3> {likedVideos} </h3>
                     </Link>
                 </div>
-                <div className={`${theme} subscriptions nav-icons`}>
-                    <Link to='/'>
-                        <h3>{trending}</h3>
-                    </Link>
-                </div>
+                <h3 className="title">explore</h3>
                 <div className={`${theme} explor nav-icons`}>
                      <Link to='/search/trending'>
                         <WhatshotOutlinedIcon />
@@ -103,11 +101,14 @@ const SideNavbar = ()=> {
                         <h3>{ sports} </h3>
                     </Link>
                 </div>
+                <h3 className="title">more from myh</h3>
                 <div className={`${theme} more-from-myh nav-icons`}>
                     <Link to='/'>
+                        <TravelExploreIcon />
                         <h3>MYH Music</h3>
                     </Link>
                     <Link to='/'>
+                        <TravelExploreIcon />
                         <h3>Travel Advisor</h3>
                     </Link>
                 </div>

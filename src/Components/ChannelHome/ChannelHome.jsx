@@ -23,8 +23,6 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 const ChannelHome = ({id})=> {
 
     const {lang, theme} = useContext(statesContext);
-    
-    const [playingVideoId,setPlayingVideoId] = useState(" ");
     const [data,setData] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState(null);
@@ -154,8 +152,6 @@ const ChannelHome = ({id})=> {
                                         <Videos 
                                             key={video?.videoId} 
                                             data={video} 
-                                            playingVideoId={playingVideoId} 
-                                            setPlayingVideoId={setPlayingVideoId}
                                             renderFrom="channel-home"/>
                                     )) 
                                 :     

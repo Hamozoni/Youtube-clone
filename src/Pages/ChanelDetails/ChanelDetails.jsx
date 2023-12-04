@@ -19,18 +19,14 @@ import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 
 const ChanelDetails = ()=> {
 
-
-    // const [playingVideoId, setPlayingVideoId] =useState('');
-
     const [channelContent,setChannelContent] = useState('home');
 
-    const [chanelDetail,setChanelDetail] = useState();
+    const [chanelDetail,setChanelDetail] = useState(null);
     const [channelPlayLists,setChannelPlaylists] = useState([]);
-    // const [channelLive,setChannelLive] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
 
     const { id } = useParams();
-    const {lang,theme} = useContext(statesContext);
+    const {lang} = useContext(statesContext);
 
     const [isError,setIsErroe] = useState(false);
     const [error,setErroe] = useState(null);
@@ -60,25 +56,21 @@ const ChanelDetails = ()=> {
 
     return (
 
-        isError ? <Error error={error} />:
-    
-        <div className={`${theme} chanel-details`}>
+        isError ? <Error error={error} />: isLoading ? <Loading /> :
+        <div className='chanel-details'>
              <SideNavbarSmall homeShort='home-short' />
-            <div className={`${theme} container`}>
-                <div className={`${theme} banner`}>
-                  { chanelDetail?.banner && 
+            <div className='container'>
+                <div className='banner'>
                         <img 
                             src={ chanelDetail?.banner[1]?.url || 
                                 chanelDetail?.banner[2]?.url}
                             alt="" 
                         />
-                  }
                 </div>
-                   { isLoading & chanelDetail ? <Loading /> : <MainChannelCard data={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen}  renderFrom="channel"/>}
-                   <ChannelTaps channelContent={channelContent} setChannelContent={setChannelContent} setIsAboutChannelOpen={setIsAboutChannelOpen}  />
+                <MainChannelCard data={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen}  renderFrom="channel"/>
+                <ChannelTaps channelContent={channelContent} setChannelContent={setChannelContent} setIsAboutChannelOpen={setIsAboutChannelOpen}  />
                 <div className="channel-content">
                     {isAboutChannelOpen &&  <ChannelAbout chanelDetail={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen} />}
-                    {isLoading ? <Loading />:
                     <>{
                         channelContent === 'videos' ?
                          <ChannelVideos id={id} type='videos'/>
@@ -109,8 +101,6 @@ const ChanelDetails = ()=> {
                         : channelContent === 'community' && 
                          <ChannelCommunity id={id} />
                     }</>
-                  }
-               
                 </div>
 
             </div>

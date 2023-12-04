@@ -64,4 +64,13 @@
 
       }
      }
+     .video-desc {
+       .video-title {
+          color: $text-color-dark-l;
+          font-size: $font-size-l;
+          &.dark {
+            color: $text-color-light-l;
+          }
+       }
+     }
   }

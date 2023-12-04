@@ -30,7 +30,7 @@ const AcountSetting = ()=>{
 
     const ThemeMenu = ()=>{
         return (
-              <div className={`${theme} oppt-menu`} >
+              <div className={`${theme} oppt-menu`}  >
                     <header className={`${theme} oppt-header`}>
                         <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
                             <KeyboardBackspaceOutlinedIcon />
@@ -104,28 +104,28 @@ const AcountSetting = ()=>{
 
     const AcountContainer = ()=>{
         return (
-            <div className={`${theme} acount-container open-menu`}>
+            <div className={`${theme} acount-container open-menu`} >
                 <header className={`${theme} acount-header`}>
                     <div className={`${theme} user-info open-menu`}>
                         <div className="user-image">
                             <img src="" alt="" />
                         </div>
                         <section className={`${theme} user-name`}>
-                            <h4 className="name">Mohamed Yahia</h4>
-                            <h5 className="channel-handle">@mohammedyahia9711</h5>
+                            <h4 className={`${theme} name`}>Mohamed Yahia</h4>
+                            <h5 className={`${theme} channel-handle`}>@mohammedyahia9711</h5>
                             <Link to='/' >View your channel</Link>
                         </section>
                     </div>
                 </header>
-                <div className={`${theme} acount-body`}>
-                    <div className={`${theme} acou-body-cont`}>
+                <div className="acount-body">
+                    <div className="acou-body-cont">
 
-                        <ul className="google-aco">
+                        <ul className={`${theme} google-aco`}>
                             <li> <GoogleIcon /> google acount</li>
                             <li> <ContactsOutlinedIcon /> switch acount </li>
                             <li> <LogoutOutlinedIcon/> sign out</li>
                         </ul>
-                        <ul className="google-aco">
+                        <ul className={`${theme} google-aco`}>
                             <li> <PermIdentityRoundedIcon /> your data in myhtube</li>
                             <li onClick={()=> setWitchOneRenders('theme')}> <DarkModeOutlinedIcon /> appearance: {theme} </li>
                             <li onClick={()=> setWitchOneRenders('lang')}> <TranslateOutlinedIcon/>{language[lang].language}: english</li>
@@ -133,7 +133,7 @@ const AcountSetting = ()=>{
                             <li> <PublicOutlinedIcon/> location: Saudi arbia </li>
                             <li> <KeyboardOutlinedIcon/> keyboard shortcuts</li>
                         </ul>
-                        <ul className="google-aco">
+                        <ul className={`${theme} google-aco`}>
                             <li> <SettingsOutlinedIcon /> settings</li>
                             <li> <HelpOutlineOutlinedIcon /> help</li>
                             <li> <FeedbackOutlinedIcon/> send feedback</li>
@@ -146,7 +146,7 @@ const AcountSetting = ()=>{
     }
 
     return (
-        <div className={`${theme} acount-setting open-menu`}>
+        <div className={`${theme} acount-setting open-menu`} style={lang === 'en' ? {right: '40px'} : {left: '40px'}}>
             {
                 witchOneRenders === 'main' ? <AcountContainer /> :
                 witchOneRenders === 'lang' ? <LanguageMenu /> :

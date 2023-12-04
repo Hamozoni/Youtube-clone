@@ -21,7 +21,7 @@ const SideNavbarSmall = ({homeShort= ''})=> {
     } = language[lang];
 
     return(
-        <div className={`${homeShort} ${theme} nav-icons`}>
+        <div className={`${homeShort} ${theme} nav-icons `}>
              <Link className={`${theme} link`} to='/'>
                 <HomeIcon />
                 <h3> {home}</h3>

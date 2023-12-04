@@ -3,10 +3,11 @@ import { statesContext } from '../../Contexts/statesContext';
 import { useContext } from 'react';
 
 import './ShortsCard.scss';
+import ReactPlayer from 'react-player';
 
 const ShortCard = ({short,shorts})=> {
 
-    const { theme, setShorts } = useContext(statesContext);
+    const { theme, setShorts,playingVideoId, setPlayingVideoId } = useContext(statesContext);
 
     const navgate = useNavigate();
 
@@ -27,12 +28,28 @@ const ShortCard = ({short,shorts})=> {
         <div 
             className='short-card'
             onClick={clickHandler}
+            onMouseOver={()=> setPlayingVideoId(short?.videoId)}
+            onMouseLeave={()=> setPlayingVideoId('')}
+            onTouchEnd={()=> setPlayingVideoId(short?.videoId)}
         >
+            <div className="short-img">
            { short?.thumbnail ?
             <img 
                 src={short?.thumbnail[0]?.url} 
                 alt={'channel'}
             />: <div></div>}
+              {
+                playingVideoId === short?.videoId && 
+                <ReactPlayer 
+                    className='short-player absolute' 
+                    url={`hppts://www.youtube.com/watch?v=${short?.videoId}?autoPlay=1`} 
+                    playing
+                    muted
+                />
+
+              }
+
+            </div>
             <div className="short-desc">
                 <h4 
                     className={`${theme} short-title`} 

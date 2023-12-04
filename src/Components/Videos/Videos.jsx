@@ -11,10 +11,10 @@ import img from "./Images/videos-loader.png"
 import SensorsRoundedIcon from '@mui/icons-material/SensorsRounded';
 import ReactPlayer from 'react-player';
 
-const Videos = ({ data : video, renderFrom,playingVideoId, setPlayingVideoId})=> {
+const Videos = ({ data : video, renderFrom})=> {
     
     const navgate = useNavigate();
-    const {theme,lang} = useContext(statesContext);
+    const {theme,lang,playingVideoId, setPlayingVideoId} = useContext(statesContext);
 
     const handleClick = ()=>{
         navgate(video?.videoId && `/video/${video?.videoId}`)

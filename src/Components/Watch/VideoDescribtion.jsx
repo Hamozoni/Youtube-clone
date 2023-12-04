@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
-import { Theme } from "../../Utils/Colors";
 import { ternViewsTo } from "../../Utils/Constans";
 
 import { Link } from 'react-router-dom';

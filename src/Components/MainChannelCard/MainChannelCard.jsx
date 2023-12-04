@@ -23,21 +23,21 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
     }
 
     return (  
-            <div className={` ${renderFrom} ${theme} main-chan-card`} >
+            <div className={` ${renderFrom} main-chan-card`} >
                 <div className="card" >
-                    <Link to={`/channels/${data?.channelId}`} className={`${theme} img-l`}>
+                    <Link to={`/channels/${data?.channelId}`} className={`img-l`}>
                         <img 
-                            className={`${theme} chan-img`}
+                            className={`chan-img`}
                             src={ renderFrom === 'channel' ? data?.avatar[2]?.url :
-                                renderFrom === 'watch' ? data?.channelThumbnail[1].url :
-                                renderFrom === 'home-channel' || renderFrom === 'search' ? data?.thumbnail[1].url : channelImageAlt
+                                renderFrom === 'watch' ? data?.channelThumbnail[1]?.url :
+                                renderFrom === 'home-channel' || renderFrom === 'search' ? data?.thumbnail[1]?.url : channelImageAlt
                             } 
                             alt={data?.title} 
                         />
                     </Link>
                </div>
-                <div className={`${theme} subscribe`}>
-                    <div className={`${theme} subsc-title`}>
+                <div className={`subscribe`}>
+                    <div className={`subsc-title`}>
                             <Link to={`/channels/${data?.channelId}`} className={`${theme} name-l`}>
                                 <h4 className={`${theme} name`} >
                                     {
@@ -61,10 +61,10 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                                 {renderFrom === 'channel' &&  data?.videosCountText}
                             </h5>
                             {
-                                renderFrom === 'channel' && 
-                                <p className={`${theme} chan-desc`} onClick={()=> setIsAboutChannelOpen(true)}>
+                                renderFrom === 'channel' ||   renderFrom === 'search' ? 
+                                <p className={`${theme} chan-desc`} onClick={()=> renderFrom === 'search' && setIsAboutChannelOpen(true)}>
                                     { data?.description?.length > 100 ? data?.description?.slice(0,90) + "..." :  data?.description }
-                                </p>
+                                </p> : ""
                             }
                         </div>
                         <button
@@ -72,7 +72,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                               onClick={onClickHandler}
                         >
                             { isSubscribe &&  <NotificationsNoneOutlinedIcon />}
-                            { isSubscribe ?  language[lang].subscribed : language[lang].subscribe}
+                            { !isSubscribe && language[lang].subscribe}
                             { isSubscribe &&  <KeyboardArrowDownOutlinedIcon />}
                         </button>
                 </div>

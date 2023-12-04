@@ -6,11 +6,14 @@
         @include flex-box(center,space-between);
         overflow: hidden;
         border-radius: $border-radius-l;
+        background-color: $back-gr-color-light ;
+        &.dark { 
+            background-color: $back-gr-color-dark !important;
+        }
         &.active {
             @media (max-width: 667px) {
                 border: 1px solid $text-color-dark-l;
                 position: absolute;
-                background-color: $back-gr-color-dark !important;
                 width: calc(100% - 30px);
                 left: 15px;
                 top: 50%;
@@ -22,8 +25,11 @@
         }
         @media (min-width: 530px) {
             width: 160px;
-            border: 1px solid $text-color-dark-m;
-            background-color: #010716 !important;
+            border: 1px solid $text-color-light-l;
+            &.dark {
+               border: 1px solid $text-color-dark-l;
+
+            }
         }
         @media (min-width: 668px) {
             width: 300px;
@@ -39,12 +45,15 @@
         }
         .search-input {
             background-color: transparent;
+            color: $text-color-dark-l;
             outline: transparent;
-            color: $text-color-light-l;
             padding:0 $padding-l;
             font-size: $font-size-l !important;
             width: calc(100% - 48px);
             display: none;
+            &.dark {
+                color: $text-color-light-l;
+            }
             @media (min-width:530px) {
                 display: block;
             }
@@ -53,12 +62,19 @@
             }
         }
         .search-btn {
-            color: $text-color-light-l;
-            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+            color: $text-color-dark-l;
+            background-color: darken($color: $back-gr-color-light, $amount: 5);
             display: flex;
             padding: 2px $padding-l;
             &:hover {
-                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                background-color: darken($color: $back-gr-color-light, $amount: 10);
+            }
+            &.dark {
+                color: $text-color-light-l;
+                background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+                &:hover {
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                }
             }
         }
     }
@@ -66,12 +82,18 @@
         @include flex-box(center,center);
         padding: $padding-l;
         border-radius: 50%;
-        background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-        color: $text-color-light-m;
         display: none;
+        background-color: darken($color: $back-gr-color-light, $amount: 5);
+        color: $text-color-dark-m;
         &:hover {
-            color: $text-color-light-l;
-            background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+            background-color: darken($color: $back-gr-color-light, $amount: 10);
+        }
+        &.dark {
+            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+            color: $text-color-light-m;
+            &:hover {
+                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+            }
         }
         @media (min-width: 430px) {
             display: flex;

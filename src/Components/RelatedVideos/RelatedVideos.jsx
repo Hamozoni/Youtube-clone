@@ -14,7 +14,7 @@ const RelatedVideos = ({elements, renderFrom,direction})=> {
         
         const {theme} = useContext(statesContext);
     
-        const [playingVideoId, setPlayingVideoId] =useState('');
+        // const [playingVideoId, setPlayingVideoId] =useState('');
 
             return ( 
                 <div className={`${renderFrom} ${theme} videos`}  >
@@ -24,8 +24,6 @@ const RelatedVideos = ({elements, renderFrom,direction})=> {
                                 key={el?.videoId  + i} 
                                 data={el} 
                                 renderFrom={renderFrom} 
-                                playingVideoId={playingVideoId}
-                                setPlayingVideoId={setPlayingVideoId}
                             /> 
                         : el?.type  === 'channel' ?
                             <MainChannelCard key={el.channelId + i} direction={direction} data={el}  renderFrom={ renderFrom}/>
@@ -55,8 +53,6 @@ const RelatedVideos = ({elements, renderFrom,direction})=> {
                                                 key={el?.videoId + i} 
                                                 data={el} 
                                                 renderFrom={renderFrom}
-                                                playingVideoId={playingVideoId}
-                                                setPlayingVideoId={setPlayingVideoId}
                                             /> 
                                             ))
                                     }

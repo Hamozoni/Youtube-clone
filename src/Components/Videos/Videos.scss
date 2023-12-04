@@ -27,13 +27,13 @@
                 position: absolute;
                 bottom: 8px;
                 padding: 0px 5px 2px;
-                background-color: rgb(0 0 0 / 61%);
-                color: #fff;
+                background-color: $trans-black;
+                color: $text-color-light-l;
                 border-radius: $border-radius-m;
                 font-size: $font-size-m;
                 font-weight: 500;
                 &.live {
-                    background-color: red;
+                    background-color: $logo-color;
                     padding: 0px $padding-m;
                     div{
                         display: flex;

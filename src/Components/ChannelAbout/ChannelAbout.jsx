@@ -37,7 +37,7 @@ const ChannelAbout = ({chanelDetail,setIsAboutChannelOpen})=> {
                         <h3>{language[lang]?.links}</h3>
                         { chanelDetail?.links?.map((link)=>(
                             <div key={link?.link} className={`${theme} link`}>
-                                <div className="icon">
+                                <div className={`${theme} icon`}>
                                     <img src={link?.favicon[3]?.url} alt="" />
                                 </div>
                                 <div className={`${theme} link-title`}>

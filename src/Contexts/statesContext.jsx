@@ -11,6 +11,7 @@ const StatesContextComponent = ({children})=>{
     const [shorts, setShorts] = useState([]);
     const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
     const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
+    const [playingVideoId, setPlayingVideoId] =useState('');
 
     return (
         <statesContext.Provider 
@@ -25,7 +26,9 @@ const StatesContextComponent = ({children})=>{
                         setIsAcountNavOpen, 
                         isAcountNavOpen, 
                         isSideNavbarOpen,
-                        setIsSideNavbarOpen
+                        setIsSideNavbarOpen,
+                        playingVideoId,
+                        setPlayingVideoId
                    }
                 }
            > 

@@ -1,24 +1,25 @@
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
+
+
 .acount-setting {
     position: fixed;
     width: 300px;
     max-width: calc( 100% - 20px) ;
     max-height: 100vh;
     top: 45px;
-    right: 10px;
     z-index: 99999999999;
-    border-radius: 10px;
-    padding: 15px;
-    background-color: rgb(10, 10, 37);
-    @media (min-width: 530px) {
-        right: 70px; 
+    border-radius: $border-radius-l;
+    padding: $padding-l;
+    background-color: darken($back-gr-color-light,15);
+    &.dark {
+        background-color: lighten($back-gr-color-dark,5);
     }
     .acount-container {
         .acount-header {
             .user-info {
-                display: flex;
-                gap: 15px;
-                align-items: flex-start;
-                padding-bottom: 10px;
+                @include flex-box();
+                padding-bottom: $padding-l;
                 .user-image {
                     width: 48px;
                     height: 48px;
@@ -27,10 +28,21 @@
                 }
                 .user-name {
                     .name,.channel-handle {
-                        color: #fff;
+                        color: $text-color-dark-l;
+                        font-size: $font-size-l;
+                        &.dark {
+                            color: $text-color-light-l;
+                        }
                     }
                     a {
-                        color: rgb(75, 75, 247);
+                        color: $text-color-dark-m;
+                        font-size: $font-size-m;
+                        font-weight: 500;
+                    }
+                    &.dark {
+                        a {
+                            color: $text-color-light-m;
+                        } 
                     }
                 }
             }
@@ -42,20 +54,29 @@
             .acou-body-cont {
                 height: fit-content;
                 .google-aco {
-                    border-top: 1px solid #423d3d;
-                    padding: 5px 0;
+                    border-top: 1px solid $text-color-light-l;
+                    padding: $padding-m 0;
                     li {
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        color: #fff;
-                        margin-top: 5px;
+                        @include flex-box(center);
+                        color: $text-color-dark-l;
+                        margin-top: $margin-m;
                         cursor: pointer;
-                        padding: 10px;
-                        border-radius: 5px;
+                        padding: $padding-l;
+                        border-radius: $border-radius-m;
                         text-transform: capitalize;
+                        font-size: $font-size-m + 2;
+                        font-weight: 700;
                         &:hover {
-                            background-color: rgb(23, 22, 24);
+                            background-color: darken($color: $back-gr-color-light, $amount: 10);
+                        }
+                    }
+                    &.dark {
+                        border-top: 1px solid $text-color-dark-l;
+                        li {
+                           color: $text-color-light-l;
+                           &:hover {
+                               background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                           }
                         }
                     }
                 }

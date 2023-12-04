@@ -40,9 +40,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:   $back-gr-color-light;
 }
 body.dark-mode {
-  background-image: repeating-radial-gradient(#020b22, #010716,#000000);
+  background-color: $back-gr-color-dark;
 }
 // #010716 !important
 .home-short {
@@ -57,14 +58,20 @@ body.dark-mode {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 8px;
-      border-radius: 10px;
+      font-size: $font-size-m - 3;
+      border-radius: $border-radius-l;
       text-transform: capitalize; 
-      padding: 15px 0; 
-      margin: 10px 0;
-      color: #fff;
+      padding: $padding-l 0; 
+      margin: $margin-l 0;
+      color: $text-color-dark-l;
       &:hover {
-          background-color: rgba(31, 71, 105, 0.158); 
+        background-color: darken($color: $back-gr-color-light, $amount: 5);
+      }
+      &.dark {
+        color: $text-color-light-l;
+      }
+      &.dark:hover {
+          background-color: lighten($back-gr-color-dark, 10); 
       }
      } 
 
@@ -98,48 +105,61 @@ body.dark-mode {
   position: sticky;
   padding: $padding-l 0;
   margin-bottom: $margin-l ;
-  top: 240px;
+  top: 55px;
   max-width: 100%;
   overflow: scroll;
-  background-color: $back-gr-color-dark;
+  background-color: $back-gr-color-light;
   z-index: 99999;
-  @media (min-width: 330px) {
-      top: 245px;
-      padding-top: 15px;
-      margin-bottom: 0;
+  &.dark {
+    background-color: $back-gr-color-dark;
   }
-  @media (min-width: 360px) {
-    top: 270px;
-  }
-  @media (min-width: 390px) {
-    top: 285px;
-  }
-  @media (min-width: 430px) {
-    top: 50px;
+  &.video-pla {
+    top: 240px;
+    @media (min-width: 330px) {
+        top: 245px;
+        padding-top: 15px;
+        margin-bottom: 0;
+    }
+    @media (min-width: 360px) {
+      top: 270px;
+    }
+    @media (min-width: 390px) {
+      top: 285px;
+    }
+    @media (min-width: 430px) {
+      top: 50px;
+    }
   }
   .taps {
       display: flex;
-      gap: 10px;
+      gap: 5px;
       width: fit-content;
       li {
-          color: $text-color-light-l;
           min-width: fit-content;
           text-transform: capitalize;
-          background-color: lighten($back-gr-color-dark, 5);
+          background-color: darken($back-gr-color-light, 5);
           border-radius: $border-radius-m;
           padding: $padding-m $padding-l;
           border: 1px solid transparent;
           cursor: pointer;
+          font-size: $font-size-l;
+          font-weight: 700;
+          color: $text-color-dark-l;
           a {
-            font-size: $font-size-l;
-            font-weight: 700;
-            color: $text-color-light-l;
+             color: $text-color-dark-l;
           }
           &:hover, &.active {
-            background-color: lighten($back-gr-color-dark, 15);
+            background-color: darken($back-gr-color-light, 10);
           }
-          &:active {
-            border-color: $text-color-light-l;
+          &.dark {
+            background-color: lighten($back-gr-color-dark, 5);
+            color: $text-color-light-l;
+            a {
+              color: $text-color-light-l;
+           }
+            &:hover, &.active {
+              background-color: lighten($back-gr-color-dark, 10);
+            }
           }
       }
   }

@@ -14,20 +14,20 @@ const VideoPlayer = ({videoDetail,id})=> {
     const { theme } = useContext(statesContext);
 
     return (
-         <div  className={`${theme} video`}>
+         <div  className='video'>
            <ReactPlayer 
                 url={`hppts://www.youtube.com/watch?v=${id}?autoplay=1&mute=0?`}
                 className='player'
                 controls
                 playing
             />
-           <div className={`${theme} video-desc`} >
+           <div className='video-desc' >
                <h3 className={`${theme} video-title`} >
                   { videoDetail?.title }
                </h3>
-            <div className={`${theme} left`}>
-                <MainChannelCard data={ videoDetail } renderFrom="watch"/> 
-                <div className={`${theme} links-btns`}>
+                <div className='left'>
+                    <MainChannelCard data={ videoDetail } renderFrom="watch"/> 
+                <div className='links-btns'>
                     <WatchButtons like={videoDetail?.likeCount} />
                 </div>
             </div>

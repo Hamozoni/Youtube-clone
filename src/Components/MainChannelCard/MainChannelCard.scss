@@ -1,18 +1,13 @@
 
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
-@mixin flex-box ($jf: center){
-    display: flex;
-    align-items: center;
-    justify-content: $jf;
-}
 
 .main-chan-card {
-    @include flex-box;
-    gap: 10px;
+    @include flex-box(center,center);
     max-width: 992px;
     .card {
-        @include flex-box;
+        @include flex-box(center,center);
         .img-l {
             width: 46px;
             height: 46px;
@@ -24,39 +19,49 @@
         }
     }
     .subscribe {
-        @include flex-box(space-between);
+        @include flex-box(center,space-between);
         flex: 1;
-        gap: 15px;
         .subsc-title {
             .name-l {
                 .name {
-                    @include flex-box(flex-start);
-                    gap:5px;
-                    font-size: 13px;
+                    @include flex-box(center,flex-start,$gap-m);
+                    font-size: $font-size-l;
+                    color: $text-color-dark-l;
+                    &.dark {
+                       color: $text-color-light-l;
+                    }
                     svg {
                         font-size: 16px
                     }
                 }
             }
             .subsc {
-                font-size: 12px;
-                color: $blue-color;
+                font-size: $font-size-m;
+                color: $text-color-dark-m;
                 text-transform: capitalize;
+                &.dark {
+                    color: $text-color-light-m;
+                 }
             }
         }
         .subsc-btn  {
-           @include flex-box(center);
-            gap: 5px;
-            padding: 7px 10px;
-            border-radius: 10px;
-            font-size: 16px;
+           @include flex-box(center,center,$gap-m);
+            padding: $padding-m $padding-l;
+            border-radius: $border-radius-l;
+            font-size: $font-size-l;
             font-weight: bold;
-            background-color: #072137;
-            color: #fff;
+            background-color: darken($back-gr-color-light,5);
+            color: $text-color-dark-l;
             text-transform: capitalize;
-            &.subscribed {
-                padding: 3px 10px;
-
+            &:hover {
+                background-color: darken($back-gr-color-light,10); 
+            }
+            &.dark {
+                color: $text-color-light-l;
+                background-color: lighten($back-gr-color-dark,5);
+                &:hover {
+                    background-color: lighten($back-gr-color-dark,10);
+                }
             }
         }
     }
@@ -68,8 +73,18 @@
         gap: 15px;
         .card {       
             .img-l {
-                width: 90px ;
-                height: 90px;
+                width: 150px;
+                height: 150px;
+                .chan-img {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+            .chan-desc {
+                color: $text-color-dark-m;
+                &.dark {
+                  color: $text-color-light-m;
+                }
             }
       }
       .subscribe {
@@ -88,10 +103,13 @@
         .subscribe {
           display: block;
           .chan-desc {
-            color: #fff;
+            color: $text-color-dark-m;
             font-size: 10px;
             margin: 10px 0;
             cursor: pointer;
+            &.dark {
+              color: $text-color-light-m;
+            }
             @media (min-width:530px) {
                 font-size: 18px;   
             }

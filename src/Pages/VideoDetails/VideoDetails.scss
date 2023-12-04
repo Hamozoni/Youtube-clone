@@ -1,10 +1,9 @@
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
 .video-details {
     .container {
-       display: flex;
-       align-items: flex-start;
-       gap: 10px;
+      @include flex-box();
        padding: 0;
        flex-direction: column;
        max-width: 1300px;
@@ -18,7 +17,7 @@
           @media (min-width: 992px) {
             max-width: 33%;
              flex-basis: 33% !important;
-             padding-top: 10px;
+             padding-top: $padding-l;
              width: 100%;
          }
        }
