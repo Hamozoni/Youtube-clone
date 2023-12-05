@@ -49,31 +49,6 @@
             @include flex-box;
             overflow: auto;
             padding: $padding-l 0;
-            .short-card  {
-                width: 120px;
-                min-width: 120px;
-                img {
-                    height: 214px;
-                    min-height: 214px;
-                }
-                @media (min-width: 430px) {
-                    width: 160px;
-                    min-width: 160px;
-                    img {
-                        height: 284px;
-                        min-height: 284px;
-                    }
-
-                }
-                @media (min-width: 768px) {
-                    width: 180px;
-                    min-width: 180px;
-                    img {
-                        height: 320px;
-                        min-height: 320px;
-                    }
-                }
-            }
         }
         .query-container {
             @include flex-box;
@@ -83,11 +58,17 @@
             .query {
             width: 156px;
             min-width: 156px;
-            background-color: #131111;
+            background-color: $back-gr-color-light;
             border-radius: $border-radius-l;
             overflow: hidden;
             margin-bottom: $margin-l;
-            border: 1px solid #ffffff56;
+            color: $text-color-dark-l;
+            border: 1px solid darken($color: $back-gr-color-light, $amount: 10);
+            &.dark {
+                color: $text-color-light-l;
+                border-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                background-color: $back-gr-color-dark;
+            }
             img {
                 min-width: 156px;
             }

@@ -165,6 +165,11 @@
             padding: $padding-l;
             display: block;
          }
+         .video-img {
+            @media (min-width: 430px){
+                max-width: 230px;
+            } 
+       }
     }
     &.home {
         .video-card {

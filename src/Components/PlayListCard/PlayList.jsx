@@ -27,7 +27,7 @@ const Playlist = ({playlist, shorts, renderFrom})=> {
                 </div>
                 <section className='count' style={lang === 'en'? {right: '10px'} : {left: '10px'}}>
                      <PlaylistPlayIcon />
-                    <h5> {videoCount?.replace("videos",'') + " " + language[lang]?.videos} </h5>
+                    <h5> {videoCount} </h5>
                 </section>
                  <section className='play-all absolute'>
                     <PlayArrowRoundedIcon/>

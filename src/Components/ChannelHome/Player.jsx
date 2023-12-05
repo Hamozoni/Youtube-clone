@@ -20,7 +20,7 @@ const Player = ({data})=>{
                 playing
             />
             <section className={`${theme} player-desc`}>
-                <h4 className='pl-title'>
+                <h4 className={`${theme} pl-title`}>
                     <Link to={`/video/${videoId }`} >
                         {title}
                     </Link>

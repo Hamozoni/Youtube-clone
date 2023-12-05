@@ -5,15 +5,20 @@
     cursor: pointer;
     .short-img {
         position: relative;
-        max-height: 320px;
+        max-height: 380px;
         border-radius: $border-radius-l;
+        min-height: 373px ;
+        min-width: 210px;
         overflow: hidden;
         img {
-            max-width: 240px;
-            max-height: 320px;
+           min-height: 373px ;
         }
         .short-player{
             z-index: 999;
+        }
+        .short-layout {
+            z-index: 9999;
+            background-color: transparent;
         }
     }
     .short-desc {

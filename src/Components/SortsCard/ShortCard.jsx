@@ -31,13 +31,14 @@ const ShortCard = ({short,shorts})=> {
             onMouseOver={()=> setPlayingVideoId(short?.videoId)}
             onMouseLeave={()=> setPlayingVideoId('')}
             onTouchEnd={()=> setPlayingVideoId(short?.videoId)}
-        >
+            >
             <div className="short-img">
-           { short?.thumbnail ?
-            <img 
-                src={short?.thumbnail[0]?.url} 
-                alt={'channel'}
-            />: <div></div>}
+              { short?.thumbnail ?
+                <img 
+                    src={short?.thumbnail[0]?.url} 
+                    alt={'channel'}
+                />: <div></div>
+              }
               {
                 playingVideoId === short?.videoId && 
                 <ReactPlayer 
@@ -48,6 +49,7 @@ const ShortCard = ({short,shorts})=> {
                 />
 
               }
+              <span className="absolute short-layout"></span>
 
             </div>
             <div className="short-desc">

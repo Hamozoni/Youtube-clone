@@ -91,7 +91,7 @@ const SearchFeed = ()=> {
             <div className={`${theme} container`}>
 
                 { Refinements?.length > 0 && <Refinements refinements={refinements} />}
-                {ispending ? <Loading /> :<RelatedVideos elements={videos} renderFrom="search" direction="column"/>}
+                {ispending ? <Loading /> :<RelatedVideos elements={videos} renderFrom="search" />}
 
                 {
                     isLoadingMoreData !== 'error' && continuation ?

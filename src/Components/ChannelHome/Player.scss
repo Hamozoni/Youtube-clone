@@ -1,47 +1,62 @@
+@import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
+
 .ch-home-player {
     max-width: 100%;
-    width: fit-content;
-    padding: 10px 0;
+    padding: $padding-l 0;
     overflow: hidden;
-
     .player {
       min-width: 370px;
       max-width: 424px;
       min-height: 200px;
       max-height: 238px;
-      border-radius: 10px;
+      border-radius: $border-radius-l;
       margin: 0 auto;
       overflow: hidden;
     }
     .player-desc {
         .pl-title {
-            margin: 10px 0;
+            margin: $margin-l 0;
             a {
-                color: #fff;
+                color: $text-color-dark-l;
+            }
+            &.dark {
+                a {
+                    color: $text-color-light-l; 
+                }
             }
         }
         .time-views {
             span {
-                font-size: 12px;
-                color: #ebb8b8;
+                font-size: $font-size-m;
+                color: $text-color-dark-m;
+            }
+            &.dark {
+                span {
+                    color: $text-color-light-l; 
+                }
             }
         }
         aside {
-            font-size: 12px;
+            font-size: $font-size-m;
             word-break: break-all;
             line-height: 1.8;
             overflow: hidden;
             display: none;
-            color: #eccaca;
+            color: $text-color-dark-m;
+        }
+        &.dark {
+            aside {
+                color: $text-color-light-l;
+            }
         }
     }
     @media (min-width: 570px) {
-        display: flex;
-        gap: 20px;
+        @include flex-box;
         min-height: 200px;
         max-height: 238px;
         .time-views {
-            margin: 15px 0;
+            margin: $margin-l 0;
         }
         .player-desc {
             .pl-title {

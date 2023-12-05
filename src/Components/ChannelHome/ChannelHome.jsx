@@ -38,8 +38,8 @@ const ChannelHome = ({id})=> {
         .catch(error => {
             setError(error);
             setIsLoading(false);
-        })
-
+        });
+        
     },[id,lang]);
 
 
@@ -49,16 +49,12 @@ const ChannelHome = ({id})=> {
         const prevIcon = document.querySelector(`.${class_name}-prev`);
 
         if(type === 'prev'){
-
-            if(videosContainer.scrollLeft === 0){
-                prevIcon.style.display = 'none';
-            }else {
-                videosContainer.scrollBy({top: 0,left:-400, behavior: 'smooth'});
-            } 
+            videosContainer.scrollBy({top: 0,left:-400, behavior: 'smooth'});
 
         }else {
             videosContainer.scrollBy({top: 0,left: 400, behavior: 'smooth'});
         }
+        scrollHandler(class_name);
         
     };
 
@@ -71,19 +67,24 @@ const ChannelHome = ({id})=> {
         const videosHolder =  document.querySelector(`.${class_name}-holder`);
         const videosContainerWidth = videosContainer.clientWidth;
         const videosHolderWidth = videosHolder.clientWidth;
+        
+        if(lang === 'ar'){
 
-        if(videosContainer.scrollLeft === 0 ){
-            prevIcon.style.display = 'none';
-        }else if(videosContainerWidth > 430 ){
+            if(videosContainer.scrollLeft === 0 ){
+                nextIcon.style.display = 'none';
+            }else if(videosContainerWidth > 430 ){
+                
+                nextIcon.style.display = 'flex';
+            }
             
-            prevIcon.style.display = 'flex';
-        }
-
-        if (videosContainer.scrollLeft + videosContainerWidth === videosHolderWidth) {
-            nextIcon.style.display = 'none';
-
-        }if(videosContainerWidth > 430 ){
-            nextIcon.style.display = 'flex';
+        }else{
+            
+            if(videosContainer.scrollLeft === 0 ){
+                prevIcon.style.display = 'none';
+            }else if(videosContainerWidth > 430 ){
+                
+                prevIcon.style.display = 'flex';
+            }
         }
     }
 
@@ -127,7 +128,7 @@ const ChannelHome = ({id})=> {
                                 el?.type !== 'player' &&
                                 <>
                                  <div 
-                                    className={`${el?.type}-${i}-prev scroll-prev ${theme}`}>
+                                    className={`${el?.type}-${i}-prev scroll-prev ${theme}`} >
                                       <ArrowBackIosNewIcon 
                                        onClick={()=> scrollingVideos(`${el?.type }-${i}`,'prev')}
                                       />
