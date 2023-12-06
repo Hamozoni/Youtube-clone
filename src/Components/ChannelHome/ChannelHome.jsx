@@ -18,6 +18,7 @@ import Playlist from "../PlayListCard/PlayList";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { scrollHandler } from "./scrollHandler";
 
 
 const ChannelHome = ({id})=> {
@@ -45,7 +46,6 @@ const ChannelHome = ({id})=> {
 
     const scrollingVideos = (class_name,type)=> {
         const videosContainer =  document.querySelector(`.${class_name}`);
-        const prevIcon = document.querySelector(`.${class_name}-prev`);
 
         if(type === 'prev'){
             videosContainer.scrollBy({top: 0,left:-400, behavior: 'smooth'});
@@ -53,59 +53,8 @@ const ChannelHome = ({id})=> {
         }else {
             videosContainer.scrollBy({top: 0,left: 400, behavior: 'smooth'});
         }
-        scrollHandler(class_name);
-        
+        scrollHandler(class_name,lang); 
     };
-
-    const scrollHandler = (class_name)=>{
-
-       const prevIcon = document.querySelector(`.${class_name}-prev`);
-       const nextIcon = document.querySelector(`.${class_name}-next`);
-      
-        const videosContainer =  document.querySelector(`.${class_name}`);
-        const videosHolder =  document.querySelector(`.${class_name}-holder`);
-        const videosContainerWidth = videosContainer.clientWidth;
-        const videosHolderWidth = videosHolder.clientWidth;
-
-        console.log(videosHolderWidth,videosContainerWidth,videosContainer.scrollLeft);
-
-        if(videosContainerWidth <= videosHolderWidth ){
-            nextIcon.style.display = 'none';
-            prevIcon.style.display = 'none';
-        }else {
-            nextIcon.style.display = 'flex';
-            prevIcon.style.display = 'flex';
-        }
-        
-        if(lang === 'ar'){
-
-            if(videosContainer.scrollLeft === 0 ){
-                nextIcon.style.display = 'none';
-            } else {
-                nextIcon.style.display = 'flex';
-            }
-
-            if(-videosContainer.scrollLeft + videosContainerWidth === videosHolderWidth) {
-                prevIcon.style.display = 'none';
-            }else {
-                prevIcon.style.display = 'flex';
-            }
-            
-        }else{ 
-            if(videosContainer.scrollLeft === 0 ){
-                prevIcon.style.display = 'none';
-            }else {  
-                prevIcon.style.display = 'flex';
-            }
-
-            if(videosContainer.scrollLeft + videosContainerWidth === videosHolderWidth) {
-                nextIcon.style.display = 'none';
-            }else {
-                nextIcon.style.display = 'flex';
-            }
-        }
-    }
-
 
     return (
         error ? <Error error={error}/> :(
@@ -114,7 +63,7 @@ const ChannelHome = ({id})=> {
                 {data?.map((el,i)=>(
                     <section key={i} className={`${theme} part-container`}> 
                         { 
-                          el?.type !== 'player'  &&
+                          el?.type !== 'player' && el?.type !== 'video' ?
                         <> 
                              <h4 
                                 className={`${theme} part-title`}>
@@ -149,15 +98,15 @@ const ChannelHome = ({id})=> {
                                 <ArrowForwardIosOutlinedIcon />
                             </div>
     
-                        </>
+                        </> : ""
                         }
                         <div 
-                            onLoad={()=> scrollHandler(`${el?.type }-${i}`)}
-                            onScroll={()=> scrollHandler(`${el?.type }-${i}`)}
+                            onLoad={()=> scrollHandler(`${el?.type }-${i}`,lang)}
+                            onScroll={()=> scrollHandler(`${el?.type }-${i}`,lang)}
                             className={`${el?.type !== 'player' && `${el?.type }-${i}`} ${theme} videos-wraper`}>
                             <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} ${theme} videos channel-home`} >
                                {
-                                el?.type === 'player' ?
+                                el?.type === 'player' || el?.type === 'video'?
                                 <Player data={el} />
                                 :
                                 el?.type === "video_listing"  ?
@@ -196,10 +145,9 @@ const ChannelHome = ({id})=> {
                                 :
                                 el?.type === "channel_listing" && 
                                         
-                                            el?.data?.map((channelData)=>(
-                                                <MainChannelCard key={channelData?.channelId} data={channelData} renderFrom="home-channel"/>
-                                            ))
-                                        
+                                    el?.data?.map((channelData)=>(
+                                        <MainChannelCard key={channelData?.channelId} data={channelData} renderFrom="home-channel"/>
+                                    ))       
                             }
                             </div>
                         </div>

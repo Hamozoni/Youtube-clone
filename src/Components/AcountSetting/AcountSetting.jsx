@@ -35,7 +35,7 @@ const AcountSetting = ()=>{
                         <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
                             <KeyboardBackspaceOutlinedIcon />
                         </div>
-                        <h5 className="title">
+                        <h5 className={`${theme} title`}>
                             appearance
                         </h5>
                     </header>
@@ -74,7 +74,7 @@ const AcountSetting = ()=>{
                             <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
                                 <KeyboardBackspaceOutlinedIcon />
                             </div>
-                            <h5 className="title">
+                            <h5 className={`${theme} title`}>
                                Choose your language
                             </h5>
                         </header>
@@ -146,7 +146,10 @@ const AcountSetting = ()=>{
     }
 
     return (
-        <div className={`${theme} acount-setting open-menu`} style={lang === 'en' ? {right: '40px'} : {left: '40px'}}>
+        <div 
+            className={`${theme} acount-setting open-menu`} 
+            style={lang === 'en' ? {right: '40px'} : {left: '40px'}}
+            >
             {
                 witchOneRenders === 'main' ? <AcountContainer /> :
                 witchOneRenders === 'lang' ? <LanguageMenu /> :

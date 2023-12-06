@@ -24,7 +24,7 @@
             color: $text-color-dark-m;
             cursor: pointer;
             border-radius: $border-radius-l;
-            padding: 3px 7px;
+            padding: 3px $padding-l;
             border: 1px solid darken($color: $back-gr-color-light, $amount: 10);
             svg {
                padding: 0;
@@ -105,8 +105,8 @@
             flex-wrap: nowrap;
             width: fit-content;
             .video-card, .playlist-img{
-                width: 200px;
-                min-width: 200px;
+                width: 320px;
+                min-width: 300px;
             }
             .short-cards {
                display: flex;

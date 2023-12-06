@@ -69,19 +69,21 @@ const [isCkecked,setIsCkecked] = useState(null)
     const imgHolder = useRef(null);
 
     const next = ()=>{
+
         imgHolder.current.scrollBy({
             top: 0,
-            left: 100,
+            left: imgHolder.current.offsetWidth,
             behavior: "smooth",
-          });
-    }
+          }); 
+    };
+
     const prev = ()=>{
         imgHolder.current.scrollBy({
             top: 0,
-            left: -100,
+            left: -imgHolder.current.offsetWidth,
             behavior: "smooth",
           });
-    }
+    };
 
     return (
         <div className={`${theme} community`}>
@@ -94,11 +96,11 @@ const [isCkecked,setIsCkecked] = useState(null)
                         <h4 className="name"> {authorText} </h4>
                         <span>{publishedTimeText}</span>
                     </div>
-                    <article>
-                        {contentText}
-                    </article>
                 </section>
             </div>
+            <article>
+                {contentText}
+            </article>
 
             <div className={`${theme} attachment`}>
                {
@@ -111,7 +113,7 @@ const [isCkecked,setIsCkecked] = useState(null)
                 <div className="images" ref={imgHolder}>
                     {
                         attachment?.image?.map((scr,i)=>(
-                            <div className="img-holder">
+                            <div className="img-holder" >
                                 <img key={scr[1]?.url} src={scr[3]?.url} alt="post"  />
                                 <span className="albu"><PermMediaOutlinedIcon /></span>
                                { attachment?.image?.length - 1 !== i && 
