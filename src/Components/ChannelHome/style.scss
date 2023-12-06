@@ -3,9 +3,9 @@
 
 .channel-home{
    .part-container {
-      position: relative; 
       padding-bottom: $padding-l;
       max-width: 100%;
+      position: relative; 
       &:not(:last-of-type){
          border-bottom: 1px solid darken($color: $back-gr-color-light, $amount: 10);
       }
@@ -58,37 +58,48 @@
             color: $text-color-light-m;
          }
       }
+      .scroll-next,.scroll-prev {
+         display: none;
+         @media (min-width: 430px) {
+            position: absolute;
+            @include flex-box(center,center);
+            top: calc(50% - 40px);
+            width: 30px;
+            height: 30px;
+            background-color: darken($color: $back-gr-color-light, $amount: 5);
+            border: 1px solid $text-color-dark-m;
+            border-radius: 50%;
+            padding: $padding-l + 9;
+            cursor: pointer;
+            z-index: 99999;
+            &:hover {
+               background-color: darken($color: $back-gr-color-light, $amount: 10);
+            }
+            svg {
+               color: $text-color-dark-l;
+               font-size: 18px;
+            }
+            &.dark {
+               background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+               border-color: $text-color-light-l;
+               &:hover {
+                  background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+               }
+            svg {
+               color: $text-color-light-l;
+            }
+            }
+         }
+      }
+      .scroll-next {
+         right: -15px;
+      }
+      .scroll-prev {
+         left: -15px;
+      }
       .videos-wraper { 
          overflow-x: scroll;
          max-width: 100%;
-         .scroll-next,.scroll-prev {
-            display: none;
-            @media (min-width: 430px) {
-               position: absolute;
-               @include flex-box(center,center);
-               top: calc(50% + 40px);
-               width: 30px;
-               height: 30px;
-               background-color: darken($color: $back-gr-color-light, $amount: 10);
-               border: 1px solid $text-color-dark-m;
-               border-radius: 50%;
-               cursor: pointer;
-               z-index: 99999;
-               &:hover {
-                  background-color: darken($color: $back-gr-color-light, $amount: 10);
-               }
-               svg {
-                  color: $text-color-dark-l;
-                  font-size: 22px;
-               }
-            }
-         }
-         .scroll-next {
-            right: -15px;
-         }
-         .scroll-prev {
-            left: -15px;
-         }
          .videos.channel-home {
             display: flex;
             flex-wrap: nowrap;

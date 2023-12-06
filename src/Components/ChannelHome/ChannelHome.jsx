@@ -39,12 +39,11 @@ const ChannelHome = ({id})=> {
             setError(error);
             setIsLoading(false);
         });
-        
+
     },[id,lang]);
 
 
     const scrollingVideos = (class_name,type)=> {
-
         const videosContainer =  document.querySelector(`.${class_name}`);
         const prevIcon = document.querySelector(`.${class_name}-prev`);
 
@@ -67,23 +66,42 @@ const ChannelHome = ({id})=> {
         const videosHolder =  document.querySelector(`.${class_name}-holder`);
         const videosContainerWidth = videosContainer.clientWidth;
         const videosHolderWidth = videosHolder.clientWidth;
+
+        console.log(videosHolderWidth,videosContainerWidth,videosContainer.scrollLeft);
+
+        if(videosContainerWidth <= videosHolderWidth ){
+            nextIcon.style.display = 'none';
+            prevIcon.style.display = 'none';
+        }else {
+            nextIcon.style.display = 'flex';
+            prevIcon.style.display = 'flex';
+        }
         
         if(lang === 'ar'){
 
             if(videosContainer.scrollLeft === 0 ){
                 nextIcon.style.display = 'none';
-            }else if(videosContainerWidth > 430 ){
-                
+            } else {
                 nextIcon.style.display = 'flex';
             }
+
+            if(-videosContainer.scrollLeft + videosContainerWidth === videosHolderWidth) {
+                prevIcon.style.display = 'none';
+            }else {
+                prevIcon.style.display = 'flex';
+            }
             
-        }else{
-            
+        }else{ 
             if(videosContainer.scrollLeft === 0 ){
                 prevIcon.style.display = 'none';
-            }else if(videosContainerWidth > 430 ){
-                
+            }else {  
                 prevIcon.style.display = 'flex';
+            }
+
+            if(videosContainer.scrollLeft + videosContainerWidth === videosHolderWidth) {
+                nextIcon.style.display = 'none';
+            }else {
+                nextIcon.style.display = 'flex';
             }
         }
     }
@@ -117,32 +135,26 @@ const ChannelHome = ({id})=> {
                             <p className={`${theme} sub-title`}>
                                 {el?.subtitle?.length > 250 ?`${el?.subtitle.slice(0,200)}...`: el?.subtitle}
                             </p>
-                          }
+                           }
+                            <div 
+                                className={`${el?.type}-${i}-prev scroll-prev ${theme}`}
+                                onClick={ ()=> scrollingVideos(`${el?.type }-${i}`,'prev')}
+                                 >
+                                    <ArrowBackIosNewIcon />
+                            </div> 
+                            <div 
+                                className={`${el?.type}-${i}-next scroll-next ${theme}`}
+                                onClick={ ()=> scrollingVideos(`${el?.type }-${i}`,'next')}
+                                >
+                                <ArrowForwardIosOutlinedIcon />
+                            </div>
     
                         </>
                         }
                         <div 
+                            onLoad={()=> scrollHandler(`${el?.type }-${i}`)}
                             onScroll={()=> scrollHandler(`${el?.type }-${i}`)}
                             className={`${el?.type !== 'player' && `${el?.type }-${i}`} ${theme} videos-wraper`}>
-                        {
-                                el?.type !== 'player' &&
-                                <>
-                                 <div 
-                                    className={`${el?.type}-${i}-prev scroll-prev ${theme}`} >
-                                      <ArrowBackIosNewIcon 
-                                       onClick={()=> scrollingVideos(`${el?.type }-${i}`,'prev')}
-                                      />
-                                  </div> 
-                                  <div 
-
-                                    className={`${el?.type}-${i}-next scroll-next ${theme}`}>
-                                     <ArrowForwardIosOutlinedIcon 
-                                         onClick={()=> scrollingVideos(`${el?.type }-${i}`,'next')}
-                                       />
-                                  </div>
-  
-                              </>        
-                        }
                             <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} ${theme} videos channel-home`} >
                                {
                                 el?.type === 'player' ?
