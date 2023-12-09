@@ -1,70 +1,94 @@
-import './Comments.scss';
-import { ternViewsTo } from '../../Utils/Constans';
-import { Link } from 'react-router-dom';
-import { Theme } from '../../Utils/Colors';
+import ClearIcon from '@mui/icons-material/Clear';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Loading from '../Loading/Loading'
+import Error from '../Error/Error';
+import Comment from './Comment'
+
 import { statesContext } from '../../Contexts/statesContext';
-import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
-import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
-import { useContext} from 'react';
 import { language } from '../../Utils/language';
 
-const Comments = ({comment })=> {
+import { useContext, useEffect, useState } from 'react';
+import { fetchChannelApi } from '../../Utils/FetchApi';
 
-    const { theme, lang } = useContext(statesContext);
-    const { authorChannelId,
-            authorThumbnail, 
-            authorText, 
-            publishedTimeText, 
-            textDisplay, 
-            likesCount, 
-            replyCount } = comment
+import './Comments.scss';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
-    return (
-        <div className={`${theme} comm-container`} > 
-            <div className={`${theme} comment-box`}>
-                <Link to={`/channels/${authorChannelId}`} >
-                   <img 
-                        className='auther-img' 
-                        src={authorThumbnail[0]?.url}
-                        alt="img" 
-                    />
-                </Link>   
-                <div className={`${theme} auther-desc`}>
-                    <h4 className={`${theme} auth-name`}>
-                        {authorText}
-                    </h4>
-                    <span className={`${theme} time`}
-                       
-                        >
-                        {publishedTimeText}
-                    </span>
-                    <p className={`${theme} comment`}
-                        >
-                        {textDisplay}
-                    </p>
-                    <div className={`${theme} like-dislike-btn`}>
-                        <button
-                            >
-                            <ThumbUpAltOutlinedIcon />
-                            {likesCount}
-                        </button>
-                        <button 
-                            >
-                            <ThumbDownOffAltOutlinedIcon />
-                        </button>
+const VideoComments = ({id,fetchQuery,renderedFrom})=> {
+
+    const [comments,setComments] = useState([]);
+    const [commentsCount,setCommentsCount] = useState(0);
+    const [continuation,setContinuation] = useState('')
+    const [isLoading,setIsLoading] = useState(true);
+    const [error,setError] = useState(null);
+    const [isLoadingMore,setIsLoadingMore] = useState(false);
+    const [isComm,setComm] = useState(true);
+
+    const { lang,theme } = useContext(statesContext);
+
+
+    useEffect(()=>{
+        setIsLoading(true);
+        setError(null);
+        fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}`)
+            .then((data)=>{
+                setComments(data?.data);
+                setCommentsCount(data?.commentsCount);
+                setContinuation(data?.continuation);
+                console.log(data)
+                setIsLoading(false);
+            })
+            .catch((err)=>{
+                setIsLoading(false);
+                setError(err);
+            })
+
+    },[id,lang]);
+
+    const loadMore = ()=>{
+        setIsLoadingMore(true);
+        if(continuation?.length > 0) {
+            
+            fetchChannelApi(`${fetchQuery}?id=${id}&lang=${lang}&token=${continuation}&sort_by=newest`)
+            .then((data)=>{
+                setComments( prev => [...prev,...data?.data]);
+                setContinuation(data?.continuation);
+                setIsLoadingMore(false);
+            })
+        }
+    }
+
+   return (
+
+        error ? <Error error={error} /> : isLoading ? <Loading /> :
+         <div className={`${!isComm  && 'active'} ${renderedFrom} ${theme} comments`}>
+                <section className={`${theme} comment-head`} >
+                    <h5 className={`${theme} comm-title`}  onClick={()=>  setComm(!isComm)}>
+                        {commentsCount} {language[lang].comments}
                         {
-                            replyCount > 0 &&
-                            <span className={`${theme} replies`} >
-                                {replyCount} {language[lang].replies}
+                          renderedFrom === 'watch'  &&
+                            <span className={`${theme} comm-arrows`} >
+                                {isComm ?<ExpandMoreIcon/> : <ClearIcon />}
                             </span>
                         }
-                    </div>
-    
+                    </h5>
+                </section>
+                <div className={`${isComm && 'active'} ${renderedFrom} ${theme} wrapper`}>  
+                    {
+                        comments?.map((comment)=>(
+                            <Comment key={comment?.commentId} comment={comment} />
+                        ))
+                    } 
+                    
+                    {  
+                      continuation?.length > 0 &&
+                      <LoadMoreBtn onClickHandler={loadMore} isLoadingMore={isLoadingMore}/>
+                    }
+                
                 </div>
-            </div>
-        </div>
 
-    )
+             
+         </div>
+   )
 };
 
-export default Comments;
+export default VideoComments;

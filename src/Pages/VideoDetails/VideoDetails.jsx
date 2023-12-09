@@ -79,15 +79,17 @@ const VideoDetails = ()=> {
                <section className={`${theme} related-video`}>
                     {
                         relatedKeywords?.length > 0 &&
-                        <nav className={`${theme} related-keywords video-pla`}>
-                            <ul className='taps'>
-                                {
-                                    relatedKeywords?.map((key)=>(
-                                        <li className={key === keyword ? `active ${theme}` : theme} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
-                                    ))
-                                } 
-                            </ul>
-                        </nav>
+                        <div className={`${theme} related-keywords video-pla`}>
+                            <nav className="related-container">
+                                <ul className='taps'>
+                                    {
+                                        relatedKeywords?.map((key)=>(
+                                            <li className={key === keyword ? `active ${theme}` : theme} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
+                                        ))
+                                    } 
+                                </ul>
+                            </nav>
+                        </div>
                     }
                    {isLoading ? <Loading />: <RelatedVideos elements={videos} renderFrom="watch"/> } 
                    {iskeyChanged && <div className="key-loading"><span>loading...</span></div>}

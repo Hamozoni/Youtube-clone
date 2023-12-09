@@ -3,13 +3,13 @@
 
 .video-details {
     .container {
-      @include flex-box();
+      @include flex-box(_,_,0);
        padding: 0;
        flex-direction: column;
        max-width: 1300px;
        @media (min-width: 992px) {
           flex-direction: row;
-         //  padding: 0 10px;
+          gap: $gap-l;
        }
        .related-video {
          max-width: 100%;

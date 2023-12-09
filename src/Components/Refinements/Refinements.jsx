@@ -8,19 +8,21 @@ const Refinements = ({refinements})=> {
     const {theme} = useContext(statesContext)
 
     return (
-        <nav className={`${theme} related-keywords`}>
-            <ul className={`${theme} taps`}>
-                {
-                    refinements?.map((refine,i)=>(
-                        <li key={refine + i} className={theme} >
-                            <Link to={`/search/${refine}`}>
-                                {refine}
-                            </Link>
-                        </li>
-                    ))
-                }
-            </ul>
-       </nav>
+        <div className={`${theme} related-keywords`}>
+            <nav className="related-container">
+                <ul className={`${theme} taps`}>
+                    {
+                        refinements?.map((refine,i)=>(
+                            <li key={refine + i} className={theme} >
+                                <Link to={`/search/${refine}`}>
+                                    {refine}
+                                </Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+       </div>
     )
 }
 

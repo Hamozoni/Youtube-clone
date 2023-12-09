@@ -1,0 +1,21 @@
+@import "../../GlibalStyles.scss/Mixin";
+.post {
+    max-width: 100%;
+    .post-container {
+        max-width: 100%;
+        @media (min-width: 790px) {
+            @include flex-box(_,_,80px);
+            
+        }
+        .community-container {
+            padding: $padding-l;
+            @media (min-width: 790px) {
+               width: 800px;
+                
+            }
+            .comments {
+                max-width: 800px;
+            }
+        }
+    }
+}

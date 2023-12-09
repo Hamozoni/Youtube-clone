@@ -63,7 +63,7 @@
          @media (min-width: 430px) {
             position: absolute;
             @include flex-box(center,center);
-            top: calc(50% - 40px);
+            top: calc(50% - 30px);
             width: 30px;
             height: 30px;
             background-color: darken($color: $back-gr-color-light, $amount: 5);
@@ -100,30 +100,27 @@
       .videos-wraper { 
          overflow-x: scroll;
          max-width: 100%;
-         .videos.channel-home {
+         .channel-home {
             display: flex;
             flex-wrap: nowrap;
+            gap: 10px;
             width: fit-content;
-            .video-card, .playlist-img{
-                width: 320px;
-                min-width: 300px;
-            }
-            .short-cards {
-               display: flex;
-               gap: 15px;
-               .short-card  {
-                  min-width: 180px;
-                  width: 180px;
+
+         }
+         .video-card, .playlist-card{
+            display: block;
+            width: 300px;
+            min-width: 280px;
+            .playlist-img {
+               max-height: 168px;
+               .p-img {
+                  max-height: 100% !important;
+                  overflow: hidden;
                }
             }
-
          }
       }
       .channel_listing {
-         width: 100%;
-         display: flex;
-         gap: 50px;
-         text-align: center;
          .main-chan-card {
             flex-direction: column !important;
             justify-content: center;
@@ -144,9 +141,6 @@
          }
       }
       .members_listing {
-         display: flex;
-         align-items: center;
-         gap: 10px;
          .member-image {
              
             .img {

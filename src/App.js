@@ -3,25 +3,19 @@ import Header from './Components/Header/Header';
 import SideNavbar from './Components/SideNavbar/SideNavbar'
 import Home from './Pages/Home/Home';
 import VideoDetails from './Pages/VideoDetails/VideoDetails';
-import ChanelDetails from './Pages/ChanelDetails/ChanelDetails';
+import Channel from './Pages/Channel/Channel';
 import SearchFeed from './Pages/SearchFeed/SearchFeed';
 import PlayListVideos from './Pages/PlayListVideos/PlayListVideos';
 import ShortsVideos from './Pages/ShortsVideos/ShortsVideos';
 
-// import StatesContextComponent from './Contexts/statesContext';
 import {statesContext} from './Contexts/statesContext';
 import { useContext, useEffect } from 'react';
 import AcountSetting from './Components/AcountSetting/AcountSetting';
+import Post from './Pages/Post/Post';
 
 const App = ()=> {
 
   const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen } = useContext(statesContext);
-  // const [Theme, setTheme] = useState('dark');
-  // const [lang, setLang] = useState("en");
-  // const [shorts, setShorts] = useState([]);
-  // const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
-  // const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
-
 
   useEffect(()=>{
 
@@ -55,21 +49,6 @@ const App = ()=> {
   },[theme,lang,setLang,setTheme]);
 
 
-    // const rootEl = document.getElementById('root');
-     
-    // rootEl.onclick = (e)=>{
-    //   console.log(e.target.classList)
-    //    if(e.target.classList.contains('open-menu')){
-    //       console.log("yes")
-
-    //    }else {
-    //     setIsAcountNavOpen(false);
-    //    }
-    // }
-
-
-
-
   return (
       < BrowserRouter >
         <Header />
@@ -84,10 +63,11 @@ const App = ()=> {
         <Routes>
           <Route path='/' exact element={<Home />} />
           <Route path='/video/:id' element={<VideoDetails />} />
-          <Route path='/channels/:id' element={<ChanelDetails />} />
+          <Route path='/channels/:id' element={<Channel />} />
           <Route path='/search/:word' element={<SearchFeed />} />
           <Route path='/playlist/:id' element={<PlayListVideos />} />
           <Route path='/short/:id' element={<ShortsVideos />} />
+          <Route path='/post/:id' element={<Post />} />
         </Routes>
        </BrowserRouter>
   );

@@ -9,6 +9,7 @@ import Refinements from '../../Components/Refinements/Refinements';
 
 import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';
 import { statesContext } from '../../Contexts/statesContext';
+import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 
 const SearchFeed = ()=> {
 
@@ -32,57 +33,29 @@ const SearchFeed = ()=> {
             setVideos(data?.data);
             setRefinements(data?.refinements);
             setContinuation(data?.continuation);
-            setIsloadingMoreData(true);
             console.log(data);
             setIsPending(false)
         })
         .catch((error)=>{
             setIsError(true);
             setError(error);
-            setIsloadingMoreData('error');
         })
     },[word,lang]);
 
     const fetchMoreData = ()=>{
-        setIsloadingMoreData(false);
+        setIsloadingMoreData(true);
         fetchChannelApi(`search?query=${word}&lang=${lang}&token=${continuation}`)
         .then((data)=>{
             console.log(data)
             setVideos(prev => [...prev,...data?.data]);
-            
             setContinuation(data?.continuation);
-            setIsloadingMoreData(true);
+            setIsloadingMoreData(false);
         })
         .catch((erorr)=>{
-            setIsloadingMoreData('error');
+
         })
     }
 
-    // const mainElement = useRef(null);
-    const loading = useRef(null)
-
-    useEffect(()=>{
-        console.log(isLoadingMoreData);
-        
-
-        const moreData = ()=>{
-            if(continuation){
-                const scrollPosation = window.scrollY;
-                const windowHeight = window.innerHeight;
-                const loadingTop = loading.current.offsetTop;
-
-               
-                if(scrollPosation >= loadingTop - windowHeight + 20 && isLoadingMoreData){
-                    fetchMoreData();
-                }
-            }
-
-        }
-
-        window.addEventListener('scroll',moreData);
-        return ()=> window.removeEventListener('scroll',moreData);
-
-    },[continuation]);
 
     return (
         isError ? <Error error={error} /> :
@@ -94,11 +67,8 @@ const SearchFeed = ()=> {
                 {ispending ? <Loading /> :<RelatedVideos elements={videos} renderFrom="search" />}
 
                 {
-                    isLoadingMoreData !== 'error' && continuation ?
-                
-                <div className={`${theme} load-more`} ref={loading}>
-                     loading...
-                </div> :''
+                 continuation &&
+                 <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMoreData}/>
                }
             </div>
         </main>

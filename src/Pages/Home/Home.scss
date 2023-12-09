@@ -1,3 +1,5 @@
+@import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 main.main-home{
     display: flex;
     gap: 10px;
@@ -14,6 +16,16 @@ main.main-home{
         }  
         @media (min-width: 790px) {
             max-width: calc(100% - 75px);
-        }  
+        } 
+        .related-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+            gap: $gap-l;
+            .videos-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+                gap: $gap-l;
+            }
+        }
     }
 }

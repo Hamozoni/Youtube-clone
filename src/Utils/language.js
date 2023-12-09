@@ -50,8 +50,11 @@ export const language = {
       latest: 'latest',
       popular: 'popular',
       oldest: 'oldest',
+      dateAdded: 'date added',
+      lastVideoAdded: 'last video added',
       links: 'links',
-      palyAll: 'play all'
+      palyAll: 'play all',
+      votes: 'votes',
     },
    ar: {
         logo: 'myh',
@@ -102,7 +105,10 @@ export const language = {
         latest: 'احدث',
         popular: "اشهر",
         oldest: 'اقدم',
+        dateAdded: '(بدا من الأحدث)تاريخ الإضافة',
+        lastVideoAdded: 'الفيديو الاخير الذي تمت إضافته',
         links: 'روابط',
-        palyAll: 'تشغيل الكل'
+        palyAll: 'تشغيل الكل',
+        votes: 'صوت',
       }
   }

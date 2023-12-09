@@ -6,8 +6,8 @@ import MainChannelCard from '../MainChannelCard/MainChannelCard';
 
 import WatchButtons from './WatchButtons';
 import VideoDescribtion from '../Watch/VideoDescribtion';
-import VideoComments from '../Watch/VideoComments';
 import { statesContext } from '../../Contexts/statesContext';
+import Comments from "../../Components/Comments/Comments";
 
 const VideoPlayer = ({videoDetail,id})=> {
 
@@ -32,7 +32,7 @@ const VideoPlayer = ({videoDetail,id})=> {
                 </div>
             </div>
              <VideoDescribtion videoDetail={videoDetail} />
-             <VideoComments id={id} videoDetail={videoDetail} />
+             <Comments id={id} fetchQuery='comments' renderedFrom='watch' />
         </div>
        </div>
     

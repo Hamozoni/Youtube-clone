@@ -15,18 +15,22 @@ const RelatedVideos = ({elements, renderFrom})=> {
         const {theme} = useContext(statesContext);
 
         return ( 
-            <div className={`${renderFrom} ${theme} videos`}  >
+            <div className={`${renderFrom} ${theme} related-videos `}  >
                 { elements?.map((el,i)=>(
-                        el?.type === 'video' || el?.viewCount ?                        
-                        <Videos 
-                            key={el?.videoId  + i} 
-                            data={el} 
-                            renderFrom={renderFrom} 
-                        /> 
+                        el?.type === 'video' || el?.viewCount ?  
+                            <Videos 
+                                key={el?.videoId  + i} 
+                                data={el} 
+                                renderFrom={renderFrom} 
+                            />                     
                     : el?.type  === 'channel' ?
                         <MainChannelCard key={el.channelId + i} data={el}  renderFrom={ renderFrom}/>
                     : el.type === 'playlist' ?
-                        <Playlist key={el.playlistId + i} playlist={el} renderFrom={renderFrom}/> 
+                            <Playlist
+                                key={el.playlistId + i} 
+                                playlist={el} 
+                                renderFrom={renderFrom}
+                            /> 
                     : el?.type === "shorts_listing" ? 
                         <section className={`${theme} listing`}>
                             <h5 className={`${theme} listing-title`}>
@@ -44,7 +48,7 @@ const RelatedVideos = ({elements, renderFrom})=> {
                         : el?.type === "video_listing" ?
                         <section className={`${theme} listing`}>
                             <h5 className={`${theme} listing-title`}>{el?.title}</h5>
-                            <div className={`${renderFrom} ${theme} videos`}>
+                            <div className={`${renderFrom} ${theme} videos-container`}>
                                 {
                                     el?.data?.map((el,i)=>(
                                         <Videos 

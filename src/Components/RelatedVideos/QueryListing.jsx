@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import './Query.scss';
+
 import {statesContext} from "../../Contexts/statesContext"
 const QueryListing = ({query})=> {
     const {theme} = useContext(statesContext)

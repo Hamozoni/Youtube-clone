@@ -1,15 +1,9 @@
 @import '../../GlibalStyles.scss/Variabls';
 
-@mixin display-flex ($Jf : flex-start) {
-         display: flex;
-         align-items: center;
-         justify-content: $Jf;
-}
 .video {
-   padding: 10px 0;
+    padding-top: $padding-l;
     width: 100%;
     @media (min-width: 992px) {
-      // width: 100%;
       flex-basis: 67%;
     }
     .player {

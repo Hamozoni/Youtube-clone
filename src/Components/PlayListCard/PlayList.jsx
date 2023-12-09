@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { language } from '../../Utils/language';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
-const Playlist = ({playlist, shorts, renderFrom})=> {
+const Playlist = ({playlist,renderFrom})=> {
 
     const { theme, lang } = useContext(statesContext);
     const { playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
@@ -23,7 +23,10 @@ const Playlist = ({playlist, shorts, renderFrom})=> {
         <div className={`${renderFrom} playlist-card`}  onClick={handlNavgate}>
             <div className='playlist-img' >
                 <div className='p-img'>
-                        <img src={thumbnail[1]?.url || thumbnail[0]?.url} alt={channelTitle} /> 
+                    <img src={thumbnail[1]?.url || thumbnail[0]?.url} alt={channelTitle} /> 
+                </div>
+                <div className="more-videos">
+                    <img src={thumbnail[1]?.url || thumbnail[0]?.url} alt={channelTitle} />
                 </div>
                 <section className='count' style={lang === 'en'? {right: '10px'} : {left: '10px'}}>
                      <PlaylistPlayIcon />

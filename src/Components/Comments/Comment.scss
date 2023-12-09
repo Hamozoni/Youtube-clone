@@ -1,0 +1,73 @@
+@import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
+
+.comment-box {
+    @include flex-box;
+    padding: $padding-l;
+    a {
+       width: fit-content;
+       min-width: fit-content;
+      .auther-img {
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+      }  
+    }
+    .auther-desc {
+       .auth-name {
+            display: inline;
+            color: $text-color-dark-l;
+            font-size: $font-size-l;
+            &.dark {
+               color: $text-color-light-l;
+            }
+         }    
+       .time {
+          font-size: $font-size-m;
+          color: $text-color-dark-m;
+          margin: 0 $margin-l;
+          &.dark {
+            color: $text-color-light-m;
+          }
+       }
+       .comment {
+          font-size: $font-size-m;
+          color: $text-color-dark-m;
+          -ms-word-break: break-all;
+          -moz-word-break:break-all;
+          word-break: break-all;
+          max-width: 100%;
+          &.dark {
+            color: $text-color-light-m;
+          }
+       }
+       .like-dislike-btn {
+          margin-top: $margin-m;
+          @include flex-box(center);
+          button {
+            color: $text-color-dark-m;
+            padding: 0 $padding-m;
+            font-size: $font-size-m;
+            @include flex-box(center,center,$gap-m);
+            border-radius: $border-radius-m;
+            background-color: transparent;
+            svg {
+               width: 17px;
+            }
+          }
+          &.dark {
+            button {
+               color: $text-color-light-l !important;
+            }
+          } 
+          .replies {
+            color: $text-color-dark-l;
+            font-size: $font-size-m;
+            font-weight: bold;
+            &.dark {
+               color: $text-color-light-l;
+            }
+          }
+       }
+    }
+}

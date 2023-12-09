@@ -6,8 +6,23 @@
 
     .playlist-img {
         position: relative;
-        overflow: hidden;
+        .more-videos{
+            position: absolute;
+            top: -7px;
+            left: 10px;
+            width: calc(100% - 20px);
+            z-index: -1;
+            max-height: 100%;
+            overflow: hidden;
+            img {
+                @media (min-width: 530px){
+                    border-radius: $border-radius-l;
+                } 
+            }
+        }
         .p-img  {
+            box-shadow: 0px -4px 10px -3px  $trans-black;
+            border-radius: $border-radius-l;
             img {
                 height: 100%;
                 @media (min-width: 530px){

@@ -20,7 +20,7 @@ li {
 img, picture {
   width: 100%;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 100% !important;
   object-fit: fill;
   background-position: center;
 }
@@ -81,42 +81,53 @@ body.dark-mode {
 
 }
 
-.load-more {
-  padding: 10px 0;
-  text-align: center;
-  button {
-    color: #fff;
-    background-color: #474b5f;
-    border: 1px solid  transparent;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
-    &:disabled,  &:disabled:hover {
-      background-color: rgb(80, 10, 45);
-      border-color: rgb(248, 11, 98);
-      cursor: wait;
-    }
-    &:hover {
-      background-color: transparent;
-      border-color: #5b5d66;
-    }
-  }
-
-}
-
 .related-keywords {
-  position: sticky;
-  padding: $padding-l 0;
-  margin-bottom: $margin-l ;
-  top: 55px;
-  max-width: 100%;
-  overflow: scroll;
-  background-color: $back-gr-color-light;
-  z-index: 99999;
-  &.dark {
-    background-color: $back-gr-color-dark;
-  }
+    position: sticky;
+    padding: $padding-l ;
+    margin-bottom: $margin-l ;
+    top: 55px;
+    background-color: $back-gr-color-light;
+    z-index: 99999;
+    &.dark {
+      background-color: $back-gr-color-dark;
+    }
+    .related-container  {
+      // max-width: 100%;
+      overflow: scroll;
+      .taps {
+        display: flex;
+        gap: 5px;
+        width: fit-content;
+        li {
+            min-width: fit-content;
+            text-transform: capitalize;
+            background-color: darken($back-gr-color-light, 5);
+            border-radius: $border-radius-m;
+            padding: $padding-m $padding-l;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: $font-size-l;
+            font-weight: 700;
+            color: $text-color-dark-l;
+            a {
+               color: $text-color-dark-l;
+            }
+            &:hover, &.active {
+              background-color: darken($back-gr-color-light, 10);
+            }
+            &.dark {
+              background-color: lighten($back-gr-color-dark, 5);
+              color: $text-color-light-l;
+              a {
+                color: $text-color-light-l;
+             }
+              &:hover, &.active {
+                background-color: lighten($back-gr-color-dark, 10);
+              }
+            }
+        }
+    }
+    }
   &.video-pla {
     top: 240px;
     @media (min-width: 330px) {
@@ -133,39 +144,6 @@ body.dark-mode {
     @media (min-width: 430px) {
       top: 50px;
     }
-  }
-  .taps {
-      display: flex;
-      gap: 5px;
-      width: fit-content;
-      li {
-          min-width: fit-content;
-          text-transform: capitalize;
-          background-color: darken($back-gr-color-light, 5);
-          border-radius: $border-radius-m;
-          padding: $padding-m $padding-l;
-          border: 1px solid transparent;
-          cursor: pointer;
-          font-size: $font-size-l;
-          font-weight: 700;
-          color: $text-color-dark-l;
-          a {
-             color: $text-color-dark-l;
-          }
-          &:hover, &.active {
-            background-color: darken($back-gr-color-light, 10);
-          }
-          &.dark {
-            background-color: lighten($back-gr-color-dark, 5);
-            color: $text-color-light-l;
-            a {
-              color: $text-color-light-l;
-           }
-            &:hover, &.active {
-              background-color: lighten($back-gr-color-dark, 10);
-            }
-          }
-      }
   }
 } 
 
@@ -197,4 +175,46 @@ body.dark-mode {
   min-height: 100%;
   left: 0;
   top: 0;
+}
+
+.sort-by {
+  padding: $padding-l 0;
+  margin-bottom: $margin-l;
+  ul {
+      @include flex-box;
+      li {
+          background-color: darken($color: $back-gr-color-light, $amount: 5);
+          color: $text-color-dark-l;
+          font-size: $font-size-l;
+          font-weight: 700;
+          padding: $padding-m $padding-l + $padding-m;
+          border-radius: 5px;
+          text-transform: capitalize;
+          cursor: pointer;
+          &:hover {
+              background-color: darken($color: $back-gr-color-light, $amount: 10);
+          }
+          &.active {
+              background-color: darken($color: $back-gr-color-light, $amount: 15);
+              border: 1px solid $text-color-dark-l;
+              color: $text-color-dark-m;
+          }
+      }
+  }
+  &.dark {
+      ul {
+          li {
+              background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+              color: $text-color-light-l;
+              &:hover {
+                  background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+              }
+              &.active {
+                  background-color:lighten($color: $back-gr-color-dark, $amount: 15);
+                  border: 1px solid $text-color-light-l;
+                  color: $text-color-light-m;
+              }
+          }
+      }
+  }
 }

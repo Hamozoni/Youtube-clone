@@ -103,8 +103,9 @@ const ChannelHome = ({id})=> {
                         <div 
                             onLoad={()=> scrollHandler(`${el?.type }-${i}`,lang)}
                             onScroll={()=> scrollHandler(`${el?.type }-${i}`,lang)}
-                            className={`${el?.type !== 'player' && `${el?.type }-${i}`} ${theme} videos-wraper`}>
-                            <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} ${theme} videos channel-home`} >
+                            className={`${el?.type !== 'player' && `${el?.type }-${i}`} ${theme} videos-wraper`}
+                            >
+                            <div className={`${el?.type !== 'player' && `${el?.type }-${i}-holder ${el?.type}`} ${theme} channel-home`} >
                                {
                                 el?.type === 'player' || el?.type === 'video'?
                                 <Player data={el} />
