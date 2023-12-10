@@ -11,7 +11,7 @@ import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
 import ChannelHome from '../../Components/ChannelHome/ChannelHome';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
-import ChannelContent from '../../Components/ChannelContent/ChannelContent';
+import ChannelContent from '../../Components/ChannelVideos/ChannelContent';
 import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 
 const ChanelDetails = ()=> {

@@ -9,13 +9,13 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 const Playlist = ({playlist,renderFrom})=> {
 
     const { theme, lang } = useContext(statesContext);
-    const { playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
+    const { videoId ,playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
 
     const navgate = useNavigate()
 
     const handlNavgate = (e)=>{
         if((e.target.nodeName !== "A")){
-            navgate(`/playlist/${playlistId}`)
+            navgate(`/watch/${videoId}/list/${playlistId}/1`)
         }
     }
 

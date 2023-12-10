@@ -9,7 +9,7 @@ import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
 import { statesContext } from '../../Contexts/statesContext';
 
-const VideoDetails = ()=> {
+const VideoDetails = ({children})=> {
 
     const { lang, theme} = useContext(statesContext);
 
@@ -77,6 +77,7 @@ const VideoDetails = ()=> {
             <div className={`${theme} container`}>
                 <VideoPlayer id={id} videoDetail={videoDetail} />
                <section className={`${theme} related-video`}>
+                     {children}
                     {
                         relatedKeywords?.length > 0 &&
                         <div className={`${theme} related-keywords video-pla`}>

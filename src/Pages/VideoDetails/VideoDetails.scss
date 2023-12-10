@@ -14,10 +14,11 @@
        .related-video {
          max-width: 100%;
          position: relative;
+         margin-top: $margin-l;
           @media (min-width: 992px) {
             max-width: 33%;
              flex-basis: 33% !important;
-             padding-top: $padding-l;
+            //  padding-top: $padding-l;
              width: 100%;
          }
        }

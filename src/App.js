@@ -3,9 +3,9 @@ import Header from './Components/Header/Header';
 import SideNavbar from './Components/SideNavbar/SideNavbar'
 import Home from './Pages/Home/Home';
 import VideoDetails from './Pages/VideoDetails/VideoDetails';
-import Channel from './Pages/Channel/Channel';
+import Channel from './Pages/Channel/Channel.jsx';
 import SearchFeed from './Pages/SearchFeed/SearchFeed';
-import PlayListVideos from './Pages/PlayListVideos/PlayListVideos';
+import PlayList from './Pages/Playlist/Playlist.jsx';
 import ShortsVideos from './Pages/ShortsVideos/ShortsVideos';
 
 import {statesContext} from './Contexts/statesContext';
@@ -65,7 +65,7 @@ const App = ()=> {
           <Route path='/video/:id' element={<VideoDetails />} />
           <Route path='/channels/:id' element={<Channel />} />
           <Route path='/search/:word' element={<SearchFeed />} />
-          <Route path='/playlist/:id' element={<PlayListVideos />} />
+          <Route path='/watch/:id/list/:plId/:index' element={<PlayList />} />
           <Route path='/short/:id' element={<ShortsVideos />} />
           <Route path='/post/:id' element={<Post />} />
         </Routes>
