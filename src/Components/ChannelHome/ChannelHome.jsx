@@ -8,7 +8,7 @@ import './style.scss';
 
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
-import Videos from "../Videos/Videos";
+import VideoCard from "../VideoCard/VideoCard";
 import MainChannelCard from "../MainChannelCard/MainChannelCard";
 import ShortCard from "../SortsCard/ShortCard";
 import Shorts from '../Images/shorts.svg'
@@ -19,9 +19,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { scrollHandler } from "./scrollHandler";
+import { useParams } from "react-router-dom";
 
 
-const ChannelHome = ({id})=> {
+const ChannelHome = ()=> {
+    const { id} = useParams();
 
     const {lang, theme} = useContext(statesContext);
     const [data,setData] = useState([]);
@@ -33,7 +35,7 @@ const ChannelHome = ({id})=> {
         fetchChannelApi(`channel/home?id=${id}&lang=${lang}`)
         .then(data => {
             setData(data?.data)
-            console.log(data?.data)
+            console.log(data?.meta)
             setIsLoading(false);
         })
         .catch(error => {
@@ -112,7 +114,7 @@ const ChannelHome = ({id})=> {
                                 :
                                 el?.type === "video_listing"  ?
                                     el?.data?.map((video)=>(
-                                        <Videos 
+                                        <VideoCard 
                                             key={video?.videoId} 
                                             data={video} 
                                             renderFrom="channel-home"/>

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import SideNavbar from './Components/SideNavbar/SideNavbar'
 import Home from './Pages/Home/Home';
-import VideoDetails from './Pages/VideoDetails/VideoDetails';
+import Watch from './Pages/Watch/Watch';
 import Channel from './Pages/Channel/Channel.jsx';
 import SearchFeed from './Pages/SearchFeed/SearchFeed';
 import PlayList from './Pages/Playlist/Playlist.jsx';
@@ -12,6 +12,9 @@ import {statesContext} from './Contexts/statesContext';
 import { useContext, useEffect } from 'react';
 import AcountSetting from './Components/AcountSetting/AcountSetting';
 import Post from './Pages/Post/Post';
+import ChannelHome from './Components/ChannelHome/ChannelHome.jsx';
+import ChannelContent from './Components/ChannelContent/ChannelContent.jsx';
+
 
 const App = ()=> {
 
@@ -52,8 +55,9 @@ const App = ()=> {
   return (
       < BrowserRouter >
         <Header />
-        {isSideNavbarOpen && 
-         <SideNavbar />
+          { 
+            isSideNavbarOpen && 
+            <SideNavbar />
           }
           {
             isAcountNavOpen && 
@@ -62,13 +66,20 @@ const App = ()=> {
           }
         <Routes>
           <Route path='/' exact element={<Home />} />
-          <Route path='/video/:id' element={<VideoDetails />} />
-          <Route path='/channels/:id' element={<Channel />} />
+          <Route path='/watch/:id' element={<Watch />} />
+          <Route path='/channels/:id' element={<Channel />} >
+              <Route index element={<ChannelHome />} />
+              <Route path='home' element={<ChannelHome />} />
+              <Route path=':section' element={<ChannelContent/>} />
+          </Route >
           <Route path='/search/:word' element={<SearchFeed />} />
           <Route path='/watch/:id/list/:plId/:index' element={<PlayList />} />
           <Route path='/short/:id' element={<ShortsVideos />} />
           <Route path='/post/:id' element={<Post />} />
         </Routes>
+        {
+          
+        }
        </BrowserRouter>
   );
 }

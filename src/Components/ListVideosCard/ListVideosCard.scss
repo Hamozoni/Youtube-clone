@@ -10,15 +10,17 @@
     margin-top: 0;
     z-index: 99999;
     background-color: darken($color: $back-gr-color-light, $amount: 10);
-    border: 1px solid transparent;
+    border: 1px solid darken($color: $back-gr-color-light, $amount: 20);
     &.active {
-        border-color: darken($color: $back-gr-color-light, $amount: 20);
         .pl-v-content {
         height: calc(100vh - 300px);
         overflow-y: auto;
         }
     }
-    
+    &.dark {
+       background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+       border-color: lighten($color: $back-gr-color-dark, $amount: 20);
+    }
     @media (min-width:768px) {
         &.active {
             .pl-v-content {
@@ -39,16 +41,25 @@
            color: $text-color-dark-l ;
            font-size: $font-size-m;
            margin-bottom: $margin-m;
+           &.dark {
+              color: $text-color-light-l;
+           }
         }
         .owner-channel {
            color: $text-color-dark-m ;
           font-size: 10px;
           margin-bottom: $margin-m;
+          &.dark {
+            color: $text-color-light-m;
+         }
         }
         .l-toggle-btn {
            color: $text-color-dark-m ;
             background-color: transparent;
             padding: 0;
+            &.dark {
+                color: $text-color-light-m;
+             }
         }
     }
     .pl-v-content {
@@ -61,12 +72,18 @@
             @include flex-box(_,_,$gap-m);
             margin: $margin-m 0;
             padding: 3px;
-            border-radius: 6px;
+            border-radius: $border-radius-m;
             border: 1px solid transparent;
             &:hover, &.active {
                 background-color: darken($color: $back-gr-color-light, $amount: 25);
                 position: relative;
-               border-color: darken($color: $logo-color, $amount: 35);
+                border-color: darken($color: $logo-color, $amount: 35);
+            }
+            &.dark {
+                &:hover, &.active {
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                    border-color: lighten($color: $back-gr-color-dark, $amount: 35);;
+                }
             }
             &.active::after {
                 content: '';
@@ -106,11 +123,16 @@
                font-size: $font-size-l;
                margin-bottom: $margin-m;
                color: $text-color-dark-l;
+               &.dark {
+                 color: $text-color-light-l;
+               }
             }
             .l-ch-name {
                 font-size: $font-size-m;
                color: $text-color-dark-m;
-
+               &.dark {
+                color: $text-color-light-m;
+              }
             }
            }
         }

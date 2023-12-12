@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import MainChannelCard from '../MainChannelCard/MainChannelCard';
 import Playlist from '../PlayListCard/PlayList'
-import Videos from '../Videos/Videos';
+import VideoCard from '../VideoCard/VideoCard';
 
 import "./style.scss";
 import Shorts from '../Images/shorts.svg'
@@ -18,7 +18,7 @@ const RelatedVideos = ({elements, renderFrom})=> {
             <div className={`${renderFrom} ${theme} related-videos `}  >
                 { elements?.map((el,i)=>(
                         el?.type === 'video' || el?.viewCount ?  
-                            <Videos 
+                            <VideoCard 
                                 key={el?.videoId  + i} 
                                 data={el} 
                                 renderFrom={renderFrom} 
@@ -51,7 +51,7 @@ const RelatedVideos = ({elements, renderFrom})=> {
                             <div className={`${renderFrom} ${theme} videos-container`}>
                                 {
                                     el?.data?.map((el,i)=>(
-                                        <Videos 
+                                        <VideoCard 
                                             key={el?.videoId + i} 
                                             data={el} 
                                             renderFrom={renderFrom}

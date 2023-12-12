@@ -25,7 +25,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
     return (  
             <div className={` ${renderFrom} main-chan-card`} >
                 <div className="card" >
-                    <Link to={`/channels/${data?.channelId}`} className={`img-l`}>
+                    <Link to={`/channels/${data?.channelId}/home`} className={`img-l`}>
                         <img 
                             className={`chan-img`}
                             src={ renderFrom === 'channel' ? data?.avatar[2]?.url :
@@ -38,7 +38,7 @@ const MainChannelCard = ({data,setIsAboutChannelOpen, renderFrom})=> {
                </div>
                 <div className={`subscribe`}>
                     <div className={`subsc-title`}>
-                            <Link to={`/channels/${data?.channelId}`} className={`${theme} name-l`}>
+                            <Link to={`/channels/${data?.channelId}/home`} className={`${theme} name-l`}>
                                 <h4 className={`${theme} name`} >
                                     {
                                         renderFrom === 'watch' &&  (data?.channelTitle?.length > 15 ? data?.channelTitle?.slice(0,15) + '...'  : data?.channelTitle)

@@ -1,11 +1,11 @@
 import ListVideosCard from "../../Components/ListVideosCard/ListVideosCard"
-import VideoDetails from "../VideoDetails/VideoDetails"
+import Watch from "../Watch/Watch";
 
 const PlayList = ()=>{
     return (
-        <VideoDetails >
+        <Watch >
             <ListVideosCard />
-        </VideoDetails>
+        </Watch>
     )
 };
 

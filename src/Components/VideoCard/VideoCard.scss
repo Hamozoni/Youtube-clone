@@ -1,0 +1,176 @@
+@import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
+
+
+.video-card {
+    border-radius: $border-radius-l;
+    transition: all 0.5s ease-in-out;
+    .video-img {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        @media (min-width: 430px){
+            border-radius: $border-radius-l;
+        } 
+        span.nav-watch {
+            background-color: transparent;
+            z-index: 9999;
+        }
+        img {
+            width: 100%;
+
+        }
+        span {
+            position: absolute;
+            bottom: 8px;
+            padding: 0px 5px 2px;
+            background-color: $trans-black;
+            color: $text-color-light-l;
+            border-radius: $border-radius-m;
+            font-size: $font-size-m;
+            font-weight: 500;
+            &.live {
+                background-color: $logo-color;
+                padding: 0px $padding-m;
+                div{
+                    display: flex;
+                    gap: $gap-m;
+                    svg {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .content {
+        padding: 0 $padding-m;
+        flex: 1;
+        overflow: hidden;
+        .wrapper {
+            @include flex-box(flex-start);
+            a.img{
+                    @include flex-box();
+                    min-width: fit-content;
+                img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                }
+            }
+            .titles {
+                a {
+                    .chanel-title {
+                        color: $text-color-dark-m;
+                        @include flex-box();
+                        font-size: $font-size-m;
+                        &.dark {
+                            color: $text-color-light-m; 
+                        }
+
+                    }
+                    .video-title {
+                        color: $text-color-dark-l;
+                        padding: 2px 0;
+                        font-size: $font-size-l;
+                        &.dark {
+                            color: $text-color-light-l; 
+                        }
+                    }
+                }
+                .video-desc {
+                    display: none;
+                    font-size: $font-size-m;
+                    color: $text-color-dark-m;
+                    &.dark {
+                        color: $text-color-light-m; 
+                    }
+                    @media (min-width: 540px) {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .stats {
+            color: $text-color-dark-m;
+            @include flex-box();
+            &.dark {
+                color: $text-color-light-m; 
+            }
+            .moment {
+                @include flex-box(_,_,$gap-m);
+                font-size: $font-size-m;
+                font-weight: normal;
+                svg {
+                    font-size: 17px;
+                }
+            }
+
+        }
+    }
+    &.watch, &.search {
+        .content {
+            a.img {
+                @media (min-width:430px) {
+                    display: none;
+                    }
+            }
+        }
+            @media (min-width:430px) {
+            @include flex-box();
+            margin-bottom: $margin-l;
+            .video-img {
+                flex: 1;
+            }
+            .content {
+                padding: 0;
+                flex: 1.3;
+            }
+            }
+    }
+    &.search{
+        @media (min-width:768px) {
+            .titles {
+                * {
+                    margin-bottom: $margin-m;
+                }
+            }
+            .content {
+                flex: 3;
+            }
+            }
+            @media (min-width:992px) {
+            .content {
+                flex: 2.5;
+            }
+            }
+
+    }
+}
+// &.search {
+//     @media (min-width:540px) {
+//         display: block;
+//         padding: $padding-l;
+//     }
+// }
+// &.channel {
+//     @media (min-width:430px) {
+//         grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+//     }
+// }
+// &.watch {
+//     @media (min-width:430px) {
+//         padding: $padding-l;
+//         display: block;
+//         }
+//         .video-img {
+//         @media (min-width: 430px){
+//             max-width: 230px;
+//         } 
+//     }
+// }
+// &.home {
+//     .video-card {
+//         display: flex;
+//         flex-direction: column;
+//     }
+// }

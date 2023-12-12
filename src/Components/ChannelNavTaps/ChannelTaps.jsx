@@ -3,48 +3,63 @@ import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 
 import './ChannelTaps.scss';
+import { useNavigate, useParams} from "react-router-dom";
 
 
-const ChannelTaps = ({channelContent,setChannelContent,setIsAboutChannelOpen})=>{
+const ChannelTaps = ({setIsAboutChannelOpen})=>{
 
     const {  lang, theme } = useContext(statesContext);
+    const {id, section } = useParams();
+
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (param)=>{
+        if(param === "home" || param === "community" ){
+            navigate(`/channels/${id}/${param}`);
+        }else if (param === "playlists" ){
+            navigate(`/channels/${id}/${param}?sort_by=date_added`);
+        }else {
+            navigate(`/channels/${id}/${param}?sort_by=newest`);
+        }
+    }
 
     return (
         <nav className={`${theme} channel-nav`} >
             <ul className={`${theme} nav`} >
                 <li 
-                    className={channelContent === 'home'? 'active': ''}
-                    onClick={()=> setChannelContent('home')}
+                    className={section === 'home' || section === undefined ? 'active': ''}
+                    onClick={()=> handleNavigate('home')}
                     >
                         { language[lang].home }
                 </li>
                 <li
-                    className={channelContent === 'videos' ? 'active': ''}
-                    onClick={()=> setChannelContent('videos')}
+                    className={section === 'videos' ? 'active': ''}
+                    onClick={()=> handleNavigate('videos')}
                     >
                         { language[lang].videos }
                 </li>
                 <li 
-                    className={channelContent === 'shorts' ? 'active': ''} 
-                    onClick={()=> setChannelContent('shorts')}
+                    className={section === 'shorts' ? 'active': ''} 
+                    onClick={()=> handleNavigate('shorts')}
                     >
                         { language[lang].shorts }
                 </li>
                 <li
-                    className={channelContent === 'live' ? 'active': ''} 
-                    onClick={()=> setChannelContent('live')}
+                    className={section === 'liveStreams' ? 'active': ''} 
+                    onClick={()=> handleNavigate('liveStreams')}
                     >
                         { language[lang].live }
                 </li>
                 <li
-                    className={channelContent === 'playlists' ? 'active': ''}
-                    onClick={()=> setChannelContent('playlists')}
+                    className={section === 'playlists' ? 'active': ''}
+                    onClick={()=> handleNavigate('playlists')}
                     >
                         {language[lang].playlists}
                 </li>
                 <li
-                    className={channelContent === 'community' ? 'active': ''}
-                    onClick={()=> setChannelContent('community')}
+                    className={section === 'community' ? 'active': ''}
+                    onClick={()=> handleNavigate('community')}
                     >
                         {language[lang].community}
                 </li>

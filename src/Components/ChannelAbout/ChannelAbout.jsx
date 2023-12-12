@@ -9,7 +9,6 @@ import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
 import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PublicIcon from '@mui/icons-material/Public';
-import { Link } from 'react-router-dom';
 
 
 const ChannelAbout = ({chanelDetail,setIsAboutChannelOpen})=> {
@@ -42,7 +41,7 @@ const ChannelAbout = ({chanelDetail,setIsAboutChannelOpen})=> {
                                 </div>
                                 <div className={`${theme} link-title`}>
                                     <h6>{link?.title}</h6>
-                                    <Link to={link?.link} target='_blank' > {link?.link}</Link>
+                                    <a href={link?.link} target='_blank' > {link?.link}</a>
                                 </div>
                             </div>
                         )) 

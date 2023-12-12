@@ -8,6 +8,7 @@ import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import { useContext } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 import Keywords from '../../Components/RelatedKeywords/Keywords';
+import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 
 
 
@@ -22,14 +23,16 @@ const Home = ()=> {
     const [filters,setFilters] = useState(null);
     const [filterPending,setFilterPending] = useState(false);
 
+    const [isLoadingMore,setIsLoadingMore] = useState(false)
 
-    const fetch = (bool,continuation)=>{
-         !bool && setFilterPending(true);
+
+    const fetch = (isFilter,continuation)=>{
+         !isFilter && setFilterPending(true);
         fetchChannelApi(`home?lan=en&token=${continuation}&lang=${lang}`)
         .then((data)=> {
             setElements(data?.data);
-            if(bool){
-                setContinuation(data?.continuation);
+            setContinuation(data?.continuation);
+            if(isFilter){
                 setFilters(data?.filters);
             }else {
                 setFilterPending(false)
@@ -49,6 +52,16 @@ const Home = ()=> {
         fetch(true,continuation);
     }, [lang]);
 
+    const fetchMoreData = ()=>{
+        setIsLoadingMore(true)
+        fetchChannelApi(`home?lan=en&token=${continuation}&lang=${lang}`)
+        .then((data)=>{
+            setElements([...elements,...data?.data]);
+            setContinuation(data?.continuation);
+            setIsLoadingMore(false)
+        })
+    }
+
     return (
         <main className={`${theme} main-home`}>
             <SideNavbarSmall homeShort='home-short' />
@@ -61,11 +74,15 @@ const Home = ()=> {
                          <Keywords filters={filters} onClickHandler={fetch} continuation={continuation} />
                        }
                       <RelatedVideos  elements={elements} renderFrom="home"/>
+                      {
+                        continuation?.length &&
+                        <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMore} />
+                      }
                     </>
                     } 
                 {
                    filterPending && 
-                   <div className={`${theme} key-loading`}><span>loading...</span></div>
+                   <div className={`${theme} absolute key-loading`}><span>loading...</span></div>
                 }
             </div>
         </main>

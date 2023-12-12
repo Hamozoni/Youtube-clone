@@ -9,7 +9,7 @@ import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 
-import Videos from '../Videos/Videos';
+import VideoCard from '../VideoCard/VideoCard';
 
 import './PostCard.scss';
 import { statesContext } from "../../Contexts/statesContext";
@@ -111,7 +111,7 @@ const [isCkecked,setIsCkecked] = useState(null);
     return (
         <div className={`${theme} community`}>
             <div className={`${theme} auther`}>
-                <Link to={`/channels/${authorChannelId}`} className="auth-img">
+                <Link to={`/channels/${authorChannelId}/home`} className="auth-img">
                     <img src={authorThumbnail[1]?.url || thumbnail[1]?.url} alt="auther" />
                 </Link>
                 <section>
@@ -136,7 +136,11 @@ const [isCkecked,setIsCkecked] = useState(null);
                {
                 attachment?.type === 'image' ?
                 <div className="images" ref={imgHolder}>
-                    <img src={attachment?.image[1]?.url} alt={attachment?.type} onClick={()=> navigate(`/post/${postId}`)}/>
+                    <img 
+                        src={attachment?.image[1]?.url} 
+                        alt={attachment?.type} 
+                        onClick={()=> navigate(`/post/${postId}`)}
+                        />
                 </div>
                  : 
                 attachment?.type === 'multi_image' ? 
@@ -144,7 +148,12 @@ const [isCkecked,setIsCkecked] = useState(null);
                     {
                         attachment?.image?.map((scr,i)=>(
                             <div className="img-holder" >
-                                <img key={scr[1]?.url} src={scr[3]?.url} alt="post" onClick={()=> navigate(`/post/${postId}`)} />
+                                <img 
+                                    key={scr[1]?.url} 
+                                    src={scr[3]?.url} 
+                                    alt="post" 
+                                    onClick={()=> navigate(`/post/${postId}`)}
+                                   />
                                 <span className="albu"><PermMediaOutlinedIcon /></span>
                                { attachment?.image?.length - 1 !== i && 
                                  <button onClick={next}  className="next icon"><ArrowForwardIosOutlinedIcon /></button>
@@ -162,7 +171,7 @@ const [isCkecked,setIsCkecked] = useState(null);
                   <Choices /> :
                 attachment?.type === 'video' && 
                  <div className={`${theme} videos search`}>
-                    <Videos
+                    <VideoCard
                         data={attachment} 
                         renderFrom={'search'} 
                     />
