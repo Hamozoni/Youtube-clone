@@ -22,7 +22,7 @@ const Search = ()=> {
            e.preventDefault();
            searchInput.focus();
            if(serchTrem.length) {
-              navgate(`/search/${serchTrem}`);  
+              navgate(`/search?query=${serchTrem}`);  
            }
            if(window.innerWidth < 668){
              setIsMobSearch(!isMobSerch);

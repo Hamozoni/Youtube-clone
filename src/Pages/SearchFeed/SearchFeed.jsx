@@ -1,6 +1,6 @@
 import './SearchFeed.scss';
 import { useState, useEffect, useRef, useContext} from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import Loading from '../../Components/Loading/Loading';
 import Error from '../../Components/Error/Error';
@@ -21,14 +21,14 @@ const SearchFeed = ()=> {
     const [continuation,setContinuation] = useState(null);
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
 
-    const { word } = useParams();
+    const location = useLocation();
     const {lang, theme} = useContext(statesContext);
 
     useEffect(()=> {
         window.scrollTo(0,0);
         setIsError(false);
         setIsPending(true);
-        fetchChannelApi(`search?query=${word}&lang=${lang}`)
+        fetchChannelApi(`search${location?.search}&lang=${lang}`)
         .then((data)=> {
             setVideos(data?.data);
             setRefinements(data?.refinements);
@@ -40,11 +40,11 @@ const SearchFeed = ()=> {
             setIsError(true);
             setError(error);
         })
-    },[word,lang]);
+    },[location?.search,lang]);
 
     const fetchMoreData = ()=>{
         setIsloadingMoreData(true);
-        fetchChannelApi(`search?query=${word}&lang=${lang}&token=${continuation}`)
+        fetchChannelApi(`search${location?.search}&lang=${lang}&token=${continuation}`)
         .then((data)=>{
             console.log(data)
             setVideos(prev => [...prev,...data?.data]);

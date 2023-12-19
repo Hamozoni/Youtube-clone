@@ -8,13 +8,14 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
 const Playlist = ({playlist,renderFrom})=> {
 
-    const { theme, lang } = useContext(statesContext);
+    const { theme, lang, dispatch } = useContext(statesContext);
     const { videoId ,playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
 
     const navgate = useNavigate()
 
     const handlNavgate = (e)=>{
         if((e.target.nodeName !== "A")){
+            dispatch({type: 'add-to-history', payload: playlist});
             navgate(`/watch/${videoId}/list/${playlistId}/1`)
         }
     }

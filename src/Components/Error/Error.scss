@@ -1,20 +1,40 @@
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
+
 .error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-box(center,center,20px);
     flex-direction: column;
-    gap: 10px;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    padding: $padding-l;
     h3 {
-       font-size: 16px;
+       font-size:  $font-size-l;
        font-weight: bold;
-       color: #f88cfc;
+       color: $text-color-dark-m;
+       text-align: center;
     }
     button {
-        padding: 3px 10px;
-        font-size: 14px;
-        background-color: #003b6a;
-        color: #f88cfc;
+        padding: 0px $padding-l;
+        font-size: $font-size-l;
+        font-weight: 900;
+        background-color: darken($color: $back-gr-color-light, $amount: 10);
+        color: $text-color-dark-l;
         text-transform: capitalize;
-        border-radius: 6px;
+        border-radius: $border-radius-m;
+        &:hover {
+            background-color: darken($color: $back-gr-color-light, $amount: 20); 
+        }
+    }
+    &.dark {
+        h3 {
+           color: $text-color-light-m;
+        }
+        button {
+           color: $text-color-light-l;
+           background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+           &:hover {
+             background-color: lighten($color: $back-gr-color-dark, $amount: 20); 
+        }
+        }
     }
 }

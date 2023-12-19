@@ -1,0 +1,40 @@
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
+
+.shorts {
+    scroll-snap-type: y mandatory;
+    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+
+//    .comments {
+//        display: none;
+//        &.active {
+//            display: flex;
+//            align-items: center;
+//            justify-content: center;
+//            position: absolute;
+//            left: 0;
+//            top: 0;
+//            width: 100%;
+//            height: 100%;
+//            .comm-container {
+//                width: 400px;
+//                max-width: 100%;
+//                border-radius: 10px;
+//                .comm-head {
+//                    display: flex;
+//                    align-items: center;
+//                    justify-content: space-between;
+//                    padding: 10px;
+//                    border-bottom: 1px solid $light-bl-color;
+//                }
+//                .comm-wrapper {
+//                    height: 400px;
+//                    overflow-y: auto;
+//                }
+//            }
+//        }
+//    }
+}

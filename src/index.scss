@@ -68,11 +68,17 @@ body.dark-mode {
       &:hover {
         background-color: darken($color: $back-gr-color-light, $amount: 5);
       }
+      &.active {
+        background-color: darken($color: $back-gr-color-light, $amount: 15);
+      }
       &.dark {
         color: $text-color-light-l;
+        &:hover {
+            background-color: lighten($back-gr-color-dark, 10); 
+        }
+        &.active  {
+          background-color: lighten($back-gr-color-dark, 20); 
       }
-      &.dark:hover {
-          background-color: lighten($back-gr-color-dark, 10); 
       }
       h3 {
         min-width: fit-content;
@@ -93,7 +99,7 @@ body.dark-mode {
     }
     .related-container  {
       // max-width: 100%;
-      overflow: scroll;
+      overflow: auto;
       .taps {
         display: flex;
         gap: 5px;

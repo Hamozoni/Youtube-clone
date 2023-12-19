@@ -14,7 +14,7 @@ const Refinements = ({refinements})=> {
                     {
                         refinements?.map((refine,i)=>(
                             <li key={refine + i} className={theme} >
-                                <Link to={`/search/${refine}`}>
+                                <Link to={`/search?query=${refine}`}>
                                     {refine}
                                 </Link>
                             </li>

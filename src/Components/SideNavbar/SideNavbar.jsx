@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
 import './style.scss';
@@ -57,78 +57,78 @@ const SideNavbar = ()=> {
                 <SideNavbarSmall />
                 <h3 className="title">you</h3>
                 <div className={`${theme} library-history nav-icons`}>
-                    <Link to='/'>
+                    <NavLink to='/labrary'>
                         <VideoLibraryOutlinedIcon />
                         <h3>{labrary}</h3>
-                    </Link>
-                    <Link to='/'>
+                    </NavLink >
+                    <NavLink  to='/history'>
                         <RestoreOutlinedIcon />
                         <h3>{history}</h3>
-                    </Link>
-                    <Link to='/'>
+                    </NavLink >
+                    <NavLink  to='/yourVideos'>
                         <OndemandVideoOutlinedIcon />
                         <h3> {yourVideos }</h3>
-                    </Link>
-                    <Link to='/'>
+                    </NavLink >
+                    <NavLink to='/watchLater'>
                         <WatchLaterOutlinedIcon />
                         <h3>{ watchLater }</h3>
-                    </Link>
-                    <Link to='/'>
+                    </NavLink >
+                    <NavLink  to='/likedVideos'>
                         <ThumbUpOutlinedIcon />
                         <h3> {likedVideos} </h3>
-                    </Link>
+                    </NavLink >
                 </div>
                 <h3 className="title">explore</h3>
                 <div className={`${theme} explor nav-icons`}>
-                     <Link to='/search/trending'>
+                     <NavLink to='/explore?type=now'>
                         <WhatshotOutlinedIcon />
                         <h3>{trending}</h3>
-                    </Link>
-                    <Link to='/search/music'>
+                    </NavLink >
+                    <NavLink  to='/explore?type=music'>
                         <AudiotrackOutlinedIcon />
                         <h3>{music}</h3>
-                    </Link>
-                    <Link to='/search/live'>
+                    </NavLink >
+                    <NavLink to='/explore?type=movies'>
                         <SensorsOutlinedIcon />
                         <h3> {live} </h3>
-                    </Link>
-                    <Link to='/search/gaming'>
+                    </NavLink >
+                    <NavLink  to='/explore?type=games'>
                         <SportsEsportsOutlinedIcon />
                         <h3> {gaming}</h3>
-                    </Link>
-                    <Link to='/search/sports'>
+                    </NavLink >
+                    <NavLink  to='/explore?type=sports'>
                         < EmojiEventsOutlinedIcon />
                         <h3>{ sports} </h3>
-                    </Link>
+                    </NavLink >
                 </div>
                 <h3 className="title">more from myh</h3>
                 <div className={`${theme} more-from-myh nav-icons`}>
-                    <Link to='/'>
+                    <a to='music.maiyahia.com'>
                         <TravelExploreIcon />
                         <h3>MYH Music</h3>
-                    </Link>
-                    <Link to='/'>
+                    </a >
+                    <a to='travel.maiyahia.com'>
                         <TravelExploreIcon />
                         <h3>Travel Advisor</h3>
-                    </Link>
+                    </a >
                 </div>
                 <div className={`${theme} sitting-help nav-icons`}>
-                    <Link to='/settings'>
+                    <NavLink to='/settings'>
                         <SettingsOutlinedIcon />                    
                         <h3>settings</h3>  
-                    </Link>
-                    <Link to='/'>
+                    </NavLink>
+                    <NavLink to='/reportHistory'>
                         <OutlinedFlagTwoToneIcon />                      
                         <h3>{reportHistory}</h3> 
-                    </Link>
-                    <Link to='/'>
+                    </NavLink>
+                    <NavLink to='/help'>
                         <HelpOutlineOutlinedIcon />                      
                         <h3>{help}</h3> 
-                    </Link>
-                    <Link to='/'>
+                    </NavLink>
+                    <NavLink to='/sendFeedback'>
                         <AnnouncementOutlinedIcon />                     
                         <h3>{sendFeedback}</h3>  
-                    </Link>
+                    </NavLink>
                 </div>
                 <footer className={`${theme} navbar-footer`}>
 

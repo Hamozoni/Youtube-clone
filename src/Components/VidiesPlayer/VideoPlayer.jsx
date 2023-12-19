@@ -28,7 +28,7 @@ const VideoPlayer = ({videoDetail,id})=> {
                 <div className='left'>
                     <MainChannelCard data={ videoDetail } renderFrom="watch"/> 
                 <div className='links-btns'>
-                    <WatchButtons like={videoDetail?.likeCount} />
+                    <WatchButtons like={videoDetail?.likeCount} video={videoDetail} />
                 </div>
             </div>
              <VideoDescribtion videoDetail={videoDetail} />

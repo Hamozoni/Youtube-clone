@@ -8,7 +8,7 @@ const Error = ({error})=>{
     return (
         <div className={`${theme} error`}>
             <h3>
-                oops {error?.message}
+                oops {error?.message} {error?.response?.data?.message && error?.response?.data?.message}
             </h3>
             <button onClick={()=> window.location.reload()}>
                 {language[lang].retry}

@@ -15,6 +15,8 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
 const VideoComments = ({id,fetchQuery,renderedFrom})=> {
 
+    console.log(id)
+
     const [comments,setComments] = useState([]);
     const [commentsCount,setCommentsCount] = useState(0);
     const [continuation,setContinuation] = useState('')
@@ -47,7 +49,6 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
     const loadMore = ()=>{
         setIsLoadingMore(true);
         if(continuation?.length > 0) {
-            
             fetchChannelApi(`${fetchQuery}?id=${id}&lang=${lang}&token=${continuation}&sort_by=newest`)
             .then((data)=>{
                 setComments( prev => [...prev,...data?.data]);
@@ -85,8 +86,6 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
                     }
                 
                 </div>
-
-             
          </div>
    )
 };

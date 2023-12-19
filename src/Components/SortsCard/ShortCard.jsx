@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player';
 
 const ShortCard = ({short,shorts})=> {
 
-    const { theme, setShorts,playingVideoId, setPlayingVideoId } = useContext(statesContext);
+    const { theme, setShorts,playingVideoId, setPlayingVideoId, dispatch} = useContext(statesContext);
 
     const navgate = useNavigate();
 
@@ -20,8 +20,8 @@ const ShortCard = ({short,shorts})=> {
             return;
           }
         }));
-
-        navgate(`/short/${short?.videoId}`)
+        dispatch({type: 'add-to-history', payload: short});
+        navgate(`/shorts`);
     }
 
     return (

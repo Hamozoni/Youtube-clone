@@ -17,9 +17,9 @@ import { statesContext } from '../../Contexts/statesContext';
 
 import "./WatchButtons.scss";
 
-const WatchButtons = ({like})=>{
+const WatchButtons = ({like,video})=>{
 
-    const { theme,lang } = useContext(statesContext);
+    const { theme,lang,dispatch } = useContext(statesContext);
 
     const [isMoreBtn,setIsMoreBtn] = useState(false)
 
@@ -67,6 +67,7 @@ const WatchButtons = ({like})=>{
         <div className={`${theme} links-btns-container`}>
             <div className={`${theme} like-dis btn`} >
                 <Btn 
+                    onClickHanlder={()=> dispatch({type: 'add-to-liked',payload: video})}
                     text={ like && ternViewsTo(like)} 
                     Icon={<ThumbUpOutlinedIcon />}
                     clName='like-btn btn'

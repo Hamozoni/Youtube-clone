@@ -12,9 +12,10 @@ import ReactPlayer from 'react-player';
 const Videos = ({ data : video, renderFrom})=> {
     
     const navgate = useNavigate();
-    const {theme,lang,playingVideoId, setPlayingVideoId} = useContext(statesContext);
+    const {theme,lang,playingVideoId, setPlayingVideoId,dispatch} = useContext(statesContext);
 
     const handleClick = ()=>{
+        dispatch({type: 'add-to-history', payload: video});
         navgate(video?.videoId && `/watch/${video?.videoId}`)
     }
 

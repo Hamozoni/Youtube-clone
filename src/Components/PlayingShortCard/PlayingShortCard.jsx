@@ -7,20 +7,30 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import  ReactPlayer from 'react-player';
 
-import { Theme } from '../../../Utils/Colors';
-import { statesContext } from '../../../Contexts/statesContext';
-import { language } from '../../../Utils/language';
-import { useContext} from 'react';
+import "./PlayingShortCard.scss";
+
+import { statesContext } from '../../Contexts/statesContext';
+import { language } from '../../Utils/language';
+import { useContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import Comments from '../Comments/Comments';
 
 const PlayShortCard = ({active, short, activeShort=''})=> {
     const navgate = useNavigate()
 
     const { theme, lang } = useContext(statesContext);
+    const [isCommentOpen,setIsCommentOpen] = useState(false);
+
+    useEffect(()=>{
+         setIsCommentOpen(false)
+    },[activeShort])
+
 
    return (
-    <div className={`${theme} short-v-container`} 
-        id={active? activeShort?.videoId : short?.videoId} >
+    <div 
+        className={`${theme} short-v-container`} 
+        id={active? activeShort?.videoId : short?.videoId}
+        >
         <div className={`${theme} short-v-player`} >
             <section className={`${theme} short-video`}>
                 { active && <h4 className="sh-v-title">
@@ -46,7 +56,7 @@ const PlayShortCard = ({active, short, activeShort=''})=> {
                     <h5> {language[lang].dislike} </h5>
                 </li>
                 <li 
-                //   onClick={commentsHandler}
+                  onClick={()=> setIsCommentOpen(!isCommentOpen)}
                    >
                     <CommentIcon />
                     <h5>{ active ? activeShort?.commentCount : language[lang].comments}</h5>
@@ -69,6 +79,13 @@ const PlayShortCard = ({active, short, activeShort=''})=> {
                 }
             </ul> 
         </div>
+        {
+            isCommentOpen && active ? 
+            <div className={`shorts-comments ${theme}`} >
+                <Comments id={activeShort?.videoId} fetchQuery='comments'/> 
+            </div>
+            : ""
+        }
     </div>
    )
 };

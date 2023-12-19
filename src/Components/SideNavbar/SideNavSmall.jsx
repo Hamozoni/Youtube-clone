@@ -1,7 +1,7 @@
 import { language } from "../../Utils/language";
 import { statesContext } from "../../Contexts/statesContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 import './style.scss';
 
@@ -22,19 +22,19 @@ const SideNavbarSmall = ({homeShort= ''})=> {
 
     return(
         <div className={`${homeShort} ${theme} nav-icons `}>
-             <Link className={`${theme} link`} to='/'>
+             <NavLink className={`${theme} link`} to='/'>
                 <HomeIcon />
                 <h3> {home}</h3>
-            </Link>
-            <Link className={`${theme} link`} to='/'>
+            </NavLink>
+            <NavLink className={`${theme} link`} to='/shorts'>
                 <SmartDisplayOutlinedIcon />
                 <h3>{ shorts }</h3>
                 
-            </Link>
-            <Link className={`${theme} link`} to='/'>
+            </NavLink>
+            <NavLink className={`${theme} link`} to='/subscribtions'>
                 <SubscriptionsOutlinedIcon />
                 <h3>{ subscribtions }</h3>
-            </Link>
+            </NavLink>
        </div>
     )
 };

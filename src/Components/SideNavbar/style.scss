@@ -47,8 +47,12 @@ nav.side-navbar {
                 border-radius: $border-radius-l;
                 padding: $padding-l;
                 text-transform: capitalize;
-                &:hover {
+                margin-bottom: $margin-m;
+                &:hover{
                     background-color: darken($color: $back-gr-color-light, $amount: 10);
+                }
+                &.active {
+                    background-color: darken($color: $back-gr-color-light, $amount: 20);
                 }
             }
             &.dark {
@@ -58,6 +62,9 @@ nav.side-navbar {
                 }
                 a:hover {
                     background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+                }
+                a.active {
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 20);
                 }
             }
         }
