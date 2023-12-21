@@ -36,7 +36,6 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
                 setComments(data?.data);
                 setCommentsCount(data?.commentsCount);
                 setContinuation(data?.continuation);
-                console.log(data)
                 setIsLoading(false);
             })
             .catch((err)=>{

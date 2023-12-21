@@ -36,7 +36,6 @@ const ListVideosCard = ()=> {
             setContinuation(data?.continuation);
             setIsLoading(false);
             setError(null)
-            console.log(data);
          })
          .catch((error)=> {
             setIsLoading(false);

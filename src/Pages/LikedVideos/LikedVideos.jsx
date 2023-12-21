@@ -6,8 +6,6 @@ import "./LikedVideos.scss";
 const LikedVideos = ()=> {
      
     const {state} = useContext(statesContext);
-    console.log(state)
-
     return (
        <main className="liked-videos">
             <RelatedVideos elements={state?.LikedVideos} />

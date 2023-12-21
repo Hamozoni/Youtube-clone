@@ -24,7 +24,6 @@ const Shorts = ()=> {
        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
        .then((data)=>{
             setShorts(prev => [...prev,...data?.data]);
-            console.log(data?.data);
             navigate(shorts?.length ? `?id=${shorts[0]?.videoId}` : `?id=${data?.data[0]?.videoId}`);
             setActiveSectionId(shorts?.length ? shorts[0]?.videoId : data?.data[0]?.videoId)
             setIsLoading(false);
@@ -47,8 +46,6 @@ const Shorts = ()=> {
             .catch((error) => {
                 setIsLoading(false);
                 setIsError(error);
-                console.log(error);
-    
             });
         }
     },[location.search,lang])
@@ -58,8 +55,6 @@ const Shorts = ()=> {
         const sections = document.querySelectorAll('.short-v-container')
         for(let i = 0; i < sections.length; i++){
             if( scrollPosition.scrollTop === sections[i].offsetTop - 60){
-                console.log(sections[i].id);
-                console.log(sections[i].offsetTop,scrollPosition.scrollTop );
                 navigate(activeSectionId !== sections[i].id && `?id=${sections[i].id}`)
             }
         }

@@ -5,7 +5,6 @@ import './MainChannelCard.scss';
 
 import channelImageAlt from './6387389.png';
 
-import { Theme } from '../../Utils/Colors';
 import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
 

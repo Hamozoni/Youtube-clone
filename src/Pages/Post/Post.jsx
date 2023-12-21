@@ -22,10 +22,10 @@ const Post = ()=>{
         .then( data => {
             setCommunity(data);
             setIsloading(false);
-            console.log(data)
-
         })
     },[id,lang]);
+
+    
     return (
         <main className="post">
             <div className="post-container">

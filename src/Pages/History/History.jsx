@@ -6,8 +6,6 @@ import "./History.scss";
 const History = ()=> {
      
     const {state} = useContext(statesContext);
-    console.log(state)
-
     return (
        <main className="history">
             <RelatedVideos elements={state?.history} />

@@ -9,8 +9,6 @@ import { statesContext } from "../../Contexts/statesContext";
 const ContentContainer = ({channelViveos,section,handleOnClick,isLoadingMoreData,continuation})=>{
 
     const {theme} = useContext(statesContext);
-
-    console.log(channelViveos[0]?.type)
      return (
         channelViveos?.length > 0 && 
          

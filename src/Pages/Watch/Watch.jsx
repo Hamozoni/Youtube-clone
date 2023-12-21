@@ -35,7 +35,6 @@ const VideoDetails = ({children})=> {
             setContinuation(data?.relatedVideos?.continuation);
             setVideoDetail(data);
             setRelatedKeywords(data?.keywords)
-            console.log(data);
             setIsLoading(false)
         })
         .catch((error)=> {

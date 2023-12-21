@@ -16,7 +16,7 @@ const SearchFeed = ()=> {
     const [videos,setVideos] = useState();
     const [ispending,setIsPending] = useState(true);
     const [isError,setIsError] = useState(false);
-    const [error,setError] = useState();
+    const [error,setError] = useState(null);
     const [refinements,setRefinements] = useState([]);
     const [continuation,setContinuation] = useState(null);
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
@@ -33,7 +33,6 @@ const SearchFeed = ()=> {
             setVideos(data?.data);
             setRefinements(data?.refinements);
             setContinuation(data?.continuation);
-            console.log(data);
             setIsPending(false)
         })
         .catch((error)=>{
@@ -46,13 +45,12 @@ const SearchFeed = ()=> {
         setIsloadingMoreData(true);
         fetchChannelApi(`search${location?.search}&lang=${lang}&token=${continuation}`)
         .then((data)=>{
-            console.log(data)
             setVideos(prev => [...prev,...data?.data]);
             setContinuation(data?.continuation);
             setIsloadingMoreData(false);
         })
         .catch((erorr)=>{
-
+            setError(error)
         })
     }
 

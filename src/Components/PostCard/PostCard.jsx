@@ -19,8 +19,6 @@ import { language } from "../../Utils/language";
 const PostCard = ({community})=>{
 
     const {theme, lang} = useContext(statesContext);
-    
-    // const [playingVideoId,setPlayingVideoId] = useState('');
 
     const navigate = useNavigate()
 

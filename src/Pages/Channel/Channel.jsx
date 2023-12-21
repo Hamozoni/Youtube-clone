@@ -29,8 +29,7 @@ const ChanelDetails = ()=> {
         fetchChannelApi(`channel/about?id=${id}&lang=${lang}`)
         .then((data)=>{
             setChanelDetail(data);  
-            setIsLoading(false)  ;
-            console.log(data)
+            setIsLoading(false);
         })
         .catch((error)=> {
             setIsLoading(false);

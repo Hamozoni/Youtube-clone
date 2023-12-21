@@ -35,7 +35,6 @@ const ChannelHome = ()=> {
         fetchChannelApi(`channel/home?id=${id}&lang=${lang}`)
         .then(data => {
             setData(data?.data)
-            console.log(data?.meta)
             setIsLoading(false);
         })
         .catch(error => {

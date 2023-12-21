@@ -32,19 +32,16 @@ const ChannelContent = ()=>{
 
     const fetchContent = ()=>{
         setIsLoading(true);
-        console.log(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
         if(section?.length > 0) {
             fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
             .then((data)=>{
               setChannelViveos(data?.data);
-              console.log(data);
               setIsError(null);
               setContinuation(data?.continuation);
               setIsLoading(false);
             })
             .catch((error)=>{
               setIsError(error);
-              console.log(error);
               setIsLoading(false);
             })
         }
