@@ -17,7 +17,13 @@ const SearchRecoring = () => {
                 <div className="rec-mike">
                     <span><KeyboardVoiceIcon /></span>
                 </div>
-                <p></p>
+                <div className="isliting">
+                    <p>listing ...</p>
+
+                </div>
+                <div className="mic-box">
+                    <KeyboardVoiceIcon />
+                </div>
             </div>
          </div>
     </section>
