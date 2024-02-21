@@ -1,7 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
-const SearchRecoring = () => {
+import "./SearchRecorder.scss";
+
+const SearchRecorder = () => {
   return (
     <section className='search-recorder'>
          <div className="recorder-container">
@@ -17,17 +19,10 @@ const SearchRecoring = () => {
                 <div className="rec-mike">
                     <span><KeyboardVoiceIcon /></span>
                 </div>
-                <div className="isliting">
-                    <p>listing ...</p>
-
-                </div>
-                <div className="mic-box">
-                    <KeyboardVoiceIcon />
-                </div>
             </div>
          </div>
     </section>
   )
 }
 
-export default SearchRecoring
+export default SearchRecorder
