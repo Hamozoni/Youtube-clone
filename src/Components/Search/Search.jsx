@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { Theme } from '../../Utils/Colors';
 import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
+import SearchRecorder from '../SearchRecording/SearchRecorder';
 
 const Search = ()=> {
 
       const {theme, lang } = useContext(statesContext);
       const [isMobSerch,setIsMobSearch] = useState(false);
+      const [isRecording,setIsRecording] = useState(false);
        
       const navgate = useNavigate()
 
@@ -31,6 +33,10 @@ const Search = ()=> {
 
       return (
         <div className={`${theme} header-search`}>
+          {
+            isRecording && 
+            <SearchRecorder />
+          }
             <form className={isMobSerch ? `active ${theme}`: theme}>
                 <input value={serchTrem}
                       id='search-id'
@@ -42,7 +48,7 @@ const Search = ()=> {
                     <SearchOutlinedIcon />
                   </button>
             </form>
-            <div className={`${theme} mike`}>
+            <div className={`${theme} mike`} onClick={()=> setIsRecording(!isRecording)}>
                <KeyboardVoiceSharpIcon />
             </div>
         </div>
