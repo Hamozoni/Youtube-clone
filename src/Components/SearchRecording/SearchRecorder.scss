@@ -2,7 +2,21 @@
 @import "../../GlibalStyles.scss/Mixin";
 
 .search-recorder {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    width: 0;
+    top: 0;
+    background-color: #0000002a;
+    @include flex-box (flex-start,center,0);
     .recorder-container {
+        background-color: $back-gr-color-light;
+        max-width: 500px;
+        border-radius: $border-radius-m;
+        padding: $padding-l $padding-m;
+        &.dark {
+            background-color: $back-gr-color-dark;
+        }
         .recorder-header {
             .cancel {
                 span {
@@ -19,7 +33,7 @@
             .rec-mike {
                 span {
                     svg {
-                        
+
                     }
                 }
             }
