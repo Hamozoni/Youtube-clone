@@ -26,8 +26,10 @@ const SearchRecorder = () => {
                 </h3>
             </header>
             <div className="recorder-box">
-                <div className="rec-mike">
-                    <span><KeyboardVoiceIcon /></span>
+                <div className="mike-container">
+                    <div className='rec-mike'>
+                        <KeyboardVoiceIcon />
+                    </div>
                 </div>
             </div>
          </div>
