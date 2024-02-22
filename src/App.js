@@ -16,11 +16,12 @@ import ChannelContent from './Components/ChannelContent/ChannelContent.jsx';
 import Shorts from './Pages/Shorts/Shorts.jsx';
 import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
+import SearchRecorder from './Components/SearchRecording/SearchRecorder.jsx';
 
 
 const App = ()=> {
 
-  const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen } = useContext(statesContext);
+  const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen,isRecording } = useContext(statesContext);
 
   useEffect(()=>{
 
@@ -65,6 +66,10 @@ const App = ()=> {
             isAcountNavOpen && 
             <AcountSetting />
 
+          }
+          {
+            isRecording && 
+            <SearchRecorder />
           }
         <Routes>
           <Route path='/' exact element={<Home />} />

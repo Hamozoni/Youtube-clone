@@ -4,17 +4,16 @@ import KeyboardVoiceSharpIcon from '@mui/icons-material/KeyboardVoiceSharp';
 import './Search.scss';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Theme } from '../../Utils/Colors';
+// import { Theme } from '../../Utils/Colors';
 import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
 import SearchRecorder from '../SearchRecording/SearchRecorder';
 
 const Search = ()=> {
 
-      const {theme, lang } = useContext(statesContext);
+      const {theme, lang,isRecording,setIsRecording } = useContext(statesContext);
       const [isMobSerch,setIsMobSearch] = useState(false);
-      const [isRecording,setIsRecording] = useState(false);
-       
+  
       const navgate = useNavigate()
 
       const [serchTrem,setSearchTerm] = useState('');
@@ -33,10 +32,6 @@ const Search = ()=> {
 
       return (
         <div className={`${theme} header-search`}>
-          {
-            isRecording && 
-            <SearchRecorder />
-          }
             <form className={isMobSerch ? `active ${theme}`: theme}>
                 <input value={serchTrem}
                       id='search-id'

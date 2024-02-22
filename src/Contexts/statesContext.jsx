@@ -19,7 +19,8 @@ const StatesContextComponent = ({children})=>{
     const [shorts, setShorts] = useState([]);
     const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
     const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
-    const [playingVideoId, setPlayingVideoId] =useState('');
+    const [playingVideoId, setPlayingVideoId] = useState('');
+    const [isRecording, setIsRecording] = useState(false);
 
     return (
         <statesContext.Provider 
@@ -38,7 +39,9 @@ const StatesContextComponent = ({children})=>{
                         playingVideoId,
                         setPlayingVideoId,
                         state,
-                        dispatch
+                        dispatch,
+                        isRecording,
+                        setIsRecording
                    }
                 }
            > 

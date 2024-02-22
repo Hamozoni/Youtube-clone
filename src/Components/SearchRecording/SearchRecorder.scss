@@ -5,10 +5,11 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    width: 0;
     top: 0;
     background-color: #0000002a;
     @include flex-box (flex-start,center,0);
+    z-index: 99999999999;
+    padding: $padding-l;
     .recorder-container {
         background-color: $back-gr-color-light;
         max-width: 500px;
