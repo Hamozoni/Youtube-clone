@@ -42,7 +42,7 @@
                 background-color: lighten($color:  $back-gr-color-dark, $amount: 18);
                 border-radius: 50%;
                 @include flex-box(center,center);
-                animation: recording .5s infinite forwards ease-in-out;
+                animation: recording 3s infinite forwards ease-in-out;
                 .rec-mike {
                     @include flex-box(center,center);
                     background-color: $logo-color;
