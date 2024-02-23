@@ -21,16 +21,18 @@
         }
         .recorder-header {
             .cancel {
+                margin-bottom: $margin-l;
                 span {
                     cursor: pointer;
+                    color: $text-color-light-l;
                     svg {
                         font-size: $font-size-l + 10;
                     }
                 }
             }
-            // .listing {
-
-            // }
+            .listing {
+                color: $text-color-light-l;
+            }
         }
         .recorder-box {
             @include flex-box(center,center);
@@ -39,21 +41,22 @@
                 width: 60px;
                 height: 60px;
                 border: 2px solid  lighten($color:  $back-gr-color-dark, $amount: 20);
-                background-color: lighten($color:  $back-gr-color-dark, $amount: 18);
                 border-radius: 50%;
                 @include flex-box(center,center);
+                background-color: lighten($color:  $back-gr-color-dark, $amount: 18);
                 &.active {
-
                     animation: recording 1.5s infinite forwards ease-in-out;
                 }
                 .rec-mike {
                     @include flex-box(center,center);
-                    background-color: $logo-color;
                     width: 60px;
                     padding: $padding-m;
                     border-radius: 50%;
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 5);
                     cursor: pointer;
-                    
+                    &.active {
+                        background-color: $logo-color;
+                    }
                         svg {
                             font-size: 50px;
                             color: $text-color-light-m;

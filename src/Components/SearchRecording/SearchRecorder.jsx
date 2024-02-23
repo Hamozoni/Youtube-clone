@@ -89,7 +89,7 @@ const SearchRecorder = () => {
             </header>
             <div className="recorder-box">
                 <div onClick={handleTogleRecording} className={isRecordingStart ? 'active mike-container' :"mike-container"}>
-                    <div className='rec-mike' >
+                    <div className={isRecordingStart ? 'active rec-mike' :"rec-mike"}>
                         <KeyboardVoiceIcon />
                     </div>
                 </div>
