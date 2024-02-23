@@ -4,58 +4,62 @@ import "./SearchRecorder.scss";
 import { useContext, useEffect, useRef, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
+
+
 const SearchRecorder = () => {
 
     const {setIsRecording,theme} = useContext(statesContext);
 
     const recorder = useRef(null);
-    const [canRecord,setCanRecord] = useState(false);
-    const [isRecordingSatrt,setIsRecordingSatrt] = useState(false);
-    const [audioURL,setAudioURL] = useState(null);
-
+    const [isRecordingEnd,setIsRecordingEnd,] = useState(false);
+    const [isRecordingStart,setIsRecordingStart] = useState(false);
+    const [transcript,setTranscript] = useState('');
 
     useEffect(()=>{
-        if(window.navigator.mediaDevices && window.navigator.mediaDevices.getUserMedia){
-            window.navigator.mediaDevices.getUserMedia({audio: true})
-            .then((stream)=> {
-                    recorder.current = new MediaRecorder(stream);
-                    let chunks = []
-                    console.log(recorder.current);
-
-                    recorder.current.ondataavailable = (e)=> {
-                        chunks.push(e.data)
-                    }
-
-                    recorder.current.stop = e => {
-                            const blob = new Blob(chunks,{type: "audio/ogg; codecs=opus"})
-
-                            chunks = [];
-                            setAudioURL(window.URL.createObjectURL(blob));
-
-                    }
-                    setCanRecord(true);
-                }
-            )
-            .catch((er)=>{
-                console.error(er)
-            })
+        return ()=> {
+            if(recorder.current) {
+                recorder.current.stop()
+            }
         }
-    },[isRecordingSatrt])
+    },[]);
 
-    const togleMic = ()=> {
-          if(!canRecord) return;
-          setIsRecordingSatrt(!isRecordingSatrt);
 
-          if(isRecordingSatrt) {
+    const startRecording = ()=> {
+        setIsRecordingStart(true);
+        if('webKitSpeechRecognition' in window) {
+            recorder.current = new window.webKitSpeechRecognition();
+            recorder.current.continuous = true;
+            recorder.current.interimResults = true;
+    
+            // console.log(new webKitSpeechRecognition())
+    
+            recorder.current.onresult = (e)=> {
+                const {transcript} =  e.results[e.results.length - 1][0];
+                setTranscript(transcript);
+            }
             recorder.current.start();
-            console.log('start')
-          }else {
-            recorder.current.stop();
-            console.log('stop')
-          }
 
-          console.log(audioURL)
-    };
+        }
+    }
+
+    const stopRecording = ()=> {
+        if(recorder.current) {
+            recorder.current.stop()
+            setIsRecordingEnd(true);
+        }
+    }
+
+    const handleTogleRecording= ()=> {
+        setIsRecordingStart(!isRecordingStart);
+        // console.log(window.SpeechRecognition())
+
+        if(!isRecordingStart) {
+            startRecording()
+        }else {
+            stopRecording()
+        }
+
+    }
 
   return (
     <section 
@@ -63,7 +67,6 @@ const SearchRecorder = () => {
         onClick={(e)=> {
             if(e.target.classList.contains('search-recorder')){
                 setIsRecording(false);
-                recorder.current.stop();
             }
         }}
         >
@@ -72,7 +75,6 @@ const SearchRecorder = () => {
                 <div className="cancel">
                     <span onClick={()=> {
                         setIsRecording(false);
-                        recorder.current.stop();
                         }}><CloseIcon /></span>
                 </div>
                 <h3 className="listing">
@@ -80,18 +82,17 @@ const SearchRecorder = () => {
                 </h3>
             </header>
             <div className="recorder-box">
-                <div className={isRecordingSatrt ? 'active mike-container' :"mike-container"}>
-                    <div className='rec-mike' onClick={togleMic}>
+                <div onClick={handleTogleRecording} className={isRecordingStart ? 'active mike-container' :"mike-container"}>
+                    <div className='rec-mike' >
                         <KeyboardVoiceIcon />
                     </div>
                 </div>
             </div>
-            {
-                audioURL && 
-
-                    <audio src={audioURL} controls></audio>
-                
-            }
+            <div className="tra">
+                {
+                    transcript
+                }
+            </div>
          </div>
     </section>
   )
