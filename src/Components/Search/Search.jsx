@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import { Theme } from '../../Utils/Colors';
 import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
-import SearchRecorder from '../SearchRecording/SearchRecorder';
+// import SearchRecorder from '../SearchRecording/SearchRecorder';
 
 const Search = ()=> {
 

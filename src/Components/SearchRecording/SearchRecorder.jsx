@@ -8,8 +8,8 @@ import { statesContext } from '../../Contexts/statesContext';
 
 const SearchRecorder = () => {
 
-    const {setIsRecording,theme} = useContext(statesContext);
-
+    const {setIsRecording,theme,lang} = useContext(statesContext);
+ 
     const recorder = useRef(null);
     const [isRecordingEnd,setIsRecordingEnd,] = useState(false);
     const [isRecordingStart,setIsRecordingStart] = useState(false);
@@ -17,8 +17,9 @@ const SearchRecorder = () => {
 
     useEffect(()=>{
         return ()=> {
-            if(recorder.current) {
-                recorder.current.stop()
+            if(recorder.current && isRecordingEnd) {
+                recorder.current.stop();
+                setIsRecordingEnd(false)
             }
         }
     },[]);
@@ -26,15 +27,18 @@ const SearchRecorder = () => {
 
     const startRecording = ()=> {
         setIsRecordingStart(true);
-        if('webKitSpeechRecognition' in window) {
-            recorder.current = new window.webKitSpeechRecognition();
+        if('webkitSpeechRecognition' in window) {
+            recorder.current = new window.webkitSpeechRecognition();
+
             recorder.current.continuous = true;
+            recorder.current.lang = lang;
             recorder.current.interimResults = true;
     
-            // console.log(new webKitSpeechRecognition())
+            console.log(new window.webkitSpeechRecognition())
     
             recorder.current.onresult = (e)=> {
                 const {transcript} =  e.results[e.results.length - 1][0];
+                console.log(e)
                 setTranscript(transcript);
             }
             recorder.current.start();
@@ -51,7 +55,6 @@ const SearchRecorder = () => {
 
     const handleTogleRecording= ()=> {
         setIsRecordingStart(!isRecordingStart);
-        // console.log(window.SpeechRecognition())
 
         if(!isRecordingStart) {
             startRecording()
@@ -78,7 +81,10 @@ const SearchRecorder = () => {
                         }}><CloseIcon /></span>
                 </div>
                 <h3 className="listing">
-                    listing...
+                    {
+                        transcript ? transcript :' listing...' 
+                    }
+                   
                 </h3>
             </header>
             <div className="recorder-box">
@@ -87,11 +93,6 @@ const SearchRecorder = () => {
                         <KeyboardVoiceIcon />
                     </div>
                 </div>
-            </div>
-            <div className="tra">
-                {
-                    transcript
-                }
             </div>
          </div>
     </section>
