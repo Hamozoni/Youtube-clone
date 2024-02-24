@@ -16,6 +16,8 @@ const SearchRecorder = () => {
     const [isRecordingStart,setIsRecordingStart] = useState(false);
     const [transcript,setTranscript] = useState('');
 
+    const recorderInput = useRef(null)
+
     useEffect(()=>{
         return ()=> {
             if(recorder.current && isRecordingEnd) {
@@ -39,8 +41,12 @@ const SearchRecorder = () => {
     
             recorder.current.onresult = (e)=> {
                 const {transcript} =  e.results[e.results.length - 1][0];
-                console.log(e)
+                const {isFinal} = e.results[e.results.length - 1];
+                recorderInput.current.focus();
                 setTranscript(transcript);
+                if(isFinal === true && transcript){
+                    handleNavingTosearch(transcript)
+                }
             }
             recorder.current.start();
         }
@@ -65,9 +71,9 @@ const SearchRecorder = () => {
     };
     const  navigate = useNavigate();
 
-    const handleNavingTosearch = ()=> {
+    const handleNavingTosearch = (query)=> {
       recorder.current.stop();
-      navigate(`search?query=${transcript}`);
+      navigate(`search?query=${query}`);
 
       setIsRecording(false);
     };
@@ -83,12 +89,12 @@ const SearchRecorder = () => {
         >
          <div className={`${theme} recorder-container`}>
             <header className="recorder-header">
-                <div className="cancel">
+                <div className={`${theme} cancel`}>
                     <span onClick={()=> {
                         setIsRecording(false);
                         }}><CloseIcon /></span>
                 </div>
-                <h3 className="listing">
+                <h3 className={`${theme} listing`}>
                     {
                       isRecordingStart ? ' listing...'  :   'start by bressing mic icon'
                     }
@@ -102,12 +108,8 @@ const SearchRecorder = () => {
                     </div>
                 </div>
             </div>
-            <div className="search-nav">
-                    <input type="text" value={transcript} onChange={(e)=> setTranscript(e.target.value)}/>
-                    {
-                        transcript && 
-                       <button onClick={handleNavingTosearch} type="button">go</button>
-                    }
+            <div className="recorder-input-box">
+                <input ref={recorderInput} className='recorder-inp' type="text" value={transcript} />
             </div>
          </div>
     </section>
