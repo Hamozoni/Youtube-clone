@@ -3,6 +3,7 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import "./SearchRecorder.scss";
 import { useContext, useEffect, useRef, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -42,13 +43,12 @@ const SearchRecorder = () => {
                 setTranscript(transcript);
             }
             recorder.current.start();
-
         }
     }
 
     const stopRecording = ()=> {
         if(recorder.current) {
-            recorder.current.stop()
+            recorder.current.stop();
             setIsRecordingEnd(true);
         }
     }
@@ -62,7 +62,15 @@ const SearchRecorder = () => {
             stopRecording()
         }
 
-    }
+    };
+    const  navigate = useNavigate();
+
+    const handleNavingTosearch = ()=> {
+      recorder.current.stop();
+      navigate(`search?query=${transcript}`);
+
+      setIsRecording(false);
+    };
 
   return (
     <section 
@@ -82,7 +90,7 @@ const SearchRecorder = () => {
                 </div>
                 <h3 className="listing">
                     {
-                        transcript ? transcript :' listing...' 
+                      isRecordingStart ? ' listing...'  :   'start by bressing mic icon'
                     }
                    
                 </h3>
@@ -93,6 +101,13 @@ const SearchRecorder = () => {
                         <KeyboardVoiceIcon />
                     </div>
                 </div>
+            </div>
+            <div className="search-nav">
+                    <input type="text" value={transcript} onChange={(e)=> setTranscript(e.target.value)}/>
+                    {
+                        transcript && 
+                       <button onClick={handleNavingTosearch} type="button">go</button>
+                    }
             </div>
          </div>
     </section>
