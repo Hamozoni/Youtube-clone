@@ -78,21 +78,22 @@ const SearchRecorder = () => {
       setIsRecording(false);
     };
 
+    const closeRecorder = (e)=> {
+        if(e.target.classList.contains('close')){
+            stopRecording();
+            setIsRecording(false);
+        }
+    }
+
   return (
     <section 
-        className='search-recorder' 
-        onClick={(e)=> {
-            if(e.target.classList.contains('search-recorder')){
-                setIsRecording(false);
-            }
-        }}
+        className='search-recorder  close' 
+        onClick={e => closeRecorder(e)}
         >
          <div className={`${theme} recorder-container`}>
             <header className="recorder-header">
                 <div className={`${theme} cancel`}>
-                    <span onClick={()=> {
-                        setIsRecording(false);
-                        }}><CloseIcon /></span>
+                    <span><CloseIcon  className='close' onClick={e => closeRecorder(e)} /></span>
                 </div>
                 <h3 className={`${theme} listing`}>
                     {
