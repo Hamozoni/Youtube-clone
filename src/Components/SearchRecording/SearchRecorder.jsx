@@ -3,7 +3,9 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import "./SearchRecorder.scss";
 import { useContext, useEffect, useRef, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { language } from '../../Utils/language';
 
 
 
@@ -97,7 +99,7 @@ const SearchRecorder = () => {
                 </div>
                 <h3 className={`${theme} listing`}>
                     {
-                      isRecordingStart ? ' listing...'  :   'start by bressing mic icon'
+                      isRecordingStart ? language[lang].listening  :   language[lang].startRecord
                     }
                    
                 </h3>

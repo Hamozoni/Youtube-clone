@@ -55,6 +55,8 @@ export const language = {
       links: 'links',
       palyAll: 'play all',
       votes: 'votes',
+      startRecord: 'start by bressing mic icon',
+      listening: 'listening...',
     },
    ar: {
         logo: 'myh',
@@ -110,5 +112,7 @@ export const language = {
         links: 'روابط',
         palyAll: 'تشغيل الكل',
         votes: 'صوت',
+        startRecord: 'أبدأ التسجيل بتغط رمز المايك',
+        listening: 'يستمع...',
       }
   }
