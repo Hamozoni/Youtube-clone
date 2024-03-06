@@ -7,7 +7,7 @@
   box-sizing: border-box;
   transition: all .4s ease-in-out !important;
 }
-*::-webkit-scrollbar {
+*::-webkit-scrollbar,*::-moz-scrollbar {
   display: none;
 }
 a {
