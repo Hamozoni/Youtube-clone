@@ -1,42 +1,48 @@
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
+
 .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    @include flex-box(center,center);
     width: 100%;
     height: calc(100vh - 100px);
-    .circle {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 15px ;
-        border-style: double;
-        border-color: #f5006b;;
-        animation: spin 3s alternate infinite;
+    .logo {
+        @include flex-box(center,center);
+        width: 100%;
+        padding: 20px;
+        width: fit-content;
+        border-radius: $border-radius-m;
+        border: 1px solid $logo-color;
+        animation: borderColor 1s  infinite forwards;
+        .logo-cont {
+            @include flex-box(center,center,$gap-m);
+            border-radius: $border-radius-m;
+            h1 {
+                text-transform: uppercase;
+                font-size: 40px;
+                color: $logo-color;
+                font-weight: bold;
+
+            }
+            span {
+                @include flex-box(center,center,0);
+                width: 100px;
+                height: 60px;
+                background-color: $text-color-light-l;
+                border-radius: $border-radius-m;
+                color: $logo-color;
+                svg {
+                    font-size: 60px;
+                }
+            }
+        }
     }
 }
 
-@keyframes spin {
-    20% {
-        transform: rotate(180deg);
-    }
-    40% {
-        transform: rotate(0deg);
-    }
+@keyframes borderColor {
     50% {
-        width: 60px;
-        height: 60px;
-        border-width: 10px;
-    }
-    60% {
-        transform: rotate(180deg);
-    }
-    80% {
-        transform: rotate(0deg);
+        border-color: #fff;
     }
     100% {
-        width: 80px;
-        height: 80px;
-        border-width: 5px;
+        border-color: $back-gr-color-dark ;
     }
 }
