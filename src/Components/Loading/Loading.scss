@@ -12,18 +12,32 @@
         width: fit-content;
         border-radius: $border-radius-m;
         border: 1px solid $logo-color;
+        position: relative;
         animation: borderColor 1s  infinite forwards;
+        overflow: hidden;
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+            animation: animateBackground 2s  infinite forwards;
+            z-index: 0;
+        }
         .logo-cont {
             @include flex-box(center,center,$gap-m);
             border-radius: $border-radius-m;
+            z-index: 100;
             h1 {
                 text-transform: uppercase;
                 font-size: 40px;
                 color: $logo-color;
                 font-weight: bold;
-
+                @include flex-box(center,center,0);
+                
             }
-            span {
+           .icon{
                 @include flex-box(center,center,0);
                 width: 100px;
                 height: 60px;
@@ -44,5 +58,15 @@
     }
     100% {
         border-color: $back-gr-color-dark ;
+    }
+}
+@keyframes animateBackground{
+    50% {
+        width: 100%;
+        left: unset;
+        right: 0;
+    }
+    100% {
+        width: 0;
     }
 }

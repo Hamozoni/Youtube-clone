@@ -11,14 +11,16 @@ const Loading = ()=> {
     return (
         
         <div className="loading">
-            <div className={`${theme} logo`}>         
+            <div className={`${theme} logo`}> 
+            <div className="background"></div>        
                 <div className='logo-cont' >
                     <span className={`${theme} icon`}>
                         <PlayArrowIcon />
-                        
                     </span>
                     <h1>
-                       { language[lang]?.logo }
+                        <span>M</span>
+                        <span>y</span>
+                        <span>h</span>
                     </h1>
                 </div>  
             </div>
