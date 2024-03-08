@@ -12,11 +12,12 @@ const Loading = ()=> {
         
         <div className="loading">
             <div className={`${theme} logo`}> 
-            <div className="background"></div>        
+                  
                 <div className='logo-cont' >
-                    <span className={`${theme} icon`}>
+                    <div className={`${theme} icon`}>
+                        <div className="background"></div> 
                         <PlayArrowIcon />
-                    </span>
+                    </div>
                     <h1>
                         <span>M</span>
                         <span>y</span>

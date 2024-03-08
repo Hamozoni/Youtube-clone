@@ -11,71 +11,64 @@
         padding: 20px;
         width: fit-content;
         border-radius: $border-radius-m;
-        border: 1px solid $logo-color;
-        position: relative;
-        animation: borderColor 1s  infinite forwards;
+        border: 1px solid lighten($color: $back-gr-color-dark, $amount: 5);
         overflow: hidden;
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-            animation: animateBackground 2s  infinite forwards;
-            z-index: 0;
-        }
         .logo-cont {
             @include flex-box(center,center,$gap-m);
             border-radius: $border-radius-m;
-            z-index: 100;
             h1 {
                 text-transform: uppercase;
                 font-size: 40px;
                 color: lighten($color: $back-gr-color-dark, $amount: 10);
                 font-weight: bold;
                 @include flex-box(center,center,0);
-                animation: animateLogoText .5s forwards infinite;
                 
             }
-           .icon{
+           .icon {
+                position: relative;
                 @include flex-box(center,center,0);
                 width: 100px;
                 height: 60px;
                 background-color: transparent;
                 border-radius: $border-radius-l;
                 color: $logo-color;
-                border: 1px solid lighten($color: $back-gr-color-dark, $amount: 10);
-                
+                overflow: hidden;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 100%;
+                    z-index: 0;
+                    background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+                    animation: animateBackground 2s infinite alternate-reverse;
+                }                
                 svg {
                     font-size: 60px;
                     color: $back-gr-color-dark;
+                    z-index: 100;
+                    animation: animateSVG .5s infinite alternate-reverse;
                 }
             }
         }
     }
 }
 
-@keyframes borderColor {
-    50% {
-        border-color: lighten($color: $back-gr-color-dark , $amount: 10);
-    }
-    100% {
-        border-color: $back-gr-color-dark ;
-    }
-}
 @keyframes animateBackground{
     50% {
         width: 100%;
-        left: unset;
-        right: 0;
+        left: 0;
     }
     100% {
-        width: 0;
+        left: 100%;
+        width: 100%;
     }
+
 }
-@keyframes animateLogoText {
-    100%{
-        color: $back-gr-color-dark;
-    }
+
+@keyframes animateSVG {
+   100% {
+     color: lighten($color: $back-gr-color-dark, $amount: 10);
+   }  
 }
