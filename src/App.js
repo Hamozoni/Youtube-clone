@@ -8,7 +8,7 @@ import SearchFeed from './Pages/SearchFeed/SearchFeed';
 import PlayList from './Pages/Playlist/Playlist.jsx';
 
 import {statesContext} from './Contexts/statesContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AcountSetting from './Components/AcountSetting/AcountSetting';
 import Post from './Pages/Post/Post';
 import ChannelHome from './Components/ChannelHome/ChannelHome.jsx';
@@ -17,11 +17,14 @@ import Shorts from './Pages/Shorts/Shorts.jsx';
 import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
 import SearchRecorder from './Components/SearchRecording/SearchRecorder.jsx';
+import Loading from './Components/Loading/Loading.jsx';
 
 
 const App = ()=> {
 
   const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen,isRecording } = useContext(statesContext);
+
+  const [isLoader,setLoader] = useState(true)
 
   useEffect(()=>{
 
@@ -54,6 +57,15 @@ const App = ()=> {
 
   },[theme,lang,setLang,setTheme]);
 
+  useEffect(()=>{
+
+  const timeOut = setTimeout(()=>{
+      setLoader(false);
+    },3000);
+
+    return ()=> clearTimeout(timeOut)
+  },[setLoader])
+
 
   return (
       < BrowserRouter >
@@ -70,6 +82,10 @@ const App = ()=> {
           {
             isRecording && 
             <SearchRecorder />
+          }
+          {
+            isLoader && 
+            <Loading />
           }
         <Routes>
           <Route path='/' exact element={<Home />} />

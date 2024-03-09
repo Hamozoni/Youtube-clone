@@ -40,7 +40,7 @@ const Home = ()=> {
             }else {
                 setFilterPending(false)
             }
-            // setIsLoading(false);
+            setIsLoading(false);
         })
         .catch((error)=>{
             setError(error)

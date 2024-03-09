@@ -13,9 +13,9 @@ const Loading = ()=> {
         <div className="loading">
             <div className={`${theme} logo`}> 
                   
+                <div className="background"></div> 
                 <div className='logo-cont' >
                     <div className={`${theme} icon`}>
-                        <div className="background"></div> 
                         <PlayArrowIcon />
                     </div>
                     <h1>
