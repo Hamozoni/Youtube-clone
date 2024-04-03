@@ -16,7 +16,7 @@ const Keywords = ({filters,currentFilter,setCurrentFilter,onClickHandler})=>{
                             <li 
                                 className={filter?.filter === currentFilter ? `${theme} active` : `${theme}`}
                                 onClick={()=> {
-                                if(currentFilter !== filter){ 
+                                if(currentFilter !== filter?.filter){ 
                                     setCurrentFilter(filter?.filter)
                                     onClickHandler(filter?.filter,false);
                                     } 

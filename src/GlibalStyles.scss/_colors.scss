@@ -1,0 +1,56 @@
+@import "./Variabls";
+
+@each $key,$val in $text-Colors {
+    .t-color-#{$key} {
+        color: $val;
+    };
+    .border-c-#{$key} {
+        border-color: $val;
+    }
+
+    @if($key == "dark") {
+        @for $i from 1 through 10 {
+            .t-color-#{$key}-#{$i} {
+                color: mix($dark-color, $val, $i * 10);
+            };
+            .border-c-#{$key}-#{$i} {
+                border-color: mix($dark-color, $val, $i * 10);;
+            }
+        };
+    }@else {
+        @for $i from 1 through 10 {
+            .t-color-#{$key}-#{$i} {
+                color: mix($light-color, $val, $i * 10);
+            };
+            .border-c-#{$key}-#{$i} {
+                border-color: mix($light-color, $val, $i * 10);;
+            }
+        };
+    };
+};
+
+@each $key,$val in $back-colors {
+    .back-color-#{$key} {
+        background-color: $val;
+    };
+
+    @if($key == "dark") {
+        @for $i from 1 through 10 {
+            .back-color-#{$key}-#{$i} {
+                background-color: mix($light-color, $val, $i * 10);
+            };
+        };
+        .b-g-t-#{$key} {
+            background-color: #001d1b9f;
+        }
+    }@else {
+        @for $i from 1 through 10 {
+            .back-color-#{$key}-#{$i} {
+                color: mix($dark-color, $val, $i * 10);
+            };
+        };
+        .b-g-t-#{$key} {
+            background-color: #c3fffbaf;
+        }
+    };
+};

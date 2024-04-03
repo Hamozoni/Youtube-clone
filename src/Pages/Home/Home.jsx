@@ -32,14 +32,12 @@ const Home = ()=> {
     const fetchHomeData = (isLoadingMoreData = false)=>{
 
         setLoadMoreDataFor('home');
-
         if(isLoadingMoreData) {
             setIsLoadingMore(true);
         }else {
             setError(null);
             setIsLoading(true);
-        }
-
+        };
         fetchChannelApi(`home?lang=${lang}`)
         .then((data)=> {
             setContinuation(data?.continuation);
@@ -57,9 +55,8 @@ const Home = ()=> {
         .finally(()=> {
             setIsLoading(false);
             setIsLoadingMore(false)
-        })
+        });
     };
-
 
     useEffect(fetchHomeData, [lang]);
 
@@ -72,7 +69,7 @@ const Home = ()=> {
             setError(null);
             setFilterPending(true);
         }
-        fetchChannelApi(`search?query=${filter}&token=${navFilterContinuation}&lang=${lang}`)
+        fetchChannelApi(`search?query=${filter}${isLoadingMoreData && `&token=${navFilterContinuation}`}&lang=${lang}`)
         .then((data)=> {
 
             setNavFilterContinuation(data?.continuation);
@@ -89,14 +86,14 @@ const Home = ()=> {
         .finally(()=> {
             setFilterPending(false);
             setIsLoadingMore(false);
-        })
-    }
+        });
+    };
 
 
     return (
-        <main className={`${theme} main-home`}>
+        <main className='main-home'>
             <SideNavbarSmall homeShort='home-short' />
-            <div className={`${theme} container`}>
+            <div className='container'>
                     { error ? <Error error={error}/>: 
                      isLoading ? <Loader  /> :  
                     <> 
@@ -125,7 +122,7 @@ const Home = ()=> {
                 {
                    filterPending && 
                    <div className={`${theme} absolute key-loading`}>
-                         <span></span>
+                         <span ></span>
                    </div>
                 }
             </div>

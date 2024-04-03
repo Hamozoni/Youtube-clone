@@ -7,12 +7,23 @@ import "./style.scss";
 import Shorts from '../Images/shorts.svg'
 
 import ShortCard from '../SortsCard/ShortCard';
-import QueryListing from './QueryListing';
 import { statesContext } from '../../Contexts/statesContext';
+import { Link } from 'react-router-dom';
 
 const RelatedVideos = ({elements, renderFrom})=> {
         
         const {theme} = useContext(statesContext);
+
+        const QueryListing = ({query})=> {
+            return (
+                <Link to={`/search?query=${query?.query}`} className={`${theme} query`}>
+                     <img src={query?.thumbnail[0]?.url} alt={query?.query} />
+                     <h5 className={`${theme} query-title`}>
+                           {query?.query} 
+                     </h5>
+                </Link>
+            );
+        };
 
         return ( 
             <div className={`${renderFrom} ${theme} related-videos `}  >

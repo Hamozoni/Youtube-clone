@@ -31,3 +31,44 @@ $font-size-m: 12px;
 $logo-font-size: 20px;
 
 $max-container-width : 1400px;
+
+
+$font-size-1: 2rem;
+$font-size-2: 1.9rem;
+$font-size-3: 1.7rem;
+$font-size-4: 1.5rem;
+$font-size-5: 1.2rem;
+$font-size-6: 1rem;
+
+$padding-5: 5px;
+$padding-10: 10px;
+$padding-15: 15px;
+$padding-20: 5px;
+$padding-25: 25px;
+$padding-30: 30px;
+$padding-40: 40px;
+$padding-50: 50px;
+
+$marging-5: 5px;
+$marging-10: 10px;
+$marging-15: 15px;
+$marging-20: 5px;
+$marging-25: 25px;
+$marging-30: 30px;
+$marging-40: 40px;
+$marging-50: 50px;
+
+
+$dark-color: #001d1b;
+$light-color: #c3fffb;
+
+
+$text-Colors : (
+    "dark": $light-color,
+    "light": $dark-color,
+);
+
+$back-colors : (
+    "dark": $dark-color,
+    "light": $light-color,
+);

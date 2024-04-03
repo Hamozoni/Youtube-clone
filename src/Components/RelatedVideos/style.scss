@@ -36,3 +36,33 @@
         }
     } 
 }
+
+
+.query-container {
+    @include flex-box;
+    overflow: auto;
+    width: 100%;
+    max-width: 100%;
+    .query {
+    width: 156px;
+    min-width: 156px;
+    background-color: $back-gr-color-light;
+    border-radius: $border-radius-l;
+    overflow: hidden;
+    margin-bottom: $margin-l;
+    color: $text-color-dark-l;
+    border: 1px solid darken($color: $back-gr-color-light, $amount: 10);
+    &.dark {
+        color: $text-color-light-l;
+        border-color: lighten($color: $back-gr-color-dark, $amount: 10);
+        background-color: $back-gr-color-dark;
+    }
+    img {
+        min-width: 156px;
+    }
+    h5 {
+        margin: $margin-l 0;
+        text-align: center;
+    }
+    }
+}
