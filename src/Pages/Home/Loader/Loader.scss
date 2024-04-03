@@ -1,50 +1,35 @@
 @import "../../../GlibalStyles.scss/Variabls";
 @import "../../../GlibalStyles.scss/Mixin";
 
-.loader-moviememnt {
+.loader-moviement {
     position: relative;
     overflow: hidden;
-    background-color: darken($color: $back-gr-color-light, $amount: 3);
     &::before {
-        position: absolute;
-        content: '';
-        background-color: darken($color: $back-gr-color-light, $amount: 2);
-        top: 0;
-        left: 0;
+        @include position();
         width: 0;
-        height: 100%;
         animation: laoderBackgroundMove 2s ease-in-out infinite forwards;
     }
-    &.dark {
-        background-color: lighten($color: $back-gr-color-dark, $amount: 3);
-        &::before {
-            background-color: lighten($color: $back-gr-color-dark, $amount: 2);
-        }
-    }
-
 }
 
 .home-loader {
     .loader-nav {
         @include flex-box;
-        margin-bottom: 20px;
+        margin-bottom: $marging-20;
         li {
-            min-height: 30px;
+           min-height: 30px;
            min-width: 170px;
-           border-radius: $border-radius-l;
+           border-radius: $border-r-10;
         }
     }
     .loader-conyainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
-        gap: $gap-l;
+        @include grid-box(340px,1fr);
         .loader-card {
             min-width:340px;
             .loader-image {
                 min-width: 100%;
                 min-height: 190px;
-                border-radius: $border-radius-l;
-                margin-bottom: 10px;
+                border-radius: $border-r-10;
+                margin-bottom: $marging-10;
                 @media (min-width: 992px) {
                     min-height: 220px;
                 }
@@ -52,22 +37,17 @@
             .loader-box {
                 @include flex-box;
                 .image {
-                    border-radius: 50%;
+                    border-radius: $border-r-full;
                     width: 35px;
                     height: 35px;
                 }
                 .lod-t-box {
                     
                     flex: 1;
-                    .chn-n {
+                    .chn-n , .laoder-ch-name{
                         height: 35px;
-                        margin-bottom: 5px;
-                        border-radius: $border-radius-l;
-                    }
-                    .laoder-ch-name {
-                        height: 35px;
-                        border-radius: $border-radius-l;
-                        position: relative;
+                        margin-bottom: $marging-5;
+                        border-radius: $border-r-10;
                     }
                 }
             }

@@ -5,67 +5,37 @@
 nav.side-navbar {
     position: fixed;
     top: 0;
-    background-color: $trans-black;
     z-index: 9999999999;
     width: 100%;
     .nav-header {
-        padding: $padding-l;
+        padding: $padding-15;
         width: 240px;
-        background-color: $back-gr-color-light;
-        &.dark {
-            background-color: $back-gr-color-dark !important;
-        }
     }
     .nav-container {
         width: 240px;
-        padding: $padding-l;
+        padding: $padding-15;
         padding-top: 0;
         height: 100vh;
         overflow-x: scroll;
-        background-color: $back-gr-color-light;
         .title {
             text-transform: capitalize;
-            margin-top: $margin-m;
-            color: $text-color-dark-m;
-            font-size: $font-size-l;
-        }
-        &.dark {
-            background-color: $back-gr-color-dark !important;
-            .title {
-                color: $text-color-light-m;
-            }
+            margin-top: $marging-10;
+            font-size: $font-size-5;
         }
         .nav-icons {
             padding: $padding-l 0;
-            border-bottom: 1px solid $text-color-light-m;
+            border-width: 0;
+            border-bottom-width: 1px ;
+            border-style: solid;
             a, h3{
-                color: $text-color-dark-l;
-                font-size: $font-size-l
+                font-size: $font-size-6
             }
             a {
                 @include flex-box();
-                border-radius: $border-radius-l;
-                padding: $padding-l;
+                border-radius: $border-r-10;
+                padding: $padding-20;
                 text-transform: capitalize;
-                margin-bottom: $margin-m;
-                &:hover{
-                    background-color: darken($color: $back-gr-color-light, $amount: 10);
-                }
-                &.active {
-                    background-color: darken($color: $back-gr-color-light, $amount: 20);
-                }
-            }
-            &.dark {
-                border-bottom: 1px solid $text-color-dark-m;
-                a, h3{
-                    color: $text-color-light-l;
-                }
-                a:hover {
-                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                }
-                a.active {
-                    background-color: lighten($color: $back-gr-color-dark, $amount: 20);
-                }
+                margin-bottom: $marging-10;
             }
         }
     }

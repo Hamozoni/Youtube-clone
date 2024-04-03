@@ -1,5 +1,7 @@
 @import "./Variabls";
 
+// text colors
+
 @each $key,$val in $text-Colors {
     .t-color-#{$key} {
         color: $val;
@@ -13,21 +15,17 @@
             .t-color-#{$key}-#{$i} {
                 color: mix($dark-color, $val, $i * 10);
             };
-            .border-c-#{$key}-#{$i} {
-                border-color: mix($dark-color, $val, $i * 10);;
-            }
         };
     }@else {
         @for $i from 1 through 10 {
             .t-color-#{$key}-#{$i} {
                 color: mix($light-color, $val, $i * 10);
             };
-            .border-c-#{$key}-#{$i} {
-                border-color: mix($light-color, $val, $i * 10);;
-            }
         };
     };
 };
+
+// backgrounds colors
 
 @each $key,$val in $back-colors {
     .back-color-#{$key} {
@@ -39,6 +37,14 @@
             .back-color-#{$key}-#{$i} {
                 background-color: mix($light-color, $val, $i * 10);
             };
+            .back-before-c-#{$key}-#{$i} {
+                &::before, &::after {
+                    background-color: mix($light-color, $val, $i * 10);
+                }
+            }
+            .border-c-#{$key}-#{$i} {
+                border-color: mix($light-color, $val, $i * 10);;
+            }
         };
         .b-g-t-#{$key} {
             background-color: #001d1b9f;
@@ -46,8 +52,16 @@
     }@else {
         @for $i from 1 through 10 {
             .back-color-#{$key}-#{$i} {
-                color: mix($dark-color, $val, $i * 10);
+                background-color: mix($dark-color, $val, $i * 10);
             };
+            .back-before-c-#{$key}-#{$i} {
+                &::before, &::after {
+                    background-color: mix($dark-color, $val, $i * 10);
+                }
+            }
+            .border-c-#{$key}-#{$i} {
+                border-color: mix($light-color, $val, $i * 10);;
+            }
         };
         .b-g-t-#{$key} {
             background-color: #c3fffbaf;

@@ -121,7 +121,7 @@ const Home = ()=> {
                     } 
                 {
                    filterPending && 
-                   <div className={`${theme} absolute key-loading`}>
+                   <div className={`b-g-t-${theme}  absolute key-loading`}>
                          <span ></span>
                    </div>
                 }

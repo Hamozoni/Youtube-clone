@@ -11,8 +11,7 @@ const Loader = () => {
             {
                 cards.map((e)=> (
 
-                    <li className={`${theme} nav-l-li loader-moviememnt`} key={e}>
-
+                    <li className={`back-color-${theme}-1  back-before-c-${theme}-2 nav-l-li loader-moviememnt`} key={e}>
                     </li>
                 ))
             }
@@ -21,12 +20,12 @@ const Loader = () => {
             {
                 cards.map((e)=> (
                     <div className="loader-card" key={e}>
-                        <div className={`${theme} loader-image loader-moviememnt`}></div>
+                        <div className={`back-color-${theme}-1  back-before-c-${theme}-2 loader-image loader-moviement`}></div>
                         <div className="loader-box ">
-                            <span className={`${theme} image loader-moviememnt`}></span>
+                            <span className={`back-color-${theme}-1  back-before-c-${theme}-2  image loader-moviement`}></span>
                             <div className="lod-t-box ">
-                                <div className={`${theme} chn-n loader-moviememnt`}></div>
-                                <div className={`${theme} laoder-ch-name loader-moviememnt`}></div>
+                                <div className={`back-color-${theme}-1  back-before-c-${theme}-2 chn-n loader-moviement`}></div>
+                                <div className={`back-color-${theme}-1  back-before-c-${theme}-2  laoder-ch-name loader-moviement`}></div>
                             </div>
                         </div>
                     </div>

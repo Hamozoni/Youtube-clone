@@ -5,4 +5,19 @@
     align-items: $align;
     justify-content: $justfy;
     gap:$gap
+};
+
+@mixin grid-box($min,$max,$gap : $gap-20) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax($min,$max));
+    gap: $gap;
+}
+
+@mixin position ($t: 0,$l: 0,$w: 100%,$h: 100%,$p:absolute){
+    content: '';
+    position: $p;
+    width: $w;
+    height: $h;
+    left: $l;
+    top: $t;
 }
