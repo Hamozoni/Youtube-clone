@@ -3,11 +3,10 @@ import './Loading.scss';
 import { statesContext } from '../../Contexts/statesContext';
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { language } from '../../Utils/language';
 
 const Loading = ()=> {
 
-    const {theme,lang} = useContext(statesContext)
+    const {theme} = useContext(statesContext);
     return (
         
         <div className="loading">

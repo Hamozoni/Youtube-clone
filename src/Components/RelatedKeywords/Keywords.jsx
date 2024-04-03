@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 
 
-const Keywords = ({filters,onClickHandler})=>{
+const Keywords = ({filters,currentFilter,setCurrentFilter,onClickHandler})=>{
 
-    const [currentFilter,setCurrentFilter] = useState('');;
 
     const {theme} = useContext(statesContext);
 
@@ -19,11 +18,11 @@ const Keywords = ({filters,onClickHandler})=>{
                                 onClick={()=> {
                                 if(currentFilter !== filter){ 
                                     setCurrentFilter(filter?.filter)
-                                    onClickHandler(filter?.filter);
+                                    onClickHandler(filter?.filter,false);
                                     } 
                                     if( i === 0) {
                                         setCurrentFilter(filter?.filter)
-                                        onClickHandler(filter?.filter);
+                                        onClickHandler(filter?.filter,false);
                                     }
                                 }}
                                 key={filter?.filter}

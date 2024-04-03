@@ -4,12 +4,12 @@ import './Home.scss';
 import { fetchChannelApi} from '../../Utils/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import Loading from '../../Components/Loading/Loading';
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import Keywords from '../../Components/RelatedKeywords/Keywords';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+import Loader from './Loader/Loader';
 
 
 
@@ -23,6 +23,7 @@ const Home = ()=> {
     const [error,setError] = useState(null);
     const [continuation,setContinuation] = useState('');
     const [navFilterContinuation,setNavFilterContinuation] = useState('');
+    const [currentFilter,setCurrentFilter] = useState('');
     const [navFilters,setNavFilters] = useState(null);
     const [filterPending,setFilterPending] = useState(false);
     const [loadMoreDataFor,setLoadMoreDataFor] = useState('home');
@@ -43,7 +44,7 @@ const Home = ()=> {
         .then((data)=> {
             setContinuation(data?.continuation);
             if(isLoadingMoreData) {
-                setElements([...elements,...data?.data]);
+                setElements((prev)=>[...prev,...data?.data]);
             }else {
                 setElements(data?.data);
                 setNavFilters(data?.filters);
@@ -76,7 +77,7 @@ const Home = ()=> {
 
             setNavFilterContinuation(data?.continuation);
             if(isLoadingMoreData){
-                setElements([...elements,...data?.data]);
+                setElements((prev)=>[...prev,...data?.data]);
             }else {
                 setElements(data?.data);
             }
@@ -97,12 +98,14 @@ const Home = ()=> {
             <SideNavbarSmall homeShort='home-short' />
             <div className={`${theme} container`}>
                     { error ? <Error error={error}/>: 
-                     isLoading ? <Loading /> :  
+                     isLoading ? <Loader  /> :  
                     <> 
                        {
                         navFilters?.length > 0 &&
                          <Keywords 
                             filters={navFilters} 
+                            setCurrentFilter={setCurrentFilter}
+                            currentFilter={currentFilter}
                             onClickHandler={navFiltersFetchData} 
                             />
                        }
@@ -110,7 +113,10 @@ const Home = ()=> {
                       {
                         continuation?.length &&
                         <LoadMoreBtn 
-                            onClickHandler={loadMoreDataFor === 'home' ?()=> fetchHomeData(true) :()=> navFiltersFetchData(true)} 
+                            onClickHandler={
+                                loadMoreDataFor === 'home' ? 
+                                 ()=> fetchHomeData(true) :()=> navFiltersFetchData(currentFilter,true)
+                               } 
                             isLoadingMore={isLoadingMore} 
                             />
                       }
@@ -118,7 +124,9 @@ const Home = ()=> {
                     } 
                 {
                    filterPending && 
-                   <div className={`${theme} absolute key-loading`}><span>loading...</span></div>
+                   <div className={`${theme} absolute key-loading`}>
+                         <span></span>
+                   </div>
                 }
             </div>
         </main>
