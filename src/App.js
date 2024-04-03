@@ -39,23 +39,19 @@ const App = ()=> {
     }else {
       document.dir = 'ltr';
     };
-
-    if(localStorage.getItem('maimed-tube-theme')) {
-      setTheme(localStorage.getItem('maimed-tube-theme'))   
-    }else {
-      localStorage.setItem('maimed-tube-theme',theme);
-    };
       
-    const body =  document.getElementsByTagName('body');
-    
-    if(theme === 'dark'){
-      body[0].classList.add('dark-mode');
-    }else {
-      body[0].classList.remove('dark-mode');
-    }
-    
+  },[lang]);
 
-  },[theme,lang,setLang,setTheme]);
+  useEffect(()=>{
+      if(localStorage.getItem('maimed-tube-theme')) {
+        setTheme(localStorage.getItem('maimed-tube-theme'))   
+      }else {
+        localStorage.setItem('maimed-tube-theme',theme);
+      };
+
+      document.body.className = `back-color-${theme}`;
+      
+  },[theme]);
 
   useEffect(()=>{
 

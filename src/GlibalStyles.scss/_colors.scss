@@ -42,6 +42,16 @@
                     background-color: mix($light-color, $val, $i * 10);
                 }
             }
+            .back-act-c-#{$key}-#{$i} {
+                &.active {
+                    background-color: mix($light-color, $val, $i * 10);
+                }
+            }
+            .back-hov-c-#{$key}-#{$i} {
+                &:hover {
+                    background-color: mix($light-color, $val, $i * 10);
+                }
+            }
             .border-c-#{$key}-#{$i} {
                 border-color: mix($light-color, $val, $i * 10);;
             }
@@ -59,8 +69,18 @@
                     background-color: mix($dark-color, $val, $i * 10);
                 }
             }
+            .back-act-c-#{$key}-#{$i} {
+                &.active {
+                    background-color: mix($dark-color, $val, $i * 10);
+                }
+            }
+            .back-hov-c-#{$key}-#{$i} {
+                &:hover {
+                    background-color: mix($dark-color, $val, $i * 10);
+                }
+            }
             .border-c-#{$key}-#{$i} {
-                border-color: mix($light-color, $val, $i * 10);;
+                border-color: mix($dark-color, $val, $i * 10);;
             }
         };
         .b-g-t-#{$key} {

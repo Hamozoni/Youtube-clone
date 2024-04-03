@@ -21,17 +21,26 @@ const SideNavbarSmall = ({homeShort= ''})=> {
     } = language[lang];
 
     return(
-        <div className={`${homeShort} ${theme} nav-icons `}>
-             <NavLink className={`${theme} link`} to='/'>
+        <div className={`${homeShort} border-c-${theme}-1 nav-icons `}>
+             <NavLink 
+                className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} 
+                to='/'
+                >
                 <HomeIcon />
                 <h3> {home}</h3>
             </NavLink>
-            <NavLink className={`${theme} link`} to='/shorts'>
+            <NavLink 
+                className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} 
+                to='/shorts'
+                >
                 <SmartDisplayOutlinedIcon />
                 <h3>{ shorts }</h3>
                 
             </NavLink>
-            <NavLink className={`${theme} link`} to='/subscribtions'>
+            <NavLink 
+                className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} 
+                to='/subscribtions'
+                >
                 <SubscriptionsOutlinedIcon />
                 <h3>{ subscribtions }</h3>
             </NavLink>
