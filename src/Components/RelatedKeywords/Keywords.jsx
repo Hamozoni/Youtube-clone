@@ -15,15 +15,15 @@ const Keywords = ({filters,onClickHandler})=>{
                     {
                         filters?.map((filter,i)=>(
                             <li 
-                                className={filter === currentFilter ? `${theme} active` : `${theme}`}
+                                className={filter?.filter === currentFilter ? `${theme} active` : `${theme}`}
                                 onClick={()=> {
                                 if(currentFilter !== filter){ 
-                                    setCurrentFilter(filter)
-                                    onClickHandler(filter);
+                                    setCurrentFilter(filter?.filter)
+                                    onClickHandler(filter?.filter);
                                     } 
                                     if( i === 0) {
-                                        setCurrentFilter(filter)
-                                        onClickHandler(filter);
+                                        setCurrentFilter(filter?.filter)
+                                        onClickHandler(filter?.filter);
                                     }
                                 }}
                                 key={filter?.filter}

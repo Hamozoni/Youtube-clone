@@ -1,5 +1,4 @@
 import { useEffect,useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import './Home.scss';
 import { fetchChannelApi} from '../../Utils/FetchApi';
@@ -18,26 +17,37 @@ import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 const Home = ()=> {
 
     const {lang, theme} = useContext(statesContext);
-    const location = useLocation().search;
     
     const [elements,setElements] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState(null);
     const [continuation,setContinuation] = useState('');
+    const [navFilterContinuation,setNavFilterContinuation] = useState('');
     const [navFilters,setNavFilters] = useState(null);
     const [filterPending,setFilterPending] = useState(false);
-
+    const [loadMoreDataFor,setLoadMoreDataFor] = useState('home');
     const [isLoadingMore,setIsLoadingMore] = useState(false);
 
-    const fetchHomeData = ()=>{
+    const fetchHomeData = (isLoadingMoreData = false)=>{
 
-        setError(null);
-        setIsLoading(true);
+        setLoadMoreDataFor('home');
+
+        if(isLoadingMoreData) {
+            setIsLoadingMore(true);
+        }else {
+            setError(null);
+            setIsLoading(true);
+        }
+
         fetchChannelApi(`home?lang=${lang}`)
         .then((data)=> {
-            setElements(data?.data);
-            setNavFilters(data?.filters);
             setContinuation(data?.continuation);
+            if(isLoadingMoreData) {
+                setElements([...elements,...data?.data]);
+            }else {
+                setElements(data?.data);
+                setNavFilters(data?.filters);
+            }
             console.log(data)
         })
         .catch((error)=>{
@@ -45,19 +55,31 @@ const Home = ()=> {
         })
         .finally(()=> {
             setIsLoading(false);
+            setIsLoadingMore(false)
         })
     };
 
 
     useEffect(fetchHomeData, [lang]);
 
-    const navFiltersFetchData = (filter)=> {
-        
-        setError(null);
-        setFilterPending(true);
-        fetchChannelApi(`trending/${filter}&lang=${lang}`)
+    const navFiltersFetchData = (filter,isLoadingMoreData = false)=> {
+        setLoadMoreDataFor('filters');
+
+        if(isLoadingMoreData) {
+            setIsLoadingMore(true);
+        }else {
+            setError(null);
+            setFilterPending(true);
+        }
+        fetchChannelApi(`search?query=${filter}&token=${navFilterContinuation}&lang=${lang}`)
         .then((data)=> {
-            setElements(data?.data);
+
+            setNavFilterContinuation(data?.continuation);
+            if(isLoadingMoreData){
+                setElements([...elements,...data?.data]);
+            }else {
+                setElements(data?.data);
+            }
             console.log(data)
         })
         .catch((error)=>{
@@ -65,18 +87,10 @@ const Home = ()=> {
         })
         .finally(()=> {
             setFilterPending(false);
+            setIsLoadingMore(false);
         })
     }
 
-    const fetchMoreData = ()=>{
-        setIsLoadingMore(true)
-        fetchChannelApi(`home?token=${continuation}&lang=${lang}`)
-        .then((data)=>{
-            setElements([...elements,...data?.data]);
-            setContinuation(data?.continuation);
-            setIsLoadingMore(false)
-        })
-    }
 
     return (
         <main className={`${theme} main-home`}>
@@ -95,7 +109,10 @@ const Home = ()=> {
                       <RelatedVideos  elements={elements} renderFrom="home"/>
                       {
                         continuation?.length &&
-                        <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMore} />
+                        <LoadMoreBtn 
+                            onClickHandler={loadMoreDataFor === 'home' ?()=> fetchHomeData(true) :()=> navFiltersFetchData(true)} 
+                            isLoadingMore={isLoadingMore} 
+                            />
                       }
                     </>
                     } 
