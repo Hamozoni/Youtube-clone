@@ -23,14 +23,11 @@ const Home = ()=> {
     const [elements,setElements] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState(null);
-    // const [continuation,setContinuation] = useState('');
-    // const [filters,setFilters] = useState(null);
-    // const [filterPending,setFilterPending] = useState(false);
+    const [continuation,setContinuation] = useState('');
+    const [navFilters,setNavFilters] = useState(null);
+    const [filterPending,setFilterPending] = useState(false);
 
-    // const [isLoadingMore,setIsLoadingMore] = useState(false);
-
-
-    // const fetchUrl = location?.length ? `trending${location}&lang=${lang}` : `home?lang=${lang}`;
+    const [isLoadingMore,setIsLoadingMore] = useState(false);
 
     const fetchHomeData = ()=>{
 
@@ -39,7 +36,8 @@ const Home = ()=> {
         fetchChannelApi(`home?lang=${lang}`)
         .then((data)=> {
             setElements(data?.data);
-            // setContinuation(data?.continuation);
+            setNavFilters(data?.filters);
+            setContinuation(data?.continuation);
             console.log(data)
         })
         .catch((error)=>{
@@ -53,15 +51,32 @@ const Home = ()=> {
 
     useEffect(fetchHomeData, [lang]);
 
-    // const fetchMoreData = ()=>{
-    //     setIsLoadingMore(true)
-    //     fetchChannelApi(`home?token=${continuation}&lang=${lang}`)
-    //     .then((data)=>{
-    //         setElements([...elements,...data?.data]);
-    //         setContinuation(data?.continuation);
-    //         setIsLoadingMore(false)
-    //     })
-    // }
+    const navFiltersFetchData = (filter)=> {
+        
+        setError(null);
+        setFilterPending(true);
+        fetchChannelApi(`trending/${filter}&lang=${lang}`)
+        .then((data)=> {
+            setElements(data?.data);
+            console.log(data)
+        })
+        .catch((error)=>{
+            setError(error)
+        })
+        .finally(()=> {
+            setFilterPending(false);
+        })
+    }
+
+    const fetchMoreData = ()=>{
+        setIsLoadingMore(true)
+        fetchChannelApi(`home?token=${continuation}&lang=${lang}`)
+        .then((data)=>{
+            setElements([...elements,...data?.data]);
+            setContinuation(data?.continuation);
+            setIsLoadingMore(false)
+        })
+    }
 
     return (
         <main className={`${theme} main-home`}>
@@ -70,25 +85,24 @@ const Home = ()=> {
                     { error ? <Error error={error}/>: 
                      isLoading ? <Loading /> :  
                     <> 
-                       {/* {
-                        filters?.length > 0 &&
+                       {
+                        navFilters?.length > 0 &&
                          <Keywords 
-                            filters={filters} 
-                            onClickHandler={fetchHomeData} 
-                            continuation={continuation} 
+                            filters={navFilters} 
+                            onClickHandler={navFiltersFetchData} 
                             />
-                       } */}
+                       }
                       <RelatedVideos  elements={elements} renderFrom="home"/>
-                      {/* {
+                      {
                         continuation?.length &&
                         <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMore} />
-                      } */}
+                      }
                     </>
                     } 
-                {/* {
+                {
                    filterPending && 
                    <div className={`${theme} absolute key-loading`}><span>loading...</span></div>
-                } */}
+                }
             </div>
         </main>
     );

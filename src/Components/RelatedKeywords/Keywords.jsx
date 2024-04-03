@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 
 
-const Keywords = ({filters,onClickHandler,continuation})=>{
+const Keywords = ({filters,onClickHandler})=>{
 
     const [currentFilter,setCurrentFilter] = useState('');;
 
@@ -13,22 +13,22 @@ const Keywords = ({filters,onClickHandler,continuation})=>{
             <nav className='related-container'>
                 <ul className={`${theme} taps`}>
                     {
-                        filters?.map((fil,i)=>(
+                        filters?.map((filter,i)=>(
                             <li 
-                                className={fil === currentFilter ? `${theme} active` : `${theme}`}
+                                className={filter === currentFilter ? `${theme} active` : `${theme}`}
                                 onClick={()=> {
-                                if(currentFilter !== fil){ 
-                                    setCurrentFilter(fil)
-                                    onClickHandler(false,fil?.continuation);
+                                if(currentFilter !== filter){ 
+                                    setCurrentFilter(filter)
+                                    onClickHandler(filter);
                                     } 
                                     if( i === 0) {
-                                        setCurrentFilter(fil)
-                                        onClickHandler(false,continuation);
+                                        setCurrentFilter(filter)
+                                        onClickHandler(filter);
                                     }
                                 }}
-                                key={fil?.filter}
+                                key={filter?.filter}
                                 > 
-                                    {fil?.filter}
+                                    {filter?.filter}
                             </li>
                         ))
                         }
