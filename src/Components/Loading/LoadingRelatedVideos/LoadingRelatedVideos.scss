@@ -23,20 +23,31 @@
         }
     }
     .loader-conyainer {
-        @include grid-box(340px,1fr);
+        &.grid {
+            @include grid-box(340px,1fr);
+        }
         .loader-card {
             min-width:340px;
+            &.flex {
+                @include flex-box(flex-start,flex-start,$gap-15);
+                .image {
+                    display: none;
+                }
+            }
             .loader-image {
-                min-width: 100%;
+                min-width: 340px;
                 min-height: 190px;
                 border-radius: $border-r-10;
                 margin-bottom: $marging-10;
+                flex: 1;
                 @media (min-width: 992px) {
                     min-height: 220px;
                 }
             }
             .loader-box {
                 @include flex-box;
+                min-width: 300px;
+                flex: 2;
                 .image {
                     border-radius: $border-r-full;
                     width: 35px;

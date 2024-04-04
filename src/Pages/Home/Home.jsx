@@ -9,7 +9,7 @@ import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import Keywords from '../../Components/RelatedKeywords/Keywords';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
-import Loader from './Loader/Loader';
+import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
 
 
 
@@ -96,7 +96,7 @@ const Home = ()=> {
             <SideNavbarSmall homeShort='home-short' />
             <div className='container'>
                     { error ? <Error error={error}/>: 
-                     isLoading ? <Loader  /> :  
+                     isLoading ? <LoadingRelatedVideos display='grid' /> :  
                     <> 
                        {
                         navFilters?.length > 0 &&

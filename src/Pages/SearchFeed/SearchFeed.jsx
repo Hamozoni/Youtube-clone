@@ -1,74 +1,84 @@
+import { useState, useEffect, useContext} from 'react';
+import { useLocation} from 'react-router-dom';
+
 import './SearchFeed.scss';
-import { useState, useEffect, useRef, useContext} from 'react';
-import { useLocation, useParams } from 'react-router-dom';
 import { fetchChannelApi } from '../../Utils/FetchApi';
-import Loading from '../../Components/Loading/Loading';
+import { statesContext } from '../../Contexts/statesContext';
+
+import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';
+import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import Refinements from '../../Components/Refinements/Refinements';
-
-import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';
-import { statesContext } from '../../Contexts/statesContext';
-import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
 
 const SearchFeed = ()=> {
 
+    const searchQuery = useLocation().search;
+    const {lang, theme} = useContext(statesContext);
+
     const [videos,setVideos] = useState();
     const [ispending,setIsPending] = useState(true);
-    const [isError,setIsError] = useState(false);
     const [error,setError] = useState(null);
     const [refinements,setRefinements] = useState([]);
     const [continuation,setContinuation] = useState(null);
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
 
-    const location = useLocation();
-    const {lang, theme} = useContext(statesContext);
 
-    useEffect(()=> {
-        window.scrollTo(0,0);
-        setIsError(false);
-        setIsPending(true);
-        fetchChannelApi(`search${location?.search}&lang=${lang}`)
+    const fetchSearchData = (isMore = false)=> {
+
+        document.title = searchQuery.split('=')[1] + "-myh tube";
+        
+        if(isMore){
+            setIsloadingMoreData(true);
+        }else {
+            window.scrollTo(0,0);
+            setIsPending(true);
+        }
+
+        setError(null);
+
+        fetchChannelApi(`search${searchQuery}&lang=${lang}`)
         .then((data)=> {
-            setVideos(data?.data);
+
+            if(isMore){
+                setVideos((prev)=> [...prev,...data?.data]);
+            }else {
+                setVideos(data?.data);
+            }
             setRefinements(data?.refinements);
             setContinuation(data?.continuation);
-            setIsPending(false)
         })
         .catch((error)=>{
-            setIsError(true);
             setError(error);
         })
-    },[location?.search,lang]);
-
-    const fetchMoreData = ()=>{
-        setIsloadingMoreData(true);
-        fetchChannelApi(`search${location?.search}&lang=${lang}&token=${continuation}`)
-        .then((data)=>{
-            setVideos(prev => [...prev,...data?.data]);
-            setContinuation(data?.continuation);
+        .finally(()=> {
+            setIsPending(false);
             setIsloadingMoreData(false);
-        })
-        .catch((erorr)=>{
-            setError(error)
-        })
-    }
+        });
+    };
+
+    useEffect(fetchSearchData,[searchQuery,lang]);
 
 
     return (
-        isError ? <Error error={error} /> :
         <main className={`${theme} search-feed`}>
             <SideNavSmall homeShort='home-short' />
-            <div className={`${theme} container`}>
+           { 
+                error ? <Error error={error} /> : ispending ? <LoadingRelatedVideos display='flex' /> :
+                    <div className={`${theme} container`}>
+                        <Refinements refinements={refinements} />
+                        <RelatedVideos elements={videos} renderFrom="search" />
 
-                { Refinements?.length > 0 && <Refinements refinements={refinements} />}
-                {ispending ? <Loading /> :<RelatedVideos elements={videos} renderFrom="search" />}
-
-                {
-                 continuation &&
-                 <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMoreData}/>
-               }
-            </div>
+                        {
+                            continuation &&
+                            <LoadMoreBtn 
+                                onClickHandler={()=> fetchSearchData(true)} 
+                                isLoadingMore={isLoadingMoreData}
+                            />
+                        }
+                    </div>
+            }
         </main>
     );
 };

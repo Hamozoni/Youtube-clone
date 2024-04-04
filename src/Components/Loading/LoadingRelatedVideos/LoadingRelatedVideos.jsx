@@ -1,10 +1,13 @@
 
 import { useContext } from "react";
-import "./Loader.scss";
+import "./LoadingRelatedVideos.scss";
 import { statesContext } from "../../../Contexts/statesContext";
-const Loader = () => {
+
+const LoadingRelatedVideos = ({display}) => {
+
     const {theme} = useContext(statesContext);
     const cards = [1,2,3,4,5,6];
+
   return (
     <div className="home-loader">
         <ul className="loader-nav">
@@ -16,10 +19,10 @@ const Loader = () => {
                 ))
             }
         </ul>
-        <div className="loader-conyainer">
+        <div className={`${display} loader-conyainer`}>
             {
                 cards.map((e)=> (
-                    <div className="loader-card" key={e}>
+                    <div className={`${display} loader-card`} key={e}>
                         <div className={`back-color-${theme}-1  back-before-c-${theme}-2 loader-image loader-moviement`}></div>
                         <div className="loader-box ">
                             <span className={`back-color-${theme}-1  back-before-c-${theme}-2  image loader-moviement`}></span>
@@ -38,4 +41,4 @@ const Loader = () => {
   )
 }
 
-export default Loader;
+export default LoadingRelatedVideos;
