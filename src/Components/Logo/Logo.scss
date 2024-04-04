@@ -5,35 +5,24 @@
     width: 100%;
     .menu-icon {
         @include flex-box(center,center);
-        padding: $padding-m;
-        border-radius: $border-radius-m;
-        color: $text-color-dark-l;
-        &:hover {
-            background-color: darken($back-gr-color-light,10)
-        }
+        padding: $padding-5;
+        border-radius: $border-r-5;
         svg {
             font-size: 28px;
         }
-        &.dark {
-            color: $text-color-light-l;
-            &:hover {
-                background-color: lighten($back-gr-color-dark,10)
-            }
-        }
     }
-    a {
-        @include flex-box(center,center,$gap-m);
-        border-radius: $border-radius-m;
+    .main-logo {
+        @include flex-box(center,center,$gap-5);
+        border-radius: $border-r-5;
+        color: $logo-color;
         text-transform: uppercase;
         font-size: $logo-font-size;
-        color: $logo-color;
         font-weight: bold;
         span {
             @include flex-box(center,center,0);
             width: 30px;
             height: 20px;
-            background-color: $text-color-light-l;
-            border-radius: $border-radius-m;
+            border-radius: $border-r-5;
             color: $logo-color;
         }
     }

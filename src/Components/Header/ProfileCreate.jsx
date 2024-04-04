@@ -9,15 +9,15 @@ const ProfileCreate = ()=> {
     const { theme, setIsAcountNavOpen, isAcountNavOpen } = useContext(statesContext);
 
     return (
-        <div className={`${theme} prof-create`}>
-            <div className={`${theme} create icon`}>
+        <div className='prof-create'>
+            <div className={`t-color-${theme} back-hov-c-${theme}-2 create icon`}>
                 <VideoCallIcon />
             </div>
-            <div className={`${theme} notific icon`}>
+            <div className={`t-color-${theme} back-hov-c-${theme}-2  notific icon`}>
                 <NotificationsNoneOutlinedIcon />
             </div>
             <div 
-                className={`${theme} user-img icon open-menu`}
+                className={` t-color-${theme} back-hov-c-${theme}-2  user-img icon open-menu`}
                 onClick={()=> setIsAcountNavOpen(!isAcountNavOpen)} 
                 >
                 <AccountCircleOutlinedIcon 

@@ -12,6 +12,7 @@
 }
 
 .home-loader {
+    padding: $padding-10;
     .loader-nav {
         @include flex-box;
         margin-bottom: $marging-20;

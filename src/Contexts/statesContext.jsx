@@ -1,16 +1,16 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { reducer } from "./Reducer";
 
 export const statesContext = createContext(null);
 
+const initalstate = {
+    history : [],
+    likedVideos: [],
+    subscribtion: [],
+};
 
 const StatesContextComponent = ({children})=>{
 
-    const initalstate = {
-        history : [],
-        likedVideos: [],
-        subscribtion: [],
-    };
 
     const [state,dispatch] = useReducer(reducer,initalstate);
 
@@ -21,6 +21,34 @@ const StatesContextComponent = ({children})=>{
     const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
     const [playingVideoId, setPlayingVideoId] = useState('');
     const [isRecording, setIsRecording] = useState(false);
+
+
+    useEffect(()=>{
+
+        if(localStorage.getItem('YMHtube-language')) {
+            setLang(localStorage.getItem('YMHtube-language'))   
+        }else {
+          localStorage.setItem('YMHtube-language',lang);
+        };
+    
+        if(lang === "ar") {
+          document.dir = 'rtl';
+        }else {
+          document.dir = 'ltr';
+        };
+          
+      },[lang]);
+    
+      useEffect(()=>{
+          if(localStorage.getItem('maimed-tube-theme')) {
+            setTheme(localStorage.getItem('maimed-tube-theme'))   
+          }else {
+            localStorage.setItem('maimed-tube-theme',theme);
+          };
+    
+          document.body.className = `back-color-${theme}`;
+          
+      },[theme]);
 
     return (
         <statesContext.Provider 

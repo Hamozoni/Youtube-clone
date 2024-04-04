@@ -5,11 +5,7 @@
     form {
         @include flex-box(center,space-between);
         overflow: hidden;
-        border-radius: $border-radius-l;
-        background-color: $back-gr-color-light ;
-        &.dark { 
-            background-color: $back-gr-color-dark !important;
-        }
+        border-radius: $border-r-20;
         &.active {
             @media (max-width: 667px) {
                 border: 1px solid $text-color-dark-l;
@@ -25,11 +21,7 @@
         }
         @media (min-width: 530px) {
             width: 160px;
-            border: 1px solid $text-color-light-l;
-            &.dark {
-               border: 1px solid $text-color-dark-l;
-
-            }
+            border: 1px solid;
         }
         @media (min-width: 668px) {
             width: 300px;
@@ -45,56 +37,26 @@
         }
         .search-input {
             background-color: transparent;
-            color: $text-color-dark-l;
             outline: transparent;
-            padding:0 $padding-l;
+            padding: $padding-5 $padding-10;
             font-size: $font-size-l !important;
             width: calc(100% - 48px);
             display: none;
-            &.dark {
-                color: $text-color-light-l;
-            }
             @media (min-width:530px) {
                 display: block;
             }
-            &.light {
-              color: black !important;
-            }
         }
         .search-btn {
-            color: $text-color-dark-l;
-            background-color: darken($color: $back-gr-color-light, $amount: 5);
             display: flex;
-            padding: 2px $padding-l;
-            &:hover {
-                background-color: darken($color: $back-gr-color-light, $amount: 10);
-            }
-            &.dark {
-                color: $text-color-light-l;
-                background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-                &:hover {
-                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                }
-            }
+            padding: $padding-5 $padding-20;
         }
     }
     .mike {
         @include flex-box(center,center);
-        padding: $padding-l;
-        border-radius: 50%;
+        padding: $padding-10;
+        border-radius: $border-r-full;
+        cursor: pointer;
         display: none;
-        background-color: darken($color: $back-gr-color-light, $amount: 5);
-        color: $text-color-dark-m;
-        &:hover {
-            background-color: darken($color: $back-gr-color-light, $amount: 10);
-        }
-        &.dark {
-            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-            color: $text-color-light-m;
-            &:hover {
-                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-            }
-        }
         @media (min-width: 430px) {
             display: flex;
         }

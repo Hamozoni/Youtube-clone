@@ -53,7 +53,7 @@
                 }
             }
             .border-c-#{$key}-#{$i} {
-                border-color: mix($light-color, $val, $i * 10);;
+                border-color: mix($light-color, $val, $i * 10) !important;
             }
         };
         .b-g-t-#{$key} {
@@ -80,7 +80,7 @@
                 }
             }
             .border-c-#{$key}-#{$i} {
-                border-color: mix($dark-color, $val, $i * 10);;
+                border-color: mix($dark-color, $val, $i * 10) !important;
             }
         };
         .b-g-t-#{$key} {

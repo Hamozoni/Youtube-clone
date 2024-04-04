@@ -17,15 +17,15 @@ const Logo = ()=>{
     }
 
     return (
-            <div className={`${theme} logo`}>
+            <div className='logo'>
                 <div 
-                   className={`${theme} menu-icon`} 
+                   className={`t-color-${theme}-5 menu-icon`} 
                    onClick={onClickSideNav}
                    >
                     <MenuIcon/>
                 </div>          
-                <Link to='/'>
-                    <span className={`${theme} icon`}>
+                <Link to='/' className='main-logo'>
+                    <span className={`back-color-${theme}-1 icon`}>
                         <PlayArrowIcon />
                     </span>
                     { language[lang]?.logo }

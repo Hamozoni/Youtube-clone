@@ -1,4 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useContext } from "react";
 import Logo from "../Logo/Logo";
 
 import './style.scss';
@@ -21,7 +22,6 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import { language } from "../../Utils/language";
 import { statesContext } from "../../Contexts/statesContext";
-import { useContext } from "react";
 import SideNavbarSmall from "./SideNavSmall";
 
 

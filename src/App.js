@@ -22,36 +22,10 @@ import Loading from './Components/Loading/Loading.jsx';
 
 const App = ()=> {
 
-  const {lang, setLang, theme,setTheme, isSideNavbarOpen, isAcountNavOpen,isRecording } = useContext(statesContext);
+  const {isSideNavbarOpen, isAcountNavOpen,isRecording } = useContext(statesContext);
 
   const [isLoader,setLoader] = useState(true)
 
-  useEffect(()=>{
-
-    if(localStorage.getItem('YMHtube-language')) {
-        setLang(localStorage.getItem('YMHtube-language'))   
-    }else {
-      localStorage.setItem('YMHtube-language',lang);
-    };
-
-    if(lang === "ar") {
-      document.dir = 'rtl';
-    }else {
-      document.dir = 'ltr';
-    };
-      
-  },[lang]);
-
-  useEffect(()=>{
-      if(localStorage.getItem('maimed-tube-theme')) {
-        setTheme(localStorage.getItem('maimed-tube-theme'))   
-      }else {
-        localStorage.setItem('maimed-tube-theme',theme);
-      };
-
-      document.body.className = `back-color-${theme}`;
-      
-  },[theme]);
 
   useEffect(()=>{
 

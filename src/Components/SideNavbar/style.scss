@@ -23,7 +23,7 @@ nav.side-navbar {
             font-size: $font-size-5;
         }
         .nav-icons {
-            padding: $padding-l 0;
+            padding: $padding-10 0;
             border-width: 0;
             border-bottom-width: 1px ;
             border-style: solid;
@@ -34,7 +34,7 @@ nav.side-navbar {
             a {
                 @include flex-box();
                 border-radius: $border-r-10;
-                padding: $padding-20;
+                padding: $padding-10;
                 text-transform: capitalize;
                 margin-bottom: $marging-10;
             }
