@@ -8,13 +8,15 @@ const Keywords = ({filters,currentFilter,setCurrentFilter,onClickHandler})=>{
     const {theme} = useContext(statesContext);
 
     return (
-        <div className={`${theme} related-keywords home`}>
+        <div className={`back-color-${theme} related-keywords home`}>
             <nav className='related-container'>
                 <ul className={`${theme} taps`}>
                     {
                         filters?.map((filter,i)=>(
                             <li 
-                                className={filter?.filter === currentFilter ? `${theme} active` : `${theme}`}
+                                className={`${filter?.filter === currentFilter ?  'active' : ''}
+                                     back-hov-c-${theme}-2 back-color-${theme}-1 back-act-c-${theme}-4 t-color-${theme}`
+                                    }
                                 onClick={()=> {
                                 if(currentFilter !== filter?.filter){ 
                                     setCurrentFilter(filter?.filter)

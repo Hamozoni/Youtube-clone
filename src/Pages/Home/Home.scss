@@ -7,16 +7,13 @@ main.main-home{
         position: relative;
         max-width: 100%;
         flex: 1;
-        @media (min-width: 530px) {
-            padding: $padding-15;
-        }  
         @media (min-width: 790px) {
-            max-width: calc(100% - 75px);
+            max-width: calc(100vw - 140px);
         } 
         .related-videos {
-            @include grid-box(340px,1fr);
+            @include grid-box(340px,1fr,$gap-20);
             .videos-container {
-                @include grid-box(340px,1fr);
+                @include grid-box(340px,1fr,$gap-20);
             }
         }
     }

@@ -5,10 +5,6 @@ header.main-header {
     position: sticky;
     top: 0;
     z-index: 999999999;
-    background-color: $back-gr-color-light !important;
-    &.dark {
-        background-color: $back-gr-color-dark !important;
-    }
     .container {
         @include flex-box(center,space-between,0);
         height: 60px;
@@ -25,22 +21,10 @@ header.main-header {
 .prof-create {
     @include flex-box(center,center);
     .icon {
-        @include flex-box(center,center,$border-radius-m);
-        padding: $padding-m;
-        border-radius: 50%;
+        @include flex-box(center,center,$gap-10);
+        padding: $padding-10;
+        border-radius: $border-r-full;
         cursor: pointer;
-        background-color: darken($color: $back-gr-color-light, $amount: 5);
-        color: $text-color-dark-l;
-        &:hover {
-            background-color: darken($color: $back-gr-color-light, $amount: 10);
-        }
-        &.dark {
-            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-            color: $text-color-light-l;
-            &:hover {
-                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-            }
-        }
         svg {
             font-size: 28px;
         }

@@ -71,8 +71,8 @@ body {
 
 .related-keywords {
     position: sticky;
-    padding: $padding-20 ;
     margin-bottom: $marging-20 ;
+    padding: $padding-20 ;
     top: 55px;
     z-index: 99999;
     .related-container  {
@@ -84,13 +84,12 @@ body {
         li {
             min-width: fit-content;
             text-transform: capitalize;
-            border-radius: $border-r-10;
+            border-radius: $border-r-5;
             padding: $padding-5 $padding-10;
             border: 1px solid transparent;
             cursor: pointer;
             font-size: $font-size-6;
             font-weight: 700;
-            color: $text-color-dark-l;
         }
     }
     }

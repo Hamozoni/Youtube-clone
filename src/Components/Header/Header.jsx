@@ -10,7 +10,7 @@ const Header = ()=> {
     const {theme} = useContext(statesContext)
 
     return (
-        <header className={`${theme} main-header`}>
+        <header className={`back-color-${theme} main-header`}>
             <div className="container">
                 <Logo />
                 <div className="left-bar">

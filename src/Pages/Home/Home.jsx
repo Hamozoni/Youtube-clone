@@ -46,6 +46,7 @@ const Home = ()=> {
             }else {
                 setElements(data?.data);
                 setNavFilters(data?.filters);
+                document.title = 'home page'
             }
             console.log(data)
         })
@@ -62,7 +63,7 @@ const Home = ()=> {
 
     const navFiltersFetchData = (filter,isLoadingMoreData = false)=> {
         setLoadMoreDataFor('filters');
-
+        document.title = filter;
         if(isLoadingMoreData) {
             setIsLoadingMore(true);
         }else {
