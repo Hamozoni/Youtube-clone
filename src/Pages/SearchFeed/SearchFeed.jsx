@@ -64,21 +64,26 @@ const SearchFeed = ()=> {
     return (
         <main className={`${theme} search-feed`}>
             <SideNavSmall homeShort='home-short' />
-           { 
-                error ? <Error error={error} /> : ispending ? <LoadingRelatedVideos display='flex' /> :
+           
                     <div className={`${theme} container`}>
-                        <Refinements refinements={refinements} />
-                        <RelatedVideos elements={videos} renderFrom="search" />
-
                         {
-                            continuation &&
-                            <LoadMoreBtn 
-                                onClickHandler={()=> fetchSearchData(true)} 
-                                isLoadingMore={isLoadingMoreData}
-                            />
+                            error ? <Error error={error} /> : ispending ? <LoadingRelatedVideos display='flex' /> :
+                            <>
+                                <Refinements refinements={refinements} />
+                                <RelatedVideos elements={videos} renderFrom="search" />
+
+                                {
+                                    continuation &&
+                                    <LoadMoreBtn 
+                                        onClickHandler={()=> fetchSearchData(true)} 
+                                        isLoadingMore={isLoadingMoreData}
+                                    />
+                                }
+                            </>
+
                         }
                     </div>
-            }
+            
         </main>
     );
 };
