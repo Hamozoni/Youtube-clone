@@ -57,9 +57,9 @@
             }
         };
         .b-g-t-#{$key} {
-            background-color: #001d1b9f;
+            background-color: #001d1b65;
         }
-        
+
     }@else {
         @for $i from 1 through 10 {
             .back-color-#{$key}-#{$i} {
@@ -85,7 +85,7 @@
             }
         };
         .b-g-t-#{$key} {
-            background-color: #c3fffbaf;
+            background-color: #f5fffe65;
         }
     };
 };

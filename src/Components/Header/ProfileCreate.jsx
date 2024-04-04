@@ -4,7 +4,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import { useContext } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
-const ProfileCreate = ()=> {
+const ProfileCreate = ({setIsAcountModel})=> {
 
     const { theme, setIsAcountNavOpen, isAcountNavOpen } = useContext(statesContext);
 
@@ -22,7 +22,7 @@ const ProfileCreate = ()=> {
                 >
                 <AccountCircleOutlinedIcon 
                     className={`${theme} user-img open-menu`} 
-                    onClick={()=> setIsAcountNavOpen(!isAcountNavOpen)}
+                    onClick={()=> setIsAcountModel(true)}
                     />
             </div>
         </div>

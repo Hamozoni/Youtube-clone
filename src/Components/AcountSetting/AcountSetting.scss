@@ -1,18 +1,24 @@
 @import "../../GlibalStyles.scss/Variabls";
 @import "../../GlibalStyles.scss/Mixin";
 
-
 .acount-setting {
     position: fixed;
-    width: 300px;
-    max-width: calc( 100% - 20px) ;
-    max-height: 100vh;
-    top: 45px;
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 0;
     z-index: 99999999999;
-    border-radius: $border-r-10;
-    padding: $padding-20;
+    display: flex;
+    justify-content: flex-end;
     .acount-container {
+        padding: $padding-20;
+        border-radius: $border-r-10;
+        width: 300px;
+        height: fit-content;
+        max-width: calc( 100% - 20px);
+        margin: $marging-40;
+        overflow: hidden;
         .acount-header {
+            border-bottom: 1px solid transparent;
             .user-info {
                 @include flex-box();
                 padding-bottom: $padding-l;
@@ -23,7 +29,7 @@
                 }
                 .user-name {
                     .name,.channel-handle {
-                        font-size: $font-size-4;
+                        font-size: $font-size-6;
                     }
                     a {
                         font-size: $font-size-6;
@@ -36,6 +42,7 @@
         .acount-body {
             max-height: calc(100vh - 150px);
             overflow-y: scroll;
+            padding-bottom: $padding-15;
             .acou-body-cont {
                 height: fit-content;
                 .google-aco {
@@ -57,22 +64,22 @@
     }
     .oppt-menu {
         text-transform: capitalize;
+        padding: $padding-10;
+        margin: $marging-20;
+        border-radius: $border-r-10;
+        max-height: fit-content;
         .oppt-header {
             @include flex-box(center);
             border-bottom: 1px solid transparent;
-            padding-bottom: $padding-10;
             margin-bottom: $marging-10;
             .icon {
                 @include flex-box(center,center);
                 border-radius: $border-r-full;
                 padding: $padding-10;
             }
-            // .title {
-            //     color: $text-color-dark-l;
-            //     &.dark {
-            //         color: $text-color-light-l;
-            //     }
-            // }
+            .title {
+                font-size: $font-size-5
+            }
         }
         .menu-oppt {
             .oppt{
@@ -80,6 +87,7 @@
                 cursor: pointer;
                 padding: $padding-10;
                 border-radius: $border-r-10;
+                font-size: $font-size-6;
                 span {
                     width: 32px;
                     svg {

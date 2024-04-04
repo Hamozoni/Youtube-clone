@@ -18,7 +18,6 @@ const StatesContextComponent = ({children})=>{
     const [lang, setLang] = useState('en');
     const [shorts, setShorts] = useState([]);
     const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
-    const [isAcountNavOpen, setIsAcountNavOpen] = useState(false);
     const [playingVideoId, setPlayingVideoId] = useState('');
     const [isRecording, setIsRecording] = useState(false);
 
@@ -60,8 +59,6 @@ const StatesContextComponent = ({children})=>{
                         setLang,
                         shorts, 
                         setShorts,
-                        setIsAcountNavOpen, 
-                        isAcountNavOpen, 
                         isSideNavbarOpen,
                         setIsSideNavbarOpen,
                         playingVideoId,

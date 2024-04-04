@@ -9,7 +9,6 @@ import PlayList from './Pages/Playlist/Playlist.jsx';
 
 import {statesContext} from './Contexts/statesContext';
 import { useContext, useEffect, useState } from 'react';
-import AcountSetting from './Components/AcountSetting/AcountSetting';
 import Post from './Pages/Post/Post';
 import ChannelHome from './Components/ChannelHome/ChannelHome.jsx';
 import ChannelContent from './Components/ChannelContent/ChannelContent.jsx';
@@ -22,7 +21,7 @@ import Loading from './Components/Loading/Loading.jsx';
 
 const App = ()=> {
 
-  const {isSideNavbarOpen, isAcountNavOpen,isRecording } = useContext(statesContext);
+  const {isSideNavbarOpen,isRecording } = useContext(statesContext);
 
   const [isLoader,setLoader] = useState(true)
 
@@ -43,11 +42,6 @@ const App = ()=> {
           { 
             isSideNavbarOpen && 
             <SideNavbar />
-          }
-          {
-            isAcountNavOpen && 
-            <AcountSetting />
-
           }
           {
             isRecording && 
