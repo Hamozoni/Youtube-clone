@@ -29,10 +29,10 @@ const AcountSetting = ({setIsAcountModel})=>{
 
     const ThemeMenu = ()=>{
         return (
-              <div className={`back-color-${theme} oppt-menu`}  >
-                    <header className={`border-c-${theme}-1 oppt-header`}>
+              <div className={`back-color-${theme}-1 oppt-menu`}  >
+                    <header className={`border-c-${theme}-2 oppt-header`}>
                         <div 
-                            className={`t-color-${theme}-1 back-hov-c-${theme}-1 icon`} 
+                            className={`t-color-${theme}-1 back-hov-c-${theme}-2 icon`} 
                             onClick={()=> setWitchOneRenders('main') }
                             >
                             <KeyboardBackspaceOutlinedIcon />
@@ -42,15 +42,15 @@ const AcountSetting = ({setIsAcountModel})=>{
                         </h5>
                     </header>
                     <div className={`${theme} menu-oppt`}>
-                        <div className={`t-color-${theme}-1 back-hov-c-${theme}-1 oppt`}>
+                        <div className={` t-color-${theme}-1 back-hov-c-${theme}-2 oppt`}>
                             <span>{theme === '' && <CheckOutlinedIcon />}</span>
                             <h5>auto theme</h5>
                         </div>
-                        <div className={`t-color-${theme}-1 back-hov-c-${theme}-1 oppt`}>
+                        <div className={`t-color-${theme}-1 back-hov-c-${theme}-2 oppt`}>
                             <span>{theme === '' && <CheckOutlinedIcon />}</span>
                             <h5>use device theme</h5>
                         </div>
-                        <div className={`t-color-${theme}-1 back-hov-c-${theme}-1 oppt`}
+                        <div className={`${theme === 'dark' ? 'active' : ''} back-act-c-${theme}-3 t-color-${theme}-1 back-hov-c-${theme}-2 oppt`}
                            onClick={()=>{ 
                             setTheme('dark');
                             localStorage.setItem('maimed-tube-theme','dark');
@@ -58,7 +58,7 @@ const AcountSetting = ({setIsAcountModel})=>{
                             <span>{theme === 'dark' && <CheckOutlinedIcon />}</span>
                             <h5>dark theme</h5>
                         </div>
-                        <div className={`t-color-${theme}-1 back-hov-c-${theme}-1 oppt`} onClick={()=> {
+                        <div className={`${theme === 'light' ? 'active' : ''} back-act-c-${theme}-3  t-color-${theme}-1 back-hov-c-${theme}-2 oppt`} onClick={()=> {
                             setTheme('light');
                             localStorage.setItem('maimed-tube-theme','light')
                             } }>
@@ -72,27 +72,30 @@ const AcountSetting = ({setIsAcountModel})=>{
 
     const LanguageMenu = () =>{
         return (
-                <div className={`${theme} oppt-menu`}>
-                        <header className={`${theme} oppt-header`}>
-                            <div className={`${theme} icon`} onClick={()=> setWitchOneRenders('main') }>
+                <div className={`back-color-${theme}-1 oppt-menu`}>
+                        <header className={`border-c-${theme}-2 oppt-header`}>
+                            <div 
+                                className={`t-color-${theme}-1 back-hov-c-${theme}-2 icon`} 
+                                onClick={()=> setWitchOneRenders('main') }>
                                 <KeyboardBackspaceOutlinedIcon />
                             </div>
-                            <h5 className={`${theme} title`}>
+                            <h5 className={`t-color-${theme}-1 title`}>
                                Choose your language
                             </h5>
                         </header>
                         <div  className={`${theme} menu-oppt`}>
                             <div 
-                                className={`${theme} oppt`}
+                                className={`${lang === 'en' ? 'active' : ''} back-act-c-${theme}-3 back-hov-c-${theme}-2 t-color-${theme}-3 oppt`}
                                 onClick={()=> {
-                                localStorage.setItem('YMHtube-language',"en");
-                                setLang(localStorage.getItem('YMHtube-language'));
-                            }}>
+                                        localStorage.setItem('YMHtube-language',"en");
+                                        setLang(localStorage.getItem('YMHtube-language'));
+                                    }}
+                                 >
                                 <span>{lang === 'en' && <CheckOutlinedIcon />}</span>
                                 <h5>english</h5>
                             </div>
                             <div 
-                                className={`${theme} oppt`}
+                                className={`${lang === 'ar' ? 'active' : ''} back-act-c-${theme}-3 back-hov-c-${theme}-2 t-color-${theme}-3 oppt`}
                                 onClick={()=> {
                                 localStorage.setItem('YMHtube-language',"ar"); 
                                 setLang(localStorage.getItem('YMHtube-language')) 
@@ -107,10 +110,10 @@ const AcountSetting = ({setIsAcountModel})=>{
 
     const AcountContainer = ()=>{
         return (
-            <div className={`back-color-${theme} acount-container open-menu`} >
+            <div className={`back-color-${theme}-1 acount-container open-menu`} >
                 <header className={`border-c-${theme}-1 acount-header`}>
                     <div className={`${theme} user-info open-menu`}>
-                        <div className={`back-color-${theme}-1 user-image`}>
+                        <div className={`back-color-${theme}-2 user-image`}>
                             <img src="" alt="" />
                         </div>
                         <section className={`t-color-${theme}-1 user-name`}>
@@ -131,62 +134,62 @@ const AcountSetting = ({setIsAcountModel})=>{
                 <div className="acount-body">
                     <div className={`acou-body-cont`}>
 
-                        <ul className={`border-c-${theme}-1  google-aco`}>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                        <ul className={`border-c-${theme}-2  google-aco`}>
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <GoogleIcon /> 
                                  google acount
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <ContactsOutlinedIcon /> 
                                 switch acount 
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <LogoutOutlinedIcon/> 
                                 sign out
                             </li>
                         </ul>
-                        <ul className={`border-c-${theme}-1  google-aco`}>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                        <ul className={`border-c-${theme}-2  google-aco`}>
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <PermIdentityRoundedIcon /> 
                                 your data in myhtube
                             </li>
                             <li 
-                                className={`back-hov-c-${theme}-1 t-color-${theme}-2`}
+                                className={`back-hov-c-${theme}-2 t-color-${theme}-2`}
                                 onClick={()=> setWitchOneRenders('theme')}
                                 > 
                                 <DarkModeOutlinedIcon />
                                  appearance: {theme} 
                             </li>
                             <li 
-                                className={`back-hov-c-${theme}-1 t-color-${theme}-2`}
+                                className={`back-hov-c-${theme}-2 t-color-${theme}-2`}
                                 onClick={()=> setWitchOneRenders('lang')}
                                 > 
                                 <TranslateOutlinedIcon/>
                                 {language[lang].language}: english
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <AdminPanelSettingsOutlinedIcon/> 
                                 restricted mode: off
                              </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <PublicOutlinedIcon/> 
                                 location: Saudi arbia 
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <KeyboardOutlinedIcon/> 
                                 keyboard shortcuts
                             </li>
                         </ul>
-                        <ul className={`border-c-${theme}-1  google-aco`}>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}>
+                        <ul className={`border-c-${theme}-2  google-aco`}>
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}>
                                  <SettingsOutlinedIcon /> 
                                  settings
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <HelpOutlineOutlinedIcon /> 
                                 help
                             </li>
-                            <li className={`back-hov-c-${theme}-1 t-color-${theme}-2`}> 
+                            <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                <FeedbackOutlinedIcon/> 
                                send feedback
                             </li>
