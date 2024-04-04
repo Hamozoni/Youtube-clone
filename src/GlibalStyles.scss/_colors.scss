@@ -59,6 +59,7 @@
         .b-g-t-#{$key} {
             background-color: #001d1b9f;
         }
+        
     }@else {
         @for $i from 1 through 10 {
             .back-color-#{$key}-#{$i} {

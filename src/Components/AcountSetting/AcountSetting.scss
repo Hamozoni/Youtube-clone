@@ -9,12 +9,8 @@
     max-height: 100vh;
     top: 45px;
     z-index: 99999999999;
-    border-radius: $border-radius-l;
-    padding: $padding-l;
-    background-color: darken($back-gr-color-light,15);
-    &.dark {
-        background-color: lighten($back-gr-color-dark,5);
-    }
+    border-radius: $border-r-10;
+    padding: $padding-20;
     .acount-container {
         .acount-header {
             .user-info {
@@ -23,26 +19,15 @@
                 .user-image {
                     width: 48px;
                     height: 48px;
-                    border-radius: 50%;
-                    background-color: aliceblue;
+                    border-radius: $border-r-full;
                 }
                 .user-name {
                     .name,.channel-handle {
-                        color: $text-color-dark-l;
-                        font-size: $font-size-l;
-                        &.dark {
-                            color: $text-color-light-l;
-                        }
+                        font-size: $font-size-4;
                     }
                     a {
-                        color: $text-color-dark-m;
-                        font-size: $font-size-m;
+                        font-size: $font-size-6;
                         font-weight: 500;
-                    }
-                    &.dark {
-                        a {
-                            color: $text-color-light-m;
-                        } 
                     }
                 }
             }
@@ -54,30 +39,17 @@
             .acou-body-cont {
                 height: fit-content;
                 .google-aco {
-                    border-top: 1px solid $text-color-light-l;
-                    padding: $padding-m 0;
+                    border-top: 1px solid transparent;
+                    padding: $padding-10 0;
                     li {
                         @include flex-box(center);
-                        color: $text-color-dark-l;
-                        margin-top: $margin-m;
+                        margin-top: $marging-10;
                         cursor: pointer;
-                        padding: $padding-l;
-                        border-radius: $border-radius-m;
+                        padding: $padding-10;
+                        border-radius: $border-r-10;
                         text-transform: capitalize;
                         font-size: $font-size-m + 2;
                         font-weight: 700;
-                        &:hover {
-                            background-color: darken($color: $back-gr-color-light, $amount: 10);
-                        }
-                    }
-                    &.dark {
-                        border-top: 1px solid $text-color-dark-l;
-                        li {
-                           color: $text-color-light-l;
-                           &:hover {
-                               background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                           }
-                        }
                     }
                 }
             }
@@ -87,50 +59,27 @@
         text-transform: capitalize;
         .oppt-header {
             @include flex-box(center);
-            border-bottom: 1px solid darken($color: $back-gr-color-light, $amount: 10);
-            padding-bottom: $padding-l;
-            margin-bottom: $margin-l;
-            &.dark {
-                border-color: lighten($color: $back-gr-color-dark, $amount: 10);
-            }
+            border-bottom: 1px solid transparent;
+            padding-bottom: $padding-10;
+            margin-bottom: $marging-10;
             .icon {
                 @include flex-box(center,center);
-                border-radius: 50%;
-                padding: $padding-m;
-                color: $text-color-dark-l;
-                &:hover {
-                   background-color: darken($color: $back-gr-color-light, $amount: 5);
-                }
-                &.dark {
-                    color: $text-color-light-l;
-                    &:hover {
-                        background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                     }
-                }
+                border-radius: $border-r-full;
+                padding: $padding-10;
             }
-            .title {
-                color: $text-color-dark-l;
-                &.dark {
-                    color: $text-color-light-l;
-                }
-            }
+            // .title {
+            //     color: $text-color-dark-l;
+            //     &.dark {
+            //         color: $text-color-light-l;
+            //     }
+            // }
         }
         .menu-oppt {
             .oppt{
-                @include flex-box(center,_,$gap-m);
+                @include flex-box(center,_,$gap-10);
                 cursor: pointer;
-                padding: $padding-l;
-                border-radius: $border-radius-m;
-                color: $text-color-dark-m;
-                &:hover {
-                    background-color: darken($color: $back-gr-color-light, $amount: 10);
-                }
-                &.dark {
-                    color: $text-color-light-m;
-                    &:hover {
-                        background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                    }
-                }
+                padding: $padding-10;
+                border-radius: $border-r-10;
                 span {
                     width: 32px;
                     svg {
