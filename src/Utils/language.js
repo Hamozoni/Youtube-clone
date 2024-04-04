@@ -75,7 +75,7 @@ export const language = {
         subscribe: 'اشتراك' , 
         subscribed: 'مشترك' ,
         subscribers: 'مشترك' ,
-        home: 'الصفحة الرئيسية',
+        home: 'الرئيسية',
         shorts: 'shorts',
         live: 'بث مباشر',
         playlists: 'قوائم التشغيل',

@@ -28,7 +28,8 @@ nav.side-navbar {
             border-bottom-width: 1px ;
             border-style: solid;
             a, h3{
-                font-size: $font-size-6
+                font-size: $font-size-6;
+                font-weight: 300;
             }
             a {
                 @include flex-box();
