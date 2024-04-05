@@ -1,13 +1,18 @@
-import './Watch.scss';
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext, createContext} from 'react';
 import { useParams } from 'react-router-dom';
+
+import './Watch.scss';
+
+import { fetchChannelApi } from '../../Utils/FetchApi';
+import { statesContext } from '../../Contexts/statesContext';
 
 import Loading from '../../Components/Loading/Loading';
 import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
-import { fetchChannelApi } from '../../Utils/FetchApi';
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
-import { statesContext } from '../../Contexts/statesContext';
+import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+
+export const videoDetailsContext = createContext();
 
 const VideoDetails = ({children})=> {
 
@@ -72,36 +77,57 @@ const VideoDetails = ({children})=> {
 
     return (
         isError ? <Error error={error} /> : isLoading ? <Loading /> :
-        <main className={`${theme} video-details`} >
-            <div className={`${theme} container`}>
-                <VideoPlayer id={id} videoDetail={videoDetail} />
-               <section className={`${theme} related-video`}>
-                     {children}
-                    {
-                        relatedKeywords?.length > 0 &&
-                        <div className={`${theme} related-keywords video-pla`}>
-                            <nav className="related-container">
-                                <ul className='taps'>
-                                    {
-                                        relatedKeywords?.map((key)=>(
-                                            <li className={key === keyword ? `active ${theme}` : theme} onClick={()=>relatedKeywordsHandler(key)} key={key}>{key}</li>
-                                        ))
-                                    } 
-                                </ul>
-                            </nav>
-                        </div>
-                    }
-                   {isLoading ? <Loading />: <RelatedVideos elements={videos} renderFrom="watch"/> } 
-                   {iskeyChanged && <div className="key-loading"><span>loading...</span></div>}
-                   {
-                    continuation.length > 0 && 
-                    <div className={`${theme} load-more`}> 
-                       <button type="button" disabled={isLoadingMore} onClick={loadMore} >{isLoadingMore ? 'loading...':'load more'}</button>
-                    </div>
+        <videoDetailsContext.Provider value={{videoDetail}}>
+            <main className={`${theme} video-details`} >
+                <div className={`${theme} container`}>
+                    <VideoPlayer  /> 
+                <section className={`${theme} related-video`}>
+                        {children}
+                        {
+                            relatedKeywords?.length > 0 &&
+                            <div className={`${theme} related-keywords video-pla`}>
+                                <nav className="related-container">
+                                    <ul className='taps'>
+                                        {
+                                            relatedKeywords?.map((key)=>(
+                                                <li 
+                                                    className={key === keyword ? `active ${theme}` : theme}
+                                                    onClick={()=>relatedKeywordsHandler(key)} 
+                                                    key={key}
+                                                    >
+                                                        {key}
+                                                </li>
+                                            ))
+                                        } 
+                                    </ul>
+                                </nav>
+                            </div>
+                        }
+                    {  
+                        isLoading ? <Loading /> : 
+                            <RelatedVideos 
+                                elements={videos} 
+                                renderFrom="watch"
+                                /> 
+                    } 
+                    { 
+                        iskeyChanged && 
+                            <div className="key-loading">
+                                <span></span>
+                            </div>
                    }
-               </section>
-            </div>
-        </main>
+                    {
+                        continuation.length > 0 && 
+
+                        <LoadMoreBtn 
+                            isLoadingMore={isLoadingMore}
+                            onClickHandler={loadMore}
+                             />
+                    }
+                </section>
+                </div>
+            </main>
+        </videoDetailsContext.Provider>
     );
 };
 
