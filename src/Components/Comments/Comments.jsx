@@ -40,7 +40,7 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
                 setError(err);
             })
 
-    },[id,lang]);
+    },[id,lang,fetchQuery]);
 
     const loadMore = ()=>{
         setIsLoadingMore(true);

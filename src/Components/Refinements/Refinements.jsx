@@ -1,6 +1,5 @@
 
 import { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import {statesContext} from '../../Contexts/statesContext'
 
 const Refinements = ({refinements,onClick})=> {

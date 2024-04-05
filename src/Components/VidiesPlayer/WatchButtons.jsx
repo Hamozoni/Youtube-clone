@@ -16,12 +16,10 @@ import { useContext, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
 import "./WatchButtons.scss";
-import { videoDetailsContext } from '../../Pages/Watch/Watch';
 
-const WatchButtons = ()=>{
+const WatchButtons = ({videoDetail})=>{
 
     const { theme,lang,dispatch } = useContext(statesContext);
-    const {videoDetail} = useContext(videoDetailsContext);
 
     const [isMoreBtn,setIsMoreBtn] = useState(false)
 
