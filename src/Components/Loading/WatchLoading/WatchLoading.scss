@@ -1,0 +1,40 @@
+@import "../../../GlibalStyles.scss/Variabls";
+@import "../../../GlibalStyles.scss/Mixin";
+
+.watch-Loading {
+    padding: $padding-20;
+    .vid-pla {
+        .vid-p {
+           
+            position: unset !important;
+            height: 300px;
+            margin-bottom: $marging-15;
+        }
+        .vid-p-det {
+            width: 200px;
+            height: 20px;
+            border-radius: $border-r-10;
+            margin-bottom: $marging-15;
+        }
+      
+    }
+    .rel-vid {
+        .vid-c {
+            @include flex-box();
+            margin-bottom: $marging-15;
+            .vid-img {
+                flex-basis: 50%;
+                height: 120px;
+
+            }
+            .box {
+                flex-basis: 50%;
+            }
+            .vid-det {
+                height: 20px;
+                border-radius: $border-r-10;
+                margin-bottom: $marging-15;
+            }
+        }
+    }
+}

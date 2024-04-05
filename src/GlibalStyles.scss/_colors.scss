@@ -35,25 +35,25 @@
     @if($key == "dark") {
         @for $i from 1 through 10 {
             .back-color-#{$key}-#{$i} {
-                background-color: mix($light-color, $val, $i * 10);
+                background-color: mix($light-color, $val, $i * 5);
             };
             .back-before-c-#{$key}-#{$i} {
                 &::before, &::after {
-                    background-color: mix($light-color, $val, $i * 10);
+                    background-color: mix($light-color, $val, $i * 5);
                 }
             }
             .back-act-c-#{$key}-#{$i} {
                 &.active {
-                    background-color: mix($light-color, $val, $i * 10);
+                    background-color: mix($light-color, $val, $i * 5);
                 }
             }
             .back-hov-c-#{$key}-#{$i} {
                 &:hover {
-                    background-color: mix($light-color, $val, $i * 10);
+                    background-color: mix($light-color, $val, $i * 5);
                 }
             }
             .border-c-#{$key}-#{$i} {
-                border-color: mix($light-color, $val, $i * 10) !important;
+                border-color: mix($light-color, $val, $i * 5) !important;
             }
         };
         .b-g-t-#{$key} {
@@ -63,25 +63,25 @@
     }@else {
         @for $i from 1 through 10 {
             .back-color-#{$key}-#{$i} {
-                background-color: mix($dark-color, $val, $i * 10);
+                background-color: mix($dark-color, $val, $i * 5);
             };
             .back-before-c-#{$key}-#{$i} {
                 &::before, &::after {
-                    background-color: mix($dark-color, $val, $i * 10);
+                    background-color: mix($dark-color, $val, $i * 5);
                 }
             }
             .back-act-c-#{$key}-#{$i} {
                 &.active {
-                    background-color: mix($dark-color, $val, $i * 10);
+                    background-color: mix($dark-color, $val, $i * 5);
                 }
             }
             .back-hov-c-#{$key}-#{$i} {
                 &:hover {
-                    background-color: mix($dark-color, $val, $i * 10);
+                    background-color: mix($dark-color, $val, $i * 5);
                 }
             }
             .border-c-#{$key}-#{$i} {
-                border-color: mix($dark-color, $val, $i * 10) !important;
+                border-color: mix($dark-color, $val, $i * 5) !important;
             }
         };
         .b-g-t-#{$key} {

@@ -6,58 +6,6 @@
     @media (min-width: 992px) {
       flex-basis: 67%;
     }
-    .player {
-         width: 100%;
-         max-width: 100%;
-         margin: 0 auto;
-         max-height: 190px;
-         z-index: 999999999;
-         display: block;
-         position: fixed;
-         left: 0;
-         top: 50px;
-       @media (min-width: 330px) {
-         max-height: 210px;
-       }
-       @media (min-width: 360px) {
-         max-height: 226px;
-       }
-       @media (min-width: 390px) {
-         max-height: 245px;
-       }
-       @media (min-width: 430px) {
-         max-height: 270px;
-         position: unset;
-         top: unset;  
-         border-radius: 10px;
-         overflow: hidden;
-       }
-       @media (min-width: 460px) {
-         max-height: 282px;
-       }
-       @media (min-width: 490px) {
-         max-height: 295px;
-       }
-       @media (min-width: 490px) {
-         max-height: 320px;
-       }
-       @media (min-width: 580px) {
-         max-height: 380px;
-       }
-       @media (min-width: 670px) {
-         max-height: 400px;
-       }
-       @media (min-width:992px) {
-         min-width: 100%;
-         min-height: 400px;
-         max-height: 500px;
-       }
-      @media (min-width: 1170px) {  
-         height: 505px;
-         min-height: 505px;
-
-      }
-     }
      .video-desc {
        .video-title {
           color: $text-color-dark-l;

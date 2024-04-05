@@ -6,12 +6,12 @@ import './Watch.scss';
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import Loading from '../../Components/Loading/Loading';
 import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 import Refinements from '../../Components/Refinements/Refinements';
+import WatchLoading from '../../Components/Loading/WatchLoading/WatchLoading';
 
 export const videoDetailsContext = createContext();
 
@@ -83,7 +83,7 @@ const VideoDetails = ({children})=> {
     }
 
     return (
-        error ? <Error error={error} /> : isLoading ? <Loading /> :
+        error ? <Error error={error} /> : true ? <WatchLoading /> :
         <videoDetailsContext.Provider value={{videoDetail}}>
             <main className='video-details' >
                 <div className='container'>
@@ -94,13 +94,12 @@ const VideoDetails = ({children})=> {
                                 relatedKeywords?.length > 0 &&
                                 <Refinements refinements={relatedKeywords} onClick={relatedKeywordsHandler} />
                             }
-                        {  
-                            isLoading ? <Loading /> : 
-                                <RelatedVideos 
-                                    elements={videos} 
-                                    renderFrom="watch"
-                                    /> 
-                        } 
+     
+                            <RelatedVideos 
+                                elements={videos} 
+                                renderFrom="watch"
+                                /> 
+                        
                         { 
                             iskeyChanged && 
                                 <div className="key-loading">
