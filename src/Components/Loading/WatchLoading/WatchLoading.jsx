@@ -11,12 +11,12 @@ const WatchLoading = () => {
   return (
     <div className="watch-Loading">
         <div className="vid-pla">
-            <div className={`back-color-${theme}-1 vid-p video-player`}>
+            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-p video-player`}>
             </div>
-            <div className={`back-color-${theme}-1 vid-p-det`}>
+            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-p-det`}>
 
             </div>
-            <div className={`back-color-${theme}-1 vid-p-det`}>
+            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-p-det`}>
 
             </div>
         </div>
@@ -24,14 +24,14 @@ const WatchLoading = () => {
             {
                 relVideos?.map((v)=> (
                     <div className="vid-c">
-                        <div className={`back-color-${theme}-1 vid-img`}>
+                        <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-img`}>
 
                         </div>
                         <div className="box">
-                            <div className={`back-color-${theme}-1 vid-det`}>
+                            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-det`}>
 
                             </div>
-                            <div className={`back-color-${theme}-1 vid-det`}>
+                            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 loader-moviement vid-det`}>
 
                             </div>
 

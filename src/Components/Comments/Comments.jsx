@@ -1,6 +1,5 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Loading from '../Loading/Loading'
 import Error from '../Error/Error';
 import Comment from './Comment'
 
@@ -14,8 +13,6 @@ import './Comments.scss';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
 const VideoComments = ({id,fetchQuery,renderedFrom})=> {
-
-    console.log(id)
 
     const [comments,setComments] = useState([]);
     const [commentsCount,setCommentsCount] = useState(0);
@@ -59,7 +56,7 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
 
    return (
 
-        error ? <Error error={error} /> : isLoading ? <Loading /> :
+        error ? <Error error={error} /> : isLoading ? '' :
          <div className={`${!isComm  && 'active'} ${renderedFrom} ${theme} comments`}>
                 <section className={`${theme} comment-head`} >
                     <h5 className={`${theme} comm-title`}  onClick={()=>  setComm(!isComm)}>
