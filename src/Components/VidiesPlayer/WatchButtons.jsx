@@ -16,10 +16,12 @@ import { useContext, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
 import "./WatchButtons.scss";
+import { videoDetailsContext } from '../../Pages/Watch/Watch';
 
-const WatchButtons = ({like,video})=>{
+const WatchButtons = ()=>{
 
     const { theme,lang,dispatch } = useContext(statesContext);
+    const {videoDetail} = useContext(videoDetailsContext);
 
     const [isMoreBtn,setIsMoreBtn] = useState(false)
 
@@ -67,8 +69,8 @@ const WatchButtons = ({like,video})=>{
         <div className={`${theme} links-btns-container`}>
             <div className={`${theme} like-dis btn`} >
                 <Btn 
-                    onClickHanlder={()=> dispatch({type: 'add-to-liked',payload: video})}
-                    text={ like && ternViewsTo(like)} 
+                    onClickHanlder={()=> dispatch({type: 'add-to-liked',payload: videoDetail})}
+                    text={ videoDetail?.likeCount && ternViewsTo(videoDetail?.likeCount)} 
                     Icon={<ThumbUpOutlinedIcon />}
                     clName='like-btn btn'
                 />

@@ -8,9 +8,12 @@ import { Link } from 'react-router-dom';
 import "./VideoDescribtion.scss"
 
 import moment from "moment";
+import { videoDetailsContext } from "../../Pages/Watch/Watch";
 
 
-const VideoDescribtion = ({videoDetail})=>{
+const VideoDescribtion = ()=>{
+
+    const {videoDetail} = useContext(videoDetailsContext);
 
     const { theme, lang } = useContext(statesContext);
 

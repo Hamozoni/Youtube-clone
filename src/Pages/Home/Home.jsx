@@ -70,7 +70,7 @@ const Home = ()=> {
             setError(null);
             setFilterPending(true);
         }
-        fetchChannelApi(`search?query=${filter}${isLoadingMoreData && `&token=${navFilterContinuation}`}&lang=${lang}`)
+        fetchChannelApi(`search?query=${filter}${isLoadingMoreData && `&token=${navFilterContinuation}`}&type=video&lang=${lang}`)
         .then((data)=> {
 
             setNavFilterContinuation(data?.continuation);

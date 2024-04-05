@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext} from 'react';
-import { useLocation} from 'react-router-dom';
+import { useLocation,useNavigate} from 'react-router-dom';
 
 import './SearchFeed.scss';
 import { fetchChannelApi } from '../../Utils/FetchApi';
@@ -24,10 +24,11 @@ const SearchFeed = ()=> {
     const [continuation,setContinuation] = useState(null);
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
 
+    const navigate = useNavigate()
 
     const fetchSearchData = (isMore = false)=> {
 
-        document.title = searchQuery.split('=')[1] + "-myh tube";
+        document.title = searchQuery.split('=')[1].replaceAll("%20"," ").replaceAll("%27") + "-myh tube";
         
         if(isMore){
             setIsloadingMoreData(true);
@@ -69,7 +70,7 @@ const SearchFeed = ()=> {
                         {
                             error ? <Error error={error} /> : ispending ? <LoadingRelatedVideos display='flex' /> :
                             <>
-                                <Refinements refinements={refinements} />
+                                <Refinements refinements={refinements} onClick={(r)=> navigate(`?query=${r}`)} />
                                 <RelatedVideos elements={videos} renderFrom="search" />
 
                                 {

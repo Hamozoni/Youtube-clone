@@ -3,11 +3,9 @@ import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {statesContext} from '../../Contexts/statesContext'
 
-const Refinements = ({refinements})=> {
+const Refinements = ({refinements,onClick})=> {
 
     const {theme} = useContext(statesContext);
-
-    const location = useLocation().search.split("?")[1];
 
     return (
         <div className={`back-color-${theme} related-keywords`}>
@@ -16,14 +14,10 @@ const Refinements = ({refinements})=> {
                     {
                         refinements?.map((refine,i)=>(
                             <li 
+                                onClick={()=> onClick(refine,false)}
                                 key={refine + i} 
-                                className={`${refine === location ? 'active' : ''} back-color-${theme}-1 back-hov-c-${theme}-2  back-act-c-${theme}-3 `} >
-                                <Link 
-                                    className={`t-color-${theme}-1`}
-                                    to={`/search?query=${refine}`}
-                                    >
-                                    {refine}
-                                </Link>
+                                className={` back-color-${theme}-1 back-hov-c-${theme}-2 t-color-${theme}-1  back-act-c-${theme}-3 `} >
+                                  {refine}
                             </li>
                         ))
                     }

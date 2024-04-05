@@ -11,6 +11,7 @@ import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
 import Error from '../../Components/Error/Error';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+import Refinements from '../../Components/Refinements/Refinements';
 
 export const videoDetailsContext = createContext();
 
@@ -22,32 +23,38 @@ const VideoDetails = ({children})=> {
     const {id} = useParams();
     const [isLoading,setIsLoading] = useState(true);
     const [videos,setVideos] = useState([]);
-    const [isError,setIsErroe] = useState(false);
     const [error,setErroe] = useState(null);
+
     const [videoDetail,setVideoDetail] = useState();
+
     const [relatedKeywords,setRelatedKeywords] = useState(null);
+
     const [keyword,setKeywords] = useState(null);
+
     const [iskeyChanged,setKeyChanged] = useState(false);
+
     const [continuation,setContinuation] = useState(null);
+
     const [isLoadingMore, setIsLoadingMore] = useState(false)
 
     useEffect(()=>{
-        setIsErroe(false)
-        setIsLoading(true)  
+        setErroe(null);
+        setIsLoading(true); 
         fetchChannelApi(`video/info?id=${id}&extend=+1&lang=${lang}`)
         .then((data)=>{
             setVideos(data?.relatedVideos?.data);
             setContinuation(data?.relatedVideos?.continuation);
             setVideoDetail(data);
             setRelatedKeywords(data?.keywords)
-            setIsLoading(false)
         })
         .catch((error)=> {
-            setIsErroe(true)
             setErroe(error)
         })
+        .finally(()=> {
+            setIsLoading(false);
+        })
 
-    },[id,lang])
+    },[id,lang]);
 
     const relatedKeywordsHandler = (key)=>{
         setKeyChanged(true);
@@ -76,55 +83,39 @@ const VideoDetails = ({children})=> {
     }
 
     return (
-        isError ? <Error error={error} /> : isLoading ? <Loading /> :
+        error ? <Error error={error} /> : isLoading ? <Loading /> :
         <videoDetailsContext.Provider value={{videoDetail}}>
-            <main className={`${theme} video-details`} >
-                <div className={`${theme} container`}>
+            <main className='video-details' >
+                <div className='container'>
                     <VideoPlayer  /> 
-                <section className={`${theme} related-video`}>
-                        {children}
-                        {
-                            relatedKeywords?.length > 0 &&
-                            <div className={`${theme} related-keywords video-pla`}>
-                                <nav className="related-container">
-                                    <ul className='taps'>
-                                        {
-                                            relatedKeywords?.map((key)=>(
-                                                <li 
-                                                    className={key === keyword ? `active ${theme}` : theme}
-                                                    onClick={()=>relatedKeywordsHandler(key)} 
-                                                    key={key}
-                                                    >
-                                                        {key}
-                                                </li>
-                                            ))
-                                        } 
-                                    </ul>
-                                </nav>
-                            </div>
-                        }
-                    {  
-                        isLoading ? <Loading /> : 
-                            <RelatedVideos 
-                                elements={videos} 
-                                renderFrom="watch"
-                                /> 
-                    } 
-                    { 
-                        iskeyChanged && 
-                            <div className="key-loading">
-                                <span></span>
-                            </div>
-                   }
-                    {
-                        continuation.length > 0 && 
-
-                        <LoadMoreBtn 
-                            isLoadingMore={isLoadingMore}
-                            onClickHandler={loadMore}
-                             />
+                    <section className='related-video'>
+                            {children}
+                            {
+                                relatedKeywords?.length > 0 &&
+                                <Refinements refinements={relatedKeywords} onClick={relatedKeywordsHandler} />
+                            }
+                        {  
+                            isLoading ? <Loading /> : 
+                                <RelatedVideos 
+                                    elements={videos} 
+                                    renderFrom="watch"
+                                    /> 
+                        } 
+                        { 
+                            iskeyChanged && 
+                                <div className="key-loading">
+                                    <span></span>
+                                </div>
                     }
-                </section>
+                        {
+                            continuation.length > 0 && 
+
+                            <LoadMoreBtn 
+                                isLoadingMore={isLoadingMore}
+                                onClickHandler={loadMore}
+                                />
+                        }
+                    </section>
                 </div>
             </main>
         </videoDetailsContext.Provider>

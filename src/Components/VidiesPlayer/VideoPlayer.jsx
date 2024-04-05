@@ -1,5 +1,6 @@
 import './VideoPlayer.scss';
-import { useContext} from 'react';
+import { useContext, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 import  ReactPlayer from 'react-player';
 import MainChannelCard from '../MainChannelCard/MainChannelCard';
@@ -8,10 +9,13 @@ import WatchButtons from './WatchButtons';
 import VideoDescribtion from '../Watch/VideoDescribtion';
 import { statesContext } from '../../Contexts/statesContext';
 import Comments from "../../Components/Comments/Comments";
+import { videoDetailsContext } from '../../Pages/Watch/Watch';
 
-const VideoPlayer = ({videoDetail,id})=> {
+const VideoPlayer = ()=> {
 
+    const {id} = useParams();
     const { theme } = useContext(statesContext);
+    const { videoDetail } = useContext(videoDetailsContext);
 
     return (
          <div  className='video'>
@@ -28,10 +32,10 @@ const VideoPlayer = ({videoDetail,id})=> {
                 <div className='left'>
                     <MainChannelCard data={ videoDetail } renderFrom="watch"/> 
                 <div className='links-btns'>
-                    <WatchButtons like={videoDetail?.likeCount} video={videoDetail} />
+                    <WatchButtons />
                 </div>
             </div>
-             <VideoDescribtion videoDetail={videoDetail} />
+             <VideoDescribtion  />
              <Comments id={id} fetchQuery='comments' renderedFrom='watch' />
         </div>
        </div>
