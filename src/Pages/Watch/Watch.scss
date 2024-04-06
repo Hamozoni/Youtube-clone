@@ -3,12 +3,9 @@
 
 .video-details {
     .container {
-      @include flex-box(_,_,0);
-       padding: 0;
-       flex-direction: column;
        max-width: 720px;
        @media (min-width: 992px) {
-         flex-direction: row;
+        @include flex-box();
          max-width: 1300px;
           gap: $gap-l;
        }

@@ -7,6 +7,7 @@
   margin: 0;
   box-sizing: border-box;
   transition: all .4s ease-in-out !important;
+  scroll-behavior: smooth;
 }
 *::-webkit-scrollbar{
   display: none;
@@ -112,13 +113,17 @@ body {
 } 
 
 .key-loading {
-  @include flex-box(center,center,0);
+  @include flex-box(flex-start,center,0);
   z-index: 99999;
   * {
-    @include position(50%,50%,50px,50px,fixed);
+    position: sticky;
+    top: 50%;
+    left: 50%;
     border-radius: $border-r-full;
-    border: 4px solid ;
-    border-color: #81808067 transparent transparent transparent;
+    border: 6px solid ;
+    height: 60px;
+    width: 60px;
+    border-color: #818080af transparent transparent transparent;
     animation: key-loading .5s infinite alternate;
   }
 }
@@ -126,7 +131,7 @@ body {
 @keyframes key-loading {
   100% {
     transform: rotate(180deg);
-    border-color: #81808067;
+    border-color: #818080af;
   }
 }
 

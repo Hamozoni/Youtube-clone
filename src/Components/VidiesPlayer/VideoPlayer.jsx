@@ -3,7 +3,6 @@ import { useContext, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 
 import  ReactPlayer from 'react-player';
-import MainChannelCard from '../MainChannelCard/MainChannelCard';
 
 import WatchButtons from './WatchButtons';
 import VideoDescribtion from '../Watch/VideoDescribtion';
@@ -11,6 +10,7 @@ import { statesContext } from '../../Contexts/statesContext';
 import Comments from "../../Components/Comments/Comments";
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import Error from '../Error/Error';
+import WatchLoading from '../Loading/WatchLoading/WatchLoading';
 
 
 const VideoPlayer = ({setKeywords})=> {
@@ -29,7 +29,7 @@ const VideoPlayer = ({setKeywords})=> {
         .then((data)=> {
             setVideoDetail(data);
             setKeywords(data?.keywords);
-            console.log(data)
+            document.title = data.title
         })
         .catch((error)=> {
             setError(error)
@@ -42,7 +42,7 @@ const VideoPlayer = ({setKeywords})=> {
 
     return (
         
-            error ? <Error error={error}/> :  isPending ? '' :
+            error ? <Error error={error}/> :  isPending ? <WatchLoading /> :
             <div  className='video'>
                 <ReactPlayer 
                         url={`hppts://www.youtube.com/watch?v=${id}?autoplay=1&mute=0?`}
@@ -54,8 +54,7 @@ const VideoPlayer = ({setKeywords})=> {
                     <h3 className={`${theme} video-title`} >
                         { videoDetail?.title }
                     </h3>
-                        <div className='left'>
-                            <MainChannelCard data={ videoDetail } renderFrom="watch"/> 
+                    <div className='left'>
                         <div className='links-btns'>
                             <WatchButtons videoDetail={ videoDetail } />
                         </div>

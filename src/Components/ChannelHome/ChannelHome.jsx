@@ -9,7 +9,6 @@ import './style.scss';
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import VideoCard from "../VideoCard/VideoCard";
-import MainChannelCard from "../MainChannelCard/MainChannelCard";
 import ShortCard from "../SortsCard/ShortCard";
 import Shorts from '../Images/shorts.svg'
 import Player from "./Player";
@@ -144,13 +143,8 @@ const ChannelHome = ()=> {
                                             <ShortCard key={short?.videoId} short={short} shorts={arr} />
                                         ))
                                     
-                                :
-                                el?.type === "channel_listing" && 
-                                        
-                                    el?.data?.map((channelData)=>(
-                                        <MainChannelCard key={channelData?.channelId} data={channelData} renderFrom="home-channel"/>
-                                    ))       
-                            }
+                                :''
+                                    }
                             </div>
                         </div>
                     </section>

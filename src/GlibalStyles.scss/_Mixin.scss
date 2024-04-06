@@ -14,7 +14,7 @@
 }
 
 @mixin position ($t: 0,$l: 0,$w: 100%,$h: 100%,$p:absolute){
-    content: '';
+    // content: '';
     position: $p;
     width: $w;
     height: $h;

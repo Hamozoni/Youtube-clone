@@ -6,7 +6,6 @@ import { fetchChannelApi } from '../../Utils/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import Loading from '../../Components/Loading/Loading';
-import MainChannelCard from '../../Components/MainChannelCard/MainChannelCard';
 import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
@@ -55,7 +54,6 @@ const ChanelDetails = ()=> {
                         />
                     }
                 </div>
-                <MainChannelCard data={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen}  renderFrom="channel"/>
                 <ChannelTaps setIsAboutChannelOpen={setIsAboutChannelOpen}  />
                 <div className="channel-content">
                     {isAboutChannelOpen &&  <ChannelAbout chanelDetail={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen} />}

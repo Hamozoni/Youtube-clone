@@ -1,5 +1,4 @@
 import { useContext} from 'react';
-import MainChannelCard from '../MainChannelCard/MainChannelCard';
 import Playlist from '../PlayListCard/PlayList'
 import VideoCard from '../VideoCard/VideoCard';
 
@@ -34,8 +33,6 @@ const RelatedVideos = ({elements, renderFrom})=> {
                                 data={el} 
                                 renderFrom={renderFrom} 
                             />                     
-                    : el?.type  === 'channel' ?
-                        <MainChannelCard key={el.channelId + i} data={el}  renderFrom={ renderFrom}/>
                     : el.type === 'playlist' ?
                             <Playlist
                                 key={el.playlistId + i} 
