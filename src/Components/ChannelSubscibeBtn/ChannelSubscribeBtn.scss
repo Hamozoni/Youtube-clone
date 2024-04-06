@@ -1,0 +1,37 @@
+@import "../../GlibalStyles.scss/Variabls";
+@import "../../GlibalStyles.scss/Mixin";
+
+.subs-btn {
+    position: relative;
+    .subs-b {
+        @include flex-box(center,center,$gap-5);
+        font-size: $font-size-4;
+        padding: $padding-5 $padding-15;
+        border-radius: $border-r-20;
+        svg {
+            font-size: $font-size-4;
+        }
+    }
+    .notif-selec {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: fit-content;
+        height: fit-content;
+        border-radius: $border-r-10;
+        .not-opp {
+            padding: $padding-10 0;
+            li {
+                @include flex-box(center,flex-start,$gap-5);
+                padding: $padding-5 $padding-15;
+                cursor: pointer;
+            }
+        }
+    }
+    &:hover {
+        .notif-selec  {
+            display: block;
+        }
+    }
+}

@@ -40,11 +40,9 @@ const ListVideosCard = ()=> {
              setContinuation(data?.continuation);
             if(isLoadMore){
                  setListVideos(prev => [...prev,...data?.data]);
-                 console.log(data)
             }else {
                 setListVideos(data?.data);
                 setPlayListDetails(data?.meta);
-                console.log(data)
             }
 
          })

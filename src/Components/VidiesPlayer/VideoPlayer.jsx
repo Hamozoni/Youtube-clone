@@ -11,6 +11,7 @@ import Comments from "../../Components/Comments/Comments";
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import Error from '../Error/Error';
 import WatchLoading from '../Loading/WatchLoading/WatchLoading';
+import ChannelSubscribeBtn from '../ChannelSubscibeBtn/ChannelSubscribeBtn';
 
 
 const VideoPlayer = ({setKeywords})=> {
@@ -30,7 +31,7 @@ const VideoPlayer = ({setKeywords})=> {
             setVideoDetail(data);
             setKeywords(data?.keywords);
             document.title = data.title;
-            console.log(data);
+            console.log(data)
         })
         .catch((error)=> {
             setError(error)
@@ -57,7 +58,7 @@ const VideoPlayer = ({setKeywords})=> {
                     </h3>
                     <div className='left'>
                         <div className="channel-card">
-                            <Link to='' className="ch-img">
+                            <Link to={`/channels/${videoDetail?.channelId}`}  className="ch-img">
                                 <img 
                                     src={videoDetail?.channelThumbnail[0]?.url} 
                                     alt="channel image"
@@ -65,17 +66,14 @@ const VideoPlayer = ({setKeywords})=> {
                             </Link>
                             <div className="ch-info">
                                 <div className="ch-det">
-                                    <Link to='' className={`t-color-${theme} ch-name`}>
+                                    <Link to={`/channels/${videoDetail?.channelId}`} className={`t-color-${theme} ch-name`}>
                                         {videoDetail?.channelTitle}
                                     </Link>
                                     <p className={`t-color-${theme}-3 ch-subs-cout`}>
                                         {videoDetail?.subscriberCountText}
                                     </p>
                                 </div>
-                                <div className="ch-subs-btn">
-
-                                </div>
-
+                                <ChannelSubscribeBtn />
                             </div>
                         </div>
                         <div className='links-btns'>
