@@ -12,7 +12,6 @@ import Error from '../../Components/Error/Error';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 import Refinements from '../../Components/Refinements/Refinements';
 import RelatedLoading from '../../Components/Loading/WatchLoading/RelatedLoading';
-import { Face } from '@mui/icons-material';
 
 
 const VideoDetails = ({children})=> {
@@ -26,12 +25,13 @@ const VideoDetails = ({children})=> {
     const [isPending,setIsPending] = useState(true);
     const [isLoadingMore,setIsLoadingMore] = useState(false);
     const [isFetchingKeywordData,setIsFetchingKeywordData] = useState(false);
+    const [loadMoreDataFrom,setLoadMoreDataFrom] = useState('relate')
 
 
     const {id} = useParams();
 
     const fetchRelatedVideos = (isLoadMore = false)=> {
-        
+        setLoadMoreDataFrom('related');
         setError(null);
         if(isLoadMore){
             setIsLoadingMore(true);
@@ -61,19 +61,42 @@ const VideoDetails = ({children})=> {
 
     useEffect(fetchRelatedVideos,[id,lang]);
 
-    const handleKeywordsFetch = (key)=> {
-        setIsFetchingKeywordData(true)
+    const handleKeywordsFetch = (key,isLoadMore = false)=> {
+        setError(null);
+        setLoadMoreDataFrom('keyword');
+        if(isLoadMore){
+            setIsLoadingMore(true);
+        }else {
+            setIsFetchingKeywordData(true);
+        };
+
         fetchChannelApi(`search?query=${key}&lang=${lang}`)
         .then(data => {
-            setRelatedVideos(data?.data);
+
+            if(isLoadMore) {
+                setRelatedVideos(prev => [...prev,...data?.data]);
+            }else {
+                setRelatedVideos(data?.data);
+            };
+
+            setContinuation(data?.continuation);
             console.log(data)
         })
         .catch(error => {
             setError(error);
         })
         .finally(()=> {
-            setIsFetchingKeywordData(false)
+            setIsFetchingKeywordData(false);
+            setIsLoadingMore(false);
         })
+    };
+
+    const handleMoreData = (key)=> {
+      if ( loadMoreDataFrom === 'related') {
+            fetchRelatedVideos(true);
+       }else {
+           handleKeywordsFetch(key,true);
+       } 
     }
 
 
@@ -106,7 +129,7 @@ const VideoDetails = ({children})=> {
 
                                     <LoadMoreBtn 
                                         isLoadingMore={isLoadingMore}
-                                        onClickHandler={()=> fetchRelatedVideos(true)}
+                                        onClickHandler={handleMoreData}
                                         />
                                 }
                         </section>

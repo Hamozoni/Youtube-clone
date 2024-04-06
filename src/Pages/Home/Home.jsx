@@ -90,6 +90,14 @@ const Home = ()=> {
         });
     };
 
+    const handleLoadMore = (currentFilter)=> {
+        if(loadMoreDataFor === 'home' ){
+            fetchHomeData(true);
+        } else {
+            navFiltersFetchData(currentFilter,true);
+        }
+    }
+
 
     return (
         <main className='main-home'>
@@ -111,10 +119,7 @@ const Home = ()=> {
                       {
                         continuation?.length &&
                         <LoadMoreBtn 
-                            onClickHandler={
-                                loadMoreDataFor === 'home' ? 
-                                 ()=> fetchHomeData(true) :()=> navFiltersFetchData(currentFilter,true)
-                               } 
+                            onClickHandler={handleLoadMore} 
                             isLoadingMore={isLoadingMore} 
                             />
                       }
