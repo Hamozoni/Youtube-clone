@@ -18,7 +18,7 @@
       }
       .ch-info {
         flex: 1;
-        @include flex-box(center,space-between);
+        @include flex-box(center,space-between,$gap-20);
         .ch-det {
           .ch-name {
              font-size: $font-size-4;

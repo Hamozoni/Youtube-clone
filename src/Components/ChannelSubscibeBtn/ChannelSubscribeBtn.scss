@@ -29,7 +29,7 @@
             }
         }
     }
-    &:hover {
+    &.subscribed:hover {
         .notif-selec  {
             display: block;
         }
