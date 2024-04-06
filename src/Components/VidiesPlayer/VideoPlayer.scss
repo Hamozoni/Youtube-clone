@@ -1,10 +1,34 @@
 @import '../../GlibalStyles.scss/Variabls';
+@import '../../GlibalStyles.scss/Mixin';
 
 .video {
     padding-top: $padding-l;
     width: 100%;
     @media (min-width: 992px) {
       flex-basis: 67%;
+    }
+    .channel-card {
+      @include flex-box(center,flex-start,$gap-10);
+      .ch-img {
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: $border-r-full;
+        }
+      }
+      .ch-info {
+        flex: 1;
+        @include flex-box(center,space-between);
+        .ch-det {
+          .ch-name {
+             font-size: $font-size-4;
+          }
+          .ch-subs-cout {
+             font-size: $font-size-5;
+          }
+        }
+      }
+
     }
      .video-desc {
        .video-title {

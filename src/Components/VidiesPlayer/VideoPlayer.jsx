@@ -1,6 +1,6 @@
 import './VideoPlayer.scss';
 import { useContext, useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import  ReactPlayer from 'react-player';
 
@@ -25,11 +25,12 @@ const VideoPlayer = ({setKeywords})=> {
     useEffect(()=> {
         setError(null);
         setIsPending(true)
-        fetchChannelApi(`video/info?id=${id}&extend=1&lang=${lang}`)
+        fetchChannelApi(`video/info?id=${id}&extend=+1&lang=${lang}`)
         .then((data)=> {
             setVideoDetail(data);
             setKeywords(data?.keywords);
-            document.title = data.title
+            document.title = data.title;
+            console.log(data);
         })
         .catch((error)=> {
             setError(error)
@@ -55,6 +56,28 @@ const VideoPlayer = ({setKeywords})=> {
                         { videoDetail?.title }
                     </h3>
                     <div className='left'>
+                        <div className="channel-card">
+                            <Link to='' className="ch-img">
+                                <img 
+                                    src={videoDetail?.channelThumbnail[0]?.url} 
+                                    alt="channel image"
+                                    />
+                            </Link>
+                            <div className="ch-info">
+                                <div className="ch-det">
+                                    <Link to='' className={`t-color-${theme} ch-name`}>
+                                        {videoDetail?.channelTitle}
+                                    </Link>
+                                    <p className={`t-color-${theme}-3 ch-subs-cout`}>
+                                        {videoDetail?.subscriberCountText}
+                                    </p>
+                                </div>
+                                <div className="ch-subs-btn">
+
+                                </div>
+
+                            </div>
+                        </div>
                         <div className='links-btns'>
                             <WatchButtons videoDetail={ videoDetail } />
                         </div>
