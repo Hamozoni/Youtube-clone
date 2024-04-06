@@ -80,7 +80,6 @@ const VideoDetails = ({children})=> {
             };
 
             setContinuation(data?.continuation);
-            console.log(data)
         })
         .catch(error => {
             setError(error);
@@ -110,7 +109,9 @@ const VideoDetails = ({children})=> {
                                 {children}
                                 {
                                     keywords &&
-                                    <Refinements refinements={keywords} onClick={handleKeywordsFetch} />
+                                    <Refinements 
+                                        refinements={keywords} 
+                                        onClick={handleKeywordsFetch} />
                                 }
         
                                 <RelatedVideos 

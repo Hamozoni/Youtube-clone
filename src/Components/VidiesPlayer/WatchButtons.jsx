@@ -1,3 +1,4 @@
+import { useContext, useState } from 'react';
 
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
@@ -12,7 +13,6 @@ import ContentCutOutlinedIcon from '@mui/icons-material/ContentCutOutlined';
 import { ternViewsTo } from '../../Utils/Constans';
 
 import { language } from '../../Utils/language';
-import { useContext, useState } from 'react';
 import { statesContext } from '../../Contexts/statesContext';
 
 import "./WatchButtons.scss";
@@ -29,7 +29,7 @@ const WatchButtons = ({videoDetail})=>{
         return(
             <>
             <button 
-                className={`${clName} ${theme}`} 
+                className={`${clName} t-color-${theme}-2 back-color-${theme}-1 back-hov-c-${theme}-2`} 
                 onClick={onClickHanlder}
             >
                     {Icon}
@@ -41,10 +41,10 @@ const WatchButtons = ({videoDetail})=>{
 
     const DownloadBtn = ()=>{
         return (
-            <button className={`${theme} box down-btn btn`}>
+            <button className={`back-color-${theme}-1 back-hov-c-${theme}-2 box down-btn btn`}>
                 <a download 
                     rel='nofolow' href='mai.com' 
-                    className={`${theme} btn`} 
+                    className={`t-color-${theme}-2 `} 
                     >
                     <FileDownloadOutlinedIcon /> 
                     {download}
@@ -64,30 +64,34 @@ const WatchButtons = ({videoDetail})=>{
     };
 
     return (
-        <div className={`${theme} links-btns-container`}>
-            <div className={`${theme} like-dis btn`} >
+        <div className='links-btns-container'>
+            <div className={`back-color-${theme}-1 t-color-${theme}-2 like-dis`} >
                 <Btn 
                     onClickHanlder={()=> dispatch({type: 'add-to-liked',payload: videoDetail})}
                     text={ videoDetail?.likeCount && ternViewsTo(videoDetail?.likeCount)} 
                     Icon={<ThumbUpOutlinedIcon />}
                     clName='like-btn btn'
                 />
-                <Btn Icon={<ThumbDownOffAltOutlinedIcon />} clName='dis-btn btn' />
+                |
+                <Btn 
+                    Icon={<ThumbDownOffAltOutlinedIcon />}
+                    clName='dis-btn btn' 
+                    />
             </div>
-            <Btn text={share} Icon={<ShareOutlinedIcon />} clName='box btn' />
+            <Btn text={share} Icon={<ShareOutlinedIcon />}  />
             <DownloadBtn />
             <MoreBtn />
             <div
-                className={`${theme} more`}
+                className='more'
                >
                 <Btn 
                     Icon={<MoreHorizOutlinedIcon />} 
-                    clName="btn"
+                    clName="btn more-btn"
                     onClickHanlder={()=> setIsMoreBtn(!isMoreBtn)}
                     />
                 {
                     isMoreBtn && 
-                 <div className={`${theme} more-btns`}>
+                 <div className={`back-color-${theme}-1 more-btns`}>
                     <DownloadBtn />
                     <MoreBtn />
                  </div>

@@ -51,7 +51,7 @@ const VideoPlayer = ({setKeywords})=> {
                         playing
                     />
                 <div className='video-desc' >
-                    <h3 className={`${theme} video-title`} >
+                    <h3 className={`t-color-${theme} video-title`} >
                         { videoDetail?.title }
                     </h3>
                     <div className='left'>

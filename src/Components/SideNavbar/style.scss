@@ -20,7 +20,7 @@ nav.side-navbar {
         .title {
             text-transform: capitalize;
             margin-top: $marging-10;
-            font-size: $font-size-5;
+            font-size: $font-size-4;
         }
         .nav-icons {
             padding: $padding-10 0;
@@ -28,8 +28,8 @@ nav.side-navbar {
             border-bottom-width: 1px ;
             border-style: solid;
             a, h3{
-                font-size: $font-size-6;
-                font-weight: 300;
+                font-size: $font-size-4;
+                font-weight: 400;
             }
             a {
                 @include flex-box();

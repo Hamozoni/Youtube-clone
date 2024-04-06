@@ -6,6 +6,7 @@
     overflow: hidden;
     &::before {
         @include position();
+        content: '';
         width: 0;
         animation: laoderBackgroundMove 2s ease-in-out infinite forwards;
     }

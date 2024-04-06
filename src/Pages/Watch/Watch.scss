@@ -7,16 +7,15 @@
        @media (min-width: 992px) {
         @include flex-box();
          max-width: 1300px;
-          gap: $gap-l;
+          gap: $gap-20;
        }
        .related-video {
          max-width: 100%;
          position: relative;
-         margin-top: $margin-l;
+         margin-top: $marging-20;
           @media (min-width: 992px) {
             max-width: 33%;
              flex-basis: 33% !important;
-            //  padding-top: $padding-l;
              width: 100%;
          }
        }

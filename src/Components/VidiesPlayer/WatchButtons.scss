@@ -15,45 +15,36 @@
        @include flex-box(center,flex-start,$gap-m);
        width: fit-content;
        .like-dis {
-         @include flex-box(center,flex-start,$gap-m);
-          padding: 3px $padding-l;
-          border-radius: $border-radius-l;
+         @include flex-box(center,flex-start,0);
           overflow: hidden;
+          border-radius: $border-r-20;
           .like-btn {
-             @include flex-box(center,flex-start,$gap-m);
-             background-color: inherit;
-             padding-right: $padding-m;
+             @include flex-box(center,flex-start,$gap-5);
+
              flex: 2
           }
           .dis-btn {
+
              flex: 1;
           }
        }
        .box {
-          padding: 3px $padding-l;
           border-radius: $border-radius-l;
           overflow: hidden;
        }
        .btn {
          @include flex-box(center,flex-start,$gap-m);
-          font-size: $font-size-m;
+          font-size: $font-size-5;
+          padding: $padding-5 $padding-15;
+          border-radius: $border-r-20;
           font-weight: 700;
           text-transform: capitalize;
-          color: $text-color-dark-m;
-          background: darken($color: $back-gr-color-light, $amount: 5);
           svg {
              width: 22px;
           }
-          &:hover {
-            background: darken($color: $back-gr-color-light, $amount: 10);
-          }
-          &.dark {
-            color: $text-color-light-m;
-            background-color: lighten($back-gr-color-dark,5);
-            &:hover {
-               background-color: lighten($back-gr-color-dark,10);
-             }
-          }
+          a {
+            @include flex-box(center,center,0)
+          } 
        }
        @media (min-width: 768px) {
           .hide {
@@ -71,17 +62,16 @@
            @media (min-width: 768px ) {
              display: block;
            }
+           .more-btn {
+            border-radius: $border-r-full !important;
+           }
            .more-btns {
              position: absolute;
              top: 49px;
              right: 0px;
              z-index: 999999;
              padding: $padding-l;
-             border-radius: $border-radius-l;
-             background-color: darken($color: $back-gr-color-light, $amount: 5);
-             &.dark {
-               background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-             }
+             border-radius: $border-r-10;
              .down-btn {
                 display: none;
                 @media (min-width: 992px) and (max-width: 1270px) {
@@ -92,11 +82,10 @@
                 display: flex;
              }
              .btn, .box{
-                padding: $padding-m;
                 width: 100%;
-
+                padding: $padding-5 $padding-20;
                 &:not(:last-child) {
-                   margin-bottom: $margin-l;
+                   margin-bottom: $marging-5;
                 }
              }
            }
