@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 import { ternViewsTo } from "../../Utils/Constans";
@@ -13,44 +13,39 @@ const VideoDescribtion = ({videoDetail}) =>{
 
 
     const { theme, lang } = useContext(statesContext);
-
     const [isDesc,setDesc] = useState(true);
-
     const {showMore,showLess, views} = language[lang];
-
     const {publishDate, description, viewCount} = videoDetail;
 
-    const urlTest = /\b(https?:\/\/)?(www.|\w+.)?\w+(.com|.dev|.org|.io|.me|.ly|.to|.co|.fi|.link)\/?\w+?/i;
+    const descArticle = useRef()
 
+
+    useEffect(()=> {
+        descArticle.current.innerText = isDesc ? description : description.slice(0,90);
+    },[description,isDesc])
 
     return (
-        <div className={`${theme} views-desc`}>
-            <section className={`${theme} desc-content`}>
-                <header className={`${theme} desc-head`} >
-                    <p className={`${theme} views`}>
+        <div className={`back-color-${theme}-1 views-desc`}>
+            <section className='desc-content'>
+                <header className={`t-color-${theme} desc-head`} >
+                    <p className='views'>
                         {ternViewsTo(viewCount) } {views}
                     </p>
-                    <span className={`${theme} time`}>
+                    <span className='time'>
                         {moment(publishDate).fromNow()}
                     </span>
+                    <span className={`t-color-${theme}-3 super-title`}>
+                        {videoDetail?.superTitle}
+                    </span>
                </header>
-              <div className={`${theme} desc`} >
-                
-                {
-                    isDesc && description?.length > 180 ? 
-                        description?.slice(0,150) :
-                        description?.split(/(.\s|-|:\s)/)?.map((desc)=>(
-                            urlTest?.test(desc) ? 
-                                ( <div >
-                                    <Link to={urlTest?.test(desc) ? desc :''} target='_blank'>
-                                        {desc}
-                                    </Link>
-                                </div>
-                                ) : desc 
-                      
-                    ))
-                }
-                <h4 className={`${theme} show-more`} onClick={()=> setDesc(!isDesc)}>
+              <div className='desc' >
+
+                <article
+                    ref={descArticle} 
+                    className={`t-color-${theme}-1 vid-desc`} 
+                    >
+                </article>
+                <h4 className={`t-color-${theme} show-more`} onClick={()=> setDesc(!isDesc)}>
                     { isDesc ?
                         showMore :
                         showLess
