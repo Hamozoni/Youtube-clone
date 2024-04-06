@@ -2,24 +2,16 @@
 @import '../../GlibalStyles.scss/Mixin';
 
 .list-v-card {
-    border-radius: $border-radius-l;
-    width: calc(100% - 20px);
-    padding: $padding-l;
-    margin: $margin-l;
+    border-radius: $border-r-10;
+    margin: $marging-10;
     margin-bottom: 0;
-    margin-top: 0;
     z-index: 99999;
-    background-color: darken($color: $back-gr-color-light, $amount: 10);
-    border: 1px solid darken($color: $back-gr-color-light, $amount: 20);
+    border: 1px solid transparent;
     &.active {
         .pl-v-content {
         height: calc(100vh - 300px);
         overflow-y: auto;
         }
-    }
-    &.dark {
-       background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-       border-color: lighten($color: $back-gr-color-dark, $amount: 20);
     }
     @media (min-width:768px) {
         &.active {
@@ -37,33 +29,24 @@
      }
     .list-header {
         @include flex-box(center,space-between);
+        padding: $padding-10;
+        border-radius: $border-r-10 $border-r-10 0 0;
         .l-title {
-           color: $text-color-dark-l ;
-           font-size: $font-size-m;
-           margin-bottom: $margin-m;
-           &.dark {
-              color: $text-color-light-l;
-           }
+           font-size: $font-size-4;
+           margin-bottom: $marging-10;
         }
         .owner-channel {
-           color: $text-color-dark-m ;
           font-size: 10px;
-          margin-bottom: $margin-m;
-          &.dark {
-            color: $text-color-light-m;
-         }
+          margin-bottom: $marging-10;
         }
         .l-toggle-btn {
-           color: $text-color-dark-m ;
             background-color: transparent;
             padding: 0;
-            &.dark {
-                color: $text-color-light-m;
-             }
         }
     }
     .pl-v-content {
          cursor: pointer;
+         padding: $padding-10;
          &.hidden {
             display: none;
          }
@@ -72,18 +55,10 @@
             @include flex-box(_,_,$gap-m);
             margin: $margin-m 0;
             padding: 3px;
-            border-radius: $border-radius-m;
+            border-radius: $border-r-10;
             border: 1px solid transparent;
             &:hover, &.active {
-                background-color: darken($color: $back-gr-color-light, $amount: 25);
                 position: relative;
-                border-color: darken($color: $logo-color, $amount: 35);
-            }
-            &.dark {
-                &:hover, &.active {
-                    background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                    border-color: lighten($color: $back-gr-color-dark, $amount: 35);;
-                }
             }
             &.active::after {
                 content: '';
@@ -104,35 +79,27 @@
                 max-width: 100%;
                 max-height: 100%;
                 height: 100%;
-                border-radius: $border-radius-m;
+                border-radius: $border-r-10;
             }
             .v-length {
                 position: absolute;
                 bottom: 5px;
                 right: 5px;
-                font-size: $font-size-m;
-                border-radius: $border-radius-m;
-                background-color: $trans-black;
-                color: $text-color-light-l;
-                padding: 0 $padding-m;
+                font-size: $font-size-6;
+                border-radius: $border-r-10;
+                padding: 0 $padding-10;
+                background-color: #000000d8;
+                color: $light-color;
 
             }
            } 
            .right-content {
             .l-v-title {
-               font-size: $font-size-l;
-               margin-bottom: $margin-m;
-               color: $text-color-dark-l;
-               &.dark {
-                 color: $text-color-light-l;
-               }
+               font-size: $font-size-5;
+               margin-bottom: $marging-10;
             }
             .l-ch-name {
-                font-size: $font-size-m;
-               color: $text-color-dark-m;
-               &.dark {
-                color: $text-color-light-m;
-              }
+                font-size: $font-size-6;
             }
            }
         }

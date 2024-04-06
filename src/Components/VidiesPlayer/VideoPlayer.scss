@@ -2,7 +2,7 @@
 @import '../../GlibalStyles.scss/Mixin';
 
 .video {
-    padding-top: $padding-l;
+    padding-top: $padding-10;
     width: 100%;
     @media (min-width: 992px) {
       flex-basis: 67%;

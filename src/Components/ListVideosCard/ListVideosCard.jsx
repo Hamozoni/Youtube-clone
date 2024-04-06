@@ -1,13 +1,13 @@
+import { memo, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './ListVideosCard.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import { useParams } from 'react-router-dom';
-import { memo, useContext, useEffect, useState } from 'react';
 import { fetchChannelApi} from '../../Utils/FetchApi';
-import  Loading from '../../Components/Loading/Loading';
 import { statesContext } from '../../Contexts/statesContext';
-import { useNavigate } from 'react-router-dom';
 
 import Error from '../../Components/Error/Error';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
@@ -15,82 +15,90 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 const ListVideosCard = ()=> {
 
     const {id,plId,index} = useParams();
-
     const {lang, theme} = useContext(statesContext);
+    const navigate = useNavigate()
 
     const [playListDetails,setPlayListDetails] = useState(null);
     const [ListVideos,setListVideos] = useState(null);
     const [isListClose,setIsListClose] = useState(false);
-    const [continuation,setContinuation] = useState(false);
+    const [continuation,setContinuation] = useState('');
     const [isLoadingMore,setIsLoadingMore] = useState(false);
 
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState(null);
 
-    useEffect(()=>{
-        setIsLoading(true)
-        fetchChannelApi(`playlist?id=${plId}&lang=${lang}`)
+    const fetchPlayListVid = (isLoadMore = false)=>{
+        setError(null);
+        if(isLoadMore){
+            setIsLoadingMore(true);
+        }else {
+            setIsLoading(true);
+        }
+
+        fetchChannelApi(`playlist?id=${plId}&token=${continuation}&lang=${lang}`)
          .then((data)=>{
-            setPlayListDetails(data?.meta);
-            setListVideos(data?.data);
-            setContinuation(data?.continuation);
-            setIsLoading(false);
-            setError(null)
+             setContinuation(data?.continuation);
+            if(isLoadMore){
+                 setListVideos(prev => [...prev,...data?.data]);
+                 console.log(data)
+            }else {
+                setListVideos(data?.data);
+                setPlayListDetails(data?.meta);
+                console.log(data)
+            }
+
          })
          .catch((error)=> {
-            setIsLoading(false);
-            setError(error);
+             setError(error);
+         })
+        .finally(()=> {
+             setIsLoading(false);
+             setIsLoadingMore(false);
          })
 
-    },[plId]);
-
-    const navigate = useNavigate();
-
-    const fetchMoreData = ()=>{
-        setIsLoadingMore(true);
-        fetchChannelApi(`playlist?id=${plId}&token=${continuation}&lang=${lang}`)
-        .then( data => {
-            setListVideos(prev => [...prev,...data?.data]);
-            setContinuation(data?.continuation);
-            setIsLoadingMore(false);
-        })
     }
 
+    useEffect(fetchPlayListVid,[plId]);
+
     return (
-        error ? <Error error={error}/> : isLoading ? <Loading /> :
-         <div className={!isListClose ? `${theme} list-v-card active` :`${theme} list-v-card`}>
-            <div className={`${theme} list-header`}>
-                <div className={`${theme} h-left`}>
-                    <h4 className={`${theme} l-title`}>
+        error ? <Error error={error}/> : isLoading ? '' :
+         <div 
+            className={`${!isListClose ? 'active' : ''} border-c-${theme}-2 list-v-card`}
+            >
+            <div className={`back-color-${theme}-1 list-header`}>
+                <div className='h-left'>
+                    <h4 className={`t-color-${theme} l-title`}>
                         {playListDetails?.title}
                     </h4>
-                    <h5 className={`${theme} owner-channel`} >
+                    <h5 className={`t-color-${theme}-2 owner-channel`} >
                         {playListDetails?.channelTitle} - {index} / {playListDetails?.videoCount}
                     </h5>
                 </div>
-                <button className={`${theme} l-toggle-btn`}
+                <button className={`t-color-${theme}-3 l-toggle-btn`}
                         onClick={()=> setIsListClose(!isListClose)}
                         >
                    {isListClose ? <KeyboardArrowDownIcon /> : <ClearIcon />}
                 </button>
             </div>
-            <div className={isListClose ? `${theme} pl-v-content hidden` :`${theme} pl-v-content`}>
-                {ListVideos?.map((video,i)=> (
+            <div className={`${isListClose ? 'hidden' : ''} pl-v-content`}>
+                {ListVideos?.map((video)=> (
                     <div  onClick={()=> {
                             navigate(`/watch/${video?.videoId}/list/${plId}/${video?.index}`);
                          }}
                         key={video?.videoId} 
-                        className={id === video?.videoId?`${theme} active pl-card`: `${theme} pl-card`}
+                        className={`${id === video?.videoId ? `active back-act-c-${theme}-2 border-c-${theme}-4` : ''} back-hov-c-${theme}-1 pl-card`}
                         >
-                       <div className={`${theme} lift-img`}>
-                            <img src={video?.thumbnail[0]?.url || video?.thumbnail[1]?.url} alt="" />
-                            <spa className={`${theme} v-length`}>{video?.lengthText}</spa>
+                       <div className='lift-img'>
+                            <img src={video?.thumbnail[0]?.url || video?.thumbnail[1]?.url} alt="video" />
+                            <spa className={`${theme} v-length`}>
+                                {video?.lengthText}
+                            </spa>
                        </div>
-                       <div className={`${theme} right-content`}>
-                            <h5 className={`${theme} l-v-title`}>
+                       <div className='right-content'>
+                            <h5 className={`t-color-${theme}-1 l-v-title`}>
                                 {video?.title?.length > 55 ? `${video?.title.slice(0,55)}...`: video?.title}
                             </h5>
-                            <h6 className={`${theme} l-ch-name`}>
+                            <h6 className={`t-color-${theme}-3 l-ch-name`}>
                                 {video?.videoOwnerChannelTitle}
                             </h6>
                        </div>
@@ -98,7 +106,10 @@ const ListVideosCard = ()=> {
                 ))}
                 {
                     continuation?.length > 0 && 
-                    <LoadMoreBtn onClickHandler={fetchMoreData} isLoadingMore={isLoadingMore}/>
+                    <LoadMoreBtn 
+                        onClickHandler={()=> fetchPlayListVid(true)} 
+                        isLoadingMore={isLoadingMore}
+                        />
                }
             </div>
         </div>

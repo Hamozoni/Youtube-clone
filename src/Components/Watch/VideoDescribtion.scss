@@ -20,8 +20,8 @@
    }
    .views-desc {
       border-radius: 10px;
-      padding: $padding-15;
-      margin: $marging-15;
+      padding: $padding-10;
+      margin: $marging-10;
       .desc-head {
          @include flex-box(center);
          z-index: -1;
@@ -37,7 +37,7 @@
             font-size: $font-size-5;
             cursor: pointer;
             div {
-               margin: $margin-m 0;
+               margin: $marging-5 0;
                a {
                   word-break: break-all;
                }
@@ -46,7 +46,7 @@
          .show-more {
             justify-self: flex-end;
             font-size: $font-size-5;
-            margin-top: $marging-15;
+            margin-top: $marging-10;
             cursor: pointer;
             text-transform: capitalize;
          }

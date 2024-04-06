@@ -24,42 +24,61 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
 
     const { lang,theme } = useContext(statesContext);
 
-
-    useEffect(()=>{
-        setIsLoading(true);
+    const fetchComments = (isLoadMore = false)=>{
         setError(null);
+        if(isLoadMore) {
+            setIsLoadingMore(true)
+        }else {
+            setIsLoading(true);
+        }
+     
         fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}`)
             .then((data)=>{
-                setComments(data?.data);
+
+                if(isLoadMore){
+                   setComments( prev => [...data?.data,...data?.data]);
+                }else {
+                    setComments(data?.data);
+                }
                 setCommentsCount(data?.commentsCount);
                 setContinuation(data?.continuation);
-                setIsLoading(false);
+                console.log(data)
             })
             .catch((err)=>{
-                setIsLoading(false);
                 setError(err);
             })
+            .finally(()=> {
+                setIsLoading(false);
+                setIsLoadingMore(false)
 
-    },[id,lang,fetchQuery]);
-
-    const loadMore = ()=>{
-        setIsLoadingMore(true);
-        if(continuation?.length > 0) {
-            fetchChannelApi(`${fetchQuery}?id=${id}&lang=${lang}&token=${continuation}&sort_by=newest`)
-            .then((data)=>{
-                setComments( prev => [...prev,...data?.data]);
-                setContinuation(data?.continuation);
-                setIsLoadingMore(false);
             })
-        }
+
     }
+
+
+    useEffect(fetchComments,[id,lang,fetchQuery]);
+
+    // const loadMore = ()=>{
+    //     setIsLoadingMore(true);
+    //     if(continuation?.length > 0) {
+    //         fetchChannelApi(`${fetchQuery}?id=${id}&lang=${lang}&token=${continuation}&sort_by=newest`)
+    //         .then((data)=>{
+    //             setComments( prev => [...prev,...data?.data]);
+    //             setContinuation(data?.continuation);
+    //             setIsLoadingMore(false);
+    //         })
+    //     }
+    // }
 
    return (
 
         error ? <Error error={error} /> : isLoading ? '' :
-         <div className={`${!isComm  && 'active'} ${renderedFrom} ${theme} comments`}>
-                <section className={`${theme} comment-head`} >
-                    <h5 className={`${theme} comm-title`}  onClick={()=>  setComm(!isComm)}>
+         <div className={`${!isComm  && 'active'} ${renderedFrom} back-color-${theme}-1 comments`}>
+                <section className='comment-head' >
+                    <h5 
+                        className={`t-color-${theme} comm-title`}
+                        onClick={()=>  setComm(!isComm)}
+                        >
                         {commentsCount} {language[lang].comments}
                         {
                           renderedFrom === 'watch'  &&
@@ -69,17 +88,17 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
                         }
                     </h5>
                 </section>
-                <div className={`${isComm && 'active'} ${renderedFrom} ${theme} wrapper`}>  
+                <div className={`${isComm && 'active'} ${renderedFrom} wrapper`}>  
                     {
                         comments?.map((comment)=>(
                             <Comment key={comment?.commentId} comment={comment} />
                         ))
                     } 
                     
-                    {  
+                    {/* {  
                       continuation?.length > 0 &&
                       <LoadMoreBtn onClickHandler={loadMore} isLoadingMore={isLoadingMore}/>
-                    }
+                    } */}
                 
                 </div>
          </div>

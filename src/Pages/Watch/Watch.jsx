@@ -103,38 +103,44 @@ const VideoDetails = ({children})=> {
         <main className='video-details' >
                 <div className='container'>
                     <VideoPlayer  setKeywords={setKeywords} />
-                    {
-                         error ? <Error error={error} /> : isPending ? <RelatedLoading /> :
                         <section className='related-video'>
                                 {children}
-                                {
-                                    keywords &&
-                                    <Refinements 
-                                        refinements={keywords} 
-                                        onClick={handleKeywordsFetch} />
-                                }
+                            { 
+                              error ? <Error error={error} /> : isPending ? <RelatedLoading /> :
+                               <>
+                                    { 
+                                        keywords &&
+                                        <Refinements 
+                                            refinements={keywords} 
+                                            onClick={handleKeywordsFetch} />
+                                    }
+                                
         
-                                <RelatedVideos 
-                                    elements={relatedVidoes} 
-                                    renderFrom="watch"
-                                    /> 
-                                {
-                                   isFetchingKeywordData &&
-                                    <div className={`b-g-t-${theme} absolute key-loading`}>
-                                        <span></span>
-                                     </div>
-                                }
-                
-                                {
-                                    continuation?.length > 0 && 
+                                    <RelatedVideos 
+                                        elements={relatedVidoes} 
+                                        renderFrom="watch"
+                                        /> 
+                                    {
+                                        isFetchingKeywordData &&
+                                            <div className={`b-g-t-${theme} absolute key-loading`}>
+                                                <span></span>
+                                            </div>
+                                    }
+                                    {
+                                        continuation?.length > 0 && 
+    
+                                        <LoadMoreBtn 
+                                            isLoadingMore={isLoadingMore}
+                                            onClickHandler={handleMoreData}
+                                            />
 
-                                    <LoadMoreBtn 
-                                        isLoadingMore={isLoadingMore}
-                                        onClickHandler={handleMoreData}
-                                        />
-                                }
+                                    }
+                                
+                
+                                
+                                </>
+                            }
                         </section>
-                    } 
                 </div>
             </main>
     );

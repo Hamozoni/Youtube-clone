@@ -3,19 +3,19 @@
 
 
 .comments {
+   margin: $marging-10;
+   border-radius: $border-r-10;
     &.watch.active {
        @media (max-width: 429px) {
-          background-color: $back-gr-color-light;
           position: fixed;
           top: 280px;
           max-height: calc(100% - 280px);
           padding-bottom: $padding-l;
           left: 0;
           width: 100%;
-          z-index: 999999999;  
-          &.dark {
-            background-color: $back-gr-color-dark;
-          } 
+          z-index: 999999999;
+          margin: 0;  
+          border-radius: 0;
        .wrapper {
           height: calc(100vh - 350px);
           overflow-y: auto;
@@ -27,19 +27,10 @@
        padding: $padding-m;
        margin: $margin-l;
        margin-bottom: 0;
-       background-color: darken($back-gr-color-light,5);
-       border-radius: $border-radius-m;;
-       &.dark {
-         background-color:lighten($color: $back-gr-color-dark, $amount: 5);
-       }
         .comm-title {
            @include flex-box(center,space-between);
            text-transform: capitalize;
            font-size: $font-size-l;
-           color: $text-color-dark-m;
-           &.dark {
-             color: $text-color-light-m;
-           }
            .comm-arrows {
              justify-self: flex-end;
              @media (min-width: 992px) {
@@ -49,10 +40,6 @@
        }
     }
     .wrapper {
-      background-color: $back-gr-color-light;
-      &.dark {
-         background-color: $back-gr-color-dark;
-      }
      &.watch.active {
         display: none;
         @media (min-width: 992px) {

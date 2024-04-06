@@ -1,9 +1,12 @@
-import './Comment.scss';
 import { Link } from 'react-router-dom';
-import { statesContext } from '../../Contexts/statesContext';
+import { useContext} from 'react';
+
+import './Comment.scss';
+
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
-import { useContext} from 'react';
+
+import { statesContext } from '../../Contexts/statesContext';
 import { language } from '../../Utils/language';
 
 const Comments = ({comment })=> {
@@ -18,8 +21,8 @@ const Comments = ({comment })=> {
             replyCount } = comment
 
     return (
-        <div className={`${theme} comm-container`} > 
-            <div className={`${theme} comment-box`}>
+        <div className='comm-container' > 
+            <div className='comment-box'>
                 <Link to={`/channels/${authorChannelId}`} >
                    <img 
                         className='auther-img' 
@@ -27,32 +30,34 @@ const Comments = ({comment })=> {
                         alt="img" 
                     />
                 </Link>   
-                <div className={`${theme} auther-desc`}>
-                    <h4 className={`${theme} auth-name`}>
+                <div className='auther-desc'>
+                    <h4 className={`t-color-${theme} auth-name`}>
                         {authorText}
                     </h4>
-                    <span className={`${theme} time`}
+                    <span className={`t-color-${theme}-3 time`}
                        
                         >
                         {publishedTimeText}
                     </span>
-                    <p className={`${theme} comment`}
+                    <p className={`t-color-${theme}-1 comment`}
                         >
                         {textDisplay}
                     </p>
-                    <div className={`${theme} like-dislike-btn`}>
+                    <div className='like-dislike-btn'>
                         <button
+                            className={`t-color-${theme}-2`}
                             >
                             <ThumbUpAltOutlinedIcon />
                             {likesCount}
                         </button>
                         <button 
+                            className={`t-color-${theme}-2`}
                             >
                             <ThumbDownOffAltOutlinedIcon />
                         </button>
                         {
                             replyCount > 0 &&
-                            <span className={`${theme} replies`} >
+                            <span className={`t-color-${theme}-1 replies`} >
                                 {replyCount} {language[lang].replies}
                             </span>
                         }

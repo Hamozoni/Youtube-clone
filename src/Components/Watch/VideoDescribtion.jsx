@@ -21,7 +21,7 @@ const VideoDescribtion = ({videoDetail}) =>{
 
 
     useEffect(()=> {
-        descArticle.current.innerText = isDesc ? description : description.slice(0,90);
+        descArticle.current.innerText = isDesc ? description.slice(0,90) : description ;
     },[description,isDesc])
 
     return (
@@ -45,7 +45,10 @@ const VideoDescribtion = ({videoDetail}) =>{
                     className={`t-color-${theme}-1 vid-desc`} 
                     >
                 </article>
-                <h4 className={`t-color-${theme} show-more`} onClick={()=> setDesc(!isDesc)}>
+                <h4 
+                    className={`t-color-${theme} show-more`} 
+                    onClick={()=> setDesc(!isDesc)}
+                     >
                     { isDesc ?
                         showMore :
                         showLess
