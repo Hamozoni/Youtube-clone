@@ -3,6 +3,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import './Channel.scss';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
@@ -20,7 +21,7 @@ const ChanelDetails = ()=> {
     const [isLoading,setIsLoading] = useState(true);
 
     const { id,section} = useParams();
-    const {lang} = useContext(statesContext);
+    const {lang,theme} = useContext(statesContext);
 
     const [error,setError] = useState(null);
     const [isAboutChannelOpen,setIsAboutChannelOpen] = useState(false);
@@ -59,24 +60,39 @@ const ChanelDetails = ()=> {
                     }
 
                     <div className="ch-card">
-                        <img src={chanelDetail?.avatar[1]?.url} alt="avatar" />
+                        <img className='ch-card-img' src={chanelDetail?.avatar[2]?.url} alt="avatar" />
                         <div className="ch-info">
-                            <div className="ch-n">
-                                <span>
+                            <h3 className={`t-color-${theme} ch-t`}>
+                                {chanelDetail?.title}
+                            </h3>
+                            <div className={`t-color-${theme}-4 flix ch-n`}>
+                                <span className='flix m-h'>
                                      {chanelDetail?.channelHandle} {chanelDetail?.isVerified && <CheckCircleIcon /> }
                                 </span>
-                                <span>
+                                <span className='m-h'>
                                      {chanelDetail?.subscriberCountText + " " + language[lang].subscribers}
                                 </span>
-                                <span>
+                                <span className='m-h'>
                                      {chanelDetail?.videosCount + " " + language[lang].videos}
                                 </span>
                             </div>
-                            <div className="ch-desc">
-                                <article>
+                            <div className={`t-color-${theme}-4 flix ch-desc`}>
+                                <article className='m-h'>
                                     {chanelDetail?.description?.slice(0,90) + "..."}
                                 </article>
-                                <CheckCircleIcon onClick={()=> setIsAboutChannelOpen(true)} /> 
+                                <ArrowForwardIosIcon onClick={()=> setIsAboutChannelOpen(true)} /> 
+                            </div>
+                            <div className={`t-color-${theme}-1 flix ch-card-links`}>
+                                <a 
+                                   className='link-c m-h'
+                                    href={chanelDetail?.links[0].link}
+                                    >
+                                    {chanelDetail?.links[0].link}
+                                </a>
+
+                                <p className='m-h'> 
+                                    and {chanelDetail?.links?.length - 1} more links
+                                </p>
                             </div>
                             <ChannelSubscribeBtn />
                         </div>

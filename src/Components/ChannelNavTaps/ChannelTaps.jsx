@@ -1,73 +1,42 @@
+
+import { NavLink} from "react-router-dom";
 import { useContext } from "react";
+
 import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 
 import './ChannelTaps.scss';
-import { useNavigate, useParams} from "react-router-dom";
 
-
-const ChannelTaps = ({setIsAboutChannelOpen})=>{
+const ChannelTaps = ({tabs,setIsAboutChannelOpen})=>{
 
     const {  lang, theme } = useContext(statesContext);
-    const {id, section } = useParams();
-
-
-    const navigate = useNavigate();
-
-    const handleNavigate = (param)=>{
-        if(param === "home" || param === "community" ){
-            navigate(`/channels/${id}/${param}`);
-        }else if (param === "playlists" ){
-            navigate(`/channels/${id}/${param}?sort_by=date_added`);
-        }else {
-            navigate(`/channels/${id}/${param}?sort_by=newest`);
-        }
-    }
 
     return (
-        <nav className={`${theme} channel-nav`} >
-            <ul className={`${theme} nav`} >
-                <li 
-                    className={section === 'home' || section === undefined ? 'active': ''}
-                    onClick={()=> handleNavigate('home')}
-                    >
-                        { language[lang].home }
-                </li>
+        <nav className={`back-color-${theme} border-c-${theme}-2 channel-nav`} >
+            <ul className='nav' >
+
+                {
+                    tabs?.map((tap)=> (
+                    <li 
+                        >
+                        <NavLink 
+                            className={`t-color-${theme}-2 back-before-c-${theme}-7 border-c-${theme}-5`}
+                            to={`${tap.toLowerCase()}`}
+                            >
+                            { language[lang][tap.toLowerCase()] }
+                        </NavLink>
+                    </li>
+                    )
+                    )
+                   
+                }
                 <li
-                    className={section === 'videos' ? 'active': ''}
-                    onClick={()=> handleNavigate('videos')}
-                    >
-                        { language[lang].videos }
-                </li>
-                <li 
-                    className={section === 'shorts' ? 'active': ''} 
-                    onClick={()=> handleNavigate('shorts')}
-                    >
-                        { language[lang].shorts }
-                </li>
-                <li
-                    className={section === 'liveStreams' ? 'active': ''} 
-                    onClick={()=> handleNavigate('liveStreams')}
-                    >
-                        { language[lang].live }
-                </li>
-                <li
-                    className={section === 'playlists' ? 'active': ''}
-                    onClick={()=> handleNavigate('playlists')}
-                    >
-                        {language[lang].playlists}
-                </li>
-                <li
-                    className={section === 'community' ? 'active': ''}
-                    onClick={()=> handleNavigate('community')}
-                    >
-                        {language[lang].community}
-                </li>
-                <li
+                    className={`t-color-${theme}-2  about`}
                     onClick={()=> setIsAboutChannelOpen(true)}
                     >
                         {language[lang].about}
                 </li>
+
             </ul>
        </nav>
     )
