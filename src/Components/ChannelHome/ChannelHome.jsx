@@ -7,7 +7,6 @@ import { fetchChannelApi } from "../../Utils/FetchApi";
 import './style.scss';
 
 import Error from "../Error/Error";
-import Loading from "../Loading/Loading";
 import VideoCard from "../VideoCard/VideoCard";
 import ShortCard from "../SortsCard/ShortCard";
 import Shorts from '../Images/shorts.svg'
@@ -19,6 +18,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { scrollHandler } from "./scrollHandler";
 import { useParams } from "react-router-dom";
+import FireLoading from "../Loading/SpinLoading/SpinLoading";
 
 
 const ChannelHome = ()=> {
@@ -60,7 +60,7 @@ const ChannelHome = ()=> {
 
     return (
         error ? <Error error={error}/> :(
-            isLoading ? '': 
+            isLoading ? <FireLoading />: 
             <main className={`${theme} channel-home`}>
                 {data?.map((el,i)=>(
                     <section key={i} className={`${theme} part-container`}> 

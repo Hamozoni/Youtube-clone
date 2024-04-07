@@ -3,7 +3,6 @@ import Header from './Components/Header/Header';
 import SideNavbar from './Components/SideNavbar/SideNavbar'
 import Home from './Pages/Home/Home';
 import Watch from './Pages/Watch/Watch';
-import Channel from './Pages/Channel/Channel.jsx';
 import SearchFeed from './Pages/SearchFeed/SearchFeed';
 import PlayList from './Pages/Playlist/Playlist.jsx';
 
@@ -17,6 +16,7 @@ import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
 import SearchRecorder from './Components/SearchRecording/SearchRecorder.jsx';
 import Loading from './Components/Loading/Loading.jsx';
+import ChannelLayout from './Layouts/ChannelLayout/ChannelLayout.jsx';
 
 
 const App = ()=> {
@@ -55,7 +55,7 @@ const App = ()=> {
           <Route path='/' exact element={<Home />} />
           <Route path='/explore' exact element={<Home />} />
           <Route path='/watch/:id' element={<Watch />} />
-          <Route path='/channels/:id' element={<Channel />} >
+          <Route path='/channel/:id' element={<ChannelLayout />} >
 
               
               <Route index element={<ChannelHome />} />

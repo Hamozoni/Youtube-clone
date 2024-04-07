@@ -35,9 +35,11 @@
                  &:hover {
                      &::before {
                          width: 100%;
+                         filter: opacity(60%);
                      }
                  }
                  &.active {
+                    filter: opacity(60%);
                      &::before {
                          width: 100%;
                      }

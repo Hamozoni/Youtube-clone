@@ -1,13 +1,13 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { fetchChannelApi } from "../../Utils/FetchApi";
 import Error from "../Error/Error";
-import Loading from "../Loading/Loading";
 import { language } from "../../Utils/language";
 import { statesContext } from "../../Contexts/statesContext";
 
 import './ChannelContent.scss';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ContentContainer from "./ContentContainer";
+import FireLoading from "../Loading/SpinLoading/SpinLoading";
 
 
 const ChannelContent = ()=>{
@@ -108,7 +108,7 @@ const ChannelContent = ()=>{
                 </nav>
             }
             {
-             isError ? <Error error={isError} /> : isLoading ? <Loading /> :
+             isError ? <Error error={isError} /> : isLoading ? <FireLoading /> :
              <ContentContainer 
                 channelViveos={channelViveos}  
                 section={section}
