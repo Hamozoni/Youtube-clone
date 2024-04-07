@@ -36,11 +36,11 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
             .then((data)=>{
 
                 if(isLoadMore){
-                   setComments( prev => [...data?.data,...data?.data]);
+                   setComments( prev => [...prev,...data?.data]);
                 }else {
                     setComments(data?.data);
+                    setCommentsCount(data?.commentsCount);
                 }
-                setCommentsCount(data?.commentsCount);
                 setContinuation(data?.continuation);
                 console.log(data)
             })
@@ -95,10 +95,13 @@ const VideoComments = ({id,fetchQuery,renderedFrom})=> {
                         ))
                     } 
                     
-                    {/* {  
+                    {  
                       continuation?.length > 0 &&
-                      <LoadMoreBtn onClickHandler={loadMore} isLoadingMore={isLoadingMore}/>
-                    } */}
+                      <LoadMoreBtn 
+                            onClickHandler={()=>fetchComments(true)}
+                            isLoadingMore={isLoadingMore}
+                            />
+                    }
                 
                 </div>
          </div>

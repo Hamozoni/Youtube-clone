@@ -30,16 +30,18 @@ const ChannelHome = ()=> {
     const [error,setError] = useState(null);
 
     useEffect(()=>{
-        setIsLoading(true)
+        setIsLoading(true);
+        setError(null)
         fetchChannelApi(`channel/home?id=${id}&lang=${lang}`)
         .then(data => {
             setData(data?.data)
-            setIsLoading(false);
         })
         .catch(error => {
             setError(error);
+        })
+        .finally(()=> {
             setIsLoading(false);
-        });
+        })
 
     },[id,lang]);
 
@@ -58,7 +60,7 @@ const ChannelHome = ()=> {
 
     return (
         error ? <Error error={error}/> :(
-            isLoading ? <Loading /> : 
+            isLoading ? '': 
             <main className={`${theme} channel-home`}>
                 {data?.map((el,i)=>(
                     <section key={i} className={`${theme} part-container`}> 

@@ -1,11 +1,10 @@
-import './Channel.scss';
 import { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import './Channel.scss';
 
 import { fetchChannelApi } from '../../Utils/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import Loading from '../../Components/Loading/Loading';
 import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
@@ -19,28 +18,28 @@ const ChanelDetails = ()=> {
     const { id,section} = useParams();
     const {lang} = useContext(statesContext);
 
-    const [isError,setIsErroe] = useState(false);
-    const [error,setErroe] = useState(null);
+    const [error,setError] = useState(null);
     const [isAboutChannelOpen,setIsAboutChannelOpen] = useState(false);
 
     useEffect(()=>{
         setIsLoading(true);
+        setError(null);
         fetchChannelApi(`channel/about?id=${id}&lang=${lang}`)
         .then((data)=>{
             setChanelDetail(data);  
-            setIsLoading(false);
         })
         .catch((error)=> {
+            setError(error)
+        })
+        .finally(()=> {
             setIsLoading(false);
-            setIsErroe(true)
-            setErroe(error)
         })
         
     },[id,lang]);
 
     return (
 
-        isError ? <Error error={error} />: isLoading ? <Loading /> :
+        error ? <Error error={error} />: isLoading ? '' :
         <div className='chanel-details'>
              <SideNavbarSmall homeShort='home-short' />
             <div className='container'>
@@ -56,7 +55,13 @@ const ChanelDetails = ()=> {
                 </div>
                 <ChannelTaps setIsAboutChannelOpen={setIsAboutChannelOpen}  />
                 <div className="channel-content">
-                    {isAboutChannelOpen &&  <ChannelAbout chanelDetail={chanelDetail} setIsAboutChannelOpen={setIsAboutChannelOpen} />}
+                    { 
+                        isAboutChannelOpen &&  
+                        <ChannelAbout 
+                            chanelDetail={chanelDetail} 
+                            setIsAboutChannelOpen={setIsAboutChannelOpen}
+                            />
+                    }
                     <Outlet section={section}/>
                 </div>
 

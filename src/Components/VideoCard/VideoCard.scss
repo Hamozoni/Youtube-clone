@@ -3,14 +3,15 @@
 
 
 .video-card {
-    border-radius: $border-radius-l;
+    border-radius: $border-r-10;
     transition: all 0.5s ease-in-out;
+    margin-bottom: $marging-10;
     .video-img {
         position: relative;
         cursor: pointer;
         overflow: hidden;
         @media (min-width: 430px){
-            border-radius: $border-radius-l;
+            border-radius: $border-r-10;
         } 
         span.nav-watch {
             background-color: transparent;
@@ -25,9 +26,9 @@
             bottom: 8px;
             padding: 0px 5px 2px;
             background-color: $trans-black;
-            color: $text-color-light-l;
-            border-radius: $border-radius-m;
-            font-size: $font-size-m;
+            color: $light-color;
+            border-radius: $border-r-10;
+            font-size: $font-size-6;
             font-weight: 500;
             &.live {
                 background-color: $logo-color;
@@ -60,30 +61,19 @@
             .titles {
                 a {
                     .chanel-title {
-                        color: $text-color-dark-m;
                         @include flex-box();
-                        font-size: $font-size-m;
-                        &.dark {
-                            color: $text-color-light-m; 
-                        }
+                        font-size: $font-size-6;
+                        font-weight: 500;
 
                     }
                     .video-title {
-                        color: $text-color-dark-l;
                         padding: 2px 0;
-                        font-size: $font-size-l;
-                        &.dark {
-                            color: $text-color-light-l; 
-                        }
+                        font-size: $font-size-5;
                     }
                 }
                 .video-desc {
                     display: none;
-                    font-size: $font-size-m;
-                    color: $text-color-dark-m;
-                    &.dark {
-                        color: $text-color-light-m; 
-                    }
+                    font-size: $font-size-6;
                     @media (min-width: 540px) {
                         display: block;
                     }
@@ -91,15 +81,11 @@
             }
         }
         .stats {
-            color: $text-color-dark-m;
             @include flex-box();
-            &.dark {
-                color: $text-color-light-m; 
-            }
             .moment {
-                @include flex-box(_,_,$gap-m);
-                font-size: $font-size-m;
-                font-weight: normal;
+                @include flex-box(_,_,$gap-5);
+                font-size: $font-size-6;
+                font-weight: 500;
                 svg {
                     font-size: 17px;
                 }

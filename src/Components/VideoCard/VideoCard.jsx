@@ -1,10 +1,12 @@
 
+import { useContext} from 'react';
 import {useNavigate, Link } from 'react-router-dom';
+
 import './VideoCard.scss';
+
 import {ternViewsTo} from '../../Utils/Constans';
 import { language } from '../../Utils/language';
 import { statesContext } from '../../Contexts/statesContext';
-import { useContext} from 'react';
 
 import SensorsRoundedIcon from '@mui/icons-material/SensorsRounded';
 import ReactPlayer from 'react-player';
@@ -64,8 +66,11 @@ const Videos = ({ data : video, renderFrom})=> {
                 <div className="content">
                     <div className="wrapper">
                         {video.authorThumbnail?.length ? 
-                            <Link to={video?.channelId && `/channels/${video?.channelId}/home`} className='img' >
-                                <img src={video?.authorThumbnail[0]?.url } alt="" />
+                            <Link 
+                                to={video?.channelId && `/channels/${video?.channelId}/home`} 
+                                className='img' 
+                                >
+                                <img src={video?.authorThumbnail[0]?.url } alt="channel" />
                             </Link>: ''
                         }
                         { video.channelThumbnail?.length ?
@@ -73,14 +78,20 @@ const Videos = ({ data : video, renderFrom})=> {
                                 <img src={video?.channelThumbnail[0]?.url } alt="" />
                             </Link>: ''
                         }
-                        <div className={`${theme} titles`}>
-                            <Link to={video?.videoId &&`/watch/${video?.videoId}`}>
-                                <h4 className={`${theme} video-title`} >
+                        <div className='titles'>
+                            <Link 
+                                className={`t-color-${theme}`}
+                                to={video?.videoId &&`/watch/${video?.videoId}`}
+                                >
+                                <h4 className='video-title' >
                                  {renderFrom ===  "search" ? video?.title :  `  ${video?.title?.length > 53 ? video?.title.slice(0,53) + '...' :  video?.title}`}
                                 </h4>
                             </Link>
                 
-                            <Link to={`/channels/${video?.channelId}/home`}>
+                            <Link 
+                                className={`t-color-${theme}-2`}
+                                to={`/channels/${video?.channelId}/home`}
+                                >
                                 {video?.channelTitle?.length ?
                                     <h5 className={`${theme} chanel-title`} >
                                        {video?.channelTitle?.length > 20 ?
@@ -88,7 +99,7 @@ const Videos = ({ data : video, renderFrom})=> {
                                         video?.channelTitle }
                                     </h5>: ''}
                                 </Link> 
-                            <div className={`${theme} stats`} >
+                            <div  className={`t-color-${theme}-4 stats`} >
                                 <span className={`${theme} views-count moment`}>
                                     {ternViewsTo(video?.viewCount)} {language[lang].views}
                                 </span>
@@ -97,8 +108,8 @@ const Videos = ({ data : video, renderFrom})=> {
                                 </h5>
                             </div>
                             { renderFrom === "search" && 
-                                <div className={`${theme} video-desc`}>
-                                    <p className={`${theme} desc-content`}>
+                                <div className={`t-color-${theme}-2 video-desc`}>
+                                    <p className='desc-content'>
                                         {video?.description}
                                     </p>
                                 </div>

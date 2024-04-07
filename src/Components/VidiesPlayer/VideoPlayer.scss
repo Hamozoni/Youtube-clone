@@ -9,6 +9,7 @@
     }
     .channel-card {
       @include flex-box(center,flex-start,$gap-10);
+      margin-bottom: $marging-10;
       .ch-img {
         img {
           width: 40px;
@@ -18,13 +19,14 @@
       }
       .ch-info {
         flex: 1;
-        @include flex-box(center,space-between,$gap-20);
+        @include flex-box(center,space-between,$gap-5);
         .ch-det {
           .ch-name {
-             font-size: $font-size-4;
+             font-size: $font-size-5;
           }
           .ch-subs-cout {
-             font-size: $font-size-5;
+             font-size: $font-size-6;
+             font-weight: 700;
           }
         }
       }

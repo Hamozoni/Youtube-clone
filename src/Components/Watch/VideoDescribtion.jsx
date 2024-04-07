@@ -3,7 +3,6 @@ import { statesContext } from "../../Contexts/statesContext";
 import { language } from "../../Utils/language";
 import { ternViewsTo } from "../../Utils/Constans";
 
-import { Link } from 'react-router-dom';
 
 import "./VideoDescribtion.scss"
 

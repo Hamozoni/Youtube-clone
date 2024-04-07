@@ -56,6 +56,8 @@ const App = ()=> {
           <Route path='/explore' exact element={<Home />} />
           <Route path='/watch/:id' element={<Watch />} />
           <Route path='/channels/:id' element={<Channel />} >
+
+              
               <Route index element={<ChannelHome />} />
               <Route path='home' element={<ChannelHome />} />
               <Route path=':section' element={<ChannelContent/>} />
