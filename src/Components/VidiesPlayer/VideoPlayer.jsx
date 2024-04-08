@@ -48,7 +48,7 @@ const VideoPlayer = ({ setKeywords }) => {
       <ReactPlayer url={`hppts://www.youtube.com/watch?v=${id}?autoplay=1&mute=0?`} className="video-player" controls playing />
       <div className="video-desc">
         <h3 className={`t-color-${theme} video-title`}>{videoDetail?.title}</h3>
-        <div className="left">
+        <div className={`border-c-${theme}-2 left`}>
           <div className="channel-card">
             <Link to={`/channel/${videoDetail?.channelId}`} className="ch-img">
               <img src={videoDetail?.channelThumbnail[0]?.url} alt="channel image" />

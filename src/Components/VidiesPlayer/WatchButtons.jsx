@@ -65,9 +65,9 @@ const WatchButtons = ({ videoDetail }) => {
       <DownloadBtn />
       <MoreBtn />
       <div className="more">
-        <Btn Icon={<MoreHorizOutlinedIcon />} clName="btn more-btn" onClickHanlder={() => setIsMoreBtn(!isMoreBtn)} />
+        <Btn Icon={<MoreHorizOutlinedIcon />} clName={` border-c-${theme}-3 btn more-btn`} onClickHanlder={() => setIsMoreBtn(!isMoreBtn)} />
         {isMoreBtn && (
-          <div className={`back-color-${theme}-1 more-btns`}>
+          <div className={`back-color-${theme} border-c-${theme}-3 more-btns`}>
             <DownloadBtn />
             <MoreBtn />
           </div>

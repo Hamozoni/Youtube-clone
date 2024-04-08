@@ -3,7 +3,7 @@
 
 
 .comments {
-   margin: $marging-10;
+   margin: 0 $marging-10 ;
    border-radius: $border-r-10;
    border: 1px solid transparent;
     &.watch.active {
@@ -25,9 +25,9 @@
     }
     .comment-head {
        cursor: pointer;
-       padding: $padding-m;
-       margin: $margin-l;
+       padding: $padding-15;
        margin-bottom: 0;
+       border-bottom: 1px solid transparent;
         .comm-title {
            @include flex-box(center,space-between);
            text-transform: capitalize;

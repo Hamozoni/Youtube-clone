@@ -63,6 +63,7 @@
       }
       .more-btn {
         border-radius: $border-r-full !important;
+        border: 1px solid transparent;
       }
       .more-btns {
         position: absolute;
@@ -71,6 +72,7 @@
         z-index: 999999;
         padding: $padding-l;
         border-radius: $border-r-10;
+        border: 1px solid transparent;
         .down-btn {
           display: none;
           @media (min-width: 992px) and (max-width: 1270px) {

@@ -23,6 +23,7 @@
         .ch-det {
           .ch-name {
              font-size: $font-size-5;
+             font-weight: 500;
           }
           .ch-subs-cout {
              font-size: $font-size-6;
@@ -35,6 +36,11 @@
      .video-desc {
        .video-title {
           font-size: $font-size-4;
+       }
+       .left {
+          border-bottom: 1px solid transparent;
+          padding: $padding-15;
+          border-radius: $border-r-10;
        }
      }
   }

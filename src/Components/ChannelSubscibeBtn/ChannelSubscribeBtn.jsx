@@ -15,9 +15,12 @@ const ChannelSubscribeBtn = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [notifationType, setNotifationType] = useState("personalized");
 
+  const li_class_names = ` back-hov-c-${theme}-2 back-act-c-${theme}-1`;
+  const btn_class_names = `${isSubscribed ? `back-color-${theme}-1 ` : `back-color-${theme}-2`} t-color-${theme} back-hov-c-${theme}-2 subs-b border-c-${theme}-3 `;
+
   return (
     <div className={`${isSubscribed ? "subscribed" : ""} subs-btn`}>
-      <button onClick={() => setIsSubscribed(true)} className={`${isSubscribed ? `back-color-${theme}-1 ` : `back-color-${theme}-4 `} t-color-${theme} back-hov-c-${theme}-2 subs-b`}>
+      <button onClick={() => setIsSubscribed(true)} className={btn_class_names}>
         {isSubscribed ? (
           <>
             {notifationType === "personalized" ? <NotificationsOutlinedIcon /> : notifationType === "all" ? <NotificationsActiveIcon /> : <NotificationsOffOutlinedIcon />}
@@ -28,17 +31,23 @@ const ChannelSubscribeBtn = () => {
           staticData?.subscribe
         )}
       </button>
-      <div className={`back-color-${theme}-3 notif-selec`}>
+      <div className={`back-color-${theme}-3 border-c-${theme}-5 notif-selec`}>
         <ul className={`t-color-${theme}-2 not-opp`}>
-          <li className={`${notifationType === "all" ? "active" : ""} back-hov-c-${theme}-2 back-act-c-${theme}-1`} onClick={() => setNotifationType("all")}>
+          <li 
+            className={`${notifationType === "all" ? "active" : ""} ${li_class_names}`} 
+            onClick={() => setNotifationType("all")}>
             <NotificationsActiveIcon />
             all
           </li>
-          <li className={`${notifationType === "personalized" ? "active" : ""} back-hov-c-${theme}-2 back-act-c-${theme}-1`} onClick={() => setNotifationType("personalized")}>
+          <li 
+              className={`${notifationType === "personalized" ? "active" : ""} ${li_class_names}`} 
+              onClick={() => setNotifationType("personalized")}>
             <NotificationsOutlinedIcon />
             personalized
           </li>
-          <li className={`${notifationType === "none" ? "active" : ""} back-hov-c-${theme}-2 back-act-c-${theme}-1`} onClick={() => setNotifationType("none")}>
+          <li 
+            className={`${notifationType === "none" ? "active" : ""} ${li_class_names}`} 
+            onClick={() => setNotifationType("none")}>
             <NotificationsOffOutlinedIcon />
             none
           </li>

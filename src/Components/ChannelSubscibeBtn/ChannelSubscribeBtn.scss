@@ -5,14 +5,17 @@
   position: relative;
   .subs-b {
     @include flex-box(center, center, $gap-5);
-    font-size: $font-size-4;
-    padding: $padding-5 $padding-15;
+    font-size: $font-size-5;
+    padding: $padding-5 + 3 $padding-15;
     border-radius: $border-r-20;
+    border: 1px solid transparent;
+    font-weight: 700;
     svg {
       font-size: $font-size-4;
     }
   }
   .notif-selec {
+    border: 1px solid transparent;
     display: none;
     position: absolute;
     left: 0;
