@@ -50,7 +50,7 @@ const VideoPlayer = ({ setKeywords }) => {
         <h3 className={`t-color-${theme} video-title`}>{videoDetail?.title}</h3>
         <div className="left">
           <div className="channel-card">
-            <Link to={`/channels/${videoDetail?.channelId}`} className="ch-img">
+            <Link to={`/channel/${videoDetail?.channelId}`} className="ch-img">
               <img src={videoDetail?.channelThumbnail[0]?.url} alt="channel image" />
             </Link>
             <div className="ch-info">

@@ -1,5 +1,5 @@
-@import '../../../../Styles/Variabls';
-@import '../../../../Styles/Mixin';
+@import '../../../../../Styles/Variabls';
+@import '../../../../../Styles/Mixin';
 
 .ch-home-player {
     max-width: 100%;
@@ -25,7 +25,7 @@
           }
         .pl-title {
             margin: $marging-10 0;
-            font-size: $font-size-4;
+            font-size: $font-size-5;
             max-height: 21px;
             overflow: hidden;
         }
@@ -36,7 +36,7 @@
         }
         aside {
             font-size: $font-size-6;
-            font-weight: 700;
+            font-weight: 500;
             max-height: 160px;
             overflow: hidden;
             display: none;

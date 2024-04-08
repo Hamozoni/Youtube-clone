@@ -1,0 +1,27 @@
+@import "../../../../../Styles/Variabls";
+@import "../../../../../Styles/Mixin";
+
+.h-ch-card {
+    text-align: center;
+    min-width: 210px;
+    .h-ch-image {
+        width: 103px;
+        height: 103px;
+        border-radius: $border-r-full;
+        margin: 0 auto;
+    }
+    .h-ch-info {
+        .ch-n {
+            font-size: $font-size-5;
+        }
+        .ch-subsc {
+            font-size: $font-size-6;
+        }
+        .subs-btn {
+            border-radius: $border-r-20;
+            padding: $padding-5 $padding-15;
+            font-size: $font-size-6;
+            margin-top: $marging-15;
+        }
+    }
+}

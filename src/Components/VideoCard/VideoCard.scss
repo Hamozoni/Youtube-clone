@@ -42,7 +42,7 @@
     }
   }
   .content {
-    padding: 0 $padding-m;
+    padding:$padding-10;
     flex: 1;
     overflow: hidden;
     .wrapper {
@@ -61,11 +61,11 @@
           .chanel-title {
             @include flex-box();
             font-size: $font-size-6;
-            font-weight: 500;
-          }
+            font-weight: 300;
+        }
           .video-title {
-            padding: 2px 0;
-            font-size: $font-size-5;
+              font-size: $font-size-6;
+              font-weight: 500;
           }
         }
         .video-desc {
@@ -82,7 +82,7 @@
       .moment {
         @include flex-box(_, _, $gap-5);
         font-size: $font-size-6;
-        font-weight: 500;
+        font-weight: 300;
         svg {
           font-size: 17px;
         }

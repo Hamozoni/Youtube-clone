@@ -46,14 +46,14 @@ const Videos = ({ data: video, renderFrom }) => {
       <div className="content">
         <div className="wrapper">
           {video.authorThumbnail?.length ? (
-            <Link to={video?.channelId && `/channels/${video?.channelId}/home`} className="img">
+            <Link to={video?.channelId && `/channel/${video?.channelId}/home`} className="img">
               <img src={video?.authorThumbnail[0]?.url} alt="channel" />
             </Link>
           ) : (
             ""
           )}
           {video.channelThumbnail?.length ? (
-            <Link to={video?.channelId && `/channels/${video?.channelId}/home`} className="img">
+            <Link to={video?.channelId && `/channel/${video?.channelId}/home`} className="img">
               <img src={video?.channelThumbnail[0]?.url} alt="" />
             </Link>
           ) : (
@@ -64,7 +64,7 @@ const Videos = ({ data: video, renderFrom }) => {
               <h4 className="video-title">{renderFrom === "search" ? video?.title : `  ${video?.title?.length > 53 ? video?.title.slice(0, 53) + "..." : video?.title}`}</h4>
             </Link>
 
-            <Link className={`t-color-${theme}-2`} to={`/channels/${video?.channelId}/home`}>
+            <Link className={`t-color-${theme}-2`} to={`/channel/${video?.channelId}/home`}>
               {video?.channelTitle?.length ? <h5 className={`${theme} chanel-title`}>{video?.channelTitle?.length > 20 ? `${video?.channelTitle?.slice(0, 20)}...` : video?.channelTitle}</h5> : ""}
             </Link>
             <div className={`t-color-${theme}-4 stats`}>

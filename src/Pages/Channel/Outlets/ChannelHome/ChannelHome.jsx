@@ -17,12 +17,13 @@ import Playlist from "../../../../Components/PlayListCard/PlayList";
 import { statesContext } from "../../../../Contexts/statesContext";
 
 import Shorts from '../../../../Assets/shorts.svg'
-import Player from "./Player";
+import Player from "./Player/Player";
 
 
 
 import { fetchChannelApi } from "../../../../Lib/FetchApi";
 import { scrollHandler } from "./scrollHandler";
+import ChannelCard from "./ChannelCard/ChannelCard";
 
 const ChannelHome = ()=> {
     const { id} = useParams();
@@ -39,6 +40,7 @@ const ChannelHome = ()=> {
         .then(data => {
             setData(data?.data);
             document.title = data.meta.title + '_home';
+            console.log(data)
         })
         .catch(error => {
             setError(error);
@@ -151,7 +153,12 @@ const ChannelHome = ()=> {
                                             <ShortCard key={short?.videoId} short={short} shorts={arr} />
                                         ))
                                     
-                                :''
+                                :  el?.type === 'channel_listing' &&
+                                       
+                                       el?.data?.map((data)=> (
+                                           <ChannelCard  data={data}/>
+                                       ))
+                                
                                     }
                             </div>
                         </div>

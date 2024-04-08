@@ -1,7 +1,7 @@
 import  ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 
-import { statesContext } from '../../../../Contexts/statesContext';
+import { statesContext } from '../../../../../Contexts/statesContext';
 
 import './Player.scss';
 import { useContext } from 'react';
