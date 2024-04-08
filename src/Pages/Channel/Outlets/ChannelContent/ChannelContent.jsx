@@ -73,7 +73,8 @@ const ChannelContent = ()=>{
            navigate(`?sort_by=${searchParam}`);
     };
 
-    const class_name =  `active back-act-c-${theme}-2 border-c-${theme}-5`
+    const class_active =  `active back-act-c-${theme}-3 border-c-${theme}-6`;
+    const class_name = `back-color-${theme}-1 back-hov-c-${theme}-2`
 
     return (
        
@@ -83,13 +84,13 @@ const ChannelContent = ()=>{
                 <nav className='sort-by'>
                     <ul className={`t-color-${theme}`}>
                         <li 
-                            className={`${sortBy === 'newest' || sortBy ===  'date_added' ? class_name  :''} back-color-${theme}-1`}
+                            className={`${sortBy === 'newest' || sortBy ===  'date_added' ? class_active  :''} ${class_name} `}
                             onClick={()=> handleSortBy(section === 'playlists' ?'date_added' : 'newest')}
                             >
                                 { section === 'playlists' ? dateAdded : latest}
                         </li>
                         <li 
-                            className={`${sortBy === 'popular' || sortBy ===  'last_video_added' ? class_name  :''} back-color-${theme}-1`}
+                            className={`${sortBy === 'popular' || sortBy ===  'last_video_added' ? class_active  :''} ${class_name} `}
                             onClick={()=> handleSortBy(section === 'playlists' ?'last_video_added' : 'popular')}
                             >
                                 {section === 'playlists' ? lastVideoAdded : popular}
@@ -97,7 +98,7 @@ const ChannelContent = ()=>{
                         {
                             section !== 'shorts' && section !== 'playlists' &&
                             <li 
-                                className={`${sortBy === 'oldest' ?  class_name  :''} back-color-${theme}-1`}
+                                className={`${sortBy === 'oldest' ?  class_active  :''} ${class_name} `}
                                 onClick={()=> handleSortBy('oldest')}
                                 >
                                     {oldest}

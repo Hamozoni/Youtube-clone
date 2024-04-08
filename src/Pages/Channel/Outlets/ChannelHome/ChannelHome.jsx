@@ -27,7 +27,7 @@ import { scrollHandler } from "./scrollHandler";
 const ChannelHome = ()=> {
     const { id} = useParams();
 
-    const {lang, theme} = useContext(statesContext);
+    const {lang, theme,staticData} = useContext(statesContext);
     const [data,setData] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState(null);
@@ -64,14 +64,14 @@ const ChannelHome = ()=> {
     return (
         error ? <Error error={error}/> :(
             isLoading ? <FireLoading />: 
-            <main className={`${theme} channel-home`}>
+            <main className='channel-home'>
                 {data?.map((el,i)=>(
-                    <section key={i} className={`${theme} part-container`}> 
+                    <section key={i} className={`border-c-${theme}-2 part-container`}> 
                         { 
                           el?.type !== 'player' && el?.type !== 'video' ?
                         <> 
                              <h4 
-                                className={`${theme} part-title`}>
+                                className={`t-color-${theme}-1  part-title`}>
                                     {  el?.type === 'shorts_listing' && 
                                        
                                        <img src={Shorts} alt='shorts' />
@@ -79,25 +79,27 @@ const ChannelHome = ()=> {
                                     }
                                     {el?.title}
                                     { el?.type === "video_listing"  &&
-                                    <span >
+                                    <span className={`border-c-${theme}-5 back-hov-c-${theme}-1 pl-a`} >
                                         <PlayArrowIcon />
-                                         Play all
+                                        <span>
+                                            {staticData?.playAll}
+                                        </span>
                                     </span> 
                                     }
                             </h4>
                            { el?.subtitle && 
-                            <p className={`${theme} sub-title`}>
+                            <p className={`t-color-${theme}-3 sub-title`}>
                                 {el?.subtitle?.length > 250 ?`${el?.subtitle.slice(0,200)}...`: el?.subtitle}
                             </p>
                            }
                             <div 
-                                className={`${el?.type}-${i}-prev scroll-prev ${theme}`}
+                                className={`${el?.type}-${i}-prev scroll-prev t-color-${theme}-5 back-color-${theme}`}
                                 onClick={ ()=> scrollingVideos(`${el?.type }-${i}`,'prev')}
                                  >
                                     <ArrowBackIosNewIcon />
                             </div> 
                             <div 
-                                className={`${el?.type}-${i}-next scroll-next ${theme}`}
+                                className={`${el?.type}-${i}-next scroll-next t-color-${theme}-5 back-color-${theme}`}
                                 onClick={ ()=> scrollingVideos(`${el?.type }-${i}`,'next')}
                                 >
                                 <ArrowForwardIosOutlinedIcon />

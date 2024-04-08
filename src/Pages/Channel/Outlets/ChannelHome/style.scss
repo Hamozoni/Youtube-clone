@@ -3,46 +3,30 @@
 
 .channel-home{
    .part-container {
-      padding-bottom: $padding-l;
+      padding-bottom: $padding-30;
+      margin-bottom: $marging-30;
       max-width: 100%;
       position: relative; 
       &:not(:last-of-type){
-         border-bottom: 1px solid darken($color: $back-gr-color-light, $amount: 10);
-      }
-      &.dark:not(:last-of-type) {
-         border-color: lighten($color: $back-gr-color-dark, $amount: 10);
+         border-bottom: 1px solid transparent;
       }
       .part-title {
          @include flex-box(center);
-          color: $text-color-dark-l;
-          margin: $margin-l 0;
-          font-size: $font-size-l;
+          margin: $marging-10 0;
+          font-size: $font-size-4;
           font-weight: 700;
-          span {
-            @include flex-box(center,_,$gap-m);
+          .pl-a {
+            @include flex-box(center,flex-start,0);
             font-size: 14px;
-            color: $text-color-dark-m;
             cursor: pointer;
-            border-radius: $border-radius-l;
-            padding: 3px $padding-l;
-            border: 1px solid darken($color: $back-gr-color-light, $amount: 10);
+            border-radius: $border-r-20;
+            padding: 3px $padding-10;
+            border: 1px solid transparent;
+            span {
+               padding: 0 $padding-10;
+            }
             svg {
                padding: 0;
-            }
-            &:hover {
-               border-color: darken($color: $back-gr-color-light, $amount: 15);
-               background-color: darken($color: $back-gr-color-light, $amount: 10);
-            }
-          }
-          &.dark {
-            color: $text-color-light-l;
-            span {
-               color: $text-color-light-m;
-               border-color: lighten($color: $back-gr-color-dark, $amount: 10);
-               &:hover {
-                  border-color: lighten($color: $back-gr-color-dark, $amount: 15);
-                  background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-               }
             }
           }
           img {
@@ -50,13 +34,9 @@
           }
          }
       .sub-title {
-         color: $text-color-dark-m;
-         margin-bottom: $margin-l;
-         font-size: $font-size-m;
+         margin-bottom: $marging-10;
+         font-size: $font-size-5;
          font-weight: 700;
-         &.dark {
-            color: $text-color-light-m;
-         }
       }
       .scroll-next,.scroll-prev {
          display: none;
@@ -66,36 +46,20 @@
             top: calc(50% - 30px);
             width: 30px;
             height: 30px;
-            background-color: darken($color: $back-gr-color-light, $amount: 5);
-            border: 1px solid $text-color-dark-m;
-            border-radius: 50%;
-            padding: $padding-l + 9;
+            border-radius: $border-r-full;
+            padding: $padding-20;
             cursor: pointer;
             z-index: 99999;
-            &:hover {
-               background-color: darken($color: $back-gr-color-light, $amount: 10);
-            }
             svg {
-               color: $text-color-dark-l;
                font-size: 18px;
-            }
-            &.dark {
-               background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-               border-color: $text-color-light-l;
-               &:hover {
-                  background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-               }
-            svg {
-               color: $text-color-light-l;
-            }
             }
          }
       }
       .scroll-next {
-         right: -15px;
+         right: -24px;
       }
       .scroll-prev {
-         left: -15px;
+         left: -24px;
       }
       .videos-wraper { 
          overflow-x: auto;

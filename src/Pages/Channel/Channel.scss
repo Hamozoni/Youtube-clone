@@ -7,18 +7,17 @@
     gap: 10px;
     width: 100%;
     .container {
-        padding: 15px;
+        padding: $padding-15;
         max-width: 1120px;
         width: 100%;
         margin: 0 auto;
         flex: 1;
         @media (min-width: 790px) {
-          width: calc(100% - 70px);
+          width: calc(100% - 130px);
         }
         .banner {
-            // max-width: 100%;
             img {
-                border-radius: 10px;
+                border-radius: $border-r-10;
             }
         }
         .ch-card {

@@ -2,16 +2,16 @@
 @import "../../../../Styles/Mixin";
 
 .sort-by {
-    padding: $padding-l 0;
-    margin-bottom: $margin-l;
+    padding: $padding-10 0;
+    margin-bottom: $marging-10;
     ul {
         @include flex-box;
         li {
             border: 1px solid transparent;
-            font-size: $font-size-l;
+            font-size: $font-size-5;
             font-weight: 700;
-            padding: $padding-m $padding-l + $padding-m;
-            border-radius: 5px;
+            padding: $padding-5  $padding-10;
+            border-radius: $border-r-10;
             text-transform: capitalize;
             cursor: pointer;
         }

@@ -8,6 +8,7 @@
   box-sizing: border-box;
   transition: all .4s ease-in-out !important;
   scroll-behavior: smooth;
+  text-transform: capitalize;
 }
 *::-webkit-scrollbar{
   display: none;
