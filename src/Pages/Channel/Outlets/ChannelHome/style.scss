@@ -67,13 +67,14 @@
          left: -24px;
       }
       .videos-wraper { 
-         overflow-x: auto;
+         overflow-y: auto;
          max-width: 100%;
          .channel-home {
             display: flex;
             flex-wrap: nowrap;
             gap: 10px;
             width: fit-content;
+            min-width: 100%;
 
          }
          .video-card, .playlist-card{
