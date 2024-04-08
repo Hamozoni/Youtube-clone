@@ -1,6 +1,8 @@
 import jsonUrl from "../Data/staticData.json"
 import { createContext, useEffect, useReducer, useState } from "react";
 import { reducer } from "./Reducer";
+import { handleThemechanges } from "../Hooks/themeHandler";
+import { handleSetLanguage } from "../Hooks/langHandler";
 
 export const statesContext = createContext(null);
 
@@ -15,6 +17,7 @@ const StatesContextComponent = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initalstate);
 
   const [theme, setTheme] = useState("dark");
+  const [selectedTheme, setSelectedTheme] = useState("deviceTheme");
   const [lang, setLang] = useState("en");
   const [shorts, setShorts] = useState([]);
   const [isSideNavbarOpen, setIsSideNavbarOpen] = useState(false);
@@ -22,41 +25,35 @@ const StatesContextComponent = ({ children }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [staticData, setStaticData] = useState({});
 
+  useEffect(()=> {
+    handleSetLanguage(lang,setStaticData,setLang);
+  },[lang]);
+
+  useEffect(()=> {
+    if(selectedTheme === 'deviceTheme') {
+      const mediaTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+      console.log('cccccccccccccccccccccccccccccccccc')
+
+      const handleChange = ({matches})=> {
+        if(matches){
+          setTheme('dark');
+        }else{
+          setTheme('light');
+        }
+      }
+      mediaTheme.addEventListener('change',handleChange);
+  
+       return ()=> mediaTheme.removeEventListener('change',handleChange)
+
+    }
+     
+  },[])
+
   useEffect(() => {
-
-    if (localStorage.getItem("YMHtube-language")) {
-      setLang(localStorage.getItem("YMHtube-language"));
-    } else {
-      localStorage.setItem("YMHtube-language", lang);
-    }
-
-    if (lang === "ar") {
-      document.dir = "rtl";
-      setStaticData(jsonUrl[1])
-    } else {
-      document.dir = "ltr";
-      setStaticData(jsonUrl[0])
-    }
-  }, [lang]);
-
-  useEffect(() => {
-
-    if (localStorage.getItem("maimed-tube-theme")) {
-      setTheme(localStorage.getItem("maimed-tube-theme"));
-    } else {
-      // window.matchMedia('(prefers-color-scheme: dark)')
-      // .addEventListener('change',({ matches }) => {
-      //       if (matches) {
-      //         console.log("change to dark mode!")
-      //       } else {
-      //         console.log("change to light mode!")
-      //       }
-      //     })
-      localStorage.setItem("maimed-tube-theme", theme);
-    }
-
+    handleThemechanges(setSelectedTheme,selectedTheme,setTheme)
     document.body.className = `back-color-${theme}`;
-  }, [theme]);
+  }, [selectedTheme,theme]);
 
   return (
     <statesContext.Provider
@@ -76,6 +73,8 @@ const StatesContextComponent = ({ children }) => {
         isRecording,
         setIsRecording,
         staticData,
+        selectedTheme,
+        setSelectedTheme
       }}
     >
       {children}
