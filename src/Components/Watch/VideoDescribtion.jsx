@@ -19,7 +19,7 @@ const VideoDescribtion = ({ videoDetail }) => {
   }, [description, isDesc]);
 
   return (
-    <div className={`back-color-${theme}-1 views-desc`}>
+    <div className={`back-color-${theme}-1 border-c-${theme}-3 views-desc`}>
       <section className="desc-content">
         <header className={`t-color-${theme} desc-head`}>
           <p className="views">

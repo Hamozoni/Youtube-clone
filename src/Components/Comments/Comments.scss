@@ -5,6 +5,7 @@
 .comments {
    margin: $marging-10;
    border-radius: $border-r-10;
+   border: 1px solid transparent;
     &.watch.active {
        @media (max-width: 429px) {
           position: fixed;

@@ -57,7 +57,7 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
   ) : isLoading ? (
     ""
   ) : (
-    <div className={`${!isComm && "active"} ${renderedFrom} back-color-${theme}-1 comments`}>
+    <div className={`${!isComm ? "active" : ''} ${renderedFrom} back-color-${theme}-1 border-c-${theme}-3 comments`}>
       <section className="comment-head">
         <h5 className={`t-color-${theme} comm-title`} onClick={() => setComm(!isComm)}>
           {commentsCount} {staticData?.comments}
