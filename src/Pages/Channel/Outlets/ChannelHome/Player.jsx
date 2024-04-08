@@ -20,7 +20,7 @@ const Player = ({data})=>{
                 controls
                 playing
                 width='100%'
-                height='100%'
+                height='unset'
             />
             <section className='player-desc'>
                 <h4 className='pl-title'>

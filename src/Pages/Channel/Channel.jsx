@@ -45,21 +45,27 @@ const Channel = () => {
     const ChannelCard = ({chanelDetail})=> {
         return(
             <div className="ch-card">
-            <img className='ch-card-img' src={chanelDetail?.avatar[2]?.url} alt="avatar" />
+                 <img className='ch-card-img' src={chanelDetail?.avatar[2]?.url} alt="avatar" />
             <div className="ch-info">
-                <h3 className={`t-color-${theme} ch-t`}>
-                    {chanelDetail?.title}
-                </h3>
-                <div className={`t-color-${theme}-4 flix ch-n`}>
-                    <span className='flix m-h'>
-                         {chanelDetail?.channelHandle} {chanelDetail?.isVerified && <CheckCircleIcon /> }
-                    </span>
-                    <span className='m-h'>
-                         {chanelDetail?.subscriberCountText + " " + staticData.subscribers}
-                    </span>
-                    <span className='m-h'>
-                         {chanelDetail?.videosCountText}
-                    </span>
+                <div className="top">
+                    <img className='ch-card-img-2' src={chanelDetail?.avatar[2]?.url} alt="avatar" />
+
+                    <div className="info-box">
+                        <h3 className={`t-color-${theme} ch-t`}>
+                            {chanelDetail?.title}
+                        </h3>
+                        <div className={`t-color-${theme}-4 flix ch-n`}>
+                            <span className='flix m-h'>
+                                {chanelDetail?.channelHandle} {chanelDetail?.isVerified && <CheckCircleIcon /> } .
+                            </span>
+                            <span className='m-h'>
+                                {chanelDetail?.subscriberCountText} .
+                            </span>
+                            <span className='m-h'>
+                                {chanelDetail?.videosCountText}
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div 
                     onClick={()=> setIsAboutChannelOpen(true)}

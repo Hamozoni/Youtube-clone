@@ -10,12 +10,9 @@
     .player {
       border-radius: $border-r-10;
       overflow: hidden;
-      margin: 0 auto;
       min-width: 100%;
+      height: 240px !important;
       min-height: 222px !important;
-      * {
-        min-height:  100% !important;
-      }
       background-color: black;
 
       @media (min-width: 992px) {

@@ -12,9 +12,9 @@
       }
       .part-title {
          @include flex-box(center);
-          margin: $marging-10 0;
-          font-size: $font-size-4;
-          font-weight: 700;
+         margin: $marging-15 0;
+          font-size: $font-size-5;
+          font-weight: 500;
           .pl-a {
             @include flex-box(center,flex-start,0);
             font-size: 14px;
@@ -34,9 +34,9 @@
           }
          }
       .sub-title {
-         margin-bottom: $marging-10;
-         font-size: $font-size-5;
-         font-weight: 700;
+         margin-bottom: $marging-15;
+         font-size: $font-size-6;
+         font-weight: 500;
       }
       .scroll-next,.scroll-prev {
          display: none;
