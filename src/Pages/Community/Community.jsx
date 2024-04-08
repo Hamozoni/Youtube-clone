@@ -1,15 +1,15 @@
 
 import { useParams } from "react-router-dom";
-import "./Post.scss";
+import "./Community.scss";
 import { useContext, useEffect, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 import { fetchChannelApi } from "../../Lib/FetchApi";
 import Loading from "../../Components/Loading/Loading";
 import SideNavbarSmall from "../../Components/SideNavbar/SideNavSmall";
 import Comments from "../../Components/Comments/Comments";
-import PostCard from "../../Components/PostCard/PostCard";
+import CommunityCard from "../../Components/CommunityCard/CommunityCard";
 
-const Post = ()=>{
+const Community = ()=>{
 
     const {id} = useParams();
     const {lang} = useContext(statesContext);
@@ -33,7 +33,7 @@ const Post = ()=>{
             {
                 isLoading ? <Loading /> : 
                 <div className="community-container">
-                    <PostCard community={community} />
+                    <CommunityCard community={community} />
                     <Comments id={id} fetchQuery='post/comments' renderedFrom='post' />
                 </div>
             }
@@ -42,4 +42,4 @@ const Post = ()=>{
     );
 };
 
-export default Post;
+export default Community;

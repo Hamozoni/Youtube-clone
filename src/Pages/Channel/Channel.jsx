@@ -13,6 +13,7 @@ import Error from '../../Components/Error/Error';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 import ChannelSubscribeBtn from '../../Components/ChannelSubscibeBtn/ChannelSubscribeBtn';
+import FireLoading from '../../Components/Loading/SpinLoading/SpinLoading';
 
 const Channel = () => {
 
@@ -102,7 +103,7 @@ const Channel = () => {
     }
 
   return (
-    error ? <Error error={error} />: isLoading ? '' :
+    error ? <Error error={error} />: isLoading ? <FireLoading /> :
     <div className='chanel-details'>
          <SideNavbarSmall homeShort='home-short' />
         <div className='container'>

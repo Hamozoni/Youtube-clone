@@ -11,10 +11,10 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 
 import VideoCard from "../VideoCard/VideoCard";
 
-import "./PostCard.scss";
+import "./CommunityCard.scss";
 import { statesContext } from "../../Contexts/statesContext";
 
-const PostCard = ({ community }) => {
+const CommunityCard = ({ community }) => {
   const { theme, staticData, lang } = useContext(statesContext);
 
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const PostCard = ({ community }) => {
   return (
     <div className={`${theme} community`}>
       <div className={`${theme} auther`}>
-        <Link to={`/channels/${authorChannelId}/home`} className="auth-img">
+        <Link to={`/channel/${authorChannelId}/home`} className="auth-img">
           <img src={authorThumbnail[1]?.url || thumbnail[1]?.url} alt="auther" />
         </Link>
         <section>
@@ -95,13 +95,13 @@ const PostCard = ({ community }) => {
       <div className={`${theme} attachment`}>
         {attachment?.type === "image" ? (
           <div className="images" ref={imgHolder}>
-            <img src={attachment?.image[1]?.url} alt={attachment?.type} onClick={() => navigate(`/post/${postId}`)} />
+            <img src={attachment?.image[1]?.url} alt={attachment?.type} onClick={() => navigate(`/community/${postId}`)} />
           </div>
         ) : attachment?.type === "multi_image" ? (
           <div className="images" ref={imgHolder}>
             {attachment?.image?.map((scr, i) => (
               <div className="img-holder">
-                <img key={scr[1]?.url} src={scr[3]?.url} alt="post" onClick={() => navigate(`/post/${postId}`)} />
+                <img key={scr[1]?.url} src={scr[3]?.url} alt="post" onClick={() => navigate(`/community/${postId}`)} />
                 <span className="albu">
                   <PermMediaOutlinedIcon />
                 </span>
@@ -137,7 +137,7 @@ const PostCard = ({ community }) => {
           <ThumbDownOffAltOutlinedIcon />
         </div>
         {replyCount && (
-          <div className={`${theme} comment`} onClick={() => navigate(`/post/${postId}`)}>
+          <div className={`${theme} comment`} onClick={() => navigate(`/community/${postId}`)}>
             <CommentOutlinedIcon />
             <h5>{replyCount}</h5>
           </div>
@@ -147,4 +147,4 @@ const PostCard = ({ community }) => {
   );
 };
 
-export default PostCard;
+export default CommunityCard;

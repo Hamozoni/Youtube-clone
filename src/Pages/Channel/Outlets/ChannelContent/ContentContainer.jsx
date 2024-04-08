@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import { statesContext } from "../../../../Contexts/statesContext";
-import PostCard from "../../../../Components/PostCard/PostCard";
+import CommunityCard from "../../../../Components/CommunityCard/CommunityCard";
 import ShortCard from "../../../../Components/SortsCard/ShortCard";
 import Playlist from "../../../../Components/PlayListCard/PlayList";
 import VideoCard from "../../../../Components/VideoCard/VideoCard";
@@ -21,7 +21,7 @@ const ContentContainer = ({channelViveos})=>{
                        <div className="community-container">
                            {
                                channelViveos?.map((community)=>(
-                                   <PostCard key={community?.postId} community={community} />
+                                   <CommunityCard key={community?.postId} community={community} />
                                ))
                            }
                        </div>

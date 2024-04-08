@@ -8,7 +8,6 @@ import PlayList from './Pages/Playlist/Playlist.jsx';
 
 import {statesContext} from './Contexts/statesContext';
 import { useContext, useEffect, useState } from 'react';
-import Post from './Pages/Post/Post';
 import Shorts from './Pages/Shorts/Shorts.jsx';
 import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
@@ -17,6 +16,7 @@ import Loading from './Components/Loading/Loading.jsx';
 import Channel from './Pages/Channel/Channel.jsx';
 import ChannelContent from './Pages/Channel/Outlets/ChannelContent/ChannelContent.jsx';
 import ChannelHome from "./Pages/Channel/Outlets/ChannelHome/ChannelHome.jsx"
+import Community from './Pages/Community/Community.jsx';
 
 
 const App = ()=> {
@@ -65,7 +65,7 @@ const App = ()=> {
           <Route path='/search' element={<SearchFeed />} />
           <Route path='/watch/:id/list/:plId/:index' element={<PlayList />} />
           <Route path='/shorts' element={<Shorts/>} />
-          <Route path='/post/:id' element={<Post />} />
+          <Route path='/community/:id' element={<Community />} />
           <Route path='/history' element={<History />} />
           <Route path='/likedVideos' element={<LikedVideos />} />
         </Routes>
