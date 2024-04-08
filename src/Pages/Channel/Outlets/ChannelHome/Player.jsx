@@ -7,32 +7,32 @@ import './Player.scss';
 import { useContext } from 'react';
 
 const Player = ({data})=>{
-    
+
     const {description, publishedTimeText, videoId, title,viewCount} = data;
-
     const {theme,staticData} = useContext(statesContext);
-
     const {views} = staticData;
 
     return (
-        <div className={`${theme} ch-home-player`}>
+        <div className='ch-home-player'>
              <ReactPlayer 
                 url={`hppts://www.youtube.com/watch?v=${videoId}?autoplay=1&mute=0?`}
                 className='player'
                 controls
                 playing
+                width='100%'
+                height='100%'
             />
-            <section className={`${theme} player-desc`}>
-                <h4 className={`${theme} pl-title`}>
-                    <Link to={`/video/${videoId }`} >
+            <section className='player-desc'>
+                <h4 className='pl-title'>
+                    <Link to={`/video/${videoId }`} className={`t-color-${theme}`} >
                         {title}
                     </Link>
                 </h4>
-                <div className={`${theme} time-views`}>
+                <div className={`t-color-${theme}-3 time-views`}>
                     <span> {`${Number(viewCount)?.toLocaleString()} ${views}`}</span>
                     <span> {publishedTimeText}</span>
                 </div>
-                <aside>
+                <aside className={`t-color-${theme}-1`}>
                     {description}
                 </aside>
             </section>

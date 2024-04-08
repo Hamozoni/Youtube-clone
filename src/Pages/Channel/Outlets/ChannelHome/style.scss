@@ -53,6 +53,11 @@
             svg {
                font-size: 18px;
             }
+            &:hover {
+               svg {
+                  transform: scale(1.5);
+               }
+            }
          }
       }
       .scroll-next {

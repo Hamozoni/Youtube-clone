@@ -3,60 +3,43 @@
 
 .ch-home-player {
     max-width: 100%;
-    padding: $padding-l 0;
-    overflow: hidden;
+    padding: $padding-15 0;
     .player {
-      min-width: 370px;
-      max-width: 424px;
-      min-height: 200px;
-      max-height: 238px;
-      border-radius: $border-radius-l;
-      margin: 0 auto;
+      border-radius: $border-r-10;
       overflow: hidden;
+      margin: 0 auto;
+
+      flex-basis: 50%;
+      @media (min-width: 992px) {
+        flex-basis: 30%;
+      }
     }
     .player-desc {
+        flex-basis: 50%;
+        @media (min-width: 992px) {
+            flex-basis: 70%;
+          }
         .pl-title {
-            margin: $margin-l 0;
-            a {
-                color: $text-color-dark-l;
-            }
-            &.dark {
-                a {
-                    color: $text-color-light-l; 
-                }
-            }
+            margin: $marging-10 0;
         }
         .time-views {
             span {
                 font-size: $font-size-m;
-                color: $text-color-dark-m;
-            }
-            &.dark {
-                span {
-                    color: $text-color-light-l; 
-                }
             }
         }
         aside {
             font-size: $font-size-m;
             word-break: break-all;
             line-height: 1.8;
+            max-height: 200px;
             overflow: hidden;
             display: none;
-            color: $text-color-dark-m;
-        }
-        &.dark {
-            aside {
-                color: $text-color-light-l;
-            }
         }
     }
     @media (min-width: 570px) {
-        @include flex-box;
-        min-height: 200px;
-        max-height: 238px;
+        @include flex-box(flex-start,flex-start,$gap-10);
         .time-views {
-            margin: $margin-l 0;
+            margin: $marging-10 0;
         }
         .player-desc {
             .pl-title {
