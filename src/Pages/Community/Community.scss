@@ -4,13 +4,13 @@
     .post-container {
         max-width: 100%;
         @media (min-width: 790px) {
-            @include flex-box(_,_,80px);
+            @include flex-box(_,_,$gap-50);
             
         }
         .community-container {
             padding: $padding-l;
             @media (min-width: 790px) {
-               width: 800px;
+               width: 700px;
                 
             }
             .comments {

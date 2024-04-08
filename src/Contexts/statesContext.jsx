@@ -40,9 +40,18 @@ const StatesContextComponent = ({ children }) => {
   }, [lang]);
 
   useEffect(() => {
+
     if (localStorage.getItem("maimed-tube-theme")) {
       setTheme(localStorage.getItem("maimed-tube-theme"));
     } else {
+      // window.matchMedia('(prefers-color-scheme: dark)')
+      // .addEventListener('change',({ matches }) => {
+      //       if (matches) {
+      //         console.log("change to dark mode!")
+      //       } else {
+      //         console.log("change to light mode!")
+      //       }
+      //     })
       localStorage.setItem("maimed-tube-theme", theme);
     }
 

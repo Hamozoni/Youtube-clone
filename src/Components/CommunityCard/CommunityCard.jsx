@@ -75,24 +75,29 @@ const CommunityCard = ({ community }) => {
     }
   };
 
+  const btn_class = `b-g-t-${theme} border-c-${theme}-3 t-color-${theme} back-hov-c-${theme}-2`
+
   return (
-    <div className={`${theme} community`}>
-      <div className={`${theme} auther`}>
+    <div className={`border-c-${theme}-4 back-color-${theme}-1 community`}>
+      <div className='auther'>
         <Link to={`/channel/${authorChannelId}/home`} className="auth-img">
-          <img src={authorThumbnail[1]?.url || thumbnail[1]?.url} alt="auther" />
+          <img src={authorThumbnail[0]?.url || thumbnail[0]?.url} alt="auther" />
         </Link>
         <section>
-          <div className={`${theme} auth-n-publish`}>
-            <h4 className="name"> {authorText} </h4>
-            <span>{publishedTimeText}</span>
+          <div className='auth-n-publish'>
+            <h4 className={`t-color-${theme} name`}> {authorText} </h4>
+            <span className={`t-color-${theme}-3`}>{publishedTimeText}</span>
           </div>
         </section>
       </div>
-      <div className={`${theme} content-text`}>
+      <div className={`t-color-${theme} content-text`}>
         <article>{contentText}</article>
-        {voteCountText && <h5 className={`${theme} vote-count`}>{attachment?.type === "poll" ? attachment?.totalVotes : voteCountText + " " + staticData.votes}</h5>}
+        {voteCountText && 
+              <h5 className={`${theme} vote-count`}>
+                  {attachment?.type === "poll" ? attachment?.totalVotes : voteCountText + " " + staticData.votes}
+              </h5>}
       </div>
-      <div className={`${theme} attachment`}>
+      <div className='attachment'>
         {attachment?.type === "image" ? (
           <div className="images" ref={imgHolder}>
             <img src={attachment?.image[1]?.url} alt={attachment?.type} onClick={() => navigate(`/community/${postId}`)} />
@@ -102,16 +107,16 @@ const CommunityCard = ({ community }) => {
             {attachment?.image?.map((scr, i) => (
               <div className="img-holder">
                 <img key={scr[1]?.url} src={scr[3]?.url} alt="post" onClick={() => navigate(`/community/${postId}`)} />
-                <span className="albu">
+                <span className={`b-g-t-${theme} t-color-${theme} albu`}>
                   <PermMediaOutlinedIcon />
                 </span>
                 {attachment?.image?.length - 1 !== i && (
-                  <button onClick={next} className="next icon">
+                  <button onClick={next} className={`${btn_class} next icon`}>
                     <ArrowForwardIosOutlinedIcon />
                   </button>
                 )}
                 {i !== 0 && (
-                  <button onClick={prev} className="prev icon">
+                  <button onClick={prev} className={`${btn_class} prev icon`}>
                     <ArrowBackIosNewOutlinedIcon />
                   </button>
                 )}
@@ -122,22 +127,22 @@ const CommunityCard = ({ community }) => {
           <Choices />
         ) : (
           attachment?.type === "video" && (
-            <div className={`${theme} videos search`}>
+            <div className='videos search'>
               <VideoCard data={attachment} renderFrom={"search"} />
             </div>
           )
         )}
       </div>
-      <div className={`${theme} stistisic`}>
-        <div className={`${theme} like`}>
+      <div className='stistisic'>
+        <div className={`t-color-${theme}-2 like`}>
           <ThumbUpOutlinedIcon />
           <h5>{voteCountText}</h5>
         </div>
-        <div className={`${theme} dislike`}>
+        <div className={`t-color-${theme}-2  dislike`}>
           <ThumbDownOffAltOutlinedIcon />
         </div>
         {replyCount && (
-          <div className={`${theme} comment`} onClick={() => navigate(`/community/${postId}`)}>
+          <div className={`t-color-${theme}-2  comment`} onClick={() => navigate(`/community/${postId}`)}>
             <CommentOutlinedIcon />
             <h5>{replyCount}</h5>
           </div>

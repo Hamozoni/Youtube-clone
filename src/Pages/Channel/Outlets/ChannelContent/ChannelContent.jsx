@@ -20,7 +20,7 @@ const ChannelContent = ()=>{
     const {latest, popular, oldest,  dateAdded,lastVideoAdded} = staticData;
 
     const [channelViveos,setChannelViveos] = useState([]);
-    const [continuation,setContinuation] = useState(null);
+    const [continuation,setContinuation] = useState('');
     const [isLoadingMoreData,setIsloadingMoreData] = useState(false);
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(null);
@@ -39,25 +39,27 @@ const ChannelContent = ()=>{
             setIsloadingMoreData(true);
         }else {
             setIsLoading(true);
+            setContinuation('');
         }
 
         if(section?.length > 0) {
-            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
+            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${continuation?.length > 0 ? `&token=${continuation}`: ''}${searchParam}`)
             .then((data)=>{
 
                 setContinuation(data?.continuation);
-                document.title = data.meta.title + `_${section}`;
                 console.log(data); 
 
                 if(isLoadMore){
                     setChannelViveos(prev=> [...prev,...data?.data]);
                 }else {
                     setChannelViveos(data?.data);
+                    document.title = data.meta.title + `_${section}`;
                 }
 
             })
             .catch((error)=>{
               setIsError(error);
+              console.log(error);
             })
             .finally(()=> {
                 setIsLoading(false);
@@ -118,11 +120,12 @@ const ChannelContent = ()=>{
 
 
                    {
-                     continuation?.length &&
+                     continuation?.length > 0 ?
                       <LoadMoreBtn 
-                            onClickHandler={fetchContent} 
+                            onClickHandler={()=> fetchContent(true)} 
                             isLoadingMore={isLoadingMoreData}
                          />
+                    :''
                    }
                
               </>
