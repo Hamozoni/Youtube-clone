@@ -8,84 +8,41 @@
      left: 0;
      width: 100vw;
      height: 100vh;
-     background-color: $trans-black;
      z-index: 999999999;
     .about-container {
         max-width: 550px;
         min-width: 350px;
-        background-color: darken($color: $back-gr-color-light, $amount: 10);
-        border-radius: $border-radius-l;
-        padding-bottom: $padding-l + 5;
+        border-radius: $border-r-10;
+        padding-bottom: $padding-15;
         h3 {
-            color: $text-color-dark-l;
             font-weight: 700;
-            margin: $padding-l 0;
+            margin: $marging-15 0;
             text-transform: capitalize;
-        }
-        &.dark {
-            background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-            h3 {
-                color: $text-color-light-l;
-            }
         }
         .about-nav {
             @include flex-box(center,space-between);
             padding: 0 $padding-l + 10;
-            svg {
-                color: $text-color-dark-l;
-            }
-            &.dark {
-                svg {
-                    color: $text-color-light-l;
-                }
-            }
         }
         .channel-desc {
             max-height: calc(100vh - 150px);
             overflow-y: scroll;
-            padding: 0 20px;
+            padding: 0 $padding-20;
             .describtion {
-                color: $text-color-dark-m;
-                font-size: $font-size-l;
-                font-weight: 700;
-                &.dark {
-                    color: $text-color-light-m;
-                }
+                font-size: $font-size-6;
+                font-weight: 500;
             }
             .channel-links {
                 .link {
                     @include flex-box(center);
                     &:not(:last-of-type){
-                        margin-bottom: $margin-l;
+                        margin-bottom: $marging-15;
                     }
                     .icon {
-                        min-width: 28px;
+                        min-width: 30px;
                         img {
-                            width: 28px;
-                            height: 28px;
-                            background-color: darken($color: $back-gr-color-light, $amount: 10);
-                            border-radius: 50%;
-                        }
-                        &.dark {
-                            img {
-                                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                            }
-                        }
-                    }
-                    .link-title {
-                        h6 {
-                            color: $text-color-dark-l;
-                        }
-                        a {
-                            color: lighten($color: $text-color-dark-l, $amount: 20);
-                        }
-                        &.dark {
-                            h6 {
-                                color: $text-color-light-l;
-                            }
-                            a {
-                                color: darken($color: $text-color-light-l, $amount: 20);
-                            }  
+                            width: 30px;
+                            height: 30px;
+                            border-radius: $border-r-full;
                         }
                     }
                 }
@@ -94,14 +51,8 @@
                 .details {
                     li {
                        @include flex-box(center);
-                        color: $text-color-dark-m;
                         &:not(:last-of-type){
-                            margin-bottom: 10px;
-                        }
-                    }
-                    &.dark {
-                        li {
-                            color: $text-color-light-m;
+                            margin-bottom: $marging-15;
                         }
                     }
                 }

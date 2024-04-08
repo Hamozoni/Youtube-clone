@@ -46,6 +46,8 @@ const ChannelContent = ()=>{
             .then((data)=>{
 
                 setContinuation(data?.continuation);
+                document.title = data.meta.title + `_${section}`;
+                console.log(data); 
 
                 if(isLoadMore){
                     setChannelViveos(prev=> [...prev,...data?.data]);

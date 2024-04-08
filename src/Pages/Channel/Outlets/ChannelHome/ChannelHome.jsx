@@ -37,7 +37,8 @@ const ChannelHome = ()=> {
         setError(null)
         fetchChannelApi(`channel/home?id=${id}&lang=${lang}`)
         .then(data => {
-            setData(data?.data)
+            setData(data?.data);
+            document.title = data.meta.title + '_home';
         })
         .catch(error => {
             setError(error);
