@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Post.scss";
 import { useContext, useEffect, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
-import { fetchChannelApi } from "../../Utils/FetchApi";
+import { fetchChannelApi } from "../../Lib/FetchApi";
 import Loading from "../../Components/Loading/Loading";
 import SideNavbarSmall from "../../Components/SideNavbar/SideNavSmall";
 import Comments from "../../Components/Comments/Comments";

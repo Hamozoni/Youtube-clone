@@ -1,10 +1,12 @@
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
-import ShortCard from "../SortsCard/ShortCard";
-import Playlist from "../PlayListCard/PlayList";
-import PostCard from "../PostCard/PostCard";
-import VideoCard from "../VideoCard/VideoCard";
 import { useContext } from "react";
-import { statesContext } from "../../Contexts/statesContext";
+
+import { statesContext } from "../../../../Contexts/statesContext";
+import PostCard from "../../../../Components/PostCard/PostCard";
+import ShortCard from "../../../../Components/SortsCard/ShortCard";
+import Playlist from "../../../../Components/PlayListCard/PlayList";
+import LoadMoreBtn from "../../../../Components/LoadMoreBtn/LoadMoreBtn";
+import VideoCard from "../../../../Components/VideoCard/VideoCard";
+
 
 const ContentContainer = ({channelViveos,section,handleOnClick,isLoadingMoreData,continuation})=>{
 

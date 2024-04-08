@@ -1,27 +1,26 @@
 import { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import './ChannelLayout.scss';
+import './Channel.scss';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { fetchChannelApi } from '../../Utils/FetchApi';
+import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
 import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
 import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
-import { language } from '../../Utils/language';
 import ChannelSubscribeBtn from '../../Components/ChannelSubscibeBtn/ChannelSubscribeBtn';
 
-const ChannelLayout = () => {
+const Channel = () => {
 
     const [chanelDetail,setChanelDetail] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
 
-    const { id,section} = useParams();
-    const {lang,theme} = useContext(statesContext);
+    const { id} = useParams();
+    const {staticData,theme,lang} = useContext(statesContext);
 
     const [error,setError] = useState(null);
     const [isAboutChannelOpen,setIsAboutChannelOpen] = useState(false);
@@ -56,10 +55,10 @@ const ChannelLayout = () => {
                          {chanelDetail?.channelHandle} {chanelDetail?.isVerified && <CheckCircleIcon /> }
                     </span>
                     <span className='m-h'>
-                         {chanelDetail?.subscriberCountText + " " + language[lang].subscribers}
+                         {chanelDetail?.subscriberCountText + " " + staticData.subscribers}
                     </span>
                     <span className='m-h'>
-                         {chanelDetail?.videosCount + " " + language[lang].videos}
+                         {chanelDetail?.videosCountText}
                     </span>
                 </div>
                 <div 
@@ -71,18 +70,25 @@ const ChannelLayout = () => {
                     </article>
                     <ArrowForwardIosIcon  /> 
                 </div>
-                <div className={`t-color-${theme}-1 flix ch-card-links`}>
-                    <a 
-                       className='link-c m-h'
-                        href={chanelDetail?.links[0].link}
-                        >
-                        {chanelDetail?.links[0].link}
-                    </a>
+                {
+                    chanelDetail?.links?.length > 0 &&
+                    <div className={`t-color-${theme}-1 flix ch-card-links`}>
+                        <a 
+                        className='link-c m-h'
+                            href={chanelDetail?.links[0].link}
+                            >
+                            {chanelDetail?.links[0].link}
+                        </a>
 
-                    <p className='m-h' onClick={()=> setIsAboutChannelOpen(true)}> 
-                        and {chanelDetail?.links?.length - 1} more links
-                    </p>
-                </div>
+                        {
+                            chanelDetail?.links?.length > 1 &&
+                            <p className='m-h' onClick={()=> setIsAboutChannelOpen(true)}> 
+                                and {chanelDetail?.links?.length - 1} more links
+                            </p>
+                        }
+
+                    </div>
+                }
                 <ChannelSubscribeBtn />
             </div>
         </div>
@@ -125,4 +131,4 @@ const ChannelLayout = () => {
   )
 }
 
-export default ChannelLayout
+export default Channel

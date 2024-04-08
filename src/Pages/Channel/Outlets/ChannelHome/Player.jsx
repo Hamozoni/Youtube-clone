@@ -1,16 +1,19 @@
 import  ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
-import { statesContext } from '../../Contexts/statesContext';
-import { language } from '../../Utils/language';
+
+import { statesContext } from '../../../../Contexts/statesContext';
 
 import './Player.scss';
 import { useContext } from 'react';
 
 const Player = ({data})=>{
+    
     const {description, publishedTimeText, videoId, title,viewCount} = data;
 
-    const {lang,theme} = useContext(statesContext);
-    const {views} = language[lang];
+    const {theme,staticData} = useContext(statesContext);
+
+    const {views} = staticData;
+
     return (
         <div className={`${theme} ch-home-player`}>
              <ReactPlayer 

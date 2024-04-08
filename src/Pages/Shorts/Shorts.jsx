@@ -1,12 +1,15 @@
 
-import { useContext, useEffect } from "react";
-import "./Shorts.scss";
-import { fetchChannelApi } from "../../Utils/FetchApi";
 import { useState } from "react";
-import Loading from "../../Components/Loading/Loading";
-import PlayShortCard from "../../Components/PlayingShortCard/PlayingShortCard";
+import { useContext, useEffect } from "react";
+
+import "./Shorts.scss";
+
+import { fetchChannelApi } from "../../Lib/FetchApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { statesContext } from "../../Contexts/statesContext";
+
+import PlayShortCard from "../../Components/PlayingShortCard/PlayingShortCard";
+import Loading from "../../Components/Loading/Loading";
 import Error from "../../Components/Error/Error";
 
 const Shorts = ()=> {

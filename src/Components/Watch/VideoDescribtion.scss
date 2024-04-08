@@ -1,55 +1,56 @@
-@import '../../GlibalStyles.scss/Variabls';
-@import '../../GlibalStyles.scss/Mixin';
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
 
 .video-desc {
-   @media (max-width: 429px) {
-      margin-top: 230px; 
-   }
-    .video-title {
-       padding: $padding-15 $padding-15 0;
+  @media (max-width: 429px) {
+    margin-top: 230px;
+  }
+  .video-title {
+    padding: $padding-15 $padding-15 0;
+  }
+  .left {
+    margin: $margin-l;
+    @media (min-width: 768px) {
+      @include flex-box(center, space-between);
+      .watch {
+        flex-basis: 60%;
+        margin: 0;
+      }
     }
-   .left {
-      margin: $margin-l;
-      @media (min-width: 768px) {
-         @include  flex-box(center,space-between);
-         .watch {
-            flex-basis: 60%;
-            margin: 0
-         }
+  }
+  .views-desc {
+    border-radius: 10px;
+    padding: $padding-10;
+    margin: $marging-10;
+    .desc-head {
+      @include flex-box(center);
+      z-index: -1;
+      .views,
+      .time {
+        font-size: $font-size-5;
+        font-weight: 700;
+        text-transform: capitalize;
       }
-   }
-   .views-desc {
-      border-radius: 10px;
-      padding: $padding-10;
-      margin: $marging-10;
-      .desc-head {
-         @include flex-box(center);
-         z-index: -1;
-         .views, .time {
-            font-size: $font-size-5;
-            font-weight: 700;
-            text-transform: capitalize;
-         }
+    }
+    .desc-content {
+      border-radius: $border-radius-m;
+      .desc {
+        font-size: $font-size-5;
+        cursor: pointer;
+        div {
+          margin: $marging-5 0;
+          a {
+            word-break: break-all;
+          }
+        }
       }
-      .desc-content {
-         border-radius: $border-radius-m;
-         .desc {
-            font-size: $font-size-5;
-            cursor: pointer;
-            div {
-               margin: $marging-5 0;
-               a {
-                  word-break: break-all;
-               }
-            }
-         }
-         .show-more {
-            justify-self: flex-end;
-            font-size: $font-size-5;
-            margin-top: $marging-10;
-            cursor: pointer;
-            text-transform: capitalize;
-         }
+      .show-more {
+        justify-self: flex-end;
+        font-size: $font-size-5;
+        margin-top: $marging-10;
+        cursor: pointer;
+        text-transform: capitalize;
       }
-   }
- }
+    }
+  }
+}

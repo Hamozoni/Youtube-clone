@@ -1,22 +1,22 @@
-@import "../../../GlibalStyles.scss/Mixin";
+@import "../../../Styles/Mixin";
 
 .fire-loading {
-    @include flex-box(center,center);
-    height: 50vh;
-    width: 100%;
-    div {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        border:  5px dotted;
-        border-color: #807b7b #807b7ba6 #807b7b6b #807b7b27;
-        animation: spiner .5s ease-in-out forwards infinite;
-    }
+  @include flex-box(center, center);
+  height: 50vh;
+  width: 100%;
+  div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px dotted;
+    border-color: #807b7b #807b7ba6 #807b7b6b #807b7b27;
+    animation: spiner 0.5s ease-in-out forwards infinite;
+  }
 }
 
 @keyframes spiner {
-    100% {
-        transform: rotate(360deg);
-        border-color: #807b7b;
-    }
+  100% {
+    transform: rotate(360deg);
+    border-color: #807b7b;
+  }
 }

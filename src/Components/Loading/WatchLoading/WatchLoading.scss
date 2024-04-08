@@ -1,70 +1,65 @@
-@import "../../../GlibalStyles.scss/Variabls";
-@import "../../../GlibalStyles.scss/Mixin";
+@import "../../../Styles/Variabls";
+@import "../../../Styles/Mixin";
 
 .loader-moviement {
-    position: relative;
-    overflow: hidden;
-    &::before {
-        @include position();
-        content: '';
-        width: 0;
-        animation: laoderBackgroundMove 1s ease-in-out infinite forwards;
-    }
+  position: relative;
+  overflow: hidden;
+  &::before {
+    @include position();
+    content: "";
+    width: 0;
+    animation: laoderBackgroundMove 1s ease-in-out infinite forwards;
+  }
 }
 
+.vid-pla {
+  flex-basis: 70% !important;
+  margin-top: $marging-15;
+  .vid-p {
+    height: 300px;
+    margin-bottom: $marging-15;
+    min-width: 100%;
+    z-index: 0 !important;
+  }
+  .vid-p-det {
+    width: 200px;
+    height: 20px;
+    border-radius: $border-r-10;
+    margin-bottom: $marging-15;
+  }
+}
 
-    .vid-pla {
-        flex-basis: 70% !important;
-        margin-top: $marging-15;
-        .vid-p {
-            height: 300px;
-            margin-bottom: $marging-15;
-            min-width: 100%;
-            z-index: 0 !important;
-        }
-        .vid-p-det {
-            width: 200px;
-            height: 20px;
-            border-radius: $border-r-10;
-            margin-bottom: $marging-15;
-        }
-      
+.rel-vid {
+  flex-basis: 30%;
+  margin-top: $marging-15;
+  .vid-c {
+    @include flex-box();
+    margin-bottom: $marging-15;
+    .vid-img {
+      flex-basis: 50%;
+      height: 120px;
+      border-radius: $border-r-10;
+      @media (min-width: 420px) and (max-width: 991px) {
+        height: 220px;
+      }
     }
-
-    .rel-vid {
-        flex-basis: 30%;
-        margin-top: $marging-15;
-        .vid-c {
-            @include flex-box();
-            margin-bottom: $marging-15;
-            .vid-img {
-                flex-basis: 50%;
-                height: 120px;
-                border-radius: $border-r-10;
-                @media (min-width: 420px) and (max-width: 991px) {
-                    height: 220px;
-                }
-
-            }
-            .box {
-                flex-basis: 50%;
-            }
-            .vid-det {
-                height: 20px;
-                border-radius: $border-r-10;
-                margin-bottom: $marging-15;
-            }
-        }
+    .box {
+      flex-basis: 50%;
     }
-
+    .vid-det {
+      height: 20px;
+      border-radius: $border-r-10;
+      margin-bottom: $marging-15;
+    }
+  }
+}
 
 @keyframes laoderBackgroundMove {
-    50% {
-        width: 100%;
-        left: 0;
-    }
-    100% {
-        left: 100%;
-
-    }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
 }

@@ -1,25 +1,28 @@
+import { useParams } from "react-router-dom";
 import { useContext, useEffect,useState } from "react";
-
-import { statesContext } from "../../Contexts/statesContext";
-import { fetchChannelApi } from "../../Utils/FetchApi";
 
 
 import './style.scss';
 
-import Error from "../Error/Error";
-import VideoCard from "../VideoCard/VideoCard";
-import ShortCard from "../SortsCard/ShortCard";
-import Shorts from '../Images/shorts.svg'
-import Player from "./Player";
-import Playlist from "../PlayListCard/PlayList";
-
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { scrollHandler } from "./scrollHandler";
-import { useParams } from "react-router-dom";
-import FireLoading from "../Loading/SpinLoading/SpinLoading";
 
+import Error from "../../../../Components/Error/Error";
+import VideoCard from "../../../../Components/VideoCard/VideoCard";
+import ShortCard from "../../../../Components/SortsCard/ShortCard";
+import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";
+import Playlist from "../../../../Components/PlayListCard/PlayList";
+
+import { statesContext } from "../../../../Contexts/statesContext";
+
+import Shorts from '../../../../Assets/shorts.svg'
+import Player from "./Player";
+
+
+
+import { fetchChannelApi } from "../../../../Lib/FetchApi";
+import { scrollHandler } from "./scrollHandler";
 
 const ChannelHome = ()=> {
     const { id} = useParams();

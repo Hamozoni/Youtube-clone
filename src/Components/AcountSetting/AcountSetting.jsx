@@ -18,14 +18,13 @@ import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
-import { language } from '../../Utils/language';
 import {statesContext} from '../../Contexts/statesContext'
 
 const AcountSetting = ({setIsAcountModel})=>{
 
     const [witchOneRenders,setWitchOneRenders] = useState('main');
 
-    const {lang,setLang, theme,setTheme} = useContext(statesContext);
+    const {lang,staticData,setLang, theme,setTheme} = useContext(statesContext);
 
     const ThemeMenu = ()=>{
         return (
@@ -165,7 +164,7 @@ const AcountSetting = ({setIsAcountModel})=>{
                                 onClick={()=> setWitchOneRenders('lang')}
                                 > 
                                 <TranslateOutlinedIcon/>
-                                {language[lang].language}: english
+                                {staticData.language}: english
                             </li>
                             <li className={`back-hov-c-${theme}-2 t-color-${theme}-2`}> 
                                 <AdminPanelSettingsOutlinedIcon/> 

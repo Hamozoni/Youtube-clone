@@ -1,21 +1,22 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { fetchChannelApi } from "../../Utils/FetchApi";
-import Error from "../Error/Error";
-import { language } from "../../Utils/language";
-import { statesContext } from "../../Contexts/statesContext";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import { fetchChannelApi } from "../../../../Lib/FetchApi";
 
 import './ChannelContent.scss';
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { statesContext } from "../../../../Contexts/statesContext";
+import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";
+import Error from "../../../../Components/Error/Error";
 import ContentContainer from "./ContentContainer";
-import FireLoading from "../Loading/SpinLoading/SpinLoading";
+
 
 
 const ChannelContent = ()=>{
 
-    const {lang, theme} = useContext(statesContext);
+    const {lang,staticData, theme} = useContext(statesContext);
 
     const {id,section} = useParams()
-    const {latest, popular, oldest,  dateAdded,lastVideoAdded} = language[lang];
+    const {latest, popular, oldest,  dateAdded,lastVideoAdded} = staticData;
 
     const [channelViveos,setChannelViveos] = useState([]);
     const [continuation,setContinuation] = useState(null);
@@ -30,45 +31,40 @@ const ChannelContent = ()=>{
     console.log(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
 
 
-    const fetchContent = ()=>{
-        setIsLoading(true);
+    const fetchContent = (isLoadMore = false)=>{
+
+        setIsError(null);
+        if(isLoadMore){
+            setIsloadingMoreData(true);
+        }else {
+            setIsLoading(true);
+        }
+
         if(section?.length > 0) {
             fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
             .then((data)=>{
-              setChannelViveos(data?.data);
-              setIsError(null);
-              setContinuation(data?.continuation);
-              setIsLoading(false);
+
+                setContinuation(data?.continuation);
+
+                if(isLoadMore){
+                    setChannelViveos(prev=> [...prev,...data?.data]);
+                }else {
+                    setChannelViveos(data?.data);
+                }
+
             })
             .catch((error)=>{
               setIsError(error);
-              setIsLoading(false);
             })
-        }
-    }
-
-
-
-     useEffect(()=>{
-        fetchContent();
-     },[lang,searchParam,section]);
-
-
-
-    const fetchMoreData = ()=>{
-        setIsloadingMoreData(true);
-        if(continuation){
-            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}&token=${continuation}`)
-            .then((data)=>{
-                setChannelViveos(prev => [...prev,...data?.data]);
-                setContinuation(data?.continuation);
-                setIsloadingMoreData(false);
-            })
-            .catch(error=> {
+            .finally(()=> {
+                setIsLoading(false);
                 setIsloadingMoreData(false);
             })
         }
     };
+
+     useEffect(fetchContent,[lang,searchParam,section]);
+
 
     const navigate = useNavigate();
 
@@ -112,7 +108,7 @@ const ChannelContent = ()=>{
              <ContentContainer 
                 channelViveos={channelViveos}  
                 section={section}
-                handleOnClick={fetchMoreData}
+                handleOnClick={fetchContent}
                 isLoadingMoreData={isLoadingMoreData}
                 continuation={continuation}
                 />

@@ -1,7 +1,7 @@
 import { useEffect,useState, useContext } from 'react';
 
 import './Home.scss';
-import { fetchChannelApi} from '../../Utils/FetchApi';
+import { fetchChannelApi} from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import Error from '../../Components/Error/Error';

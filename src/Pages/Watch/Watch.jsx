@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import './Watch.scss';
 
-import { fetchChannelApi } from '../../Utils/FetchApi';
+import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"

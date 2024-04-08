@@ -1,109 +1,109 @@
-@import "../../../GlibalStyles.scss/Variabls";
-@import "../../../GlibalStyles.scss/Mixin";
+@import "../../../Styles/Variabls";
+@import "../../../Styles/Mixin";
 
 .loader-moviement {
-    position: relative;
-    overflow: hidden;
-    &::before {
-        @include position();
-        content: '';
-        width: 0;
-        animation: laoderBackgroundMove 2s ease-in-out infinite forwards;
-    }
+  position: relative;
+  overflow: hidden;
+  &::before {
+    @include position();
+    content: "";
+    width: 0;
+    animation: laoderBackgroundMove 2s ease-in-out infinite forwards;
+  }
 }
 
 .home-loader {
-    padding: $padding-10;
+  padding: $padding-10;
+  max-width: 100%;
+  .loader-nav {
+    overflow: auto;
     max-width: 100%;
-    .loader-nav {
-        overflow: auto;
+    .loader-ul {
+      @include flex-box;
+      margin-bottom: $marging-20;
+      overflow-x: auto;
+      li {
+        min-height: 30px;
+        min-width: 170px;
+        border-radius: $border-r-10;
+      }
+    }
+  }
+  .loader-conyainer {
+    &.grid {
+      @include grid-box(310px, 1fr, $gap-10);
+    }
+    .loader-card {
+      &.flex {
+        @media (min-width: 430px) {
+          @include flex-box(flex-start, flex-start, $gap-15);
+          .image {
+            display: none;
+          }
+          .lod-t-box {
+            max-width: 250px;
+          }
+        }
+      }
+      .loader-image {
         max-width: 100%;
-        .loader-ul {
-            @include flex-box;
-            margin-bottom: $marging-20;
-            overflow-x: auto;
-            li {
-               min-height: 30px;
-               min-width: 170px;
-               border-radius: $border-r-10;
-            }
+        border-radius: $border-r-10;
+        margin-bottom: $marging-10;
+        height: 205px;
+        &.flex {
+          @media (min-width: 430px) {
+            width: 220px;
+            height: 140px;
+          }
+          @media (min-width: 730px) {
+            width: 330px;
+            height: 180px;
+          }
+          @media (min-width: 992px) {
+            width: 410px;
+            height: 200px;
+          }
         }
-    }
-    .loader-conyainer {
-        &.grid {
-            @include grid-box(310px,1fr,$gap-10);
+      }
+      .loader-box {
+        @include flex-box;
+        .image {
+          border-radius: $border-r-full;
+          width: 35px;
+          height: 35px;
+          flex-basis: 40px;
         }
-        .loader-card {
+        .lod-t-box {
+          .chn-n,
+          .laoder-ch-name {
+            height: 20px;
+            margin-bottom: $marging-5;
+            border-radius: $border-r-10;
+            width: 180px;
             &.flex {
-                @media (min-width: 430px) {
-                    @include flex-box(flex-start,flex-start,$gap-15);
-                    .image {
-                        display: none;
-                    } 
-                    .lod-t-box {
-                        max-width: 250px;
-                    }
-                }
+              @media (min-width: 730px) {
+                width: 280px;
+              }
+              @media (min-width: 992px) {
+                width: 410px;
+              }
             }
-            .loader-image {
-                max-width: 100%;
-                border-radius: $border-r-10;
-                margin-bottom: $marging-10;
-                height: 205px;
-                &.flex {
-                    @media (min-width: 430px) {
-                        width: 220px;
-                        height: 140px;
-                    }
-                    @media (min-width: 730px) {
-                        width: 330px;
-                        height: 180px;
-                    }
-                    @media (min-width: 992px) {
-                        width: 410px;
-                        height: 200px;
-                    }
-                }
-            }
-            .loader-box {
-                @include flex-box;
-                .image {
-                    border-radius: $border-r-full;
-                    width: 35px;
-                    height: 35px;
-                    flex-basis: 40px;
-                }
-                .lod-t-box {
-                    .chn-n , .laoder-ch-name{
-                        height: 20px;
-                        margin-bottom: $marging-5;
-                        border-radius: $border-r-10;
-                        width: 180px;
-                        &.flex {
-                            @media (min-width: 730px) {
-                                width: 280px;
-                            }
-                            @media (min-width: 992px) {
-                                width: 410px;
-                            }
-                        }
-                    }
-                    .laoder-ch-name {
-                        height: 50px;
-                    }
-                }
-            }
+          }
+          .laoder-ch-name {
+            height: 50px;
+          }
         }
+      }
     }
+  }
 }
 
 @keyframes laoderBackgroundMove {
-    50% {
-        width: 100%;
-        left: 0;
-    }
-    100% {
-        left: 100%;
-
-    }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
 }

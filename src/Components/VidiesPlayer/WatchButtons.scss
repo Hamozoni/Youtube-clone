@@ -1,98 +1,98 @@
-@import "../../GlibalStyles.scss/Variabls";
-@import "../../GlibalStyles.scss/Mixin";
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
 
-@mixin display-flex ($Jf : flex-start) {
-    display: flex;
-    align-items: center;
-    justify-content: $Jf;
+@mixin display-flex($Jf: flex-start) {
+  display: flex;
+  align-items: center;
+  justify-content: $Jf;
 }
 
 .links-btns {
-    @media (max-width: 767px) {
-       overflow-y: auto;   
-    }
-    .links-btns-container {
-       @include flex-box(center,flex-start,$gap-m);
-       width: fit-content;
-       .like-dis {
-         @include flex-box(center,flex-start,0);
-          overflow: hidden;
-          border-radius: $border-r-20;
-          .like-btn {
-             @include flex-box(center,flex-start,$gap-5);
+  @media (max-width: 767px) {
+    overflow-y: auto;
+  }
+  .links-btns-container {
+    @include flex-box(center, flex-start, $gap-m);
+    width: fit-content;
+    .like-dis {
+      @include flex-box(center, flex-start, 0);
+      overflow: hidden;
+      border-radius: $border-r-20;
+      .like-btn {
+        @include flex-box(center, flex-start, $gap-5);
 
-             flex: 2
-          }
-          .dis-btn {
-
-             flex: 1;
-          }
-       }
-       .box {
-          border-radius: $border-radius-l;
-          overflow: hidden;
-       }
-       .btn {
-         @include flex-box(center,flex-start,$gap-m);
-          font-size: $font-size-5;
-          padding: $padding-5 $padding-15;
-          border-radius: $border-r-20;
-          font-weight: 700;
-          text-transform: capitalize;
-          svg {
-             width: 22px;
-          }
-          a {
-            @include flex-box(center,center,0)
-          } 
-       }
-       @media (min-width: 768px) {
-          .hide {
-             display: none;
-          }
-       }
-       @media (min-width: 992px) and (max-width: 1270px){
-          .down-btn {
-             display: none;
-          }
-       }
-       .more {
-           display: none;
-           position: relative;
-           @media (min-width: 768px ) {
-             display: block;
-           }
-           .more-btn {
-            border-radius: $border-r-full !important;
-           }
-           .more-btns {
-             position: absolute;
-             top: 49px;
-             right: 0px;
-             z-index: 999999;
-             padding: $padding-l;
-             border-radius: $border-r-10;
-             .down-btn {
-                display: none;
-                @media (min-width: 992px) and (max-width: 1270px) {
-                   display: flex;
-             }
-             }
-            .hide {
-                display: flex;
-             }
-             .btn, .box{
-                width: 100%;
-                padding: $padding-5 $padding-20;
-                &:not(:last-child) {
-                   margin-bottom: $marging-5;
-                }
-             }
-           }
-         .btn {
-           padding: $padding-m;
-           border-radius: $border-radius-m;
-         }
-       }
+        flex: 2;
+      }
+      .dis-btn {
+        flex: 1;
+      }
     }
- }
+    .box {
+      border-radius: $border-radius-l;
+      overflow: hidden;
+    }
+    .btn {
+      @include flex-box(center, flex-start, $gap-m);
+      font-size: $font-size-5;
+      padding: $padding-5 $padding-15;
+      border-radius: $border-r-20;
+      font-weight: 700;
+      text-transform: capitalize;
+      svg {
+        width: 22px;
+      }
+      a {
+        @include flex-box(center, center, 0);
+      }
+    }
+    @media (min-width: 768px) {
+      .hide {
+        display: none;
+      }
+    }
+    @media (min-width: 992px) and (max-width: 1270px) {
+      .down-btn {
+        display: none;
+      }
+    }
+    .more {
+      display: none;
+      position: relative;
+      @media (min-width: 768px) {
+        display: block;
+      }
+      .more-btn {
+        border-radius: $border-r-full !important;
+      }
+      .more-btns {
+        position: absolute;
+        top: 49px;
+        right: 0px;
+        z-index: 999999;
+        padding: $padding-l;
+        border-radius: $border-r-10;
+        .down-btn {
+          display: none;
+          @media (min-width: 992px) and (max-width: 1270px) {
+            display: flex;
+          }
+        }
+        .hide {
+          display: flex;
+        }
+        .btn,
+        .box {
+          width: 100%;
+          padding: $padding-5 $padding-20;
+          &:not(:last-child) {
+            margin-bottom: $marging-5;
+          }
+        }
+      }
+      .btn {
+        padding: $padding-m;
+        border-radius: $border-radius-m;
+      }
+    }
+  }
+}

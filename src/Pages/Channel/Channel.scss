@@ -1,6 +1,6 @@
 
-@import '../../GlibalStyles.scss/Variabls';
-@import '../../GlibalStyles.scss/Mixin';
+@import '../../Styles/Variabls';
+@import '../../Styles/Mixin';
 
 .chanel-details {
     display: flex;
@@ -42,6 +42,7 @@
             .ch-info {
                 .flix {
                     @include flex-box(center,flex-start,$gap-5);
+                    font-weight: 500;
                     svg {
                         font-size: $font-size-5;
                     }

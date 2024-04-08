@@ -9,14 +9,14 @@ import PlayList from './Pages/Playlist/Playlist.jsx';
 import {statesContext} from './Contexts/statesContext';
 import { useContext, useEffect, useState } from 'react';
 import Post from './Pages/Post/Post';
-import ChannelHome from './Components/ChannelHome/ChannelHome.jsx';
-import ChannelContent from './Components/ChannelContent/ChannelContent.jsx';
 import Shorts from './Pages/Shorts/Shorts.jsx';
 import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
 import SearchRecorder from './Components/SearchRecording/SearchRecorder.jsx';
 import Loading from './Components/Loading/Loading.jsx';
-import ChannelLayout from './Layouts/ChannelLayout/ChannelLayout.jsx';
+import Channel from './Pages/Channel/Channel.jsx';
+import ChannelContent from './Pages/Channel/Outlets/ChannelContent/ChannelContent.jsx';
+import ChannelHome from "./Pages/Channel/Outlets/ChannelHome/ChannelHome.jsx"
 
 
 const App = ()=> {
@@ -55,7 +55,7 @@ const App = ()=> {
           <Route path='/' exact element={<Home />} />
           <Route path='/explore' exact element={<Home />} />
           <Route path='/watch/:id' element={<Watch />} />
-          <Route path='/channel/:id' element={<ChannelLayout />} >
+          <Route path='/channel/:id' element={<Channel />} >
 
               
               <Route index element={<ChannelHome />} />

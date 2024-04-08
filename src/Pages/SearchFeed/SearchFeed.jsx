@@ -2,7 +2,7 @@ import { useState, useEffect, useContext} from 'react';
 import { useLocation,useNavigate} from 'react-router-dom';
 
 import './SearchFeed.scss';
-import { fetchChannelApi } from '../../Utils/FetchApi';
+import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';

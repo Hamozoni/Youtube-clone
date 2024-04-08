@@ -1,107 +1,107 @@
-@import '../../GlibalStyles.scss/Variabls';
-@import '../../GlibalStyles.scss/Mixin';
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
 
 .list-v-card {
-    border-radius: $border-r-10;
-    margin: $marging-10;
-    margin-bottom: 0;
-    z-index: 99999;
-    border: 1px solid transparent;
+  border-radius: $border-r-10;
+  margin: $marging-10;
+  margin-bottom: 0;
+  z-index: 99999;
+  border: 1px solid transparent;
+  &.active {
+    .pl-v-content {
+      height: calc(100vh - 300px);
+      overflow-y: auto;
+    }
+  }
+  @media (min-width: 768px) {
     &.active {
-        .pl-v-content {
-        height: calc(100vh - 300px);
-        overflow-y: auto;
-        }
+      .pl-v-content {
+        height: 300px;
+      }
     }
-    @media (min-width:768px) {
-        &.active {
-            .pl-v-content {
-                height: 300px;
-            }
-       } 
+  }
+  @media (min-width: 992px) {
+    &.active {
+      .pl-v-content {
+        height: 435px;
+      }
     }
-    @media (min-width:992px) {
-        &.active {
-            .pl-v-content {
-                height: 435px;
-            }
-       } 
-     }
-    .list-header {
-        @include flex-box(center,space-between);
-        padding: $padding-10;
-        border-radius: $border-r-10 $border-r-10 0 0;
-        .l-title {
-           font-size: $font-size-4;
-           margin-bottom: $marging-10;
+  }
+  .list-header {
+    @include flex-box(center, space-between);
+    padding: $padding-10;
+    border-radius: $border-r-10 $border-r-10 0 0;
+    .l-title {
+      font-size: $font-size-4;
+      margin-bottom: $marging-10;
+    }
+    .owner-channel {
+      font-size: 10px;
+      margin-bottom: $marging-10;
+    }
+    .l-toggle-btn {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+  .pl-v-content {
+    cursor: pointer;
+    padding: $padding-10;
+    &.hidden {
+      display: none;
+    }
+
+    .pl-card {
+      @include flex-box(_, _, $gap-m);
+      margin: $margin-m 0;
+      padding: 3px;
+      border-radius: $border-r-10;
+      border: 1px solid transparent;
+      &:hover,
+      &.active {
+        position: relative;
+      }
+      &.active::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        border: 10px solid;
+        border-color: transparent $logo-color transparent transparent;
+      }
+      .lift-img {
+        position: relative;
+        min-width: 150px !important;
+        @media (min-width: 768px) and (max-width: 991px) {
+          min-width: 200px !important;
         }
-        .owner-channel {
-          font-size: 10px;
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          height: 100%;
+          border-radius: $border-r-10;
+        }
+        .v-length {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          font-size: $font-size-6;
+          border-radius: $border-r-10;
+          padding: 0 $padding-10;
+          background-color: #000000d8;
+          color: $light-color;
+        }
+      }
+      .right-content {
+        .l-v-title {
+          font-size: $font-size-5;
           margin-bottom: $marging-10;
         }
-        .l-toggle-btn {
-            background-color: transparent;
-            padding: 0;
+        .l-ch-name {
+          font-size: $font-size-6;
         }
+      }
     }
-    .pl-v-content {
-         cursor: pointer;
-         padding: $padding-10;
-         &.hidden {
-            display: none;
-         }
-
-        .pl-card {
-            @include flex-box(_,_,$gap-m);
-            margin: $margin-m 0;
-            padding: 3px;
-            border-radius: $border-r-10;
-            border: 1px solid transparent;
-            &:hover, &.active {
-                position: relative;
-            }
-            &.active::after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 10px;
-                border: 10px solid;
-                border-color: transparent $logo-color transparent transparent;
-            }
-           .lift-img {
-            position: relative;
-            min-width: 150px !important;
-            @media (min-width: 768px) and (max-width: 991px) {
-                min-width: 200px !important;
-            }
-            img {
-                max-width: 100%;
-                max-height: 100%;
-                height: 100%;
-                border-radius: $border-r-10;
-            }
-            .v-length {
-                position: absolute;
-                bottom: 5px;
-                right: 5px;
-                font-size: $font-size-6;
-                border-radius: $border-r-10;
-                padding: 0 $padding-10;
-                background-color: #000000d8;
-                color: $light-color;
-
-            }
-           } 
-           .right-content {
-            .l-v-title {
-               font-size: $font-size-5;
-               margin-bottom: $marging-10;
-            }
-            .l-ch-name {
-                font-size: $font-size-6;
-            }
-           }
-        }
-    }
+  }
 }

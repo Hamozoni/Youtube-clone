@@ -1,29 +1,29 @@
-@import "../../GlibalStyles.scss//Variabls";
-@import "../../GlibalStyles.scss//Mixin";
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
 .logo {
-    @include flex-box(center);
-    width: 100%;
-    .menu-icon {
-        @include flex-box(center,center);
-        padding: $padding-5;
-        border-radius: $border-r-5;
-        svg {
-            font-size: 28px;
-        }
+  @include flex-box(center);
+  width: 100%;
+  .menu-icon {
+    @include flex-box(center, center);
+    padding: $padding-5;
+    border-radius: $border-r-5;
+    svg {
+      font-size: 28px;
     }
-    .main-logo {
-        @include flex-box(center,center,$gap-5);
-        border-radius: $border-r-5;
-        color: $logo-color;
-        text-transform: uppercase;
-        font-size: $logo-font-size;
-        font-weight: bold;
-        span {
-            @include flex-box(center,center,0);
-            width: 30px;
-            height: 20px;
-            border-radius: $border-r-5;
-            color: $logo-color;
-        }
+  }
+  .main-logo {
+    @include flex-box(center, center, $gap-5);
+    border-radius: $border-r-5;
+    color: $logo-color;
+    text-transform: uppercase;
+    font-size: $logo-font-size;
+    font-weight: bold;
+    span {
+      @include flex-box(center, center, 0);
+      width: 30px;
+      height: 20px;
+      border-radius: $border-r-5;
+      color: $logo-color;
     }
+  }
 }

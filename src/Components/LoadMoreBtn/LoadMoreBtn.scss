@@ -1,37 +1,37 @@
-@import '../../GlibalStyles.scss/Variabls';
-@import '../../GlibalStyles.scss/Mixin';
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
 
 .load-more {
-    padding:$padding-l;
-    text-align: center;
-    button {
-      color: $text-color-dark-l;
-      background-color: darken($color: $back-gr-color-light, $amount: 5);
-      border: 1px solid  transparent;
-      padding: $padding-m $padding-l + $padding-l;
-      border-radius: $border-radius-m;
-      text-transform: uppercase;
-      font-weight: 900;
-      &:disabled,  &:disabled:hover {
-        background-color: $logo-color;
-        color: $text-color-light-l;
-        border-color: darken($color: $logo-color, $amount: 20);
-        cursor: wait;
-      }
-      &:hover {
-        background-color: darken($color: $back-gr-color-light, $amount: 15);
-        border-color: darken($color: $back-gr-color-light, $amount: 20);
-      }
+  padding: $padding-l;
+  text-align: center;
+  button {
+    color: $text-color-dark-l;
+    background-color: darken($color: $back-gr-color-light, $amount: 5);
+    border: 1px solid transparent;
+    padding: $padding-m $padding-l + $padding-l;
+    border-radius: $border-radius-m;
+    text-transform: uppercase;
+    font-weight: 900;
+    &:disabled,
+    &:disabled:hover {
+      background-color: $logo-color;
+      color: $text-color-light-l;
+      border-color: darken($color: $logo-color, $amount: 20);
+      cursor: wait;
     }
-    &.dark {
-        button {
-            color: $text-color-light-l;
-            background-color: lighten($color: $back-gr-color-dark, $amount: 5);
-            &:hover {
-                background-color: lighten($color: $back-gr-color-dark, $amount: 10);
-                border-color: lighten($color: $back-gr-color-dark, $amount: 25);
-              }
-        }
+    &:hover {
+      background-color: darken($color: $back-gr-color-light, $amount: 15);
+      border-color: darken($color: $back-gr-color-light, $amount: 20);
     }
-  
   }
+  &.dark {
+    button {
+      color: $text-color-light-l;
+      background-color: lighten($color: $back-gr-color-dark, $amount: 5);
+      &:hover {
+        background-color: lighten($color: $back-gr-color-dark, $amount: 10);
+        border-color: lighten($color: $back-gr-color-dark, $amount: 25);
+      }
+    }
+  }
+}
