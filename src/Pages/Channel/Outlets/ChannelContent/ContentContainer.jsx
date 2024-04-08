@@ -1,16 +1,17 @@
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 import { statesContext } from "../../../../Contexts/statesContext";
 import PostCard from "../../../../Components/PostCard/PostCard";
 import ShortCard from "../../../../Components/SortsCard/ShortCard";
 import Playlist from "../../../../Components/PlayListCard/PlayList";
-import LoadMoreBtn from "../../../../Components/LoadMoreBtn/LoadMoreBtn";
 import VideoCard from "../../../../Components/VideoCard/VideoCard";
 
 
-const ContentContainer = ({channelViveos,section,handleOnClick,isLoadingMoreData,continuation})=>{
+const ContentContainer = ({channelViveos})=>{
 
     const {theme} = useContext(statesContext);
+    const {section} = useParams();
      return (
         channelViveos?.length > 0 && 
          
@@ -60,10 +61,6 @@ const ContentContainer = ({channelViveos,section,handleOnClick,isLoadingMoreData
                          </div>
                          :''
                 }
-               {
-                   continuation &&
-                   <LoadMoreBtn onClickHandler={handleOnClick} isLoadingMore={isLoadingMoreData} />
-               }
            </div>
 
         

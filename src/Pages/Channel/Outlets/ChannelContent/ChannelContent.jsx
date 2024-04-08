@@ -8,6 +8,7 @@ import { statesContext } from "../../../../Contexts/statesContext";
 import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";
 import Error from "../../../../Components/Error/Error";
 import ContentContainer from "./ContentContainer";
+import LoadMoreBtn from "../../../../Components/LoadMoreBtn/LoadMoreBtn";
 
 
 
@@ -70,23 +71,25 @@ const ChannelContent = ()=>{
 
     const handleSortBy = (searchParam)=>{
            navigate(`?sort_by=${searchParam}`);
-    }
+    };
+
+    const class_name =  `active back-act-c-${theme}-2 border-c-${theme}-5`
 
     return (
        
-        <div className={`${theme} channel-videos`} > 
+        <div className='channel-videos ' > 
             {
                 section !== 'community' &&
-                <nav className={`${theme} sort-by`}>
-                    <ul>
+                <nav className='sort-by'>
+                    <ul className={`t-color-${theme}`}>
                         <li 
-                            className={sortBy === 'newest' || sortBy ===  'date_added' ? 'active' : ''}
+                            className={`${sortBy === 'newest' || sortBy ===  'date_added' ? class_name  :''} back-color-${theme}-1`}
                             onClick={()=> handleSortBy(section === 'playlists' ?'date_added' : 'newest')}
                             >
                                 { section === 'playlists' ? dateAdded : latest}
                         </li>
                         <li 
-                            className={sortBy === 'popular' || sortBy ===  'last_video_added' ? 'active' : ''}
+                            className={`${sortBy === 'popular' || sortBy ===  'last_video_added' ? class_name  :''} back-color-${theme}-1`}
                             onClick={()=> handleSortBy(section === 'playlists' ?'last_video_added' : 'popular')}
                             >
                                 {section === 'playlists' ? lastVideoAdded : popular}
@@ -94,7 +97,7 @@ const ChannelContent = ()=>{
                         {
                             section !== 'shorts' && section !== 'playlists' &&
                             <li 
-                                className={sortBy === 'oldest' && 'active'}
+                                className={`${sortBy === 'oldest' ?  class_name  :''} back-color-${theme}-1`}
                                 onClick={()=> handleSortBy('oldest')}
                                 >
                                     {oldest}
@@ -105,13 +108,21 @@ const ChannelContent = ()=>{
             }
             {
              isError ? <Error error={isError} /> : isLoading ? <FireLoading /> :
-             <ContentContainer 
-                channelViveos={channelViveos}  
-                section={section}
-                handleOnClick={fetchContent}
-                isLoadingMoreData={isLoadingMoreData}
-                continuation={continuation}
-                />
+              <>
+                <ContentContainer 
+                    channelViveos={channelViveos}  
+                    />
+
+
+                   {
+                     continuation?.length &&
+                      <LoadMoreBtn 
+                            onClickHandler={fetchContent} 
+                            isLoadingMore={isLoadingMoreData}
+                         />
+                   }
+               
+              </>
             }
 
       </div>  

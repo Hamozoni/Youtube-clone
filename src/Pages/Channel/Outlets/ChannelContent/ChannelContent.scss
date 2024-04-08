@@ -1,6 +1,24 @@
 @import "../../../../Styles/Variabls";
+@import "../../../../Styles/Mixin";
 
+.sort-by {
+    padding: $padding-l 0;
+    margin-bottom: $margin-l;
+    ul {
+        @include flex-box;
+        li {
+            border: 1px solid transparent;
+            font-size: $font-size-l;
+            font-weight: 700;
+            padding: $padding-m $padding-l + $padding-m;
+            border-radius: 5px;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+    }
+  }
 .channel-videos-container {
+
 
     .shorts-container {
        display: flex;
