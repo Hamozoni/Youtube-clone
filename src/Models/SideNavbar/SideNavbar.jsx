@@ -23,6 +23,60 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { statesContext } from "../../Contexts/statesContext";
 import SideNavbarSmall from "./SideNavSmall";
 
+const navLinks = [
+  {
+    name: 'youe',
+    data: [
+      {
+        to: 'labrary',
+        icon: VideoLibraryOutlinedIcon
+      },
+      {
+        to: 'history',
+        icon: RestoreOutlinedIcon
+      },
+      {
+        to: 'yourVideos',
+        icon: OndemandVideoOutlinedIcon
+      },
+      {
+        to: 'watchLater',
+        icon: WatchLaterOutlinedIcon
+      },
+      {
+        to: 'likedVideos',
+        icon:ThumbUpOutlinedIcon
+      }
+    ]
+
+  },
+  {
+    name: 'explore',
+    data: [
+      {
+        to: 'labrary',
+        icon: VideoLibraryOutlinedIcon
+      },
+      {
+        to: 'history',
+        icon: RestoreOutlinedIcon
+      },
+      {
+        to: 'yourVideos',
+        icon: OndemandVideoOutlinedIcon
+      },
+      {
+        to: 'watchLater',
+        icon: WatchLaterOutlinedIcon
+      },
+      {
+        to: 'likedVideos',
+        icon:ThumbUpOutlinedIcon
+      }
+    ]
+  }
+]
+
 const SideNavbar = () => {
   const { theme, staticData, setIsSideNavbarOpen } = useContext(statesContext);
 
