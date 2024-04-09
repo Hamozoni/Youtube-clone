@@ -61,11 +61,9 @@
           .chanel-title {
             @include flex-box();
             font-size: $font-size-6;
-            font-weight: 300;
         }
           .video-title {
-              font-size: $font-size-6;
-              font-weight: 500;
+              font-size: $font-size-5;
           }
         }
         .video-desc {
@@ -82,7 +80,6 @@
       .moment {
         @include flex-box(_, _, $gap-5);
         font-size: $font-size-6;
-        font-weight: 300;
         svg {
           font-size: 17px;
         }

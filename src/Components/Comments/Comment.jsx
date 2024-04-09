@@ -15,7 +15,7 @@ const Comments = ({ comment }) => {
   return (
     <div className='comm-container'>
       <div className='comment-box'>
-        <Link to={`/channels/${authorChannelId}`}>
+        <Link to={`/channel/${authorChannelId}`}>
           <img className="auther-img" src={authorThumbnail[0]?.url} alt="img" />
         </Link>
         <div className={`border-c-${theme}-2 auther-desc`}>

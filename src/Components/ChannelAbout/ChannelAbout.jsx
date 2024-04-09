@@ -20,7 +20,7 @@ const ChannelAbout = ({ chanelDetail, setIsAboutChannelOpen }) => {
         setIsAboutChannelOpen(false);
       }}
     >
-      <div className={`back-color-${theme}-1 about-container`}>
+      <div className={`back-color-${theme}-3 about-container`}>
         <nav className={`t-color-${theme} about-nav`} onClick={() => setIsAboutChannelOpen(false)}>
           <h3 className="about-title">{staticData?.about}</h3>
           <CloseIcon />

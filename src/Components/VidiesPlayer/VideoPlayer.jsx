@@ -45,7 +45,11 @@ const VideoPlayer = ({ setKeywords }) => {
     <WatchLoading />
   ) : (
     <div className="video">
-      <ReactPlayer url={`hppts://www.youtube.com/watch?v=${id}?autoplay=1&mute=0?`} className="video-player" controls playing />
+      <ReactPlayer 
+            url={`hppts://www.youtube.com/watch?v=${id}?autoplay=1&mute=0?`} 
+            className={`border-c-${theme}-2 video-player`}
+            controls playing
+             />
       <div className="video-desc">
         <h3 className={`t-color-${theme} video-title`}>{videoDetail?.title}</h3>
         <div className={`border-c-${theme}-2 left`}>
