@@ -1,0 +1,64 @@
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
+.header-search {
+  @include flex-box(center, space-between);
+  form {
+    @include flex-box(center, space-between);
+    overflow: hidden;
+    border-radius: $border-r-20;
+    &.active {
+      @media (max-width: 667px) {
+        border: 1px solid $text-color-dark-l;
+        position: absolute;
+        width: calc(100% - 30px);
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        .search-input {
+          display: flex;
+        }
+      }
+    }
+    @media (min-width: 530px) {
+      width: 160px;
+      border: 1px solid;
+    }
+    @media (min-width: 668px) {
+      width: 300px;
+    }
+    @media (min-width: 768px) {
+      width: 400px;
+    }
+    @media (min-width: 992px) {
+      width: 490px;
+    }
+    @media (min-width: 1120px) {
+      width: 650px;
+    }
+    .search-input {
+      background-color: transparent;
+      outline: transparent;
+      padding: $padding-5 $padding-10;
+      font-size: $font-size-l !important;
+      width: calc(100% - 48px);
+      display: none;
+      @media (min-width: 530px) {
+        display: block;
+      }
+    }
+    .search-btn {
+      display: flex;
+      padding: $padding-5 $padding-20;
+    }
+  }
+  .mike {
+    @include flex-box(center, center);
+    padding: $padding-10;
+    border-radius: $border-r-full;
+    cursor: pointer;
+    display: none;
+    @media (min-width: 430px) {
+      display: flex;
+    }
+  }
+}

@@ -1,20 +1,20 @@
 @import '../../Styles/Variabls';
 @import '../../Styles/Mixin';
 
-.m-community {
-    padding-top: $padding-50;
-  .loading-more {
-    padding: $padding-15 0;
-    text-align: center;
-  }
-}
+// .m-community {
+//     padding-top: $padding-50;
+//   .loading-more {
+//     padding: $padding-15 0;
+//     text-align: center;
+//   }
+// }
 
 .community {
     border-radius: $border-r-10;
     border: 1px solid transparent;
-    margin-bottom: $marging-15;
     padding: $padding-15;
     max-width: 780px;
+    margin: 0 0 $marging-15;
     .auther {
         @include flex-box;
         .auth-img {

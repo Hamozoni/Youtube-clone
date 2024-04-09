@@ -8,7 +8,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-import Error from "../../../../Components/Error/Error";
+import Error from "../../../../Layouts/Error/Error";
 import VideoCard from "../../../../Components/VideoCard/VideoCard";
 import ShortCard from "../../../../Components/SortsCard/ShortCard";
 import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";

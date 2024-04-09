@@ -6,9 +6,9 @@ import { fetchChannelApi } from "../../../../Lib/FetchApi";
 import './ChannelContent.scss';
 import { statesContext } from "../../../../Contexts/statesContext";
 import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";
-import Error from "../../../../Components/Error/Error";
+import Error from "../../../../Layouts/Error/Error";
 import ContentContainer from "./ContentContainer";
-import LoadMoreBtn from "../../../../Components/LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "../../../../Layouts/LoadMoreBtn/LoadMoreBtn";
 
 
 
@@ -34,6 +34,8 @@ const ChannelContent = ()=>{
 
     const fetchContent = (isLoadMore = false)=>{
 
+        let isToken = continuation?.length > 0 && !isLoadMore ? `&token=${continuation}`: '';
+
         setIsError(null);
         if(isLoadMore){
             setIsloadingMoreData(true);
@@ -43,7 +45,7 @@ const ChannelContent = ()=>{
         }
 
         if(section?.length > 0) {
-            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${continuation?.length > 0 ? `&token=${continuation}`: ''}${searchParam}`)
+            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${isToken}${searchParam}`)
             .then((data)=>{
 
                 setContinuation(data?.continuation);

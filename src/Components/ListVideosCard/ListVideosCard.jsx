@@ -9,8 +9,8 @@ import { useParams } from "react-router-dom";
 import { fetchChannelApi } from "../../Lib/FetchApi";
 import { statesContext } from "../../Contexts/statesContext";
 
-import Error from "../../Components/Error/Error";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import Error from "../../Layouts/Error/Error";
+import LoadMoreBtn from "../../Layouts/LoadMoreBtn/LoadMoreBtn";
 
 const ListVideosCard = () => {
   const { id, plId, index } = useParams();

@@ -1,6 +1,6 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Error from "../Error/Error";
+import Error from "../../Layouts/Error/Error";
 import Comment from "./Comment";
 
 import { statesContext } from "../../Contexts/statesContext";
@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import { fetchChannelApi } from "../../Lib/FetchApi";
 
 import "./Comments.scss";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "../../Layouts/LoadMoreBtn/LoadMoreBtn";
 
 const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
   const [comments, setComments] = useState([]);

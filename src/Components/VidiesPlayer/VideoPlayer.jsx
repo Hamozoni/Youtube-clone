@@ -9,9 +9,9 @@ import VideoDescribtion from "../Watch/VideoDescribtion";
 import { statesContext } from "../../Contexts/statesContext";
 import Comments from "../../Components/Comments/Comments";
 import { fetchChannelApi } from "../../Lib/FetchApi";
-import Error from "../Error/Error";
+import Error from "../../Layouts/Error/Error";
 import WatchLoading from "../Loading/WatchLoading/WatchLoading";
-import ChannelSubscribeBtn from "../ChannelSubscibeBtn/ChannelSubscribeBtn";
+import ChannelSubscribeBtn from "../../Layouts/ChannelSubscibeBtn/ChannelSubscribeBtn";
 
 const VideoPlayer = ({ setKeywords }) => {
   const { id } = useParams();

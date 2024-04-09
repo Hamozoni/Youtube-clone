@@ -8,7 +8,7 @@ import SideNavbarSmall from "../../Models/SideNavbar/SideNavSmall";
 import Comments from "../../Components/Comments/Comments";
 import CommunityCard from "../../Components/CommunityCard/CommunityCard";
 import FireLoading from "../../Components/Loading/SpinLoading/SpinLoading";
-import Error from "../../Components/Error/Error";
+import Error from "../../Layouts/Error/Error";
 
 const Community = ()=>{
 

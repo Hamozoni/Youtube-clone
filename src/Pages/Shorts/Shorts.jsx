@@ -10,7 +10,7 @@ import { statesContext } from "../../Contexts/statesContext";
 
 import PlayShortCard from "../../Components/PlayingShortCard/PlayingShortCard";
 import Loading from "../../Components/Loading/Loading";
-import Error from "../../Components/Error/Error";
+import Error from "../../Layouts/Error/Error";
 
 const Shorts = ()=> {
     const { lang, shorts,setShorts } = useContext(statesContext);

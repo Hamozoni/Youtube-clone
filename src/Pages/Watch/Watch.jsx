@@ -8,8 +8,8 @@ import { statesContext } from '../../Contexts/statesContext';
 
 import RelatedVideos from "../../Components/RelatedVideos/RelatedVideos"
 import VideoPlayer from '../../Components/VidiesPlayer/VideoPlayer';
-import Error from '../../Components/Error/Error';
-import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+import Error from '../../Layouts/Error/Error';
+import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
 import Refinements from '../../Components/Refinements/Refinements';
 import RelatedLoading from '../../Components/Loading/WatchLoading/RelatedLoading';
 

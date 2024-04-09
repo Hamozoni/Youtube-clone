@@ -6,8 +6,8 @@ import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import SideNavSmall from '../../Models/SideNavbar/SideNavSmall';
-import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
-import Error from '../../Components/Error/Error';
+import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
+import Error from '../../Layouts/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import Refinements from '../../Components/Refinements/Refinements';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';

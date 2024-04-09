@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './Components/Header/Header';
+import Header from './Layouts/Header/Header.jsx';
 import SideNavbar from './Models/SideNavbar/SideNavbar.jsx'
 import Home from './Pages/Home/Home';
 import Watch from './Pages/Watch/Watch';

@@ -9,10 +9,10 @@ import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
 import ChannelAbout from '../../Models/ChannelAbout/ChannelAbout';
-import Error from '../../Components/Error/Error';
+import Error from '../../Layouts/Error/Error';
 import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
 import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
-import ChannelSubscribeBtn from '../../Components/ChannelSubscibeBtn/ChannelSubscribeBtn';
+import ChannelSubscribeBtn from '../../Layouts/ChannelSubscibeBtn/ChannelSubscribeBtn';
 import FireLoading from '../../Components/Loading/SpinLoading/SpinLoading';
 
 const Channel = () => {

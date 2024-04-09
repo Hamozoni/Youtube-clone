@@ -4,11 +4,11 @@ import './Home.scss';
 import { fetchChannelApi} from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import Error from '../../Components/Error/Error';
+import Error from '../../Layouts/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
 import Keywords from '../../Components/RelatedKeywords/Keywords';
-import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
+import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
 
 
