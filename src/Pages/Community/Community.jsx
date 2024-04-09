@@ -4,7 +4,7 @@ import "./Community.scss";
 import { useContext, useEffect, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
 import { fetchChannelApi } from "../../Lib/FetchApi";
-import SideNavbarSmall from "../../Components/SideNavbar/SideNavSmall";
+import SideNavbarSmall from "../../Models/SideNavbar/SideNavSmall";
 import Comments from "../../Components/Comments/Comments";
 import CommunityCard from "../../Components/CommunityCard/CommunityCard";
 import FireLoading from "../../Components/Loading/SpinLoading/SpinLoading";

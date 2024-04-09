@@ -6,7 +6,7 @@ import { statesContext } from '../../Contexts/statesContext';
 
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
-import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
+import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
 import Keywords from '../../Components/RelatedKeywords/Keywords';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';

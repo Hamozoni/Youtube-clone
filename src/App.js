@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
-import SideNavbar from './Components/SideNavbar/SideNavbar'
+import SideNavbar from './Models/SideNavbar/SideNavbar.jsx'
 import Home from './Pages/Home/Home';
 import Watch from './Pages/Watch/Watch';
 import SearchFeed from './Pages/SearchFeed/SearchFeed';
@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from 'react';
 import Shorts from './Pages/Shorts/Shorts.jsx';
 import History from './Pages/History/History.jsx';
 import LikedVideos from './Pages/LikedVideos/LikedVideos.jsx';
-import SearchRecorder from './Components/SearchRecording/SearchRecorder.jsx';
+import SearchRecorder from './Models/SearchRecording/SearchRecorder.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 import Channel from './Pages/Channel/Channel.jsx';
 import ChannelContent from './Pages/Channel/Outlets/ChannelContent/ChannelContent.jsx';

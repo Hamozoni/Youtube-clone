@@ -8,9 +8,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import ChannelAbout from '../../Components/ChannelAbout/ChannelAbout';
+import ChannelAbout from '../../Models/ChannelAbout/ChannelAbout';
 import Error from '../../Components/Error/Error';
-import SideNavbarSmall from '../../Components/SideNavbar/SideNavSmall';
+import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
 import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 import ChannelSubscribeBtn from '../../Components/ChannelSubscibeBtn/ChannelSubscribeBtn';
 import FireLoading from '../../Components/Loading/SpinLoading/SpinLoading';

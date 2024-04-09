@@ -5,7 +5,7 @@ import './SearchFeed.scss';
 import { fetchChannelApi } from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
 
-import SideNavSmall from '../../Components/SideNavbar/SideNavSmall';
+import SideNavSmall from '../../Models/SideNavbar/SideNavSmall';
 import LoadMoreBtn from '../../Components/LoadMoreBtn/LoadMoreBtn';
 import Error from '../../Components/Error/Error';
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';

@@ -4,7 +4,7 @@ import Logo from "../Logo/Logo";
 import ProfileCreate from "./ProfileCreate";
 import { useContext, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
-import AcountSetting from "../AcountSetting/AcountSetting";
+import AcountSetting from "../../Models/AcountSetting/AcountSetting";
 
 const Header = () => {
   const { theme } = useContext(statesContext);

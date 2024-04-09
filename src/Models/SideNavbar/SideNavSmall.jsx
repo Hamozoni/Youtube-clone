@@ -13,17 +13,19 @@ const SideNavbarSmall = ({ homeShort = "" }) => {
 
   const { home, shorts, subscribtions } = staticData;
 
+  const nav_class_names = `t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`
+
   return (
     <div className={`${homeShort} border-c-${theme}-1 nav-icons `}>
-      <NavLink className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} to="/">
+      <NavLink className={nav_class_names} to="/">
         <HomeIcon />
         <h3> {home}</h3>
       </NavLink>
-      <NavLink className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} to="/shorts">
+      <NavLink className={nav_class_names} to="/shorts">
         <SmartDisplayOutlinedIcon />
         <h3>{shorts}</h3>
       </NavLink>
-      <NavLink className={`t-color-${theme}-2 back-hov-c-${theme}-1 back-act-c-${theme}-2 link`} to="/subscribtions">
+      <NavLink className={nav_class_names} to="/subscribtions">
         <SubscriptionsOutlinedIcon />
         <h3>{subscribtions}</h3>
       </NavLink>
