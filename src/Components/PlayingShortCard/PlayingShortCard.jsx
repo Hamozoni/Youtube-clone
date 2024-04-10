@@ -14,7 +14,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Comments from "../Comments/Comments";
 
-const PlayShortCard = ({ active, short, activeShort = "" }) => {
+const PlayShortCard = ({ active, short}) => {
   const navgate = useNavigate();
 
   const { theme, staticData } = useContext(statesContext);
@@ -22,19 +22,32 @@ const PlayShortCard = ({ active, short, activeShort = "" }) => {
 
   useEffect(() => {
     setIsCommentOpen(false);
-  }, [activeShort]);
+  }, [short]);
 
   return (
-    <div className={`${theme} short-v-container`} id={active ? activeShort?.videoId : short?.videoId}>
+    <div className={`${theme} short-v-container`} id={active ? short?.videoId : ''}>
       <div className={`${theme} short-v-player`}>
         <section className={`${theme} short-video`}>
-          {active && <h4 className="sh-v-title">{activeShort?.title?.length > 30 ? `${activeShort?.title?.slice(0, 30)}...` : activeShort?.title}</h4>}
-          {active ? <ReactPlayer url={`hppts://www.youtube.com/watch?v=${activeShort?.videoId}`} className="short-player" controls playing /> : <img src={short?.thumbnail && short?.thumbnail[0]?.url} alt={short?.title} className="short-player" />}
+          <h4 className="sh-v-title">
+             {short?.title?.length > 30 ? `${short?.title?.slice(0, 30)}...` : short?.title}
+            </h4>
+          { active ? 
+              <ReactPlayer 
+                    url={`hppts://www.youtube.com/watch?v=${short?.videoId}`} 
+                    className="short-player" controls playing
+                  /> 
+              : 
+                <img 
+                    src={short?.thumbnail && short?.thumbnail[0]?.url} 
+                    alt={short?.title} 
+                    className="short-player" 
+                  />
+          }
         </section>
         <ul className={`${theme} sh-links-comment`}>
           <li>
             <ThumbUpIcon />
-            <h5> {active ? activeShort?.likeCountText : staticData.like} </h5>
+            <h5> {active ? short?.likeCountText : staticData.like} </h5>
           </li>
           <li>
             <ThumbDownIcon />
@@ -42,7 +55,7 @@ const PlayShortCard = ({ active, short, activeShort = "" }) => {
           </li>
           <li onClick={() => setIsCommentOpen(!isCommentOpen)}>
             <CommentIcon />
-            <h5>{active ? activeShort?.commentCount : staticData.comments}</h5>
+            <h5>{active ? short?.commentCount : staticData?.comments}</h5>
           </li>
           <li>
             <ShareIcon />
@@ -51,12 +64,14 @@ const PlayShortCard = ({ active, short, activeShort = "" }) => {
           <li>
             <MoreVertIcon />
           </li>
-          {active && <li onClick={() => navgate(`/channels/${activeShort?.channelId}`)}>{activeShort?.channelThumbnail && <img src={activeShort?.channelThumbnail[0]?.url} alt="short" />}</li>}
+          <li onClick={() => navgate(`/channel/${short?.channelId}`)}>
+              {short?.channelThumbnail && <img src={short?.channelThumbnail[0]?.url} alt="short" />}
+          </li>
         </ul>
       </div>
       {isCommentOpen && active ? (
         <div className={`shorts-comments ${theme}`}>
-          <Comments id={activeShort?.videoId} fetchQuery="comments" />
+          <Comments id={short?.videoId} fetchQuery="comments" />
         </div>
       ) : (
         ""

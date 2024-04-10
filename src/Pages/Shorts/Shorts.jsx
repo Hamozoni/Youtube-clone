@@ -13,7 +13,7 @@ import Loading from "../../Components/Loading/Loading";
 import Error from "../../Layouts/Error/Error";
 
 const Shorts = ()=> {
-    const { lang, shorts,setShorts } = useContext(statesContext);
+    const { lang} = useContext(statesContext);
 
     const shortId = useLocation().search;
 
@@ -28,9 +28,7 @@ const Shorts = ()=> {
         setIsError(null)
        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
        .then((data)=>{
-            setShorts(prev => [...prev,...data?.data]);
-            navigate(shorts?.length ? `?id=${shorts[0]?.videoId}` : `?id=${data?.data[0]?.videoId}`);
-            setActiveSectionId(shorts?.length ? shorts[0]?.videoId : data?.data[0]?.videoId)
+
        })
        .catch((error)=>{
            setIsError(error)
@@ -45,7 +43,7 @@ const Shorts = ()=> {
             fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
             .then((data)=> {
                 setShortInfo(data);
-                setActiveSectionId(data?.videoId)
+                setActiveSectionId(data?.videoId);
             })
             .catch((error) => {
                 setIsError(error);
