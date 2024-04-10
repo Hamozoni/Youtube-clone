@@ -15,10 +15,10 @@ import Error from "../../Layouts/Error/Error";
 const Shorts = ()=> {
     const { lang, shorts,setShorts } = useContext(statesContext);
 
-    const location = useLocation();
+    const shortId = useLocation().search;
 
     const [shortInfo,setShortInfo] = useState();
-    const [activeSectionId,setActiveSectionId] = useState(location.search.split('=')[1]);
+    const [activeSectionId,setActiveSectionId] = useState(shortId.split('=')[1]);
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
@@ -41,8 +41,8 @@ const Shorts = ()=> {
     },[lang]);
 
     useEffect(()=>{
-        if(location.search){
-            fetchChannelApi(`shorts/info${location.search}&lang=${lang}`)
+        if(shortId){
+            fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
             .then((data)=> {
                 setShortInfo(data);
                 setActiveSectionId(data?.videoId)
@@ -54,7 +54,7 @@ const Shorts = ()=> {
                 setIsLoading(false);
             })
         }
-    },[location.search,lang])
+    },[shortId,lang])
 
 
     const handleScrollIntoView = (scrollPosition)=> {
