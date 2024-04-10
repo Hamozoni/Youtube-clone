@@ -33,7 +33,7 @@ const Playlist = ({ playlist, renderFrom }) => {
         </section>
         <section className="play-all absolute">
           <PlayArrowRoundedIcon />
-          {staticData?.palyAll}
+          {staticData?.playAll}
         </section>
       </div>
       <div className="p-t-box">

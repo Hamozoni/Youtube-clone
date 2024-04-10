@@ -47,7 +47,7 @@ const Shorts = ()=> {
        .then((data)=>{
         setShorts(prev=> [...prev,...data?.data]);
         navigate(`?id=${data?.data[0]?.videoId}`);
-        fetchActiveShort()
+        setActiveSectionId(data?.data[0]?.videoId)
        })
        .catch((error)=>{
            setIsError(error)
