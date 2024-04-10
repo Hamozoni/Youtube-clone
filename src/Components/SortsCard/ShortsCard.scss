@@ -6,7 +6,7 @@
     .short-img {
         position: relative;
         max-height: 380px;
-        border-radius: $border-radius-l;
+        border-radius: $border-r-10;
         min-height: 373px ;
         min-width: 210px;
         max-width: 280px;
@@ -23,22 +23,20 @@
         }
     }
     .short-desc {
-        .short-title {
-           font-size: $font-size-l;
-           &.dark {
-              color: $text-color-light-l;
-            }
-           @media (max-width: 530px) {
-                 color: $text-color-light-l !important;
+
+        @media (max-width: 529px) {
+            .short-title {
+                color: $light-color;
              }
-             color: $text-color-dark-l;
+             .sh-viwes {
+                color: $light-color;
+             }
+        }
+        .short-title {
+           font-size: $font-size-5;
         }
         .sh-viwes {
-            font-size: $font-size-m;
-            color: $text-color-dark-m;
-            &.dark {
-                color: $text-color-light-m;
-              }
+            font-size: $font-size-6;
         }
     }
     @media (max-width: 530px) {
