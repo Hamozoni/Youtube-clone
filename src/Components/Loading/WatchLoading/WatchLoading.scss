@@ -16,12 +16,14 @@
   flex-basis: 70% !important;
   margin-top: $marging-15;
   .vid-p {
+    @extend .loader-moviement;
     height: 300px;
     margin-bottom: $marging-15;
     min-width: 100%;
     z-index: 0 !important;
   }
   .vid-p-det {
+    @extend .loader-moviement;
     width: 200px;
     height: 20px;
     border-radius: $border-r-10;
@@ -33,9 +35,9 @@
   flex-basis: 30%;
   margin-top: $marging-15;
   .vid-c {
-    @include flex-box();
     margin-bottom: $marging-15;
     .vid-img {
+      @extend .loader-moviement;
       flex-basis: 50%;
       height: 120px;
       border-radius: $border-r-10;
@@ -47,9 +49,33 @@
       flex-basis: 50%;
     }
     .vid-det {
+      @extend .loader-moviement;
       height: 20px;
       border-radius: $border-r-10;
       margin-bottom: $marging-15;
+    }
+  }
+}
+
+.short-loading {
+  @include flex-box(center,center,0);
+  .loader {
+    height: calc(100vh - 80px);
+    @include flex-box(flex-start,center,$gap-10);
+    .image {
+      @extend .loader-moviement;
+      height: calc(100vh - 80px);
+      border-radius: $border-r-10;
+      width: 320px;
+    }
+    .info {
+      li {
+        @extend .loader-moviement;
+        margin-bottom: $marging-40;
+        width: 45px;
+        height: 45px;
+        border-radius: $border-r-full;
+      }
     }
   }
 }

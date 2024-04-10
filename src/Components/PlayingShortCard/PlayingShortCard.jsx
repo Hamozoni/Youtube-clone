@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Comments from "../Comments/Comments";
 
 const PlayShortCard = ({ active, short}) => {
+
   const navgate = useNavigate();
 
   const { theme, staticData } = useContext(statesContext);
@@ -25,7 +26,7 @@ const PlayShortCard = ({ active, short}) => {
   }, [short]);
 
   return (
-    <div className={`${theme} short-v-container`} id={active ? short?.videoId : ''}>
+    <div className={`${theme} short-v-container`} id={short?.videoId}>
       <div className={`${theme} short-v-player`}>
         <section className={`${theme} short-video`}>
           <h4 className="sh-v-title">
