@@ -26,23 +26,6 @@ const Shorts = ()=> {
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        setIsLoading(true);
-        setIsError(null)
-        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
-       .then((data)=>{
-        setShorts(prev=> [...prev,...data?.data]);
-        navigate(`?id=${data?.data[0]?.videoId}`);
-       })
-       .catch((error)=>{
-           setIsError(error)
-        })
-        .finally(()=> {
-           setIsLoading(false);
-       })
-    },[lang]);
-
-
     const fetchActiveShort = ()=>{
         console.log(activeSectionId)
         if(activeSectionId){
@@ -55,9 +38,26 @@ const Shorts = ()=> {
                 setIsError(error);
             })
         }
-    }
+    };
+    
+    useEffect(()=>{
+        setIsLoading(true);
+        setIsError(null)
+        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
+       .then((data)=>{
+        setShorts(prev=> [...prev,...data?.data]);
+        navigate(`?id=${data?.data[0]?.videoId}`);
+        fetchActiveShort()
+       })
+       .catch((error)=>{
+           setIsError(error)
+        })
+        .finally(()=> {
+           setIsLoading(false);
+       })
+    },[lang]);
 
-    useEffect(fetchActiveShort,[shortId,lang])
+    useEffect(fetchActiveShort,[activeSectionId,lang])
 
 
     const handleScrollIntoView = (scrollPosition)=> {

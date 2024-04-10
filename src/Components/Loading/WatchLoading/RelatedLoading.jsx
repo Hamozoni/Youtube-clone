@@ -11,10 +11,10 @@ const RelatedLoading = () => {
     <div className="rel-vid">
       {relVideos?.map((v) => (
         <div className="vid-c">
-          <div className={`back-color-${theme}-1 back-before-c-${theme}-2  vid-img`}></div>
+          <div className={`back-color-${theme}-1 vid-img`}></div>
           <div className="box">
-            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 vid-det`}></div>
-            <div className={`back-color-${theme}-1 back-before-c-${theme}-2 vid-det`}></div>
+            <div className={`back-color-${theme}-1 vid-det`}></div>
+            <div className={`back-color-${theme}-1 vid-det`}></div>
           </div>
         </div>
       ))}
