@@ -9,7 +9,7 @@ import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import OutlinedFlagOutlinedIcon from "@mui/icons-material/OutlinedFlagOutlined";
 import ContentCutOutlinedIcon from "@mui/icons-material/ContentCutOutlined";
 
-import { ternViewsTo } from "../../Lib/Constans";
+import { ternViewsTo } from "../../Hooks/Constans";
 
 import { statesContext } from "../../Contexts/statesContext";
 

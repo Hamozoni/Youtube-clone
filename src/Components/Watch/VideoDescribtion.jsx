@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { statesContext } from "../../Contexts/statesContext";
-import { ternViewsTo } from "../../Lib/Constans";
+import { ternViewsTo } from "../../Hooks/Constans";
 
 import "./VideoDescribtion.scss";
 

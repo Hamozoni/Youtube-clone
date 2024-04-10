@@ -17,7 +17,7 @@ const ContentContainer = ({channelViveos})=>{
          
             <div className={`${theme} channel-videos-container`}> 
                 {
-                       section === 'community' && channelViveos[0]?.type === 'post' ?
+                       (section === 'community' && channelViveos[0]?.type === 'post' )?
                        <div className="community-container">
                            {
                                channelViveos?.map((community)=>(
@@ -28,7 +28,7 @@ const ContentContainer = ({channelViveos})=>{
     
                        
                        :
-                       section === 'shorts' && channelViveos[0]?.type === 'shorts' ?  
+                       (section === 'shorts' && channelViveos[0]?.type === 'shorts') ?  
                         <div className="shorts-container">
                            {
                                channelViveos?.map((short,_,arr)=>(
@@ -38,7 +38,7 @@ const ContentContainer = ({channelViveos})=>{
                            }
                         </div>
                        
-                       :  section === 'playlists' && channelViveos[0]?.type === 'playlist' ?  
+                       : ( section === 'playlists' && channelViveos[0]?.type === 'playlist') ?  
                           <div className="videos-playlists">
                                {
                                    channelViveos?.map((playlist)=>(
@@ -46,7 +46,7 @@ const ContentContainer = ({channelViveos})=>{
                                    ))
                                }
                           </div>
-                       :channelViveos[0]?.type === 'video' && section === 'videos' || section === 'liveStreams' ?
+                       :(channelViveos[0]?.type === 'video' && section === 'videos' || section === 'liveStreams' )?
                          <div className="videos-playlists">
                              {
     

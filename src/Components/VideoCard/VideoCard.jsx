@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import "./VideoCard.scss";
 
-import { ternViewsTo } from "../../Lib/Constans";
+import { ternViewsTo } from "../../Hooks/Constans";
 import { statesContext } from "../../Contexts/statesContext";
 
 import SensorsRoundedIcon from "@mui/icons-material/SensorsRounded";

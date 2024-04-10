@@ -15,8 +15,9 @@ import Error from "../../Layouts/Error/Error";
 const Shorts = ()=> {
     const { lang, shorts,setShorts } = useContext(statesContext);
 
-    const [shortInfo,setShortInfo] = useState();
     const location = useLocation();
+
+    const [shortInfo,setShortInfo] = useState();
     const [activeSectionId,setActiveSectionId] = useState(location.search.split('=')[1]);
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(null);
@@ -24,17 +25,18 @@ const Shorts = ()=> {
 
     useEffect(()=>{
         setIsLoading(true);
+        setIsError(null)
        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
        .then((data)=>{
             setShorts(prev => [...prev,...data?.data]);
             navigate(shorts?.length ? `?id=${shorts[0]?.videoId}` : `?id=${data?.data[0]?.videoId}`);
             setActiveSectionId(shorts?.length ? shorts[0]?.videoId : data?.data[0]?.videoId)
-            setIsLoading(false);
-            setIsError(null)
        })
        .catch((error)=>{
-        setIsLoading(false);
-        setIsError(error)
+           setIsError(error)
+        })
+        .finally(()=> {
+           setIsLoading(false);
        })
     },[lang]);
 
@@ -44,12 +46,13 @@ const Shorts = ()=> {
             .then((data)=> {
                 setShortInfo(data);
                 setActiveSectionId(data?.videoId)
-                setIsLoading(false);
             })
             .catch((error) => {
-                setIsLoading(false);
                 setIsError(error);
-            });
+            })
+            .finally(()=> {
+                setIsLoading(false);
+            })
         }
     },[location.search,lang])
 

@@ -1,8 +1,8 @@
 import jsonUrl from "../Data/staticData.json"
 import { createContext, useEffect, useReducer, useState } from "react";
 import { reducer } from "./Reducer";
-import { handleThemechanges } from "../Hooks/themeHandler";
-import { handleSetLanguage } from "../Hooks/langHandler";
+import { handleThemechanges } from "../Utils/themeHandler";
+import { handleSetLanguage } from "../Utils/langHandler";
 
 export const statesContext = createContext(null);
 

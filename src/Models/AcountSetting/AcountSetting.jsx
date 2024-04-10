@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 
 import "./AcountSetting.scss";
 
-import {handleSelectedTheme} from "../../Hooks/themeHandler";
+import {handleSelectedTheme} from "../../Utils/themeHandler";
 
 import GoogleIcon from '@mui/icons-material/Google';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
