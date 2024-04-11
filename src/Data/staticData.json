@@ -54,7 +54,9 @@
     "playAll": "play all",
     "votes": "votes",
     "startRecord": "start by bressing mic icon",
-    "listening": "listening..."
+    "listening": "listening...",
+    "like": "like",
+     "comment": "comment"
   },
   {
     "logo": "myh",
@@ -111,6 +113,8 @@
     "playAll": "تشغيل الكل",
     "votes": "صوت",
     "startRecord": "أبدأ التسجيل بتغط رمز المايك",
-    "listening": "يستمع..."
+    "listening": "يستمع...",
+    "like": "إعجاب",
+    "comment": "تعليق"
   }
 ]

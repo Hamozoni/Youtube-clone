@@ -39,7 +39,7 @@ const SearchFeed = ()=> {
 
         setError(null);
 
-        fetchChannelApi(`search${searchQuery}&lang=${lang}`)
+        fetchChannelApi(`search${searchQuery}${isMore ? `&token=${continuation}` : ''}&lang=${lang}`)
         .then((data)=> {
 
             if(isMore){

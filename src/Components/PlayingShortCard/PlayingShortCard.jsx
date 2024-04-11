@@ -66,7 +66,10 @@ const PlayShortCard = ({ active, short}) => {
             <MoreVertIcon />
           </li>
           <li onClick={() => navgate(`/channel/${short?.channelId}`)}>
-              {short?.channelThumbnail && <img src={short?.channelThumbnail[0]?.url} alt="short" />}
+            {
+              active &&
+              <img src={short?.channelThumbnail ? short?.channelThumbnail[0]?.url : ''} alt="short" />
+            }
           </li>
         </ul>
       </div>

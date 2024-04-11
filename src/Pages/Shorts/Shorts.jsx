@@ -21,19 +21,16 @@ const Shorts = ()=> {
     const [activeSectionId,setActiveSectionId] = useState(shortId.split('=')[1]);
 
     const [activeShort,setActiveShort] = useState(null);
+    const [isThereShortTargeted,setIsThereShortTargeted] = useState(false);
     const [shorts,setShorts] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
 
-    const fetchActiveShort = (isThereId = false)=>{
-        console.log(activeSectionId)
+    const fetchActiveShort = ()=>{
         if(activeSectionId){
             fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
             .then((data)=> {
-                if(isThereId){
-                    setShorts(prev=> [data,...prev]);
-                }
                 setActiveShort(data);
                 setActiveSectionId(data?.videoId);
             })
@@ -48,14 +45,13 @@ const Shorts = ()=> {
         setIsError(null)
         fetchChannelApi(`hashtag?tag=fanny&type=shorts&lang=${lang}`)
        .then((data)=>{
+           setShorts(data?.data);
         if(!activeSectionId){
-
-            fetchActiveShort(true);
-            setShorts(prev=> [...prev,...data?.data]);
-        }else {
-            setShorts(data?.data);
-            navigate(`?id=${data?.data[0]?.videoId}`);
             setActiveSectionId(data?.data[0]?.videoId)
+            navigate(`?id=${data?.data[0]?.videoId}`);
+            setIsThereShortTargeted(false);
+        }else {
+            setIsThereShortTargeted(true);
         }
        })
        .catch((error)=>{
@@ -85,6 +81,14 @@ const Shorts = ()=> {
             onScroll={(e)=> handleScrollIntoView(e.target)}>
             { isError ? <Error error={isError}/>  :  isLoading ? <ShortLoading /> :
             <>
+               {
+                isThereShortTargeted ? 
+                    <PlayShortCard 
+                    active={activeShort?.videoId === activeSectionId ? true : false} 
+                    short={activeShort}
+                    />
+                :''
+               }
               {shorts?.map((short)=>(
                   'thumbnail' in short &&
                      <PlayShortCard 
