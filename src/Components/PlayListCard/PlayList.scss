@@ -3,8 +3,12 @@
 
 .playlist-card {
   cursor: pointer;
-
+  @media (min-width: 530px) {
+    @include flex-box(flex-start,flex-start,$padding-10)
+  }
+  margin-bottom: $marging-20;
   .playlist-img {
+    flex-basis: 40%;
     position: relative;
     .more-videos {
       position: absolute;
@@ -16,7 +20,7 @@
       overflow: hidden;
       img {
         @media (min-width: 530px) {
-          border-radius: $border-radius-l;
+          border-radius: $border-r-10;
         }
       }
     }
@@ -56,60 +60,22 @@
     @include flex-box(center, center, $gap-m);
   }
   .p-t-box {
+    flex-basis: 60%;
     padding: 0 $padding-l;
     flex: 1;
     .p-l-title {
-      font-size: $font-size-l;
-      color: $text-color-dark-l;
-      &.dark {
-        color: $text-color-light-l;
-      }
+      font-size: $font-size-5;
     }
     .type {
-      font-size: $font-size-m;
-      color: $text-color-dark-m;
+      font-size: $font-size-6;
       text-transform: capitalize;
-      &.dark {
-        color: $text-color-light-m;
-      }
     }
     .first-tow-video {
       margin-top: $margin-l;
       .details {
-        &:not(:last-of-type) {
-          margin-bottom: $margin-m;
-        }
+        margin-bottom: $marging-10;
         @include flex-box(_, _, 3px);
-        color: $text-color-dark-m;
-        font-size: $font-size-m;
-        &.dark {
-          color: $text-color-light-m;
-        }
-      }
-    }
-  }
-  &.watch,
-  &.search {
-    @media (min-width: 430px) {
-      display: flex;
-      margin-bottom: $margin-l * 2;
-      .playlist-img {
-        flex: 1;
-      }
-      .p-t-box {
-        flex: 1.3;
-      }
-    }
-  }
-  &.search {
-    @media (min-width: 768px) {
-      .p-t-box {
-        flex: 3;
-      }
-    }
-    @media (min-width: 992px) {
-      .p-t-box {
-        flex: 2.5;
+        font-size: $font-size-6;
       }
     }
   }

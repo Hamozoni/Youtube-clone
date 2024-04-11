@@ -36,22 +36,29 @@ const Playlist = ({ playlist, renderFrom }) => {
           {staticData?.playAll}
         </section>
       </div>
-      <div className="p-t-box">
-        <h4 className={`${theme} p-l-title`}>{title?.length > 53 ? title.slice(0, 53) + "..." : title}</h4>
-        {publishedTimeText?.length > 3 && <h5 className={`${theme} type`}>{publishedTimeText}</h5>}
+      <div className={`t-color-${theme}  p-t-box`}>
+        <h4 className='p-l-title'>
+            {title?.length > 53 ? title.slice(0, 53) + "..." : title}
+        </h4>
+         <h5 className='type'>
+             {publishedTimeText}
+         </h5>
         {channelTitle && (
-          <Link to={`/channels/${channelId}`} className={`${theme} type`}>
+          <Link to={`/channel/${channelId}`} className={`t-color-${theme}-3 type`}>
             {channelTitle}
           </Link>
         )}
         <div className="first-tow-video">
           {videos?.map((video) => (
-            <section className={`${theme} details`}>
+            <section className={`t-color-${theme}-3 details`}>
               <h5>{video?.title}</h5>
               <h5>. {video?.lengthText}</h5>
             </section>
           ))}
         </div>
+        <Link to={`/watch/${videoId}/list/${playlistId}/1`} className={`t-color-${theme}-3`}>
+            {staticData?.viewAll}
+        </Link>
       </div>
     </div>
   );

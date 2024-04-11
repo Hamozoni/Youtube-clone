@@ -127,7 +127,6 @@
       height: 100%;
       .wrapper {
         overflow-y: auto;
-        // height: 300px !important;
         max-height: calc(100% - 52px);
         overflow: auto;
         .scroll {

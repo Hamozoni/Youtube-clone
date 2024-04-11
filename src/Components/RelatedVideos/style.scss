@@ -5,11 +5,8 @@
         padding: $padding-l;
     }
     .listing {
-        border-bottom: 1px solid darken($color: $back-gr-color-light, $amount: 5);
-        margin-bottom: $margin-l + 10;
-        &.dark {
-           border-bottom: 1px solid lighten($color: $back-gr-color-dark, $amount: 5);
-        }
+        border-bottom: 1px solid transparent;
+        padding-bottom: $padding-20;
         @media (min-width: 620px) {
             grid-column-start: 1;
             grid-column-end: 3;
@@ -18,12 +15,8 @@
             grid-column-end: 4;
         }
         h5.listing-title {
-            color: $text-color-dark-l;
-            font-size: $font-size-l;
+            font-size: $font-size-5;
             margin: $margin-l 0;
-            &.dark {
-               color: $text-color-light-l;
-            }
             @include flex-box(center);
             img {
                 width: 20px;
@@ -32,7 +25,7 @@
         .shorts-container {
             @include flex-box;
             overflow: auto;
-            padding: $padding-l 0;
+            margin-bottom: $marging-15
         }
     } 
 }
@@ -46,17 +39,10 @@
     .query {
     width: 156px;
     min-width: 156px;
-    background-color: $back-gr-color-light;
-    border-radius: $border-radius-l;
+    border-radius: $border-r-10;
     overflow: hidden;
-    margin-bottom: $margin-l;
+    margin-bottom: $marging-15;
     color: $text-color-dark-l;
-    border: 1px solid darken($color: $back-gr-color-light, $amount: 10);
-    &.dark {
-        color: $text-color-light-l;
-        border-color: lighten($color: $back-gr-color-dark, $amount: 10);
-        background-color: $back-gr-color-dark;
-    }
     img {
         min-width: 156px;
     }

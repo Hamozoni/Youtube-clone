@@ -46,6 +46,8 @@ const SearchFeed = ()=> {
                 setVideos((prev)=> [...prev,...data?.data]);
             }else {
                 setVideos(data?.data);
+
+                console.log(data.data)
             }
             setRefinements(data?.refinements);
             setContinuation(data?.continuation);

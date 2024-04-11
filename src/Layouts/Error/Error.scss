@@ -4,7 +4,8 @@
 .error {
   @include flex-box(center, center, 20px);
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   height: calc(100vh - 70px);
   padding: $padding-l;
   h3 {

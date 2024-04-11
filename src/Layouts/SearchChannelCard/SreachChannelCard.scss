@@ -1,0 +1,44 @@
+@import "../../Styles/Variabls";
+@import "../../Styles/Mixin";
+
+.s-ch-c {
+    @include flex-box(center,flex-start,$gap-10);
+    padding-bottom: $padding-20;
+    margin-bottom: $marging-20;
+    border-bottom: 1px solid transparent;
+    .ch-image {
+        flex-basis: 40%;
+        @include flex-box(center,center);
+        img {
+            width: 100px;
+            height: 100%; 
+            @media (min-width: 530px) {
+                width: 150px;
+                height: 150%; 
+            }
+            border-radius: $border-r-full;
+        }
+    }
+    .s-ch-info {
+        flex-basis: 60%;
+
+        @media (min-width: 992px) {
+            @include flex-box(center,space-between);
+            
+        }
+        .ifo-box {
+            .t {
+                font-size: $font-size-5;
+                margin-bottom: $marging-10;
+            }
+            .u-h,.desc {
+                margin-bottom: $marging-5;
+                font-size: $font-size-6;
+
+            }
+        }
+        .subs-btn {
+            margin-top: $marging-15;
+        }
+    }
+}

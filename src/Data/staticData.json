@@ -56,7 +56,8 @@
     "startRecord": "start by bressing mic icon",
     "listening": "listening...",
     "like": "like",
-     "comment": "comment"
+     "comment": "comment",
+     "viewAll": "view all"
   },
   {
     "logo": "myh",
@@ -115,6 +116,7 @@
     "startRecord": "أبدأ التسجيل بتغط رمز المايك",
     "listening": "يستمع...",
     "like": "إعجاب",
-    "comment": "تعليق"
+    "comment": "تعليق",
+    "viewAll": "عرض الكل"
   }
 ]

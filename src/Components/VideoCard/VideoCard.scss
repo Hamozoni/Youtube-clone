@@ -4,12 +4,16 @@
 .video-card {
   border-radius: $border-r-10;
   transition: all 0.5s ease-in-out;
-  margin-bottom: $marging-10;
+  margin-bottom: $marging-20;
+  @media (min-width: 530px) {
+    @include flex-box(flex-start,flex-start,$padding-10)
+  }
   .video-img {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    @media (min-width: 430px) {
+    flex-basis: 40%;
+    @media (min-width: 530px) {
       border-radius: $border-r-10;
     }
     span.nav-watch {
@@ -42,9 +46,9 @@
     }
   }
   .content {
-    padding:$padding-10;
     flex: 1;
     overflow: hidden;
+    flex-basis: 60%;
     .wrapper {
       @include flex-box(flex-start);
       a.img {
@@ -54,6 +58,9 @@
           width: 36px;
           height: 36px;
           border-radius: 50%;
+        }
+        @media (min-width: 530px) {
+          display: none;;
         }
       }
       .titles {
@@ -67,7 +74,7 @@
           }
         }
         .video-desc {
-          display: none;
+          // display: none;
           font-size: $font-size-6;
           @media (min-width: 540px) {
             display: block;
@@ -83,44 +90,6 @@
         svg {
           font-size: 17px;
         }
-      }
-    }
-  }
-  &.watch,
-  &.search {
-    .content {
-      a.img {
-        @media (min-width: 430px) {
-          display: none;
-        }
-      }
-    }
-    @media (min-width: 430px) {
-      @include flex-box();
-      margin-bottom: $margin-l;
-      .video-img {
-        flex: 1;
-      }
-      .content {
-        padding: 0;
-        flex: 1.3;
-      }
-    }
-  }
-  &.search {
-    @media (min-width: 768px) {
-      .titles {
-        * {
-          margin-bottom: $margin-m;
-        }
-      }
-      .content {
-        flex: 3;
-      }
-    }
-    @media (min-width: 992px) {
-      .content {
-        flex: 2.5;
       }
     }
   }

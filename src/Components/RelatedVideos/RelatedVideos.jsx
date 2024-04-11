@@ -8,6 +8,7 @@ import Shorts from "../../Assets/shorts.svg";
 import ShortCard from "../SortsCard/ShortCard";
 import { statesContext } from "../../Contexts/statesContext";
 import { Link } from "react-router-dom";
+import SearchChannelCard from "../../Layouts/SearchChannelCard/SearchChannelCard";
 
 const RelatedVideos = ({ elements, renderFrom }) => {
   const { theme } = useContext(statesContext);
@@ -24,7 +25,7 @@ const RelatedVideos = ({ elements, renderFrom }) => {
   return (
     <div className={`${renderFrom} ${theme} related-videos `}>
       {elements?.map((el, i) =>
-        el?.type === "video" || el?.viewCount ? (
+        el?.type === "video" ? (
           <VideoCard key={el?.videoId + i} data={el} renderFrom={renderFrom} />
         ) : el.type === "playlist" ? (
           <Playlist key={el.playlistId + i} playlist={el} renderFrom={renderFrom} />
@@ -58,9 +59,9 @@ const RelatedVideos = ({ elements, renderFrom }) => {
               ))}
             </div>
           </section>
-        ) : (
-          ""
-        ),
+        ) : el?.type === "channel" ?(
+          <SearchChannelCard data={el} />
+        ) :'',
       )}
     </div>
   );
