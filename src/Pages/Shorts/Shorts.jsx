@@ -24,11 +24,15 @@ const Shorts = ()=> {
     const [isThereShortTargeted,setIsThereShortTargeted] = useState(false);
     const [shorts,setShorts] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
+    const [isActivePendding,setIsActivePendding] = useState(true);
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
 
     const fetchActiveShort = ()=>{
         if(activeSectionId){
+            setIsActivePendding(true);
+            setIsError(null);
+            setActiveShort({});
             fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
             .then((data)=> {
                 setActiveShort(data);
@@ -36,6 +40,9 @@ const Shorts = ()=> {
             })
             .catch((error) => {
                 setIsError(error);
+            })
+            .finally(()=> {
+                setIsActivePendding(false);
             })
         }
     };
@@ -68,6 +75,7 @@ const Shorts = ()=> {
     const handleScrollIntoView = (scrollPosition)=> {
         const sections = document.querySelectorAll('.short-v-container')
         for(let i = 0; i < sections.length; i++){
+            setIsActivePendding(true);
             if( scrollPosition.scrollTop === sections[i].offsetTop - 60){
                 navigate(activeSectionId !== sections[i].id && `?id=${sections[i].id}`);
                 setActiveSectionId(sections[i].id)
@@ -82,10 +90,12 @@ const Shorts = ()=> {
             { isError ? <Error error={isError}/>  :  isLoading ? <ShortLoading /> :
             <>
                {
-                isThereShortTargeted ? 
+                ( isThereShortTargeted && isActivePendding) ? <ShortLoading /> : isThereShortTargeted ?
                     <PlayShortCard 
                     active={activeShort?.videoId === activeSectionId ? true : false} 
                     short={activeShort}
+                    activeShort={activeShort}
+                    isActivePendding={isActivePendding}
                     />
                 :''
                }
@@ -94,8 +104,9 @@ const Shorts = ()=> {
                      <PlayShortCard 
                         key={short?.videoId} 
                         active={short?.videoId === activeSectionId ? true : false} 
-                        short={short?.videoId === activeSectionId ? activeShort : short} 
-
+                        short={short}
+                        activeShort={activeShort} 
+                        isActivePendding={isActivePendding}
                     />
                ))}
             </> 

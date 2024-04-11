@@ -14,7 +14,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Comments from "../Comments/Comments";
 
-const PlayShortCard = ({ active, short}) => {
+const PlayShortCard = ({ active, short,activeShort,isActivePendding}) => {
 
   const navgate = useNavigate();
 
@@ -48,7 +48,7 @@ const PlayShortCard = ({ active, short}) => {
         <ul className={`${theme} sh-links-comment`}>
           <li>
             <ThumbUpIcon />
-            <h5> {active ? short?.likeCountText : staticData.like} </h5>
+            <h5> {(active && !isActivePendding) ? activeShort?.likeCountText : staticData.like} </h5>
           </li>
           <li>
             <ThumbDownIcon />
@@ -56,7 +56,7 @@ const PlayShortCard = ({ active, short}) => {
           </li>
           <li onClick={() => setIsCommentOpen(!isCommentOpen)}>
             <CommentIcon />
-            <h5>{active ? short?.commentCount : staticData?.comments}</h5>
+            <h5>{(active && !isActivePendding) ? activeShort?.commentCount : staticData?.comments}</h5>
           </li>
           <li>
             <ShareIcon />
@@ -67,8 +67,8 @@ const PlayShortCard = ({ active, short}) => {
           </li>
           <li onClick={() => navgate(`/channel/${short?.channelId}`)}>
             {
-              active &&
-              <img src={short?.channelThumbnail ? short?.channelThumbnail[0]?.url : ''} alt="short" />
+              (active && !isActivePendding) &&
+              <img src={activeShort?.channelThumbnail ? activeShort?.channelThumbnail[0]?.url : ''} alt="short" />
             }
           </li>
         </ul>
