@@ -31,7 +31,7 @@ export  const handleThemechanges = (setSelectedTheme,selectedTheme,setTheme)=> {
         const hour = new Date().getHours();
         console.log(hour)
 
-        if(hour > 7 && hour < 19) {
+        if(hour > 5 && hour < 18) {
             setTheme('light')
         }else {
             setTheme('dark')

@@ -13,9 +13,12 @@ import Error from "../../Layouts/Error/Error";
 import ShortLoading from "../../Components/Loading/WatchLoading/ShortLoading";
 
 const Shorts = ()=> {
-    const { lang} = useContext(statesContext);
+    const { lang } = useContext(statesContext);
 
-    const shortId = useLocation()?.search?.shortId?.split('=')[1];
+    const locaton = useLocation()?.search;
+    console.log(locaton)
+
+    let shortId = locaton  ? locaton?.split('=')[1] : false
 
 
     const [shorts,setShorts] = useState([]);
@@ -34,7 +37,8 @@ const Shorts = ()=> {
                         let targetShort = prev.indexOf(prev.find(e=> e.videoId === id));
                         if(targetShort === -1 || from === 'first'){
                             prev.filter(e=> e.videoId !== id);
-                            return [data,...prev]
+                            prev[0] = data
+                            return [...prev]
                         }else {
                             prev[targetShort] = data;
                             return [...prev]
@@ -50,7 +54,7 @@ const Shorts = ()=> {
                     })
                 }
 
-                navigate(`?id=${data?.data[0]?.videoId}`);
+                // navigate(`?id=${data?.videoId}`);
             })
             .catch((error) => {
                 setIsError(error);
@@ -62,18 +66,20 @@ const Shorts = ()=> {
     
     useEffect(()=>{
         setIsLoading(true);
-        setIsError(null)
+        setIsError(null);
         fetchChannelApi(`hashtag?tag=fanny&type=shorts&lang=${lang}`)
        .then((data)=>{
            setShorts(data?.data);
-        if(!shortId){
-            navigate(`?id=${data?.data[0]?.videoId}`);
-            fetchActiveShort(data?.data[0]?.videoId,setShorts,false);
-  
-        }else {
+           return data;
+       }).then((data)=>{
+        if(shortId.length > 0){
             navigate(`?id=${shortId}`);
             fetchActiveShort(shortId,setShorts,true,'first');
+        }else {
+            navigate(`?id=${data?.data[0]?.videoId}`);
+            fetchActiveShort(data?.data[0]?.videoId,setShorts,false);
         }
+
        })
        .catch((error)=>{
            setIsError(error)
@@ -101,8 +107,7 @@ const Shorts = ()=> {
         <main className="shorts"  
             onScroll={(e)=> handleScrollIntoView(e.target)}>
             { isError ? <Error error={isError}/>  :  isLoading ? <ShortLoading /> :
-            <>
-              {shorts?.map((short)=>(
+                 shorts?.map((short)=>(
                   'thumbnail' in short &&
                      <PlayShortCard 
                         key={short?.videoId} 
@@ -110,8 +115,7 @@ const Shorts = ()=> {
                         short={short}
                         isActivePendding={isActivePendding}
                     />
-               ))}
-            </> 
+               ))
             }
         </main>
      );

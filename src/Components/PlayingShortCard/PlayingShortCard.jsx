@@ -25,10 +25,13 @@ const PlayShortCard = ({ active, short,isActivePendding}) => {
     setIsCommentOpen(false);
   }, [short]);
 
+  const li_class_names = `t-color-${theme}`;
+  const icon_class_names = `back-hov-c-${theme}-1 border-c-${theme}-2`;
+
   return (
-    <div className={`${theme} short-v-container`} id={short?.videoId}>
-      <div className={`${theme} short-v-player`}>
-        <section className={`${theme} short-video`}>
+    <div className='short-v-container' id={short?.videoId}>
+      <div className='short-v-player'>
+        <section className='short-video'>
           <h4 className="sh-v-title">
              {short?.title?.length > 30 ? `${short?.title?.slice(0, 30)}...` : short?.title}
             </h4>
@@ -45,27 +48,27 @@ const PlayShortCard = ({ active, short,isActivePendding}) => {
                   />
           }
         </section>
-        <ul className={`${theme} sh-links-comment`}>
-          <li>
-            <ThumbUpIcon />
+        <ul className={`${theme} ${isCommentOpen ? 'comment' : ''} sh-links-comment`}>
+          <li className={li_class_names}>
+            <ThumbUpIcon className={icon_class_names } />
             <h5> {(active && !isActivePendding) ? short?.likeCountText : staticData.like} </h5>
           </li>
-          <li>
-            <ThumbDownIcon />
+          <li className={li_class_names}>
+            <ThumbDownIcon className={icon_class_names }/>
             <h5> {staticData.dislike} </h5>
           </li>
-          <li onClick={() => setIsCommentOpen(!isCommentOpen)}>
-            <CommentIcon />
+          <li onClick={() => setIsCommentOpen(!isCommentOpen)} className={li_class_names}>
+            <CommentIcon className={icon_class_names }/>
             <h5>{(active && !isActivePendding) ? short?.commentCount : staticData?.comments}</h5>
           </li>
-          <li>
-            <ShareIcon />
+          <li className={li_class_names}>
+            <ShareIcon className={icon_class_names }/>
             <h5>{staticData.share}</h5>
           </li>
           <li>
-            <MoreVertIcon />
+            <MoreVertIcon className={icon_class_names }/>
           </li>
-          <li onClick={() => navgate(`/channel/${short?.channelId}`)}>
+          <li onClick={() => navgate(`/channel/${short?.channelId}`)} className={li_class_names}>
             {
               (active && !isActivePendding) &&
               <img src={short?.channelThumbnail ? short?.channelThumbnail[0]?.url : ''} alt="short" />
