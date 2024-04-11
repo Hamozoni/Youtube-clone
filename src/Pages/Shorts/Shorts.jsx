@@ -26,11 +26,14 @@ const Shorts = ()=> {
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
 
-    const fetchActiveShort = ()=>{
+    const fetchActiveShort = (isThereId = false)=>{
         console.log(activeSectionId)
         if(activeSectionId){
             fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
             .then((data)=> {
+                if(isThereId){
+                    setShorts(prev=> [data,...prev]);
+                }
                 setActiveShort(data);
                 setActiveSectionId(data?.videoId);
             })
@@ -43,11 +46,17 @@ const Shorts = ()=> {
     useEffect(()=>{
         setIsLoading(true);
         setIsError(null)
-        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
+        fetchChannelApi(`hashtag?tag=fanny&type=shorts&lang=${lang}`)
        .then((data)=>{
-        setShorts(prev=> [...prev,...data?.data]);
-        navigate(`?id=${data?.data[0]?.videoId}`);
-        setActiveSectionId(data?.data[0]?.videoId)
+        if(!activeSectionId){
+
+            fetchActiveShort(true);
+            setShorts(prev=> [...prev,...data?.data]);
+        }else {
+            setShorts(data?.data);
+            navigate(`?id=${data?.data[0]?.videoId}`);
+            setActiveSectionId(data?.data[0]?.videoId)
+        }
        })
        .catch((error)=>{
            setIsError(error)
