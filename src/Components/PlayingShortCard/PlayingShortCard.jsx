@@ -3,6 +3,7 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import CommentIcon from "@mui/icons-material/Comment";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CloseIcon from '@mui/icons-material/Close';
 // import ClearIcon from '@mui/icons-material/Clear';
 
 import ReactPlayer from "react-player";
@@ -77,9 +78,14 @@ const PlayShortCard = ({ active, short,isActivePendding}) => {
         </ul>
       </div>
       {isCommentOpen && active ? (
+        <>
+         <div onClick={()=> setIsCommentOpen(false)} className={`b-g-t-${theme} c-overlay`}>
+          <CloseIcon className={`${li_class_names} ${icon_class_names}`}/>
+         </div>
         <div className={`shorts-comments ${theme}`}>
           <Comments id={short?.videoId} fetchQuery="comments" />
         </div>
+        </>
       ) : (
         ""
       )}

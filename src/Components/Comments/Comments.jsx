@@ -10,6 +10,7 @@ import { fetchChannelApi } from "../../Lib/FetchApi";
 
 import "./Comments.scss";
 import LoadMoreBtn from "../../Layouts/LoadMoreBtn/LoadMoreBtn";
+import FireLoading from "../Loading/SpinLoading/SpinLoading";
 
 const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
   const [comments, setComments] = useState([]);
@@ -54,9 +55,7 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
 
   return error ? (
     <Error error={error} />
-  ) : isLoading ? (
-    ""
-  ) : (
+  ) : isLoading ? <FireLoading /> : (
     <div className={`${!isComm ? "active" : ''} ${renderedFrom} back-color-${theme}-1 border-c-${theme}-3 comments`}>
       <section className={`border-c-${theme}-2 comment-head`}>
         <h5 className={`t-color-${theme} comm-title`} onClick={() => setComm(!isComm)}>
@@ -65,11 +64,17 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
         </h5>
       </section>
       <div className={`${isComm && "active"} ${renderedFrom} wrapper`}>
-        {comments?.map((comment) => (
-          <Comment key={comment?.commentId} comment={comment} />
-        ))}
+        <div className="scroll">
+          {comments?.map((comment) => (
+            <Comment key={comment?.commentId} comment={comment} />
+          ))}
 
-        {continuation?.length > 0 && <LoadMoreBtn onClickHandler={() => fetchComments(true)} isLoadingMore={isLoadingMore} />}
+          { continuation?.length > 0 ?
+              <LoadMoreBtn onClickHandler={() => fetchComments(true)} isLoadingMore={isLoadingMore} /> 
+              : ''
+          }
+
+        </div>
       </div>
     </div>
   );

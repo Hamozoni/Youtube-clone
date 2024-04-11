@@ -16,9 +16,8 @@ const Shorts = ()=> {
     const { lang } = useContext(statesContext);
 
     const locaton = useLocation()?.search;
-    console.log(locaton)
 
-    let shortId = locaton  ? locaton?.split('=')[1] : false
+    let shortId = locaton  ? locaton?.split('=')[1] : false;
 
 
     const [shorts,setShorts] = useState([]);
@@ -54,7 +53,6 @@ const Shorts = ()=> {
                     })
                 }
 
-                // navigate(`?id=${data?.videoId}`);
             })
             .catch((error) => {
                 setIsError(error);
