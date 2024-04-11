@@ -15,28 +15,42 @@ import ShortLoading from "../../Components/Loading/WatchLoading/ShortLoading";
 const Shorts = ()=> {
     const { lang} = useContext(statesContext);
 
-    const shortId = useLocation().search;
+    const shortId = useLocation()?.search?.shortId?.split('=')[1];
 
-    console.log(shortId.split('=')[1])
-    const [activeSectionId,setActiveSectionId] = useState(shortId.split('=')[1]);
 
-    const [activeShort,setActiveShort] = useState(null);
-    const [isThereShortTargeted,setIsThereShortTargeted] = useState(false);
     const [shorts,setShorts] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
     const [isActivePendding,setIsActivePendding] = useState(true);
     const [isError,setIsError] = useState(null);
     const navigate = useNavigate();
 
-    const fetchActiveShort = ()=>{
-        if(activeSectionId){
+    const fetchActiveShort = (id,setShorts,isThereActiveId,from)=>{
             setIsActivePendding(true);
             setIsError(null);
-            setActiveShort({});
-            fetchChannelApi(`shorts/info${shortId}&extend=1&lang=${lang}`)
+            fetchChannelApi(`shorts/info?id=${id}&extend=1&lang=${lang}`)
             .then((data)=> {
-                setActiveShort(data);
-                setActiveSectionId(data?.videoId);
+                if(isThereActiveId){
+                    setShorts(prev=> {
+                        let targetShort = prev.indexOf(prev.find(e=> e.videoId === id));
+                        if(targetShort === -1 || from === 'first'){
+                            prev.filter(e=> e.videoId !== id);
+                            return [data,...prev]
+                        }else {
+                            prev[targetShort] = data;
+                            return [...prev]
+                        }
+
+                    })
+                }else {
+                    setShorts(prev=>{
+                        
+                        prev.filter(e=> e.videoId !== id);
+
+                        return [data,...prev]
+                    })
+                }
+
+                navigate(`?id=${data?.data[0]?.videoId}`);
             })
             .catch((error) => {
                 setIsError(error);
@@ -44,8 +58,7 @@ const Shorts = ()=> {
             .finally(()=> {
                 setIsActivePendding(false);
             })
-        }
-    };
+    };     
     
     useEffect(()=>{
         setIsLoading(true);
@@ -53,12 +66,13 @@ const Shorts = ()=> {
         fetchChannelApi(`hashtag?tag=fanny&type=shorts&lang=${lang}`)
        .then((data)=>{
            setShorts(data?.data);
-        if(!activeSectionId){
-            setActiveSectionId(data?.data[0]?.videoId)
+        if(!shortId){
             navigate(`?id=${data?.data[0]?.videoId}`);
-            setIsThereShortTargeted(false);
+            fetchActiveShort(data?.data[0]?.videoId,setShorts,false);
+  
         }else {
-            setIsThereShortTargeted(true);
+            navigate(`?id=${shortId}`);
+            fetchActiveShort(shortId,setShorts,true,'first');
         }
        })
        .catch((error)=>{
@@ -69,17 +83,16 @@ const Shorts = ()=> {
        })
     },[lang]);
 
-    useEffect(fetchActiveShort,[activeSectionId,lang])
+    // useEffect(fetchActiveShort,[activeSectionId,lang])
 
 
     const handleScrollIntoView = (scrollPosition)=> {
         const sections = document.querySelectorAll('.short-v-container')
         for(let i = 0; i < sections.length; i++){
-            setIsActivePendding(true);
             if( scrollPosition.scrollTop === sections[i].offsetTop - 60){
-                navigate(activeSectionId !== sections[i].id && `?id=${sections[i].id}`);
-                setActiveSectionId(sections[i].id)
-                
+                fetchActiveShort(sections[i].id,setShorts,true,'scroll');
+                navigate(shortId !== sections[i].id && `?id=${sections[i].id}`);
+
             }
         }
     }
@@ -89,23 +102,12 @@ const Shorts = ()=> {
             onScroll={(e)=> handleScrollIntoView(e.target)}>
             { isError ? <Error error={isError}/>  :  isLoading ? <ShortLoading /> :
             <>
-               {
-                ( isThereShortTargeted && isActivePendding) ? <ShortLoading /> : isThereShortTargeted ?
-                    <PlayShortCard 
-                    active={activeShort?.videoId === activeSectionId ? true : false} 
-                    short={activeShort}
-                    activeShort={activeShort}
-                    isActivePendding={isActivePendding}
-                    />
-                :''
-               }
               {shorts?.map((short)=>(
                   'thumbnail' in short &&
                      <PlayShortCard 
                         key={short?.videoId} 
-                        active={short?.videoId === activeSectionId ? true : false} 
+                        active={short?.videoId === shortId ? true : false} 
                         short={short}
-                        activeShort={activeShort} 
                         isActivePendding={isActivePendding}
                     />
                ))}
