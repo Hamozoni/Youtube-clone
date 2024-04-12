@@ -72,6 +72,7 @@
     }
     .first-tow-video {
       margin-top: $margin-l;
+      display: none;
       .details {
         margin-bottom: $marging-10;
         @include flex-box(_, _, 3px);

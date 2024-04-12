@@ -9,12 +9,12 @@ const SearchChannelCard = ({data}) => {
 
     const {staticData,theme} = useContext(statesContext)
   return (
-    <Link to={`/channel/${data?.channelId}`}  className={`border-c-${theme}-3 s-ch-c`}>
-        <div className="ch-image">
+    <div className={`border-c-${theme}-3 s-ch-c`}>
+        <Link  to={`/channel/${data?.channelId}`}   className="ch-image">
            <img src={data?.thumbnail[1]?.url || data?.thumbnail[0]?.url} alt={data?.title} />
-        </div>
+        </Link>
         <div className="s-ch-info">
-            <div className={`t-color-${theme}-3 ifo-box`}>
+            <Link  to={`/channel/${data?.channelId}`}   className={`t-color-${theme}-3 ifo-box`}>
                 <h5 className={`t-color-${theme} t`}>
                     {data?.title}
                 </h5>
@@ -25,10 +25,10 @@ const SearchChannelCard = ({data}) => {
                     {data?.description}
                 </article>
 
-            </div>
+            </Link>
             <ChannelSubscribeBtn />
         </div>
-    </Link>
+    </div>
   )
 }
 

@@ -15,6 +15,14 @@ main.main-home{
             .videos-container {
                 @include grid-box(340px,1fr,$gap-20);
             }
+            .video-card  {
+                @media (min-width:530px) {
+                    display: block !important;
+                    .img {
+                        display: block !important;
+                    }
+                }
+            }
         }
     }
 }

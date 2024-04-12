@@ -55,10 +55,10 @@ const Playlist = ({ playlist }) => {
               <h5>. {video?.lengthText}</h5>
             </section>
           ))}
+          <Link to={`/watch/${videoId}/list/${playlistId}/1`} className={`t-color-${theme}-3`}>
+              {staticData?.viewAll}
+          </Link>
         </div>
-        <Link to={`/watch/${videoId}/list/${playlistId}/1`} className={`t-color-${theme}-3`}>
-            {staticData?.viewAll}
-        </Link>
       </div>
     </div>
   );

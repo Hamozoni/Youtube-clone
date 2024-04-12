@@ -8,7 +8,16 @@
         padding: 0 15px;
         max-width: 100%;
         @media (min-width: 790px) {
-            max-width: calc(100% - 130px);
+            max-width: calc(100% - 130px); 
+            .video-card {
+
+                .video-desc {
+                    display: block !important;
+                }
+            }
+            .first-tow-video {
+                display: block !important;
+            }
         }
     }
 
