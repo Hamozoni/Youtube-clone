@@ -1,12 +1,13 @@
 @import "../../Styles/Variabls";
 @import "../../Styles/Mixin";
 .related-videos {
-    @media (min-width: 430px) {
-        padding: $padding-l;
+    @media (min-width: 530px) {
+        padding: $padding-20;
     }
     .listing {
         border-bottom: 1px solid transparent;
         padding-bottom: $padding-20;
+        margin-bottom: $marging-40;
         @media (min-width: 620px) {
             grid-column-start: 1;
             grid-column-end: 3;
@@ -15,11 +16,11 @@
             grid-column-end: 4;
         }
         h5.listing-title {
-            font-size: $font-size-5;
-            margin: $margin-l 0;
+            font-size: $font-size-4;
+            margin: $marging-15 0;
             @include flex-box(center);
             img {
-                width: 20px;
+                width: 30px;
             }
         }
         .shorts-container {

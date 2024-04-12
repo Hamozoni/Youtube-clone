@@ -12,9 +12,8 @@ import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
 
 
-
-
 const Home = ()=> {
+
 
     const {lang, theme} = useContext(statesContext);
     

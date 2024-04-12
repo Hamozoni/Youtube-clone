@@ -24,7 +24,7 @@ const Player = ({data})=>{
             />
             <section className='player-desc'>
                 <h4 className='pl-title'>
-                    <Link to={`/video/${videoId }`} className={`t-color-${theme}`} >
+                    <Link to={`/watch/${videoId }`} className={`t-color-${theme}`} >
                         {title}
                     </Link>
                 </h4>

@@ -5,7 +5,7 @@ import { statesContext } from "../../Contexts/statesContext";
 import { useContext } from "react";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 
-const Playlist = ({ playlist, renderFrom }) => {
+const Playlist = ({ playlist }) => {
   const { theme, staticData,lang, dispatch } = useContext(statesContext);
   const { videoId, playlistId, thumbnail, channelTitle, videoCount, title, publishedTimeText, channelId, videos } = playlist;
 
@@ -19,7 +19,7 @@ const Playlist = ({ playlist, renderFrom }) => {
   };
 
   return (
-    <div className={`${renderFrom} playlist-card`} onClick={handlNavgate}>
+    <div className='playlist-card' onClick={handlNavgate}>
       <div className="playlist-img">
         <div className="p-img">
           <img src={thumbnail[1]?.url || thumbnail[0]?.url} alt={channelTitle} />

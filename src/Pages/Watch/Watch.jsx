@@ -118,7 +118,6 @@ const VideoDetails = ({children})=> {
         
                                     <RelatedVideos 
                                         elements={relatedVidoes} 
-                                        renderFrom="watch"
                                         /> 
                                     {
                                         isFetchingKeywordData &&

@@ -10,7 +10,7 @@ import { statesContext } from "../../Contexts/statesContext";
 import { Link } from "react-router-dom";
 import SearchChannelCard from "../../Layouts/SearchChannelCard/SearchChannelCard";
 
-const RelatedVideos = ({ elements, renderFrom }) => {
+const RelatedVideos = ({ elements}) => {
   const { theme } = useContext(statesContext);
 
   const QueryListing = ({ query }) => {
@@ -22,38 +22,41 @@ const RelatedVideos = ({ elements, renderFrom }) => {
     );
   };
 
+  const list_b_class = `border-c-${theme}-2 listing`;
+  const list_t_class = `t-color-${theme} listing-title`;
+
   return (
-    <div className={`${renderFrom} ${theme} related-videos `}>
+    <div className={`${theme} related-videos `}>
       {elements?.map((el, i) =>
         el?.type === "video" ? (
-          <VideoCard key={el?.videoId + i} data={el} renderFrom={renderFrom} />
+          <VideoCard key={el?.videoId + i} data={el}  />
         ) : el.type === "playlist" ? (
-          <Playlist key={el.playlistId + i} playlist={el} renderFrom={renderFrom} />
+          <Playlist key={el.playlistId + i} playlist={el} />
         ) : el?.type === "shorts_listing" ? (
-          <section className={`${theme} listing`}>
-            <h5 className={`${theme} listing-title`}>
+          <section className={list_b_class }>
+            <h5 className={list_t_class }>
               <img src={Shorts} alt="shorts" />
               {el?.title}
             </h5>
-            <div className={`${theme} shorts-container`}>
+            <div className='shorts-container'>
               {el?.data?.map((short, i, shorts) => (
                 <ShortCard key={short?.videoId + i} short={short} shorts={shorts} />
               ))}
             </div>
           </section>
         ) : el?.type === "video_listing" ? (
-          <section className={`${theme} listing`}>
-            <h5 className={`${theme} listing-title`}>{el?.title}</h5>
-            <div className={`${renderFrom} ${theme} videos-container`}>
+          <section className={list_b_class}>
+            <h5 className={list_t_class }>{el?.title}</h5>
+            <div className='videos-container'>
               {el?.data?.map((el, i) => (
-                <VideoCard key={el?.videoId + i} data={el} renderFrom={renderFrom} />
+                <VideoCard key={el?.videoId + i} data={el} />
               ))}
             </div>
           </section>
         ) : el?.type === "query_listing" ? (
-          <section className={`${theme} listing`}>
-            <h5 className={`${theme} listing-title`}> {el?.title}</h5>
-            <div className={`${theme} query-container`}>
+          <section className={list_b_class}>
+            <h5 className={list_t_class}> {el?.title}</h5>
+            <div className='query-container'>
               {el?.data?.map((query, i) => (
                 <QueryListing key={query?.query + i} query={query} />
               ))}
