@@ -62,9 +62,6 @@ const ContentContainer = ({channelViveos})=>{
                          :''
                 }
            </div>
-
-        
      )
 };
-
 export default ContentContainer;
