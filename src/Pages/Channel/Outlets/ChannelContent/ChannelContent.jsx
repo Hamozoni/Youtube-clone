@@ -45,7 +45,7 @@ const ChannelContent = ()=>{
         }
 
         if(section?.length > 0) {
-            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}`)
+            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${isLoadMore ? `&token=${continuation}` : ''}`)
             .then((data)=>{
 
                 setContinuation(data?.continuation);

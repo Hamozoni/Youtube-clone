@@ -2,6 +2,7 @@
 @import '../../Styles/Variabls';
 
 .short-card {
+    overflow: hidden;
     cursor: pointer;
     .short-img {
         position: relative;

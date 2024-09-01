@@ -27,10 +27,12 @@ const Shorts = ()=> {
     const navigate = useNavigate();
 
     const fetchActiveShort = (id,setShorts,isThereActiveId,from)=>{
+
             setIsActivePendding(true);
             setIsError(null);
             fetchChannelApi(`shorts/info?id=${id}&extend=1&lang=${lang}`)
             .then((data)=> {
+                console.log(data)
                 if(isThereActiveId){
                     setShorts(prev=> {
                         let targetShort = prev.indexOf(prev.find(e=> e.videoId === id));
@@ -65,8 +67,9 @@ const Shorts = ()=> {
     useEffect(()=>{
         setIsLoading(true);
         setIsError(null);
-        fetchChannelApi(`hashtag?tag=fanny&type=shorts&lang=${lang}`)
+        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
        .then((data)=>{
+          console.log(data)
            setShorts(data?.data);
            return data;
        }).then((data)=>{
