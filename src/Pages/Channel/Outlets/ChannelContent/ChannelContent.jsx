@@ -29,12 +29,12 @@ const ChannelContent = ()=>{
     const searchParam = location?.search?.length ? location?.search?.replace('?','&') : ''
 
     const sortBy = searchParam?.split('=')[1];
-    console.log(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
+    // console.log(`channel/${section}?id=${id}&lang=${lang}${searchParam}`)
 
 
     const fetchContent = (isLoadMore = false)=>{
 
-        let isToken = continuation?.length > 0 && !isLoadMore ? `&token=${continuation}`: '';
+        // let isToken = continuation?.length > 0 && !isLoadMore ? `&token=${continuation}`: '';
 
         setIsError(null);
         if(isLoadMore){
@@ -45,7 +45,7 @@ const ChannelContent = ()=>{
         }
 
         if(section?.length > 0) {
-            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${isToken}${searchParam}`)
+            fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}`)
             .then((data)=>{
 
                 setContinuation(data?.continuation);
