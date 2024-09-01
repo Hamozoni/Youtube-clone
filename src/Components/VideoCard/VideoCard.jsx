@@ -12,25 +12,40 @@ import ReactPlayer from "react-player";
 const Videos = ({ data: video}) => {
 
   const navgate = useNavigate();
-  const { theme,lang, staticData, playingVideoId, setPlayingVideoId, dispatch } = useContext(statesContext);
+
+  const { 
+    theme,
+    lang, 
+    staticData,
+    playingVideoId, 
+    setPlayingVideoId
+   } = useContext(statesContext);
 
   const handleClick = () => {
-    dispatch({ type: "add-to-history", payload: video });
     navgate(video?.videoId && `/watch/${video?.videoId}`);
   };
 
   return (
-    <div className='video-card' onMouseOver={() => setPlayingVideoId(video.videoId)} onMouseLeave={() => setPlayingVideoId("")} onTouchEnd={() => setPlayingVideoId(video.videoId)}>
+    <div 
+        className='video-card' 
+        onMouseOver={() => setPlayingVideoId(video.videoId)} 
+        onMouseLeave={() => setPlayingVideoId("")} 
+        >
       <div onClick={handleClick} className="video-img">
         {playingVideoId === video.videoId ? (
           <>
-            <ReactPlayer url={`hppts://www.youtube.com/watch?v=${video?.videoId}?autoPlay=1`} playing muted className="player absolute" />
-
+            <ReactPlayer 
+              url={`hppts://www.youtube.com/watch?v=${video?.videoId}?autoPlay=1`} 
+              playing muted className="player absolute" 
+              />
             <span className="nav-watch absolute" onClick={handleClick}></span>
           </>
         ) : (
-          <span style={lang === "en" ? { right: "5px" } : { left: "5px" }} className={video?.lengthText === "" || video?.lengthText?.toLowerCase() === "live" ? "live" : ""}>
-            {video?.lengthText === "" || video?.lengthText?.toLowerCase() === "live" ? (
+          <span 
+              style={lang === "en" ? { right: "5px" } : { left: "5px" }} 
+              className={video?.lengthText === "" || video?.lengthText?.toLowerCase() === "live" ? "live" : ""}
+              >
+              {video?.lengthText === "" || video?.lengthText?.toLowerCase() === "live" ? (
               <div className="live">
                 {" "}
                 {staticData?.live} <SensorsRoundedIcon />{" "}
@@ -41,30 +56,40 @@ const Videos = ({ data: video}) => {
           </span>
         )}
         <>
-          <img src={video?.thumbnail[0]?.url} alt={video?.channelTitle} onClick={handleClick} />
+          <img 
+              src={video?.thumbnail[0]?.url} 
+              alt={video?.channelTitle} 
+              onClick={handleClick}
+               />
         </>
       </div>
       <div className="content">
         <div className="wrapper">
           {video.authorThumbnail?.length ? (
-            <Link to={video?.channelId && `/channel/${video?.channelId}/home`} className="img">
-              <img src={video?.authorThumbnail[0]?.url} alt="channel" />
+            <Link 
+                to={video?.channelId && `/channel/${video?.channelId}/home`} 
+                className="img"
+                >
+                <img src={video?.authorThumbnail[0]?.url} alt="channel" />
             </Link>
           ) : (
             ""
           )}
           {video.channelThumbnail?.length ? (
             <Link to={video?.channelId && `/channel/${video?.channelId}/home`} className="img">
-              <img src={video?.channelThumbnail[0]?.url} alt="" />
+                <img src={video?.channelThumbnail[0]?.url} alt="" />
             </Link>
           ) : (
             ""
           )}
           <div className="titles">
-            <Link className={`t-color-${theme}`} to={video?.videoId && `/watch/${video?.videoId}`}>
+            <Link 
+                className={`t-color-${theme}`} 
+                to={video?.videoId && `/watch/${video?.videoId}`}
+                >
               <h4 className="video-title">
                 {
-                   `  ${video?.title?.length > 53 ? video?.title.slice(0, 53) + "..." : video?.title}`
+                   `${video?.title?.length > 53 ? video?.title.slice(0, 53) + "..." : video?.title}`
                 }
               </h4>
             </Link>
