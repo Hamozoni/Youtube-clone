@@ -12,6 +12,7 @@ const ContentContainer = ({channelViveos})=>{
 
     const {theme} = useContext(statesContext);
     const {section} = useParams();
+    
      return (
         channelViveos?.length > 0 && 
          

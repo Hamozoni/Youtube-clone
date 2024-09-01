@@ -5,25 +5,56 @@ import { statesContext } from "../../Contexts/statesContext";
 
 import "./ChannelTaps.scss";
 
+const channelNavData = [
+  {
+    en: 'home',
+    ar: 'الصفحة الرئيسية'
+  },
+  {
+    en: 'videos',
+    ar: 'الصفحة الرئيسية'
+  },
+  {
+    en: 'shorts',
+    ar: 'الصفحة الرئيسية'
+  },
+  {
+    en: 'playlists',
+    ar: 'الصفحة الرئيسية'
+  },
+  {
+    en: 'liveStreams',
+    ar: 'الصفحة الرئيسية'
+  },
+  {
+    en: 'community',
+    ar: 'الصفحة الرئيسية'
+  }
+  
+]
+
 const ChannelTaps = ({ tabs, setIsAboutChannelOpen }) => {
-  const { staticData, theme } = useContext(statesContext);
+
+  const { staticData, theme,lang } = useContext(statesContext);
 
   return (
     <nav className={`back-color-${theme} border-c-${theme}-2 channel-nav`}>
       <ul className="nav">
-        {tabs?.map((tap) =>
-
-        tap !== 'Search' &&  tap !== 'بحث' ?
+        {
+          channelNavData?.map((tap) =>
               <li>
                 <NavLink 
                         className={`t-color-${theme}-2 back-before-c-${theme}-7 border-c-${theme}-5`} 
-                        to={`${tap === "Live" ? "liveStreams" : tap.toLowerCase()}`}>
-                  {tap}
+                        to={tap.en}>
+                  {tap[lang]}
                 </NavLink>
               </li>
-            :''
-        )}
-        <li className={`t-color-${theme}-2  about`} onClick={() => setIsAboutChannelOpen(true)}>
+          )
+        }
+        <li 
+            className={`t-color-${theme}-2  about`} 
+            onClick={() => setIsAboutChannelOpen(true)}
+            >
            {staticData.about}
         </li>
       </ul>

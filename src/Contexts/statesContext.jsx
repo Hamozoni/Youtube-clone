@@ -33,7 +33,6 @@ const StatesContextComponent = ({ children }) => {
     if(selectedTheme === 'deviceTheme') {
       const mediaTheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-      console.log('cccccccccccccccccccccccccccccccccc')
 
       const handleChange = ({matches})=> {
         if(matches){
