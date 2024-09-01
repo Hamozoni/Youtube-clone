@@ -2,7 +2,7 @@
 @import "../../Styles/Mixin";
 
 .video-card {
-  border-radius: $border-r-10;
+  border-radius: $border-r-5;
   transition: all 0.5s ease-in-out;
   margin-bottom: $marging-20;
   @media (min-width: 530px) {
@@ -14,7 +14,7 @@
     overflow: hidden;
     flex-basis: 40%;
     @media (min-width: 530px) {
-      border-radius: $border-r-10;
+      border-radius: $border-r-5;
     }
     span.nav-watch {
       background-color: transparent;
@@ -29,7 +29,7 @@
       padding: 0px 5px 2px;
       background-color: $trans-black;
       color: $light-color;
-      border-radius: $border-r-10;
+      border-radius: $border-r-5;
       font-size: $font-size-6;
       font-weight: 500;
       &.live {
@@ -70,7 +70,7 @@
             font-size: $font-size-6;
         }
           .video-title {
-              font-size: $font-size-5;
+              font-size: $font-size-6;
           }
         }
         .video-desc {
