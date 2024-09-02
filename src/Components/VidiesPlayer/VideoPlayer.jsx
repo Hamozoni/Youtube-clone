@@ -51,28 +51,37 @@ const VideoPlayer = ({ setKeywords }) => {
             controls playing
              />
       <div className="video-desc">
-        <h3 className={`t-color-${theme} video-title`}>{videoDetail?.title}</h3>
-        <div className={`border-c-${theme}-2 left`}>
-          <div className="channel-card">
-            <Link to={`/channel/${videoDetail?.channelId}`} className="ch-img">
-              <img src={videoDetail?.channelThumbnail[0]?.url} alt="channel image" />
-            </Link>
-            <div className="ch-info">
-              <div className="ch-det">
-                <Link to={`/channel/${videoDetail?.channelId}`} className={`t-color-${theme} ch-name`}>
-                  {videoDetail?.channelTitle}
-                </Link>
-                <p className={`t-color-${theme}-3 ch-subs-cout`}>{videoDetail?.subscriberCountText}</p>
+          <h3 
+              className={`t-color-${theme} video-title`}
+              >{videoDetail?.title}
+          </h3>
+          <div className={`border-c-${theme}-2 left`}>
+              <div className="channel-card">
+                  <Link to={`/channel/${videoDetail?.channelId}`} className="ch-img">
+                      <img src={videoDetail?.channelThumbnail[0]?.url} alt="channel image" />
+                  </Link>
+                  <div className="ch-info">
+                      <div className="ch-det">
+                          <Link 
+                              to={`/channel/${videoDetail?.channelId}`} 
+                              className={`t-color-${theme} ch-name`}
+                              >
+                              {videoDetail?.channelTitle}
+                          </Link>
+                          <p 
+                            className={`t-color-${theme}-3 ch-subs-cout`}
+                            >{videoDetail?.subscriberCountText}
+                          </p>
+                      </div>
+                      <ChannelSubscribeBtn />
+                  </div>
               </div>
-              <ChannelSubscribeBtn />
-            </div>
+              <div className="links-btns">
+                  <WatchButtons videoDetail={videoDetail} />
+              </div>
           </div>
-          <div className="links-btns">
-            <WatchButtons videoDetail={videoDetail} />
-          </div>
-        </div>
-        <VideoDescribtion videoDetail={videoDetail} />
-        <Comments id={id} fetchQuery="comments" renderedFrom="watch" />
+          <VideoDescribtion videoDetail={videoDetail} />
+          <Comments id={id} fetchQuery="comments" renderedFrom="watch" />
       </div>
     </div>
   );
