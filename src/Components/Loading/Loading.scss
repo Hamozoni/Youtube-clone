@@ -11,6 +11,9 @@
   background-color: $back-gr-color-dark;
   z-index: 99999999999999999999999999999999999999999999999999999999999999999999;
   animation: rotateLogo 0.5s 2.4s forwards;
+  &.dark {
+    background-color: $back-gr-color-light
+  }
   .logo {
     @include flex-box(center, center);
     width: 100%;

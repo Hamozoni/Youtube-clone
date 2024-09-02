@@ -7,7 +7,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const Loading = () => {
   const { theme } = useContext(statesContext);
   return (
-    <div className="loading">
+    <div className={`${theme} loading`}>
       <div className={`${theme} logo`}>
         <div className="background"></div>
         <div className="logo-cont">
