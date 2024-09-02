@@ -30,7 +30,7 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
     } else {
       setIsLoading(true);
     }
-    fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}${isLoadMore ? `token=${continuation}`: ''}`)
+    fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}${isLoadMore ? `&token=${continuation}`: ''}`)
       .then((data) => {
         if (isLoadMore) {
           setComments((prev) => [...prev, ...data?.data]);
