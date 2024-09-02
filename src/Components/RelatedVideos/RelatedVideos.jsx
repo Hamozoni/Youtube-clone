@@ -40,7 +40,10 @@ const RelatedVideos = ({ elements}) => {
             </h5>
             <div className='shorts-container'>
               {el?.data?.map((short, i, shorts) => (
-                <ShortCard key={short?.videoId + i} short={short} shorts={shorts} />
+                <ShortCard 
+                  key={short?.videoId} 
+                  short={short} shorts={shorts}
+                  />
               ))}
             </div>
           </section>
@@ -48,9 +51,11 @@ const RelatedVideos = ({ elements}) => {
           <section className={list_b_class}>
             <h5 className={list_t_class }>{el?.title}</h5>
             <div className='videos-container'>
-              {el?.data?.map((el, i) => (
-                <VideoCard key={el?.videoId + i} data={el} />
-              ))}
+              {
+                el?.data?.map((el, i) => (
+                   <VideoCard key={el?.videoId} data={el} />
+                ))
+              }
             </div>
           </section>
         ) : el?.type === "query_listing" ? (
@@ -63,7 +68,7 @@ const RelatedVideos = ({ elements}) => {
             </div>
           </section>
         ) : el?.type === "channel" ?(
-          <SearchChannelCard data={el} />
+          <SearchChannelCard key={el?.channelId} data={el} />
         ) :'',
       )}
     </div>

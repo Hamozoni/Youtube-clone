@@ -4,12 +4,13 @@
 .short-card {
     overflow: hidden;
     cursor: pointer;
+    min-width: 210px !important;
     .short-img {
         position: relative;
         max-height: 380px;
         border-radius: $border-r-10;
         min-height: 373px ;
-        min-width: 210px;
+        min-width: 210px !important;
         max-width: 280px;
         overflow: hidden;
         img {
