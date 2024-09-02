@@ -59,7 +59,7 @@ const VideoPlayer = ({ setKeywords }) => {
             </Link>
             <div className="ch-info">
               <div className="ch-det">
-                <Link to={`/channels/${videoDetail?.channelId}`} className={`t-color-${theme} ch-name`}>
+                <Link to={`/channel/${videoDetail?.channelId}`} className={`t-color-${theme} ch-name`}>
                   {videoDetail?.channelTitle}
                 </Link>
                 <p className={`t-color-${theme}-3 ch-subs-cout`}>{videoDetail?.subscriberCountText}</p>
