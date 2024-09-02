@@ -30,8 +30,7 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
     } else {
       setIsLoading(true);
     }
-
-    fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}`)
+    fetchChannelApi(`${fetchQuery}?id=${id}&sort_by=newest&lang=${lang}${isLoadMore ? `tokent=${continuation}`: ''}`)
       .then((data) => {
         if (isLoadMore) {
           setComments((prev) => [...prev, ...data?.data]);
@@ -40,7 +39,6 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
           setCommentsCount(data?.commentsCount);
         }
         setContinuation(data?.continuation);
-        console.log(data);
       })
       .catch((err) => {
         setError(err);
@@ -65,12 +63,20 @@ const VideoComments = ({ id, fetchQuery, renderedFrom }) => {
       </section>
       <div className={`${isComm && "active"} ${renderedFrom} wrapper`}>
         <div className="scroll">
-          {comments?.map((comment) => (
-            <Comment key={comment?.commentId} comment={comment} />
-          ))}
+          {
+            comments?.map((comment) => (
+              <Comment 
+                  key={comment?.commentId} 
+                  comment={comment} 
+                  />
+            ))
+          }
 
           { continuation?.length > 0 ?
-              <LoadMoreBtn onClickHandler={() => fetchComments(true)} isLoadingMore={isLoadingMore} /> 
+              <LoadMoreBtn 
+                  onClickHandler={() => fetchComments(true)} 
+                  isLoadingMore={isLoadingMore} 
+                  /> 
               : ''
           }
 
