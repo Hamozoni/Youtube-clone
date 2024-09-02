@@ -13,8 +13,7 @@ import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/
 
 
 const Home = ()=> {
-
-
+    
     const {lang, theme} = useContext(statesContext);
     
     const [elements,setElements] = useState(null);

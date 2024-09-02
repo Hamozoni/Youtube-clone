@@ -11,7 +11,9 @@ const LoadingRelatedVideos = ({ display }) => {
       <nav className="loader-nav">
         <ul className="loader-ul">
           {cards.map((e) => (
-            <li className={`back-color-${theme}-1  back-before-c-${theme}-2 nav-l-li loader-moviement`} key={e}></li>
+            <li 
+                className={`back-color-${theme}-1 back-before-c-${theme}-2 nav-l-li loader-moviement`} 
+                key={e}></li>
           ))}
         </ul>
       </nav>
