@@ -25,7 +25,7 @@
       li {
         min-height: 30px;
         min-width: 170px;
-        border-radius: $border-r-10;
+        border-radius: $border-r-5;
       }
     }
   }
@@ -36,7 +36,7 @@
     .loader-card {
       &.flex {
         @media (min-width: 430px) {
-          @include flex-box(flex-start, flex-start, $gap-15);
+          @include flex-box(flex-start, flex-start, $gap-10);
           .image {
             display: none;
           }
@@ -47,8 +47,8 @@
       }
       .loader-image {
         max-width: 100%;
-        border-radius: $border-r-10;
-        margin-bottom: $marging-10;
+        border-radius: $border-r-5;
+        margin-bottom: $marging-5;
         height: 205px;
         &.flex {
           @media (min-width: 430px) {
@@ -78,7 +78,7 @@
           .laoder-ch-name {
             height: 20px;
             margin-bottom: $marging-5;
-            border-radius: $border-r-10;
+            border-radius: $border-r-5;
             width: 180px;
             &.flex {
               @media (min-width: 730px) {
