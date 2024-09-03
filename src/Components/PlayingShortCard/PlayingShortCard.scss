@@ -54,12 +54,13 @@
       max-width: 100%;
       .short-player {
         @extend .height;
+        object-fit: cover;
         width: 100vw;
         min-width: 100vw;
         max-width: 100vw;
         @media (min-width: 430px) {
-          width: 330px;
-          min-width: 330px;
+          width: 330px !important;
+          min-width: 330px !important;
           max-width: 330px;
           border-radius: 10px;
           overflow: hidden;

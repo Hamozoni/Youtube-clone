@@ -67,7 +67,7 @@ const Shorts = ()=> {
     useEffect(()=>{
         setIsLoading(true);
         setIsError(null);
-        fetchChannelApi(`hashtag?tag=viral&type=shorts&lang=${lang}`)
+        fetchChannelApi(`search?query=$trending&type=shorts`)
        .then((data)=>{
           console.log(data)
            setShorts(data?.data);

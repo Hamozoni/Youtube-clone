@@ -39,7 +39,10 @@ const Videos = ({ data: video}) => {
                       url={`hppts://www.youtube.com/watch?v=${video?.videoId}?autoPlay=1`} 
                       playing muted className="player absolute" 
                       />
-                    <span className="nav-watch absolute" onClick={handleClick}></span>
+                    <span 
+                        className="nav-watch absolute" 
+                        onClick={handleClick}>
+                    </span>
                   </>
               ) 
               : 
