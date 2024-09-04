@@ -46,7 +46,6 @@ const Home = ()=> {
                 setNavFilters(data?.filters);
                 document.title = 'home page'
             }
-            console.log(data)
         })
         .catch((error)=>{
             setError(error)
@@ -77,7 +76,6 @@ const Home = ()=> {
             }else {
                 setElements(data?.data);
             }
-            console.log(data)
         })
         .catch((error)=>{
             setError(error)
