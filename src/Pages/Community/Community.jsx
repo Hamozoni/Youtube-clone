@@ -1,14 +1,19 @@
 
 import { useParams } from "react-router-dom";
-import "./Community.scss";
 import { useContext, useEffect, useState } from "react";
+// styles
+import "./Community.scss";
+// contexts
 import { statesContext } from "../../Contexts/statesContext";
+// libs
 import { fetchChannelApi } from "../../Lib/FetchApi";
+// layouts
 import SideNavbarSmall from "../../Models/SideNavbar/SideNavSmall";
+import Error from "../../Layouts/Error/Error";
+// components
 import Comments from "../../Components/Comments/Comments";
 import CommunityCard from "../../Components/CommunityCard/CommunityCard";
 import FireLoading from "../../Components/Loading/SpinLoading/SpinLoading";
-import Error from "../../Layouts/Error/Error";
 
 const Community = ()=>{
 
