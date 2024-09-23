@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-
+// libs
 import { fetchChannelApi } from "../../../../Lib/FetchApi";
-
+// styles
 import './ChannelContent.scss';
+// context
 import { statesContext } from "../../../../Contexts/statesContext";
+// components
 import FireLoading from "../../../../Components/Loading/SpinLoading/SpinLoading";
-import Error from "../../../../Layouts/Error/Error";
 import ContentContainer from "./ContentContainer";
+// layouts
+import Error from "../../../../Layouts/Error/Error";
 import LoadMoreBtn from "../../../../Layouts/LoadMoreBtn/LoadMoreBtn";
 
 
@@ -42,10 +45,7 @@ const ChannelContent = ()=>{
         if(section?.length > 0) {
             fetchChannelApi(`channel/${section}?id=${id}&lang=${lang}${isLoadMore ? `&token=${continuation}` : ''}`)
             .then((data)=>{
-
                 setContinuation(data?.continuation);
-                console.log(data); 
-
                 if(isLoadMore){
                     setChannelViveos(prev=> [...prev,...data?.data]);
                 }else {
@@ -56,7 +56,6 @@ const ChannelContent = ()=>{
             })
             .catch((error)=>{
               setIsError(error);
-              console.log(error);
             })
             .finally(()=> {
                 setIsLoading(false);
