@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-
+// contexts
 import { statesContext } from "../../../../Contexts/statesContext";
+// components
 import CommunityCard from "../../../../Components/CommunityCard/CommunityCard";
 import ShortCard from "../../../../Components/SortsCard/ShortCard";
 import Playlist from "../../../../Components/PlayListCard/PlayList";
 import VideoCard from "../../../../Components/VideoCard/VideoCard";
-
 
 const ContentContainer = ({channelViveos})=>{
 
@@ -47,7 +47,7 @@ const ContentContainer = ({channelViveos})=>{
                                    ))
                                }
                           </div>
-                       :(channelViveos[0]?.type === 'video' && section === 'videos' || section === 'liveStreams' )?
+                       :(channelViveos[0]?.type === 'video' && ( section === 'videos' || section === 'liveStreams') )?
                          <div className="videos-playlists">
                              {
     
