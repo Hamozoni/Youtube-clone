@@ -1,14 +1,16 @@
 import { useEffect,useState, useContext } from 'react';
-
+// styles
 import './Home.scss';
 import { fetchChannelApi} from '../../Lib/FetchApi';
 import { statesContext } from '../../Contexts/statesContext';
-
-import Error from '../../Layouts/Error/Error';
-import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
+// models
 import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
-import Keywords from '../../Components/RelatedKeywords/Keywords';
+// layouts
+import Error from '../../Layouts/Error/Error';
 import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
+// components
+import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
+import Keywords from '../../Components/RelatedKeywords/Keywords';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
 
 
