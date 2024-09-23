@@ -1,19 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+// styles
 import './Channel.scss';
-
+// icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-import { fetchChannelApi } from '../../Lib/FetchApi';
+// context
 import { statesContext } from '../../Contexts/statesContext';
-
+// models
 import ChannelAbout from '../../Models/ChannelAbout/ChannelAbout';
-import Error from '../../Layouts/Error/Error';
 import SideNavbarSmall from '../../Models/SideNavbar/SideNavSmall';
-import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
+// layouts
+import Error from '../../Layouts/Error/Error';
 import ChannelSubscribeBtn from '../../Layouts/ChannelSubscibeBtn/ChannelSubscribeBtn';
+// components
+import ChannelTaps from '../../Components/ChannelNavTaps/ChannelTaps';
 import FireLoading from '../../Components/Loading/SpinLoading/SpinLoading';
+// libs
+import { fetchChannelApi } from '../../Lib/FetchApi';
 
 const Channel = () => {
 
@@ -32,7 +36,6 @@ const Channel = () => {
         fetchChannelApi(`channel/about?id=${id}&lang=${lang}`)
         .then((data)=>{
             setChanelDetail(data);
-            console.log(data); 
         })
         .catch((error)=> {
             setError(error)
