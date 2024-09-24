@@ -1,13 +1,17 @@
 import { useState, useEffect, useContext} from 'react';
 import { useLocation,useNavigate} from 'react-router-dom';
-
+// styles
 import './SearchFeed.scss';
+// libs
 import { fetchChannelApi } from '../../Lib/FetchApi';
+// contexts
 import { statesContext } from '../../Contexts/statesContext';
-
-import SideNavSmall from '../../Models/SideNavbar/SideNavSmall';
+// layouts
 import LoadMoreBtn from '../../Layouts/LoadMoreBtn/LoadMoreBtn';
 import Error from '../../Layouts/Error/Error';
+// models
+import SideNavSmall from '../../Models/SideNavbar/SideNavSmall';
+// components
 import RelatedVideos from '../../Components/RelatedVideos/RelatedVideos';
 import Refinements from '../../Components/Refinements/Refinements';
 import LoadingRelatedVideos from '../../Components/Loading/LoadingRelatedVideos/LoadingRelatedVideos';
