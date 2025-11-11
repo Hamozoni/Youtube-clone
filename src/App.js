@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 // pages
 import Home from './Pages/Home/Home';
 import Watch from './Pages/Watch/Watch';
